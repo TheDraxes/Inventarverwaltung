@@ -1,11 +1,15 @@
 package GUI.StartGUI;
 
+import GUI.ViewGUI.View;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class StartController {
 
@@ -30,8 +34,11 @@ public class StartController {
     }
 
     @FXML
-    void confirmClicked(ActionEvent event) {
+    void confirmClicked(ActionEvent event) throws IOException {
+        Stage stage = (Stage) ConfirmButton.getScene().getWindow();
+        stage.hide();
 
+        new View();
     }
 
 }
