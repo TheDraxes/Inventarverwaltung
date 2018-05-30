@@ -24,7 +24,7 @@ public class StartController {
 
     @FXML
     void ComboBoxInit() {
-        ObservableList<String> _default = FXCollections.observableArrayList("Option 1", "Option 2");
+        ObservableList<String> _default = FXCollections.observableArrayList("DVZ-Inventar", "Haushalts-Inventar");
         InventarBox.setItems(_default);
     }
 
