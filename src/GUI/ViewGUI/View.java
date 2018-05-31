@@ -8,6 +8,11 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/*
+    Klasse die sich darum kümmert das im Scene Builder erstellte ViewFenster Über die ViewStyle.fxml einzulesen
+    und aufzubauen.
+ */
+
 public class View extends Stage {
     Stage stage;
     public  View() throws IOException {
