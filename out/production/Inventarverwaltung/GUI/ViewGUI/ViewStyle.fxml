@@ -1,20 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ViewGUI.ViewController">
+<AnchorPane prefHeight="429.0" prefWidth="605.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ViewGUI.ViewController">
    <children>
-      <GridPane layoutY="6.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="398.0" prefWidth="605.0">
+      <GridPane layoutY="6.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="423.0" prefWidth="605.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints maxHeight="200.0" minHeight="10.0" prefHeight="34.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="380.0" minHeight="10.0" prefHeight="364.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="380.0" minHeight="10.0" prefHeight="359.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="380.0" minHeight="10.0" prefHeight="29.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <MenuBar maxWidth="1.7976931348623157E308" minHeight="30.0" minWidth="400.0" prefHeight="8.0" prefWidth="500.0" GridPane.valignment="TOP">
@@ -26,7 +28,12 @@
                 </Menu>
               </menus>
             </MenuBar>
-            <ScrollPane fx:id="ItemScrollPane" pannable="true" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
+            <ScrollPane fx:id="ItemScrollPane" pannable="true" prefHeight="372.0" prefWidth="605.0" GridPane.rowIndex="1" />
+            <Label fx:id="nameLabel" text="Label" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
+               <padding>
+                  <Insets right="20.0" />
+               </padding>
+            </Label>
          </children>
       </GridPane>
    </children>
