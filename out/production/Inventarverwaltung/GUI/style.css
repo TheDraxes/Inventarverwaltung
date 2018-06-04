@@ -1,0 +1,23 @@
+.confirmButton{
+    -fx-background-color: lightgreen;
+    -fx-border-style: solid;
+    -fx-border-color: lightgreen;
+    -fx-border-width: 3px;
+}
+.confirmButton:hover{
+    -fx-background-color: white;
+}
+.startLabel{
+    -fx-background-color: #1d5ec6;
+    -fx-min-height: 50px;
+    -fx-text-fill: white;
+}
+.backButton{
+    -fx-background-color: lightgreen;
+    -fx-border-style: solid;
+    -fx-border-color: lightgreen;
+    -fx-border-width: 3px;
+}
+.backButton:hover{
+    -fx-background-color: #f2f2f2;
+}
