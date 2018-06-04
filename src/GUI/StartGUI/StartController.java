@@ -42,7 +42,7 @@ public class StartController {
     @FXML
     public void initialize(){
         ObservableList<String> _default = FXCollections.observableArrayList();
-        File lookUp = new File("C:/Users/Tim/Projekte/Inventarverwaltung/src/SafedInv");
+        File lookUp = new File("C:/projekte/Inventarverwaltung/src/SafedInv");
         if(lookUp.exists()){
             System.out.println("Pfad Existiert");
         }
@@ -71,10 +71,10 @@ public class StartController {
     //Methode die aufgerufen wird wenn der newButton gedrückt wird
     @FXML
     void newClicked(ActionEvent event) {
-
         InputDialog newInput = new InputDialog();
         newInput.setLocationRelativeTo(null);
         newInput.pack();
+        newInput.setSize(300, 100);
         newInput.setVisible(true);
 
         /*
