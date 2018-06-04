@@ -1,5 +1,11 @@
 package data;
+/*
 
+    Vorläufige Klasse für ein Gegenstandseintrag im Inventar
+
+    Muss noch um umfangreiche Funktionen Erweitert werden
+
+ */
 public class Item {
     private String name;
     private double value;
