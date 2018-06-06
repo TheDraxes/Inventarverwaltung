@@ -19,12 +19,12 @@
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints maxHeight="200.0" minHeight="10.0" prefHeight="34.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="380.0" minHeight="10.0" prefHeight="359.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="200.0" minHeight="10.0" prefHeight="26.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="380.0" minHeight="10.0" prefHeight="368.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="380.0" minHeight="10.0" prefHeight="29.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <MenuBar maxWidth="1.7976931348623157E308" minHeight="30.0" minWidth="400.0" prefHeight="8.0" prefWidth="500.0" GridPane.valignment="TOP">
+            <MenuBar maxWidth="1.7976931348623157E308" minHeight="28.0" minWidth="400.0" prefHeight="28.0" prefWidth="605.0" GridPane.valignment="TOP">
               <menus>
                 <Menu mnemonicParsing="false" text="Inventar">
                   <items>
@@ -39,7 +39,7 @@
                   <Insets right="20.0" />
                </padding>
             </Label>
-            <Button mnemonicParsing="false" styleClass="backButton" stylesheets="@../style.css" text="← zurück" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+            <Button mnemonicParsing="false" onAction="#backClicked" styleClass="backButton" stylesheets="@../style.css" text="← zurück" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
          </children>
       </GridPane>
    </children>

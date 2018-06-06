@@ -1,9 +1,12 @@
-import GUI.StartGUI.ShowStart;
+import GUI.LoginGUI.ProgramStart;
+import GUI.StartGUI.showStartWindow;
 
 public class Main {
     public static void main(String[] args){
 
-        new ShowStart().showStart();
+        new ProgramStart().ProgramStart();
+
+
 
         /*
         InputDialog newInput = new InputDialog();

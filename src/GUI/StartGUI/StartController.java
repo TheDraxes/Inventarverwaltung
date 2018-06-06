@@ -12,10 +12,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.stage.Stage;
+import javafx.scene.control.Tooltip;
 
 import javax.swing.*;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -30,12 +30,17 @@ public class StartController implements Initializable {
     //Dropdown Menue für die Auswahl des Inventars
     @FXML
     private ComboBox<String> InventarBox;
+
     //Button um ein neues Inventar anzulegen(Noch ohne Funktion)
     @FXML
     private Button newButton;
+
     //Button zum bestätigen des Ausgewählten Inventars (Noch öffnet sich nur das ViewFenster mit Platzhaltereinträgen)
     @FXML
     private Button ConfirmButton;
+
+    @FXML
+    private Tooltip Tooltip;
 
     @FXML
     private Button deleteButton;
@@ -54,6 +59,7 @@ public class StartController implements Initializable {
 
             if (lookUp.exists()) {
                 File[] fileArray = lookUp.listFiles();
+                anz = 0;
                 for (int i = 0; i < fileArray.length; i++) {
                     if (fileArray[i].getName().endsWith(".Inv")) {
                         _default.add(fileArray[i].getName().substring(0, fileArray[i].getName().length() - 4));
@@ -67,6 +73,7 @@ public class StartController implements Initializable {
                     InventarBox.setValue("Kein Eintrag gefunden!");
                 }
             }
+            System.out.println("Anzahl: " + anz);
     }
 
     @FXML
@@ -79,12 +86,31 @@ public class StartController implements Initializable {
             System.out.println(InventarBox.getValue() + " wurde gelöscht");
             initialize();
         }
-
     }
 
     @FXML
     void newSafeLocation(ActionEvent event) {
+        setLookAndFeel();
 
+        JFileChooser fc = new JFileChooser();
+        fc.setDialogTitle("Speicherpfad für die Inventarverwaltung");
+        fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        int returnVal = fc.showOpenDialog(null);
+        File f;
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            f = fc.getSelectedFile();
+            path = f.getPath();
+        }
+        try {
+            FileOutputStream outputStream = new FileOutputStream("startUp.dat");
+            ObjectOutputStream objectOut = new ObjectOutputStream(outputStream);
+            objectOut.writeObject(path);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        initialize();
     }
 
     public void getPath(String path){
@@ -120,36 +146,36 @@ public class StartController implements Initializable {
     @FXML
     void confirmClicked(ActionEvent event) throws IOException {
         if(anz != 0) {
+
+            Stage lastWindow = (Stage) ConfirmButton.getScene().getWindow();
+            lastWindow.hide();
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/ViewGUI/ViewStyle.fxml"));
             Parent root = loader.load();
 
             ViewController controller = loader.getController();
-            controller.getText(InventarBox.getValue());
-
-            Stage stage = (Stage) ConfirmButton.getScene().getWindow();
-            stage.hide();
+            controller.getParams(InventarBox.getValue(),path);
 
             Stage newWindow = new Stage();
             newWindow.setScene(new Scene(root));
             newWindow.show();
         } else {
-            String laf = UIManager.getSystemLookAndFeelClassName();
-            try {
-                UIManager.setLookAndFeel(laf);
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            } catch (InstantiationException e) {
-                e.printStackTrace();
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            } catch (UnsupportedLookAndFeelException e) {
-                e.printStackTrace();
-            }
+            setLookAndFeel();
             JOptionPane.showMessageDialog(null,"Keinen Eintrag ausgewählt");
         }
 
     }
     protected String askForName(){
+        setLookAndFeel();
+        return JOptionPane.showInputDialog("Namen der Datenbank eingeben!");
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+    }
+
+    private void setLookAndFeel(){
         String laf = UIManager.getSystemLookAndFeelClassName();
         try {
             UIManager.setLookAndFeel(laf);
@@ -162,11 +188,5 @@ public class StartController implements Initializable {
         } catch (UnsupportedLookAndFeelException e) {
             e.printStackTrace();
         }
-        return (String) JOptionPane.showInputDialog("Namen der Datenbank eingeben!");
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-
     }
 }

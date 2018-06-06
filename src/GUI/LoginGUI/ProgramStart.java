@@ -1,6 +1,6 @@
-package GUI.StartGUI;
+package GUI.LoginGUI;
 
-import GUI.ViewGUI.ViewController;
+import GUI.StartGUI.StartController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,36 +14,16 @@ import java.io.*;
     Klasse die sich darum kümmert das im Scene Builder erstellte StartFenster Über die StartStyle.fxml einzulesen
     und aufzubauen.
 */
-public class ShowStart extends Application {
+public class ProgramStart extends Application {
 
-    public void showStart() {
+    public void ProgramStart() {
         launch();
     }
 
     public void start(Stage primaryStage) throws Exception {
 
-        String path;
-        File startUp = new File("startUp.dat");
-        if(startUp.exists()){
-            path = readPath(startUp);
-        } else {
-            path = askForPath();
-            try {
-                FileOutputStream outputStream = new FileOutputStream(startUp);
-                ObjectOutputStream objectOutput = new ObjectOutputStream(outputStream);
-                objectOutput.writeObject(path);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/StartGUI/StartStyle.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/LoginGUI/LoginStyle.fxml"));
         Parent root = loader.load();
-
-        StartController controller = loader.getController();
-        controller.getPath(path);
 
         Stage stage = new Stage();
         stage.setTitle("Inventarverwaltung 1.0");
@@ -76,19 +56,8 @@ public class ShowStart extends Application {
         }
     }
     public static String askForPath(){
-        String laf = UIManager.getSystemLookAndFeelClassName();
-        try {
-            UIManager.setLookAndFeel(laf);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (UnsupportedLookAndFeelException e) {
-            e.printStackTrace();
-        }
 
+        setLookAndFeel();
         JOptionPane.showMessageDialog(null,"Pfad zur Inventarverwaltung nicht gefunden! Bitte wähle einen Pfad aus!");
 
         JFileChooser fc = new JFileChooser();
@@ -101,6 +70,21 @@ public class ShowStart extends Application {
             return f.getPath();
         } else {
             return null;
+        }
+    }
+
+    public static void setLookAndFeel(){
+        String laf = UIManager.getSystemLookAndFeelClassName();
+        try {
+            UIManager.setLookAndFeel(laf);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (UnsupportedLookAndFeelException e) {
+            e.printStackTrace();
         }
     }
 }
