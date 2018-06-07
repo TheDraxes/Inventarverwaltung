@@ -7,7 +7,7 @@ public class Main {
         new ProgramStart().ProgramStart();
 
 
-
+        
         /*
         InputDialog newInput = new InputDialog();
         newInput.setLocation(200,200);
