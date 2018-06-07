@@ -9,7 +9,7 @@ public class Fuhrpark extends Item{
 	private int power;
 	private int kmStand;
 	
-	public Fuhrpark(String kz, String autoart, long fgnr, int power, int kmStand) {
+	public Fuhrpark(long inventarnr, String itemtyp, String itembez, double preis, int tnd, String sg, Date insdate,String kz, String autoart, long fgnr, int power, int kmStand) {
 		super(inventarnr, itemtyp, itembez,preis,tnd,sg,insdate);
 		this.kz = kz;
 		this.autoart = autoart;
