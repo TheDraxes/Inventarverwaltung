@@ -1,6 +1,7 @@
 package GUI.ViewGUI;
 
 import GUI.StartGUI.StartController;
+import data.BodenUndGebaeude;
 import data.Item;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -47,7 +48,7 @@ public class ViewController implements Initializable {
         VerticalLine.setOrientation(Orientation.VERTICAL);
         VerticalLine.setMaxWidth(500);
         for(int i = 0; i <= 20; i++) {
-            test.getChildren().addAll(new ItemEntry(new Item("Platzhalter", (double) i)));
+            test.getChildren().addAll(new ItemEntry(new BodenUndGebaeude()));
         }
         ItemScrollPane.setContent(test);
     }

@@ -18,6 +18,8 @@ public abstract class Item {
 	protected String sg;//sachgebiet
 	protected Date insdate;//Inserierungsdatum
 
+    public Item(){}
+
     public Item(long inventarnr, String itemtyp, String itembez, double preis, int tnd, String sg, Date insdate) {
         this.setInventarnr(inventarnr);
         this.setItemtyp(itemtyp);

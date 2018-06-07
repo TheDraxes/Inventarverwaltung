@@ -10,6 +10,9 @@ public class BodenUndGebaeude extends Item {
 	private int flaeche;
 	private String besitzer;
 
+	public BodenUndGebaeude(){
+	}
+
 	public BodenUndGebaeude(long inventarnr, String itemtyp, String itembez, double preis, int tnd, String sg, Date insdate, int plz, String ort, String anschrift, int flaeche, String besitzer) {
 		super(inventarnr, itemtyp, itembez,preis,tnd,sg,insdate);
 		this.plz = plz;
