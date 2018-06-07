@@ -1,14 +1,13 @@
-import GUI.StartGUI.InputDialog;
-import GUI.StartGUI.ShowStart;
-
-import java.io.File;
+import GUI.LoginGUI.ProgramStart;
+import GUI.StartGUI.showStartWindow;
 
 public class Main {
     public static void main(String[] args){
-        
+
+        new ProgramStart().ProgramStart();
 
 
-        new ShowStart().showStart();
+
         /*
         InputDialog newInput = new InputDialog();
         newInput.setLocation(200,200);
