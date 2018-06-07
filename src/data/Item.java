@@ -9,14 +9,14 @@ import java.util.Date;
     Muss noch um umfangreiche Funktionen Erweitert werden
 
  */
-public class Item {
-	protected static long inventarnr;
-	protected static String itemtyp;
-	protected static String itembez;
-	protected static double preis;
-	protected static int tnd;
-	protected static String sg;//sachgebiet
-	protected static Date insdate;//Inserierungsdatum
+public abstract class Item {
+	protected long inventarnr;
+	protected String itemtyp;
+	protected String itembez;
+	protected double preis;
+	protected int tnd;
+	protected String sg;//sachgebiet
+	protected Date insdate;//Inserierungsdatum
 
     public Item(long inventarnr, String itemtyp, String itembez, double preis, int tnd, String sg, Date insdate) {
         this.setInventarnr(inventarnr);
