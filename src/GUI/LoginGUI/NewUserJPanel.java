@@ -29,6 +29,7 @@ public class NewUserJPanel extends JPanel{
     public String getUsername() {
         return username.getText();
     }
+
     public boolean usernameIsEmpty(){
         if(username.getText().equals("") || username.getText() == null){
             return true;
@@ -44,6 +45,7 @@ public class NewUserJPanel extends JPanel{
     public String getPassword() {
         return password.getText();
     }
+
     public boolean passwordIsEmpty(){
         if(password.getText().equals("") || password.getText() == null){
             return true;
