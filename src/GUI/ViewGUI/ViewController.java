@@ -86,6 +86,7 @@ public class ViewController implements Initializable {
         StartController controller = loader.getController();
         controller.getPath(path);
 
+        
         Stage stage = new Stage();
         stage.setTitle("Inventarverwaltung 1.0");
         stage.setScene(new Scene(root));
