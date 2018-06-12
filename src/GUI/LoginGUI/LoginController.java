@@ -10,6 +10,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
+import javax.rmi.ssl.SslRMIClientSocketFactory;
 import javax.swing.*;
 import java.io.*;
 
@@ -33,50 +34,21 @@ public class LoginController {
 
         if(userLogins.exists()) {
             userContainer = new UserContainer().loadUserData();
+            System.out.println("**Bestehende Userdaten eingelesen");
         } else {
-            userContainer.insertUser("admin","1234");
+            userContainer.insertUser("admin","123");
+            System.out.println("**Neue Userdatenbank mit standart Adminpasswort erstellt");
         }
-
+        /*
         for(int i = 0; i < userContainer.getNumberOfUser(); i++){
             System.out.println(userContainer.getUserName(i) + " " + userContainer.getUserPasswort(i));
         }
-    }
-
-    @FXML
-    void newUserClicked(ActionEvent event){
-        NewUserJPanel newUserJPanel = new NewUserJPanel();
-        int result;
-        boolean isDuplicate;
-        boolean pwConfirmed;
-
-        while (true) {
-            result = JOptionPane.showConfirmDialog(null, newUserJPanel, "Benutzer anlegen!", JOptionPane.OK_CANCEL_OPTION);
-
-            isDuplicate = this.userContainer.userIsDuplicate(newUserJPanel.getUsername());
-            pwConfirmed = newUserJPanel.getPassword().equals(newUserJPanel.getConfirmpw());
-
-            if(result == JOptionPane.CANCEL_OPTION){
-                System.out.println("Vorgang abgebrochen");
-                break;
-            } else if(newUserJPanel.usernameIsEmpty() || newUserJPanel.passwordIsEmpty()) {
-                JOptionPane.showMessageDialog(null,"Felder dürfen nicht leer sein!");
-            } else if (!isDuplicate && pwConfirmed){
-                userContainer.insertUser(newUserJPanel.getUsername(), newUserJPanel.getPassword());
-                userContainer.safeUserData();
-                JOptionPane.showMessageDialog(null,"Neuen Benutzer angelegt!");
-                initialize();
-                break;
-            } else if(!pwConfirmed){
-                JOptionPane.showMessageDialog(null,"Passwörter stimmen nicht überein!");
-            } else if(isDuplicate){
-                JOptionPane.showMessageDialog(null,"Username bereits belegt!");
-                }
-            }
+        */
+        System.out.println("**Login Fenster Initialisiert");
     }
 
     @FXML
     void keyPressed(KeyEvent event){
-
         if(event.getCode().equals(KeyCode.ENTER)){
             loginButtonClicked();
         }
@@ -94,14 +66,15 @@ public class LoginController {
 
         if(index != -1) {
             if (usernameField.getText().equals(userContainer.getUserName(index)) && passwordField.getText().equals(userContainer.getUserPasswort(index))) {
+                System.out.println("**Eingeloggt als " + usernameField.getText());
                 Stage lastWindow = (Stage) loginButton.getScene().getWindow();
                 lastWindow.hide();
-                new showStartWindow();
+                new showStartWindow(this.userContainer);
             } else {
-                System.out.println("Nutzername oder Passwort falsch!");
+                System.out.println("**Nutzername oder Passwort falsch!");
             }
         } else {
-            System.out.println("Nutzername oder Passwort falsch!");
+            System.out.println("**Nutzername oder Passwort falsch!");
         }
     }
 }

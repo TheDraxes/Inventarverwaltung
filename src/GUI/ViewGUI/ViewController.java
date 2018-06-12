@@ -1,5 +1,6 @@
 package GUI.ViewGUI;
 
+import GUI.LoginGUI.UserContainer;
 import GUI.StartGUI.StartController;
 import data.BodenUndGebaeude;
 import data.Item;
@@ -37,11 +38,12 @@ public class ViewController implements Initializable {
     @FXML
     private Label nameLabel;
 
+    UserContainer userContainer;
+
     private String path;
 
     @FXML
     public void initialize(){
-        System.out.println("Test");
         VBox test = new VBox();
         test.setSpacing(5);
         Separator VerticalLine = new Separator();
@@ -51,6 +53,7 @@ public class ViewController implements Initializable {
             test.getChildren().addAll(new ItemEntry(new BodenUndGebaeude()));
         }
         ItemScrollPane.setContent(test);
+        System.out.println("**View Fenster Initialisiert");
     }
 
     //Methode die ausgeführt wird wenn der "Inventar anzeigen" Button in der Menueleiste Gedrückt wird
@@ -60,9 +63,10 @@ public class ViewController implements Initializable {
 
     }
 
-    public void getParams(String text, String path){
+    public void getParams(String text, String path, UserContainer userContainer){
         nameLabel.setText(text);
         this.path = path;
+        this.userContainer = userContainer;
     }
 
     @Override
@@ -86,6 +90,7 @@ public class ViewController implements Initializable {
 
         StartController controller = loader.getController();
         controller.getPath(path);
+        controller.getUserContainer(this.userContainer);
 
         
         Stage stage = new Stage();

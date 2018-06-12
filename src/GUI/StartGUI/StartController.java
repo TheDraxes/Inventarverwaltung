@@ -1,5 +1,7 @@
 package GUI.StartGUI;
 
+import GUI.LoginGUI.NewUserJPanel;
+import GUI.LoginGUI.UserContainer;
 import GUI.ViewGUI.ViewController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
 import javafx.scene.control.Tooltip;
 
@@ -31,10 +34,6 @@ public class StartController implements Initializable {
     @FXML
     private ComboBox<String> InventarBox;
 
-    //Button um ein neues Inventar anzulegen(Noch ohne Funktion)
-    @FXML
-    private Button newButton;
-
     //Button zum bestätigen des Ausgewählten Inventars (Noch öffnet sich nur das ViewFenster mit Platzhaltereinträgen)
     @FXML
     private Button ConfirmButton;
@@ -42,12 +41,10 @@ public class StartController implements Initializable {
     @FXML
     private Tooltip Tooltip;
 
-    @FXML
-    private Button deleteButton;
+    private UserContainer userContainer;
 
     private int anz = 0;
 
-    @FXML
     private String path = "";
 
     //Funktion die die werte des AuswahlDropdowns festlegt
@@ -73,7 +70,7 @@ public class StartController implements Initializable {
                     InventarBox.setValue("Kein Eintrag gefunden!");
                 }
             }
-            System.out.println("Anzahl: " + anz);
+            System.out.println("**Start Fenster Initialisiert");
     }
 
     @FXML
@@ -83,7 +80,7 @@ public class StartController implements Initializable {
         if(a.exists()){
             a.delete();
             anz--;
-            System.out.println(InventarBox.getValue() + " wurde gelöscht");
+            System.out.println("**" + "Inventar \"" + InventarBox.getValue() + "\" wurde gelöscht");
             initialize();
         }
     }
@@ -117,6 +114,9 @@ public class StartController implements Initializable {
         this.path = path;
         initialize();
     }
+    public void getUserContainer(UserContainer newUserCon){
+        this.userContainer = newUserCon;
+    }
 
     //Methode die aufgerufen wird wenn der newButton gedrückt wird
     @FXML
@@ -125,12 +125,14 @@ public class StartController implements Initializable {
         String input = askForName();
 
         if(input == null){
-            System.out.println("abgebrochen");
+            System.out.println("**Anlgen abgebrochen abgebrochen");
         } else {
             if (!input.equals("")) {
-                File newFile = new File(path + "/" + input + ".Inv");
+                File newFile = new File(path + "\\" + input + ".Inv");
                 try {
                     newFile.createNewFile();
+                    System.out.println("**Inventar \"" + newFile.getName() + "\"" +
+                            " erstellt");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -154,7 +156,7 @@ public class StartController implements Initializable {
             Parent root = loader.load();
 
             ViewController controller = loader.getController();
-            controller.getParams(InventarBox.getValue(),path);
+            controller.getParams(InventarBox.getValue(),path,userContainer);
 
             Stage newWindow = new Stage();
             newWindow.setScene(new Scene(root));
@@ -168,6 +170,53 @@ public class StartController implements Initializable {
     protected String askForName(){
         setLookAndFeel();
         return JOptionPane.showInputDialog("Namen der Datenbank eingeben!");
+    }
+
+    @FXML
+    void newUserClicked(ActionEvent event){
+        NewUserJPanel newUserJPanel = new NewUserJPanel();
+        int result;
+        boolean isDuplicate;
+        boolean pwConfirmed;
+
+        while (true) {
+            result = JOptionPane.showConfirmDialog(null, newUserJPanel, "Benutzer anlegen!", JOptionPane.OK_CANCEL_OPTION);
+
+            isDuplicate = this.userContainer.userIsDuplicate(newUserJPanel.getUsername());
+            pwConfirmed = newUserJPanel.getPassword().equals(newUserJPanel.getConfirmpw());
+
+            if(result == JOptionPane.CANCEL_OPTION){
+                System.out.println("**Vorgang abgebrochen");
+                break;
+            } else if(newUserJPanel.usernameIsEmpty() || newUserJPanel.passwordIsEmpty()) {
+                JOptionPane.showMessageDialog(null,"Felder dürfen nicht leer sein!");
+            } else if (!isDuplicate && pwConfirmed){
+                userContainer.insertUser(newUserJPanel.getUsername(), newUserJPanel.getPassword());
+                userContainer.safeUserData();
+                JOptionPane.showMessageDialog(null,"Neuen Benutzer angelegt!");
+                System.out.println("**neuen Benutzer angelegt");
+                initialize();
+                break;
+            } else if(!pwConfirmed){
+                JOptionPane.showMessageDialog(null,"Passwörter stimmen nicht überein!");
+            } else if(isDuplicate){
+                JOptionPane.showMessageDialog(null,"Username bereits belegt!");
+            }
+        }
+    }
+    @FXML
+    public void deleteUser(){
+        DeleteUserJPanel deleteUserJPanel = new DeleteUserJPanel(userContainer);
+        int result = JOptionPane.showConfirmDialog(null, deleteUserJPanel, "Benutzer löschen!", JOptionPane.OK_CANCEL_OPTION);
+        if(result == JOptionPane.CANCEL_OPTION){
+            System.out.println("**Vorgang abgebrochen");
+        } else if(result == JOptionPane.OK_OPTION){
+            String[] test = deleteUserJPanel.getPickedUser();
+            for(int i = 0; i < test.length; i++) {
+                System.out.println(test[i]);
+                userContainer.deleteUser(test[i]);
+            }
+        }
     }
 
     @Override

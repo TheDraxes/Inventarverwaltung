@@ -1,5 +1,6 @@
 package GUI.StartGUI;
 
+import GUI.LoginGUI.UserContainer;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -14,7 +15,7 @@ import java.io.*;
 */
 public class showStartWindow {
 
-    public showStartWindow() {
+    public showStartWindow(UserContainer userContainer) {
         String path;
         File startUp = new File("startUp.dat");
         if(startUp.exists()){
@@ -42,6 +43,7 @@ public class showStartWindow {
 
         StartController controller = loader.getController();
         controller.getPath(path);
+        controller.getUserContainer(userContainer);
 
         Stage stage = new Stage();
         stage.setTitle("Inventarverwaltung 1.0");

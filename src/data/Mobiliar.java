@@ -11,6 +11,7 @@ public class Mobiliar extends Item{
 		this.raum = raum;
 		
 	}
+	public Mobiliar(){}
 	
 	public String getRaum() {
 		return raum;

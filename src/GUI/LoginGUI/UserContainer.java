@@ -39,6 +39,8 @@ public class UserContainer implements Serializable{
         this.userData[numberOfUser][1] = passwort;
 
         numberOfUser++;
+
+        System.out.println("**User " + username + " erstellt");
     }
 
     public boolean userIsDuplicate(String username){
@@ -74,14 +76,19 @@ public class UserContainer implements Serializable{
             FileOutputStream fileOutputStream = new FileOutputStream("user.dat");
             ObjectOutputStream outputStream = new ObjectOutputStream(fileOutputStream);
             outputStream.writeObject(this);
+            System.out.println("**Userdaten abgespeichert in user.dat");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
+        System.out.println("User: ");
+        System.out.println("======");
+
         for(int i = 0; i < numberOfUser; i++){
             System.out.println(userData[i][0] + " " + userData[i][1]);
         }
+        System.out.println();
     }
     public UserContainer loadUserData(){
         FileInputStream fileInputStream = null;
@@ -136,6 +143,7 @@ public class UserContainer implements Serializable{
         } else if(result == JOptionPane.CANCEL_OPTION || result == JOptionPane.NO_OPTION){
             System.out.println("Vorgang abgebrochen!");
         }
+        safeUserData();
     }
 
     public void printAllUser(){

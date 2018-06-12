@@ -29,9 +29,11 @@ public class ItemEntry extends GridPane {
         this.setHgap(10);
 
         //String werte an das GridPane anhängen
+        /*
         this.add(new Label("Bezeichnung: " + newItem.getName()), 0, 0);
         this.add(new Label("Value: " + newItem.getValue()), 1, 0);
         this.add(new Label("Value: " + newItem.getValue()), 0, 2);
         this.add(new Label("Bezeichnung: " + newItem.getName()), 1, 2);
+        */
     }
 }

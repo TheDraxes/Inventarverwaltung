@@ -9,7 +9,7 @@ public class Hardware extends Item{
 		super(inventarnr, itemtyp, itembez,preis,tnd,sg,insdate);
 		this.raum = raum;
 	}
-	
+	public Hardware(){}
 	public String getRaum() {
 		return raum;
 	}

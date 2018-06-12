@@ -11,6 +11,7 @@ public class Sonstiges extends Item{
 		this.beschreibung = beschreibung;
 		
 	}
+	public Sonstiges(){}
 	
 	
 	public String getBeschreibung() {

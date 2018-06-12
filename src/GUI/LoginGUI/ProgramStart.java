@@ -38,54 +38,5 @@ public class ProgramStart extends Application {
         primaryStage.show();
         */
     }
-
-    public static String readPath(File safe){
-        try {
-            FileInputStream inStream = new FileInputStream(safe);
-            ObjectInputStream obStream = new ObjectInputStream(inStream);
-            return (String) obStream.readObject();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            return null;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-    public static String askForPath(){
-
-        setLookAndFeel();
-        JOptionPane.showMessageDialog(null,"Pfad zur Inventarverwaltung nicht gefunden! Bitte wähle einen Pfad aus!");
-
-        JFileChooser fc = new JFileChooser();
-        fc.setDialogTitle("Speicherpfad für die Inventarverwaltung");
-        fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-        int returnVal = fc.showOpenDialog(null);
-        File f;
-        if (returnVal == JFileChooser.APPROVE_OPTION) {
-            f = fc.getSelectedFile();
-            return f.getPath();
-        } else {
-            return null;
-        }
-    }
-
-    public static void setLookAndFeel(){
-        String laf = UIManager.getSystemLookAndFeelClassName();
-        try {
-            UIManager.setLookAndFeel(laf);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (UnsupportedLookAndFeelException e) {
-            e.printStackTrace();
-        }
-    }
 }
 

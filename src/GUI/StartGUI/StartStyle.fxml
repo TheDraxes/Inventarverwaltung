@@ -8,68 +8,48 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="212.0" minWidth="600.0" prefHeight="212.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.StartGUI.StartController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="194.0" minWidth="600.0" prefHeight="194.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.StartGUI.StartController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="600.0" minWidth="10.0" prefWidth="600.0" />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="293.0" minWidth="0.0" prefWidth="0.0" />
   </columnConstraints>
   <rowConstraints>
-    <RowConstraints maxHeight="314.0" minHeight="10.0" prefHeight="195.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="217.0" minHeight="0.0" prefHeight="205.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="314.0" minHeight="10.0" prefHeight="61.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="314.0" minHeight="10.0" prefHeight="133.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="217.0" minHeight="0.0" prefHeight="105.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <GridPane prefHeight="148.0" prefWidth="431.0" GridPane.rowIndex="1">
+      <GridPane prefHeight="100.0" prefWidth="600.0" GridPane.rowIndex="2">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="-Infinity" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints maxHeight="80.0" minHeight="10.0" prefHeight="70.0" vgrow="SOMETIMES" />
           <RowConstraints maxHeight="129.0" minHeight="10.0" prefHeight="78.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <ComboBox fx:id="InventarBox" maxWidth="200.0" minWidth="150.0" prefWidth="150.0" promptText="Kein Eintrag gefunden!" GridPane.halignment="CENTER">
-                
-            </ComboBox>
-            <GridPane prefHeight="72.0" prefWidth="600.0" GridPane.rowIndex="1">
+            <GridPane prefHeight="72.0" prefWidth="600.0">
               <columnConstraints>
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="254.0" minWidth="10.0" prefWidth="166.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="254.0" minWidth="10.0" prefWidth="125.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="247.0" minWidth="10.0" prefWidth="110.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="318.0" minWidth="10.0" prefWidth="199.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="254.0" minWidth="10.0" prefWidth="38.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="364.0" minWidth="10.0" prefWidth="364.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="318.0" minWidth="10.0" prefWidth="195.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints maxHeight="98.0" minHeight="10.0" prefHeight="98.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="54.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button fx:id="newButton" mnemonicParsing="false" onAction="#newClicked" text="Neues Inventar" GridPane.columnIndex="1" GridPane.halignment="RIGHT">
+                  <Button fx:id="ConfirmButton" mnemonicParsing="false" onAction="#confirmClicked" styleClass="confirmButton" stylesheets="@../style.css" text="Bestätigen" GridPane.columnIndex="2" GridPane.halignment="LEFT">
                      <font>
                         <Font size="13.0" />
                      </font>
                   </Button>
-                  <Button fx:id="ConfirmButton" mnemonicParsing="false" onAction="#confirmClicked" styleClass="confirmButton" stylesheets="@../style.css" text="Bestätigen" GridPane.columnIndex="3" GridPane.halignment="CENTER">
-                     <font>
-                        <Font size="13.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="deleteButton" alignment="CENTER" mnemonicParsing="false" onAction="#deleteClicked" text="Löschen" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER">
-                     <font>
-                        <Font size="13.0" />
-                     </font>
-                  </Button>
-                  <Button mnemonicParsing="false" onAction="#newSafeLocation" text="Speicherort Ändern" GridPane.halignment="RIGHT">
-                     <font>
-                        <Font size="13.0" />
-                     </font>
-                     <tooltip>
-                        <Tooltip fx:id="Tooltip" text="Speicherort für neue Inventare festlegen" />
-                     </tooltip>
-                  </Button>
+                  <ComboBox fx:id="InventarBox" maxWidth="225.0" minWidth="150.0" prefHeight="25.0" prefWidth="225.0" promptText="Kein Eintrag gefunden!" GridPane.columnIndex="1" GridPane.halignment="CENTER">
+                
+            </ComboBox>
                </children>
             </GridPane>
          </children>
       </GridPane>
-      <Label alignment="CENTER" styleClass="startLabel" stylesheets="@../style.css" text="      Wählen sie das Inventar aus das Sie bearbeiten wollen:      " GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+      <Label alignment="CENTER" styleClass="startLabel" stylesheets="@../style.css" text="      Wählen sie das Inventar aus das Sie bearbeiten wollen:      " GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
@@ -77,5 +57,26 @@
             <Font size="14.0" />
          </font>
       </Label>
+      <MenuBar>
+        <menus>
+          <Menu mnemonicParsing="false" text="Inventar">
+            <items>
+                  <MenuItem fx:id="newButton" mnemonicParsing="false" onAction="#newClicked" text="Inventar anlegen" />
+              <MenuItem fx:id="deleteButton" mnemonicParsing="false" onAction="#deleteClicked" text="Inventar löschen" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#newSafeLocation" text="Speicherort ändern" />
+            </items>
+          </Menu>
+            <Menu mnemonicParsing="false" text="admin">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#newUserClicked" text="Benutzer anlegen" />
+                  <MenuItem mnemonicParsing="false" onAction="#deleteUser" text="Benutzer löschen" />
+              </items>
+            </Menu>
+        </menus>
+      </MenuBar>
    </children>
 </GridPane>

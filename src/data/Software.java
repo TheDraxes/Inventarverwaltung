@@ -10,6 +10,7 @@ public class Software extends Item{
 		super(inventarnr, itemtyp, itembez,preis,tnd,sg,insdate);
 		this.version = version;
 	}
+	public Software(){}
 	public double getVersion() {
 		return version;
 	}

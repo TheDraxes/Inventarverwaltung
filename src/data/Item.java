@@ -86,6 +86,9 @@ public abstract class Item {
 		this.insdate = insdate;
 	}
 
-
-
+	public String getClassString(){
+    	String a = this.getClass().toString();
+    	System.out.println(a.lastIndexOf("."));
+    	return a.substring(a.lastIndexOf(".")+1, a.length());
+	}
    }

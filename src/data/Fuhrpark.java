@@ -17,6 +17,7 @@ public class Fuhrpark extends Item{
 		this.power = power;
 		this.kmStand = kmStand;
 	}
+	public Fuhrpark(){}
 	
 	public String getKz() {
 		return kz;
