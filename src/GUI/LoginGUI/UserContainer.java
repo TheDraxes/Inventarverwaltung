@@ -90,6 +90,7 @@ public class UserContainer implements Serializable{
         }
         System.out.println();
     }
+
     public UserContainer loadUserData(){
         FileInputStream fileInputStream = null;
         File userLogins = new File("user.dat");
@@ -117,6 +118,7 @@ public class UserContainer implements Serializable{
         int result = JOptionPane.showConfirmDialog(null,"User " + username + " wirklich löschen?");
 
         int index = getIndexOfUser(username);
+
         if(result == JOptionPane.OK_OPTION){
             String[][] old = this.userData;
             String[][] newArray = new String[this.numberOfUser-1][2];

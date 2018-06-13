@@ -54,24 +54,26 @@ public class ViewController implements Initializable {
         }
         ItemScrollPane.setContent(test);
         System.out.println("**View Fenster Initialisiert");
+        System.out.println("**Speicherpfad: " + path);
     }
 
     //Methode die ausgeführt wird wenn der "Inventar anzeigen" Button in der Menueleiste Gedrückt wird
     //Hier werden an das ScrollPane Beispielhaft Platzhalter angehängt
     @FXML
     void ShowClicked(ActionEvent event) {
-
+        initialize();
     }
 
     public void getParams(String text, String path, UserContainer userContainer){
         nameLabel.setText(text);
         this.path = path;
         this.userContainer = userContainer;
+        initialize();
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        initialize();
+
     }
 
     @FXML

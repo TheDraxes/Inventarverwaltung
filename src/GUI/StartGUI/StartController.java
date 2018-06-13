@@ -16,6 +16,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
 import javafx.scene.control.Tooltip;
+import jdk.nashorn.internal.scripts.JO;
 
 import javax.swing.*;
 import java.io.*;
@@ -75,9 +76,11 @@ public class StartController implements Initializable {
 
     @FXML
     void deleteClicked(ActionEvent event) {
+        setLookAndFeel();
         InventarBox.getValue();
         File a = new File(path + "/" + InventarBox.getValue() + ".Inv");
-        if(a.exists()){
+        int result = JOptionPane.showConfirmDialog(null,InventarBox.getValue() + " wirklich Löschen?");
+        if(a.exists() && result == JOptionPane.OK_OPTION){
             a.delete();
             anz--;
             System.out.println("**" + "Inventar \"" + InventarBox.getValue() + "\" wurde gelöscht");
@@ -147,6 +150,7 @@ public class StartController implements Initializable {
     //Versteckt das Aktuelle Fenster und öffnet das neue Fenster
     @FXML
     void confirmClicked(ActionEvent event) throws IOException {
+        System.out.println("**Speicherpfad: " + path);
         if(anz != 0) {
 
             Stage lastWindow = (Stage) ConfirmButton.getScene().getWindow();
@@ -156,9 +160,10 @@ public class StartController implements Initializable {
             Parent root = loader.load();
 
             ViewController controller = loader.getController();
-            controller.getParams(InventarBox.getValue(),path,userContainer);
+            controller.getParams(InventarBox.getValue(), path, userContainer);
 
             Stage newWindow = new Stage();
+            newWindow.setResizable(false);
             newWindow.setScene(new Scene(root));
             newWindow.show();
         } else {
