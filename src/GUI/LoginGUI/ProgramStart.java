@@ -27,6 +27,7 @@ public class ProgramStart extends Application {
 
         Stage stage = new Stage();
         stage.setTitle("Inventarverwaltung 1.0");
+        stage.setResizable(false);
         stage.setScene(new Scene(root));
         stage.show();
 

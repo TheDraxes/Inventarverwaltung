@@ -37,6 +37,7 @@ public class LoginController {
             System.out.println("**Bestehende Userdaten eingelesen");
         } else {
             userContainer.insertUser("admin","123");
+            userContainer.safeUserData();
             System.out.println("**Neue Userdatenbank mit standart Adminpasswort erstellt");
         }
         /*
