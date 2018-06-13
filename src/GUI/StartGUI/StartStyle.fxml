@@ -8,15 +8,16 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="194.0" minWidth="600.0" prefHeight="194.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.StartGUI.StartController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="169.0" minWidth="600.0" prefHeight="182.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.StartGUI.StartController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="600.0" minWidth="10.0" prefWidth="600.0" />
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="293.0" minWidth="0.0" prefWidth="0.0" />
   </columnConstraints>
   <rowConstraints>
-      <RowConstraints maxHeight="314.0" minHeight="10.0" prefHeight="61.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="314.0" minHeight="10.0" prefHeight="133.0" vgrow="SOMETIMES" />
-    <RowConstraints maxHeight="217.0" minHeight="0.0" prefHeight="105.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="314.0" minHeight="10.0" prefHeight="28.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="314.0" minHeight="10.0" prefHeight="87.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="217.0" minHeight="0.0" prefHeight="37.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="217.0" minHeight="0.0" prefHeight="32.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
       <GridPane prefHeight="100.0" prefWidth="600.0" GridPane.rowIndex="2">
@@ -70,7 +71,7 @@
               <MenuItem mnemonicParsing="false" onAction="#newSafeLocation" text="Speicherort ändern" />
             </items>
           </Menu>
-            <Menu mnemonicParsing="false" text="admin">
+            <Menu fx:id="adminMenue" mnemonicParsing="false" text="admin">
               <items>
                 <MenuItem mnemonicParsing="false" onAction="#newUserClicked" text="Benutzer anlegen" />
                   <MenuItem mnemonicParsing="false" onAction="#deleteUser" text="Benutzer löschen" />
@@ -78,5 +79,10 @@
             </Menu>
         </menus>
       </MenuBar>
+      <Label fx:id="userLabel" text="Label" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+         <padding>
+            <Insets right="20.0" />
+         </padding>
+      </Label>
    </children>
 </GridPane>

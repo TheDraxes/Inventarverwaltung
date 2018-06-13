@@ -15,7 +15,7 @@ import java.io.*;
 */
 public class showStartWindow {
 
-    public showStartWindow(UserContainer userContainer) {
+    public showStartWindow(UserContainer userContainer, String user) {
         String path;
         File startUp = new File("startUp.dat");
         if(startUp.exists()){
@@ -42,8 +42,7 @@ public class showStartWindow {
         }
 
         StartController controller = loader.getController();
-        controller.getPath(path);
-        controller.getUserContainer(userContainer);
+        controller.getParams(path,userContainer,user);
 
         Stage stage = new Stage();
         stage.setTitle("Inventarverwaltung 1.0");

@@ -51,6 +51,8 @@ public class ViewController implements Initializable {
 
     private String path;
 
+    private String user;
+
     @FXML
     public void initialize(){
         ArrayList<Item> a = new ArrayList<Item>();
@@ -93,10 +95,11 @@ public class ViewController implements Initializable {
         initialize();
     }
 
-    public void getParams(String text, String path, UserContainer userContainer){
-        nameLabel.setText(text);
+    public void getParams(String inventoryName, String path, UserContainer userContainer, String user){
+        nameLabel.setText("Eingeloggt als: " + user);
         this.path = path;
         this.userContainer = userContainer;
+        this.user = user;
         initialize();
     }
 
@@ -121,8 +124,8 @@ public class ViewController implements Initializable {
         }
 
         StartController controller = loader.getController();
-        controller.getPath(path);
-        controller.getUserContainer(this.userContainer);
+        controller.getParams(path,userContainer,user);
+
         
         Stage stage = new Stage();
         stage.setTitle("Inventarverwaltung 1.0");

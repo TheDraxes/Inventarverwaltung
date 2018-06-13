@@ -56,7 +56,7 @@ public class LoginController {
         if(userContainer.checkLogin(usernameField.getText(),passwordField.getText())){
             Stage lastWindow = (Stage) loginButton.getScene().getWindow();
             lastWindow.hide();
-            new showStartWindow(this.userContainer);
+            new showStartWindow(this.userContainer, usernameField.getText());
         }
     }
 }
