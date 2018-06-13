@@ -1,6 +1,6 @@
 package GUI.StartGUI;
 
-import GUI.LoginGUI.UserContainer;
+import Verwaltung.UserContainer;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;

@@ -1,6 +1,6 @@
 package TestKlassen;
 
-import GUI.LoginGUI.UserContainer;
+import Verwaltung.UserContainer;
 
 public class UserContainerTest {
     public static void main(String[] args){

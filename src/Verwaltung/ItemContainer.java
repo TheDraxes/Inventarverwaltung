@@ -1,4 +1,6 @@
-package data;
+package Verwaltung;
+
+import Item.Item;
 
 import java.util.ArrayList;
 

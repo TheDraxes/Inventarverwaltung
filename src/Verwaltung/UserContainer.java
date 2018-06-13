@@ -1,11 +1,7 @@
-package GUI.LoginGUI;
-
-import jdk.nashorn.internal.scripts.JO;
+package Verwaltung;
 
 import javax.swing.*;
 import java.io.*;
-
-import static javax.swing.JOptionPane.OK_CANCEL_OPTION;
 
 public class UserContainer implements Serializable{
     String[][] userData = new String[0][2];

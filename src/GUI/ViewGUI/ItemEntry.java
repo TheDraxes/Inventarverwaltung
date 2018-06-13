@@ -1,8 +1,7 @@
 package GUI.ViewGUI;
 
-import data.Item;
+import Item.Item;
 import javafx.geometry.Insets;
-import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 

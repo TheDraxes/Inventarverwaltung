@@ -1,18 +1,15 @@
-package data;
+package Item;
 
 import java.util.Date;
 
-public class Mobiliar extends Item{
+public class Hardware extends Item{
 	private String raum;
 
-	
-	public Mobiliar(long inventarnr, String itemtyp, String itembez, double preis, int tnd, String sg, Date insdate,String raum) {
+	public Hardware(long inventarnr, String itemtyp, String itembez, double preis, int tnd, String sg, Date insdate,String raum) {
 		super(inventarnr, itemtyp, itembez,preis,tnd,sg,insdate);
 		this.raum = raum;
-		
 	}
-	public Mobiliar(){}
-	
+	public Hardware(){}
 	public String getRaum() {
 		return raum;
 	}
@@ -22,5 +19,4 @@ public class Mobiliar extends Item{
 	}
 	
 	
-
 }

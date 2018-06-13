@@ -1,4 +1,4 @@
-package data;
+package Item;
 
 public class Sachgebiet extends Abteilung {
 

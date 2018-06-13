@@ -1,7 +1,7 @@
 package GUI.LoginGUI;
 
 import GUI.StartGUI.showStartWindow;
-import javafx.event.ActionEvent;
+import Verwaltung.UserContainer;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
@@ -10,8 +10,6 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
-import javax.rmi.ssl.SslRMIClientSocketFactory;
-import javax.swing.*;
 import java.io.*;
 
 

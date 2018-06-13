@@ -1,6 +1,6 @@
 package GUI.StartGUI;
 
-import GUI.LoginGUI.UserContainer;
+import Verwaltung.UserContainer;
 
 import javax.swing.*;
 import java.awt.*;

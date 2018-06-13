@@ -1,7 +1,7 @@
 package GUI.StartGUI;
 
 import GUI.LoginGUI.NewUserJPanel;
-import GUI.LoginGUI.UserContainer;
+import Verwaltung.UserContainer;
 import GUI.ViewGUI.ViewController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,10 +13,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.MenuItem;
 import javafx.stage.Stage;
 import javafx.scene.control.Tooltip;
-import jdk.nashorn.internal.scripts.JO;
 
 import javax.swing.*;
 import java.io.*;
