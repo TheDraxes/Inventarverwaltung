@@ -21,3 +21,6 @@
 .backButton:hover{
     -fx-background-color: #f2f2f2;
 }
+.notFocusable{
+    -fx-focus-color:transparent;
+}

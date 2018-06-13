@@ -1,23 +1,24 @@
 package GUI.ViewGUI;
 
+import Item.Fuhrpark;
+import Item.Item;
 import Verwaltung.UserContainer;
 import GUI.StartGUI.StartController;
-import Item.BodenUndGebaeude;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Orientation;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.Separator;
-import javafx.scene.layout.VBox;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 /*
@@ -37,12 +38,39 @@ public class ViewController implements Initializable {
     @FXML
     private Label nameLabel;
 
+    @FXML
+    private TableView<Item> itemTable = new TableView<Item>();
+
+    @FXML
+    private TableColumn NRColumn;
+
+    @FXML
+    private TableColumn bezColumn;
+
     private UserContainer userContainer;
 
     private String path;
 
     @FXML
     public void initialize(){
+        ArrayList<Item> a = new ArrayList<Item>();
+
+        for(int i = 0 ; i <20; i++){
+            Fuhrpark b = new Fuhrpark();
+            b.setInventarnr(100 + i);
+            b.setItembez("BMW Coupe");
+            a.add(b);
+        }
+        NRColumn.setCellValueFactory(new PropertyValueFactory<>("Inventarnr"));
+        bezColumn.setCellValueFactory(new PropertyValueFactory<>("itembez"));
+
+        ObservableList<Item> list = FXCollections.observableArrayList(a);
+
+        itemTable.setItems(list);
+
+
+
+        /*
         VBox test = new VBox();
         test.setSpacing(5);
         Separator VerticalLine = new Separator();
@@ -54,6 +82,8 @@ public class ViewController implements Initializable {
         ItemScrollPane.setContent(test);
         System.out.println("**View Fenster Initialisiert");
         System.out.println("**Speicherpfad: " + path);
+        */
+
     }
 
     //Methode die ausgeführt wird wenn der "Inventar anzeigen" Button in der Menueleiste Gedrückt wird
@@ -83,6 +113,7 @@ public class ViewController implements Initializable {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/StartGUI/StartStyle.fxml"));
         Parent root = null;
+
         try {
             root = loader.load();
         } catch (IOException e) {
@@ -92,7 +123,6 @@ public class ViewController implements Initializable {
         StartController controller = loader.getController();
         controller.getPath(path);
         controller.getUserContainer(this.userContainer);
-
         
         Stage stage = new Stage();
         stage.setTitle("Inventarverwaltung 1.0");

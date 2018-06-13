@@ -7,40 +7,50 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="431.0" prefWidth="605.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ViewGUI.ViewController">
+<GridPane maxHeight="447.0" maxWidth="605.0" prefHeight="447.0" prefWidth="605.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ViewGUI.ViewController">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints maxHeight="200.0" minHeight="10.0" prefHeight="26.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="380.0" minHeight="10.0" prefHeight="368.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="380.0" minHeight="10.0" prefHeight="29.0" vgrow="SOMETIMES" />
+  </rowConstraints>
    <children>
-      <GridPane layoutY="6.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="423.0" prefWidth="605.0">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints maxHeight="200.0" minHeight="10.0" prefHeight="26.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="380.0" minHeight="10.0" prefHeight="368.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="380.0" minHeight="10.0" prefHeight="29.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <MenuBar maxWidth="1.7976931348623157E308" minHeight="28.0" minWidth="400.0" prefHeight="28.0" prefWidth="605.0" GridPane.valignment="TOP">
-              <menus>
-                <Menu mnemonicParsing="false" text="Inventar">
-                  <items>
-                    <MenuItem mnemonicParsing="false" onAction="#ShowClicked" text="Inventar Anzeigen" />
-                  </items>
-                </Menu>
-              </menus>
-            </MenuBar>
-            <ScrollPane fx:id="ItemScrollPane" pannable="true" prefHeight="372.0" prefWidth="605.0" GridPane.rowIndex="1" />
-            <Label fx:id="nameLabel" text="Label" GridPane.halignment="RIGHT" GridPane.rowIndex="2">
-               <padding>
-                  <Insets right="20.0" />
-               </padding>
-            </Label>
-            <Button mnemonicParsing="false" onAction="#backClicked" styleClass="backButton" stylesheets="@../style.css" text="← zurück" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-         </children>
-      </GridPane>
+      <MenuBar maxWidth="1.7976931348623157E308" minHeight="28.0" minWidth="400.0" prefHeight="33.0" prefWidth="605.0" GridPane.valignment="TOP">
+        <menus>
+          <Menu mnemonicParsing="false" text="Inventar">
+            <items>
+              <MenuItem mnemonicParsing="false" onAction="#ShowClicked" text="Inventar Anzeigen" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <ScrollPane fx:id="ItemScrollPane" pannable="true" prefHeight="372.0" prefWidth="605.0" GridPane.rowIndex="1">
+         <content>
+            <TableView fx:id="itemTable" minHeight="-Infinity" minWidth="-Infinity" prefHeight="370.0" prefWidth="603.0" styleClass="notFocusable" stylesheets="@../style.css">
+              <columns>
+                <TableColumn fx:id="NRColumn" prefWidth="76.0" text="NR." />
+                <TableColumn fx:id="bezColumn" prefWidth="89.0" text="Bezeichnung" />
+              </columns>
+            </TableView>
+         </content>
+      </ScrollPane>
+      <Label fx:id="nameLabel" text="Label" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+         <padding>
+            <Insets right="20.0" />
+         </padding>
+      </Label>
+      <Button mnemonicParsing="false" onAction="#backClicked" styleClass="backButton" stylesheets="@../style.css" text="Speichern &amp; Beenden" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+         <font>
+            <Font size="13.0" />
+         </font></Button>
    </children>
-</AnchorPane>
+</GridPane>
