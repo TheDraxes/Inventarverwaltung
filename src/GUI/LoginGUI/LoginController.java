@@ -38,11 +38,6 @@ public class LoginController {
             userContainer.safeUserData();
             System.out.println("**Neue Userdatenbank mit standart Adminpasswort erstellt");
         }
-        /*
-        for(int i = 0; i < userContainer.getNumberOfUser(); i++){
-            System.out.println(userContainer.getUserName(i) + " " + userContainer.getUserPasswort(i));
-        }
-        */
         System.out.println("**Login Fenster Initialisiert");
     }
 
@@ -56,24 +51,12 @@ public class LoginController {
     @FXML
     void loginButtonClicked() {
 
-        int index = -1;
-        for(int i = 0 ; i < userContainer.getNumberOfUser(); i++){
-                if (userContainer.getUserName(i).equals(usernameField.getText())) {
-                    index = i;
-                }
-        }
+        System.out.println(userContainer.checkLogin(usernameField.getText(),passwordField.getText()));
 
-        if(index != -1) {
-            if (usernameField.getText().equals(userContainer.getUserName(index)) && passwordField.getText().equals(userContainer.getUserPasswort(index))) {
-                System.out.println("**Eingeloggt als " + usernameField.getText());
-                Stage lastWindow = (Stage) loginButton.getScene().getWindow();
-                lastWindow.hide();
-                new showStartWindow(this.userContainer);
-            } else {
-                System.out.println("**Nutzername oder Passwort falsch!");
-            }
-        } else {
-            System.out.println("**Nutzername oder Passwort falsch!");
+        if(userContainer.checkLogin(usernameField.getText(),passwordField.getText())){
+            Stage lastWindow = (Stage) loginButton.getScene().getWindow();
+            lastWindow.hide();
+            new showStartWindow(this.userContainer);
         }
     }
 }

@@ -37,7 +37,7 @@ public class ViewController implements Initializable {
     @FXML
     private Label nameLabel;
 
-    UserContainer userContainer;
+    private UserContainer userContainer;
 
     private String path;
 
