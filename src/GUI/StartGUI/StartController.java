@@ -78,7 +78,6 @@ public class StartController implements Initializable {
             }
 
             if(user.equals("admin")){
-
                 adminMenue.setVisible(true);
             } else {
                 adminMenue.setVisible(false);
