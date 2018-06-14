@@ -1,4 +1,4 @@
-package Item;
+package Data;
 
 public class Abteilung {
 	private String abtleiter;

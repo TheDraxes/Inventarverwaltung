@@ -1,7 +1,8 @@
 package GUI.ViewGUI;
 
-import Item.Fuhrpark;
-import Item.Item;
+
+import Data.Fuhrpark;
+import Data.Item;
 import Verwaltung.UserContainer;
 import GUI.StartGUI.StartController;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -64,10 +65,9 @@ public class ViewController implements Initializable {
     public void initialize(){
         ArrayList<Item> a = new ArrayList<Item>();
 
-        for(int i = 0 ; i < 4; i++){
+        for(int i = 0 ; i <4; i++){
             Fuhrpark b = new Fuhrpark();
-            b.setInventarnr(100 + i);
-            b.setItembez("BMW Coupe");
+            b.setBezeichnung("BMW Coupe");
             a.add(b);
         }
 
@@ -94,6 +94,7 @@ public class ViewController implements Initializable {
         ObservableList<Item> list = FXCollections.observableArrayList(a);
 
         itemTable.setItems(list);
+
     }
 
     //Define the button cell
@@ -113,7 +114,7 @@ public class ViewController implements Initializable {
                     // get Selected Item
                     Item selectedItem = (Item) ButtonCell.this.getTableView().getItems().get(ButtonCell.this.getIndex());
                     //remove selected item from the table list
-                    System.out.println(selectedItem.getInventarnr());
+                    System.out.println(selectedItem.getBuchwert());
                 }
             });
         }
