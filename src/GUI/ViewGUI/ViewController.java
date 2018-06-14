@@ -64,12 +64,13 @@ public class ViewController implements Initializable {
     public void initialize(){
         ArrayList<Item> a = new ArrayList<Item>();
 
-        for(int i = 0 ; i <4; i++){
+        for(int i = 0 ; i < 4; i++){
             Fuhrpark b = new Fuhrpark();
             b.setInventarnr(100 + i);
             b.setItembez("BMW Coupe");
             a.add(b);
         }
+
         NRColumn.setCellValueFactory(new PropertyValueFactory<>("Inventarnr"));
         bezColumn.setCellValueFactory(new PropertyValueFactory<>("itembez"));
         ActionColumn.setCellValueFactory(
@@ -130,8 +131,10 @@ public class ViewController implements Initializable {
     //Methode die ausgeführt wird wenn der "Inventar anzeigen" Button in der Menueleiste Gedrückt wird
     //Hier werden an das ScrollPane Beispielhaft Platzhalter angehängt
     @FXML
-    void ShowClicked(ActionEvent event) {
-        initialize();
+    void addItemClicked(ActionEvent event) {
+        Stage a = (Stage) nameLabel.getScene().getWindow();
+
+
     }
 
     public void getParams(String inventoryName, String path, UserContainer userContainer, String user){

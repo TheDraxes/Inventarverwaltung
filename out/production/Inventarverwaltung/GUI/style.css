@@ -32,3 +32,7 @@
     -fx-background-color: #ff9f9b;
     -fx-border-color: #ff9f9b;
 }
+.loginBackground{
+    -fx-background-image: url('/GUI/dvzlogo.jpg');
+    -fx-background-size: cover;
+}
