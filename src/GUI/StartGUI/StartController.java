@@ -6,6 +6,7 @@ import GUI.ViewGUI.ViewController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -217,7 +218,7 @@ public class StartController implements Initializable {
             } else if(!pwConfirmed){
                 JOptionPane.showMessageDialog(null,"Passwörter stimmen nicht überein!");
             } else if(isDuplicate){
-                JOptionPane.showMessageDialog(null,"Username bereits belegt!");
+                JOptionPane.showMessageDialog(null,("Username bereits belegt!"));
             }
         }
     }
@@ -234,6 +235,26 @@ public class StartController implements Initializable {
                 userContainer.deleteUser(test[i]);
             }
         }
+    }
+
+    @FXML
+    public void logoutButtonClicked() {
+        Stage lastWindow = (Stage) userLabel.getScene().getWindow();
+        lastWindow.hide();
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/LoginGUI/LoginStyle.fxml"));
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Stage stage = new Stage();
+        stage.setTitle("Inventarverwaltung 1.0");
+        stage.setResizable(false);
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 
     @Override

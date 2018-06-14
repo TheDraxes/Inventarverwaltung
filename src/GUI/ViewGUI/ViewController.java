@@ -4,9 +4,12 @@ import Item.Fuhrpark;
 import Item.Item;
 import Verwaltung.UserContainer;
 import GUI.StartGUI.StartController;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -15,6 +18,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import javafx.util.Callback;
 
 import java.io.IOException;
 import java.net.URL;
@@ -47,6 +51,9 @@ public class ViewController implements Initializable {
     @FXML
     private TableColumn bezColumn;
 
+    @FXML
+    private TableColumn ActionColumn;
+
     private UserContainer userContainer;
 
     private String path;
@@ -57,7 +64,7 @@ public class ViewController implements Initializable {
     public void initialize(){
         ArrayList<Item> a = new ArrayList<Item>();
 
-        for(int i = 0 ; i <20; i++){
+        for(int i = 0 ; i <4; i++){
             Fuhrpark b = new Fuhrpark();
             b.setInventarnr(100 + i);
             b.setItembez("BMW Coupe");
@@ -65,27 +72,59 @@ public class ViewController implements Initializable {
         }
         NRColumn.setCellValueFactory(new PropertyValueFactory<>("Inventarnr"));
         bezColumn.setCellValueFactory(new PropertyValueFactory<>("itembez"));
+        ActionColumn.setCellValueFactory(
+                new Callback<TableColumn.CellDataFeatures<Item, Boolean>,
+                        ObservableValue<Boolean>>() {
+
+                    @Override
+                    public ObservableValue<Boolean> call(TableColumn.CellDataFeatures<Item, Boolean> p) {
+                        return new SimpleBooleanProperty(p.getValue() != null);
+                    }
+                });
+        ActionColumn.setCellFactory(
+                new Callback<TableColumn<Item, Boolean>, TableCell<Item, Boolean>>() {
+                    @Override
+                    public TableCell<Item, Boolean> call(TableColumn<Item, Boolean> p) {
+                        return new ButtonCell();
+                    }
+                });
+
 
         ObservableList<Item> list = FXCollections.observableArrayList(a);
 
         itemTable.setItems(list);
+    }
 
+    //Define the button cell
+    private class ButtonCell extends TableCell<Item, Boolean> {
+        final Button cellButton = new Button("        ");
 
+        ButtonCell(){
 
-        /*
-        VBox test = new VBox();
-        test.setSpacing(5);
-        Separator VerticalLine = new Separator();
-        VerticalLine.setOrientation(Orientation.VERTICAL);
-        VerticalLine.setMaxWidth(500);
-        for(int i = 0; i <= 20; i++) {
-            test.getChildren().addAll(new ItemEntry(new BodenUndGebaeude()));
+            cellButton.getStylesheets().add("/GUI/style.css");
+            cellButton.getStyleClass().add("editButton");
+
+            //Action when the button is pressed
+            cellButton.setOnAction(new EventHandler<ActionEvent>(){
+
+                @Override
+                public void handle(ActionEvent t) {
+                    // get Selected Item
+                    Item selectedItem = (Item) ButtonCell.this.getTableView().getItems().get(ButtonCell.this.getIndex());
+                    //remove selected item from the table list
+                    System.out.println(selectedItem.getInventarnr());
+                }
+            });
         }
-        ItemScrollPane.setContent(test);
-        System.out.println("**View Fenster Initialisiert");
-        System.out.println("**Speicherpfad: " + path);
-        */
 
+        //Display button if the row is not empty
+        @Override
+        protected void updateItem(Boolean t, boolean empty) {
+            super.updateItem(t, empty);
+            if(!empty){
+                setGraphic(cellButton);
+            }
+        }
     }
 
     //Methode die ausgeführt wird wenn der "Inventar anzeigen" Button in der Menueleiste Gedrückt wird

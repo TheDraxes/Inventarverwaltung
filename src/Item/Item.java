@@ -1,5 +1,7 @@
 package Item;
 
+import javafx.scene.control.Button;
+
 import java.util.Date;
 
 /*
@@ -9,7 +11,7 @@ import java.util.Date;
     Muss noch um umfangreiche Funktionen Erweitert werden
 
  */
-public abstract class Item {
+public class Item {
 	protected long inventarnr;
 	protected String itemtyp;
 	protected String itembez;
