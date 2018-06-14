@@ -2,7 +2,7 @@ package GUI.ViewGUI;
 
 import Verwaltung.UserContainer;
 import GUI.StartGUI.StartController;
-import Item.BodenUndGebaeude;
+import Data.BodenUndGebaeude;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
