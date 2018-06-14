@@ -57,7 +57,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button fx:id="loginButton" mnemonicParsing="false" onAction="#loginButtonClicked" text="Login" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+                  <Button fx:id="loginButton" mnemonicParsing="false" onAction="#loginButtonClicked" styleClass="confirmButton" stylesheets="@../style.css" text="Login" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
                </children>
             </GridPane>
          </children>

@@ -1,5 +1,7 @@
 package Verwaltung;
 
+import javafx.stage.Stage;
+
 import javax.swing.*;
 import java.io.*;
 
@@ -142,6 +144,29 @@ public class UserContainer implements Serializable{
             System.out.println("Vorgang abgebrochen!");
         }
         safeUserData();
+    }
+
+    public boolean checkLogin(String username, String pw){
+        int index = -1;
+        for(int i = 0 ; i < getNumberOfUser(); i++){
+            if (getUserName(i).equals(username)) {
+                index = i;
+            }
+        }
+
+
+        if(index != -1) {
+            if (username.equals(getUserName(index)) && pw.equals(getUserPasswort(index))) {
+                System.out.println("**Eingeloggt als " + username);
+                return true;
+            } else {
+                System.out.println("**Nutzername oder Passwort falsch!");
+                return false;
+            }
+        } else {
+            System.out.println("**Nutzername oder Passwort falsch!");
+            return false;
+        }
     }
 
     public void printAllUser(){

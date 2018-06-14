@@ -6,15 +6,14 @@ import GUI.ViewGUI.ViewController;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
-import javafx.scene.control.Tooltip;
 
 import javax.swing.*;
 import java.io.*;
@@ -38,6 +37,12 @@ public class StartController implements Initializable {
     private Button ConfirmButton;
 
     @FXML
+    private Label userLabel;
+
+    @FXML
+    private Menu adminMenue;
+
+    @FXML
     private Tooltip Tooltip;
 
     private UserContainer userContainer;
@@ -45,6 +50,8 @@ public class StartController implements Initializable {
     private int anz = 0;
 
     private String path = "";
+
+    private String user = "";
 
     //Funktion die die werte des AuswahlDropdowns festlegt
     @FXML
@@ -68,6 +75,12 @@ public class StartController implements Initializable {
                 } else {
                     InventarBox.setValue("Kein Eintrag gefunden!");
                 }
+            }
+
+            if(user.equals("admin")){
+                adminMenue.setVisible(true);
+            } else {
+                adminMenue.setVisible(false);
             }
             System.out.println("**Start Fenster Initialisiert");
     }
@@ -111,12 +124,12 @@ public class StartController implements Initializable {
         initialize();
     }
 
-    public void getPath(String path){
+    public void getParams(String path, UserContainer userContainer, String user){
+        this.userLabel.setText("Eingeloggt als: " + user);
         this.path = path;
+        this.userContainer = userContainer;
+        this.user = user;
         initialize();
-    }
-    public void getUserContainer(UserContainer newUserCon){
-        this.userContainer = newUserCon;
     }
 
     //Methode die aufgerufen wird wenn der newButton gedrückt wird
@@ -158,10 +171,11 @@ public class StartController implements Initializable {
             Parent root = loader.load();
 
             ViewController controller = loader.getController();
-            controller.getParams(InventarBox.getValue(), path, userContainer);
+            controller.getParams(InventarBox.getValue(), path, userContainer,user);
 
             Stage newWindow = new Stage();
             newWindow.setResizable(false);
+            newWindow.setTitle(InventarBox.getValue());
             newWindow.setScene(new Scene(root));
             newWindow.show();
         } else {
@@ -203,7 +217,7 @@ public class StartController implements Initializable {
             } else if(!pwConfirmed){
                 JOptionPane.showMessageDialog(null,"Passwörter stimmen nicht überein!");
             } else if(isDuplicate){
-                JOptionPane.showMessageDialog(null,"Username bereits belegt!");
+                JOptionPane.showMessageDialog(null,("Username bereits belegt!"));
             }
         }
     }
@@ -220,6 +234,26 @@ public class StartController implements Initializable {
                 userContainer.deleteUser(test[i]);
             }
         }
+    }
+
+    @FXML
+    public void logoutButtonClicked() {
+        Stage lastWindow = (Stage) userLabel.getScene().getWindow();
+        lastWindow.hide();
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/LoginGUI/LoginStyle.fxml"));
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        Stage stage = new Stage();
+        stage.setTitle("Inventarverwaltung 1.0");
+        stage.setResizable(false);
+        stage.setScene(new Scene(root));
+        stage.show();
     }
 
     @Override
