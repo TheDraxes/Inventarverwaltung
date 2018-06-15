@@ -2,10 +2,7 @@ package Verwaltung;
 
 import Data.Item;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.*;
 
 public class ItemContainer {
@@ -35,6 +32,7 @@ public class ItemContainer {
     }
 
     public void safeInventar(String name){
+        System.out.print("**Speichere Inventar");
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(name + ".dat");
             ObjectOutputStream outputStream = new ObjectOutputStream(fileOutputStream);
@@ -45,7 +43,24 @@ public class ItemContainer {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        
-        System.out.println();
+    }
+
+    public ItemContainer loadInventar(String name) {
+        System.out.print("**Lade Inventar");
+        try {
+            FileInputStream fileInputStream = new FileInputStream(name + ".dat");
+            ObjectInputStream inputStream = new ObjectInputStream(fileInputStream);
+            ItemContainer loaded = (ItemContainer) inputStream.readObject();
+
+            System.out.println("**Inventar " + name + ".dat geladen!");
+            return loaded;
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
