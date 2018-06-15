@@ -1,7 +1,6 @@
 package GUI.ViewGUI;
 
 
-import Data.Fuhrpark;
 import Data.Item;
 import Verwaltung.ItemContainer;
 import Verwaltung.UserContainer;
@@ -38,7 +37,7 @@ import java.util.*;
 
 public class ViewController implements Initializable {
 
-    //ScrollPane für die Inventar einträge. Hier müssen nur die ItemEntry Objekte angeheftet werden
+    //ScrollPane für die Inventar einträge
     @FXML
     private ScrollPane ItemScrollPane;
 
@@ -140,7 +139,7 @@ public class ViewController implements Initializable {
                 public void handle(ActionEvent t) {
                     // get Selected Item
                     Item selectedItem = (Item) ButtonCell.this.getTableView().getItems().get(ButtonCell.this.getIndex());
-                    //remove selected item from the table list
+
                     selectedItem.display();
                 }
             });
@@ -202,6 +201,7 @@ public class ViewController implements Initializable {
         dialog.setTitle("Item Anlegen");
         dialog.setHeaderText("Art des Gegenstandes wählen!");
         dialog.setContentText("Arten:");
+        dialog.getDialogPane().setStyle("-fx-background-color:  #e6f9ff");
 
         Optional<String> result = dialog.showAndWait();
         if (result.isPresent()){

@@ -98,6 +98,7 @@ public class ItemDialogs {
         dialog.setTitle("Neues Item");
         ButtonType addButton = new ButtonType("Hinzufügen" ,ButtonBar.ButtonData.OK_DONE);
         dialog.getDialogPane().getButtonTypes().addAll(addButton, ButtonType.CANCEL);
+        dialog.getDialogPane().setStyle("-fx-background-color:  #b5edff");
 
         GridPane grid = new GridPane();
         grid.setHgap(10);

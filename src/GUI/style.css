@@ -40,3 +40,14 @@
     -fx-background-image: url('/GUI/dvzlogo.jpg');
     -fx-background-size: cover;
 }
+.table-view:focused{
+    -fx-background-color: transparent;
+}
+.table-row-cell:odd{
+    -fx-background-color: #e6f9ff;
+    -fx-focus-color:transparent;
+}
+.table-row-cell:even{
+    -fx-background-color:  #b5edff;
+    -fx-focus-color:transparent;
+}

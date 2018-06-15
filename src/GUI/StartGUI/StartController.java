@@ -8,7 +8,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -19,12 +18,11 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import javafx.util.Pair;
 
 import javax.swing.*;
 import java.io.*;
-import java.lang.reflect.Array;
 import java.net.URL;
+import java.util.Arrays;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -232,12 +230,19 @@ public class StartController implements Initializable {
     @FXML
     public void deleteUser(){
         String[] deletedUsers = buildDeleteUserWindow();
-        for (int i = 0; i < deletedUsers.length; i++) {
-            if (!deletedUsers[i].equals("admin")) {
-                userContainer.deleteUser(deletedUsers[i]);
-            } else {
-                warnDialog("Der Admin Account kann nicht gelöscht werden!");
+        System.out.println("** User ausgewählt: " + Arrays.toString(deletedUsers));
+        if(deletedUsers != null){
+            if(deletedUsers.length > 0) {
+                for (int i = 0; i < deletedUsers.length; i++) {
+                    if (!deletedUsers[i].equals("admin")) {
+                        userContainer.deleteUser(deletedUsers[i]);
+                    } else {
+                        warnDialog("Der Admin Account kann nicht gelöscht werden!");
+                    }
+                }
             }
+        } else {
+            System.out.println("**Vorgang abgebrochen!");
         }
     }
 
@@ -316,12 +321,16 @@ public class StartController implements Initializable {
             if(dialogButton == OK_Button){
                 int anz = 0;
                 for(int i = 0; i < number; i++){
-                    anz++;
+                    if(checkBoxes[i].isSelected()) {
+                        anz++;
+                    }
                 }
                 String[] array = new String[anz];
+                anz = 0;
                 for(int i = 0; i < number; i++){
                     if(checkBoxes[i].isSelected()){
-                        array[i] = checkBoxes[i].getText();
+                        array[anz] = checkBoxes[i].getText();
+                        anz++;
                     }
                 }
                 return array;
@@ -332,6 +341,7 @@ public class StartController implements Initializable {
         });
 
         Optional<String[]> result = dialog.showAndWait();
+
         if(result.isPresent()) {
             return result.get();
         } else {
