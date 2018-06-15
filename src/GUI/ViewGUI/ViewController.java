@@ -151,14 +151,11 @@ public class ViewController implements Initializable {
     void addItemClicked(ActionEvent event) {
         Fuhrpark a = new Fuhrpark();
         a.setBezeichnung("BMW");
-        a.setInventarnummer(10);
         itemContainer.insertItem(a);
-        /*
-        String itemTyp = askForItemType();
-        if(itemTyp != null){
 
-        }
-        */
+        String itemTyp = askForItemType();
+
+        new ItemDialogs(itemTyp);
         fillTable();
     }
 

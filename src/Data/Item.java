@@ -20,6 +20,16 @@ public abstract class Item implements Serializable {
 	private Sachgebiet sachgebiet;
 	private Date inserierungsdatum;
 	private int anzahl;
+	private int ParamAnzahl = 8;
+	private String[] paramNames = {
+	        "inventarnummer",
+            "bezeichnung",
+            "anschaffungswert",
+            "buchwert",
+            "tnd",
+            "ablaufdatum",
+            "inserierungsdatum",
+            "anzahl"};
 
 	public Item() {
 
@@ -35,6 +45,12 @@ public abstract class Item implements Serializable {
         this.sachgebiet = sachgebiet;
         this.inserierungsdatum = inserierungsdatum;
         this.anzahl = anzahl;
+    }
+    public int getParamAnzahl(){
+	    return this.ParamAnzahl;
+    }
+    public String[] getParamNames(){
+	    return this.paramNames;
     }
 
     public void display() {

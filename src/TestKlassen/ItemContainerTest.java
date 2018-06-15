@@ -6,6 +6,13 @@ import Verwaltung.ItemContainer;
 
 public class ItemContainerTest {
     public static void main(String [] args){
+
+        Fuhrpark a = new Fuhrpark();
+        System.out.println(a.getParamAnzahl());
+        String[] b = new Fuhrpark().getParamNames();
+        System.out.println(b[12]);
+
+        /*
         Fuhrpark auto1 = new Fuhrpark();
         auto1.setFahrgestellnummer(28741982);
         auto1.setFahrzeugart("Limousine");
@@ -25,7 +32,6 @@ public class ItemContainerTest {
 
         ItemContainer myContainer = new ItemContainer();
 
-        /*
         myContainer.insertItem((Item) auto1);
         myContainer.insertItem((Item) auto2);
         myContainer.showAll();
@@ -35,11 +41,12 @@ public class ItemContainerTest {
         System.out.println("====================================");
 
         myContainer.safeInventar("C:\\Inventarverwaltungspeicher\\ContainerTestInv.Inv");
-        */
+
 
 
         myContainer = myContainer.loadInventar("C:\\Inventarverwaltungspeicher\\ContainerTestInv.Inv");
         myContainer.showAll();
+        */
 
     }
 }

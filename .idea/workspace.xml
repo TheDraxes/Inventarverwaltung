@@ -2,21 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="34a30ea8-6f48-4da1-8120-c5575a213c6d" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/src/GUI/ViewGUI/ItemDialogs.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/Data/Fuhrpark.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Inventarverwaltung/Data/Fuhrpark.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/Data/Item.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Inventarverwaltung/Data/Item.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/GUI/StartGUI/StartController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Inventarverwaltung/GUI/StartGUI/StartController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/GUI/ViewGUI/ViewController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Inventarverwaltung/GUI/ViewGUI/ViewController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/GUI/ViewGUI/ViewController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Inventarverwaltung/GUI/ViewGUI/ViewController$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/GUI/ViewGUI/ViewController$ButtonCell$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Inventarverwaltung/GUI/ViewGUI/ViewController$ButtonCell$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/GUI/ViewGUI/ViewController$ButtonCell.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Inventarverwaltung/GUI/ViewGUI/ViewController$ButtonCell.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/GUI/ViewGUI/ViewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Inventarverwaltung/GUI/ViewGUI/ViewController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/TestKlassen/ItemContainerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Inventarverwaltung/TestKlassen/ItemContainerTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/Verwaltung/ItemContainer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Inventarverwaltung/Verwaltung/ItemContainer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Data/Fuhrpark.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Data/Fuhrpark.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Data/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Data/Item.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/StartGUI/StartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/StartGUI/StartController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/ViewGUI/ViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/ViewGUI/ViewController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/TestKlassen/ItemContainerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TestKlassen/ItemContainerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Verwaltung/ItemContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Verwaltung/ItemContainer.java" afterDir="false" />
     </list>
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,23 +21,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="StartController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GUI/StartGUI/StartController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="130">
-              <caret line="147" column="36" lean-forward="true" selection-start-line="147" selection-start-column="36" selection-end-line="147" selection-end-column="36" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ViewController.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ViewController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GUI/ViewGUI/ViewController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="159" column="9" lean-forward="true" selection-start-line="159" selection-start-column="9" selection-end-line="159" selection-end-column="9" />
+            <state relative-caret-position="204">
+              <caret line="157" column="33" selection-start-line="157" selection-start-column="33" selection-end-line="157" selection-end-column="33" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1332#1338#0" expanded="true" />
@@ -53,26 +36,45 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Fuhrpark.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Data/Fuhrpark.java">
+      <file leaf-file-name="ItemDialogs.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/GUI/ViewGUI/ItemDialogs.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="16" column="24" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="24" />
-              <folding>
-                <element signature="e#255#256#0" expanded="true" />
-                <element signature="e#269#270#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="456">
+              <caret line="19" selection-start-line="19" selection-end-line="19" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Item.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Data/Item.java">
+      <file leaf-file-name="Fuhrpark.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Data/Fuhrpark.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="288">
-              <caret line="17" column="20" lean-forward="true" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
+            <state relative-caret-position="541">
+              <caret line="48" column="25" selection-start-line="48" selection-start-column="25" selection-end-line="48" selection-end-column="25" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#255#256#0" expanded="true" />
+                <element signature="e#269#270#0" expanded="true" />
+                <element signature="e#902#903#0" expanded="true" />
+                <element signature="e#920#921#0" expanded="true" />
+                <element signature="e#1652#1653#0" expanded="true" />
+                <element signature="e#1677#1678#0" expanded="true" />
+                <element signature="e#1728#1729#0" expanded="true" />
+                <element signature="e#1765#1766#0" expanded="true" />
+                <element signature="e#1800#1801#0" expanded="true" />
+                <element signature="e#1825#1826#0" expanded="true" />
+                <element signature="e#1876#1877#0" expanded="true" />
+                <element signature="e#1913#1914#0" expanded="true" />
+                <element signature="e#1952#1953#0" expanded="true" />
+                <element signature="e#1983#1984#0" expanded="true" />
+                <element signature="e#2044#2045#0" expanded="true" />
+                <element signature="e#2093#2094#0" expanded="true" />
+                <element signature="e#2119#2120#0" expanded="true" />
+                <element signature="e#2135#2136#0" expanded="true" />
+                <element signature="e#2237#2238#0" expanded="true" />
+                <element signature="e#2253#2254#0" expanded="true" />
+                <element signature="e#2288#2289#0" expanded="true" />
+                <element signature="e#2316#2317#0" expanded="true" />
+                <element signature="e#2370#2371#0" expanded="true" />
+                <element signature="e#2413#2414#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -81,28 +83,33 @@
       <file leaf-file-name="ItemContainerTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/TestKlassen/ItemContainerTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="474">
-              <caret line="40" column="78" lean-forward="true" selection-start-line="40" selection-start-column="78" selection-end-line="40" selection-end-column="78" />
+            <state relative-caret-position="240">
+              <caret line="12" column="31" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ItemContainer.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Item.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Data/Item.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="312">
+              <caret line="52" column="31" selection-start-line="52" selection-start-column="31" selection-end-line="52" selection-end-column="31" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1125#1126#0" expanded="true" />
+                <element signature="e#1148#1149#0" expanded="true" />
+                <element signature="e#1443#1444#0" expanded="true" />
+                <element signature="e#1466#1467#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ItemContainer.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Verwaltung/ItemContainer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="18" column="5" lean-forward="true" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
-              <folding>
-                <element signature="e#160#166#0" expanded="true" />
-                <element signature="e#874#875#0" expanded="true" />
-                <element signature="e#900#901#0" expanded="true" />
-                <element signature="e#886#887#0" expanded="true" />
-                <element signature="e#909#910#0" expanded="true" />
-                <element signature="e#948#949#0" expanded="true" />
-                <element signature="e#973#974#0" expanded="true" />
-                <element signature="e#2141#2142#0" expanded="true" />
-                <element signature="e#2181#2182#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="168">
+              <caret line="10" column="65" lean-forward="true" selection-start-line="10" selection-start-column="65" selection-end-line="10" selection-end-column="65" />
             </state>
           </provider>
         </entry>
@@ -128,11 +135,13 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/GUI/ViewGUI/AddItemJpanel.java" />
-        <option value="$PROJECT_DIR$/src/Data/Item.java" />
-        <option value="$PROJECT_DIR$/src/TestKlassen/ItemContainerTest.java" />
         <option value="$PROJECT_DIR$/src/GUI/StartGUI/StartController.java" />
         <option value="$PROJECT_DIR$/src/Verwaltung/ItemContainer.java" />
         <option value="$PROJECT_DIR$/src/GUI/ViewGUI/ViewController.java" />
+        <option value="$PROJECT_DIR$/src/GUI/ViewGUI/ItemDialogs.java" />
+        <option value="$PROJECT_DIR$/src/Data/Item.java" />
+        <option value="$PROJECT_DIR$/src/Data/Fuhrpark.java" />
+        <option value="$PROJECT_DIR$/src/TestKlassen/ItemContainerTest.java" />
       </list>
     </option>
   </component>
@@ -239,7 +248,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Application.ItemContainerTest">
     <configuration name="ItemContainerTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="TestKlassen.ItemContainerTest" />
       <module name="Inventarverwaltung" />
@@ -303,8 +312,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
         <item itemvalue="Application.ItemContainerTest" />
+        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -326,7 +335,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2512000" />
+    <option name="totallyTimeSpent" value="4503000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -342,11 +351,11 @@
       <window_info anchor="right" id="Maven Projects" order="4" />
       <window_info anchor="bottom" id="Database Changes" order="0" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="3" weight="0.32900432" />
-      <window_info anchor="bottom" id="Run" order="7" visible="true" weight="0.32792208" />
+      <window_info active="true" anchor="bottom" id="Run" order="7" visible="true" weight="0.32792208" />
       <window_info anchor="bottom" id="Terminal" order="1" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="0" />
-      <window_info active="true" content_ui="combo" id="Project" order="5" visible="true" weight="0.19296375" />
+      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.19296375" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="7" weight="0.25" />
@@ -418,13 +427,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/GUI/StartGUI/showStartWindow.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="903">
-          <caret line="52" selection-start-line="52" selection-end-line="52" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI/StartGUI/StartController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="21">
@@ -453,17 +455,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
           <caret line="30" column="11" lean-forward="true" selection-start-line="30" selection-start-column="11" selection-end-line="30" selection-end-column="11" />
-          <folding>
-            <element signature="e#160#166#0" expanded="true" />
-            <element signature="e#874#875#0" expanded="true" />
-            <element signature="e#900#901#0" expanded="true" />
-            <element signature="e#886#887#0" expanded="true" />
-            <element signature="e#909#910#0" expanded="true" />
-            <element signature="e#948#949#0" expanded="true" />
-            <element signature="e#973#974#0" expanded="true" />
-            <element signature="e#2141#2142#0" expanded="true" />
-            <element signature="e#2181#2182#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -571,7 +562,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Data/Sachgebiet.java" />
     <entry file="file://$PROJECT_DIR$/src/GUI/ViewGUI/ItemEntry.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="353">
@@ -643,13 +633,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Data/Mobiliar.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
         </state>
       </provider>
     </entry>
@@ -741,16 +724,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Data/Item.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="17" column="20" lean-forward="true" selection-start-line="17" selection-start-column="20" selection-end-line="17" selection-end-column="20" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI/StartGUI/StartController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="130">
@@ -761,52 +734,98 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Data/Fuhrpark.java">
+    <entry file="file://$PROJECT_DIR$/src/Data/Sachgebiet.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="16" column="24" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="24" />
-          <folding>
-            <element signature="e#255#256#0" expanded="true" />
-            <element signature="e#269#270#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="48">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/TestKlassen/ItemContainerTest.java">
+    <entry file="file://$PROJECT_DIR$/src/Data/Mobiliar.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="474">
-          <caret line="40" column="78" lean-forward="true" selection-start-line="40" selection-start-column="78" selection-end-line="40" selection-end-column="78" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Verwaltung/ItemContainer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="18" column="5" lean-forward="true" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
-          <folding>
-            <element signature="e#160#166#0" expanded="true" />
-            <element signature="e#874#875#0" expanded="true" />
-            <element signature="e#900#901#0" expanded="true" />
-            <element signature="e#886#887#0" expanded="true" />
-            <element signature="e#909#910#0" expanded="true" />
-            <element signature="e#948#949#0" expanded="true" />
-            <element signature="e#973#974#0" expanded="true" />
-            <element signature="e#2141#2142#0" expanded="true" />
-            <element signature="e#2181#2182#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="120">
+          <caret line="5" selection-start-line="5" selection-end-line="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI/ViewGUI/ViewController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="159" column="9" lean-forward="true" selection-start-line="159" selection-start-column="9" selection-end-line="159" selection-end-column="9" />
+        <state relative-caret-position="204">
+          <caret line="157" column="33" selection-start-line="157" selection-start-column="33" selection-end-line="157" selection-end-column="33" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1332#1338#0" expanded="true" />
             <element signature="e#4068#4069#0" expanded="true" />
             <element signature="e#4139#4140#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/ViewGUI/ItemDialogs.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="456">
+          <caret line="19" selection-start-line="19" selection-end-line="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Data/Item.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="52" column="31" selection-start-line="52" selection-start-column="31" selection-end-line="52" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1125#1126#0" expanded="true" />
+            <element signature="e#1148#1149#0" expanded="true" />
+            <element signature="e#1443#1444#0" expanded="true" />
+            <element signature="e#1466#1467#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/TestKlassen/ItemContainerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="12" column="31" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Data/Fuhrpark.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="541">
+          <caret line="48" column="25" selection-start-line="48" selection-start-column="25" selection-end-line="48" selection-end-column="25" />
+          <folding>
+            <element signature="e#255#256#0" expanded="true" />
+            <element signature="e#269#270#0" expanded="true" />
+            <element signature="e#902#903#0" expanded="true" />
+            <element signature="e#920#921#0" expanded="true" />
+            <element signature="e#1652#1653#0" expanded="true" />
+            <element signature="e#1677#1678#0" expanded="true" />
+            <element signature="e#1728#1729#0" expanded="true" />
+            <element signature="e#1765#1766#0" expanded="true" />
+            <element signature="e#1800#1801#0" expanded="true" />
+            <element signature="e#1825#1826#0" expanded="true" />
+            <element signature="e#1876#1877#0" expanded="true" />
+            <element signature="e#1913#1914#0" expanded="true" />
+            <element signature="e#1952#1953#0" expanded="true" />
+            <element signature="e#1983#1984#0" expanded="true" />
+            <element signature="e#2044#2045#0" expanded="true" />
+            <element signature="e#2093#2094#0" expanded="true" />
+            <element signature="e#2119#2120#0" expanded="true" />
+            <element signature="e#2135#2136#0" expanded="true" />
+            <element signature="e#2237#2238#0" expanded="true" />
+            <element signature="e#2253#2254#0" expanded="true" />
+            <element signature="e#2288#2289#0" expanded="true" />
+            <element signature="e#2316#2317#0" expanded="true" />
+            <element signature="e#2370#2371#0" expanded="true" />
+            <element signature="e#2413#2414#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Verwaltung/ItemContainer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="10" column="65" lean-forward="true" selection-start-line="10" selection-start-column="65" selection-end-line="10" selection-end-column="65" />
         </state>
       </provider>
     </entry>
