@@ -11,6 +11,7 @@ import java.util.*;
 public class ItemContainer {
     private ArrayList<Item> ItemList = new ArrayList<Item>();
     private long id = 0;
+    private String[] existingItemTypes = {"Boden und Gebäude", "Fuhrpark", "Hardware", "Mobiliar", "Software", "Sonstiges"};
 
     public void insertItem(Item i) {
         id++;
