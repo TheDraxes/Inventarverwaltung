@@ -10,8 +10,12 @@ import java.util.*;
 
 public class ItemContainer {
     private ArrayList<Item> ItemList = new ArrayList<Item>();
+    private long id = 0;
 
     public void insertItem(Item i) {
+        id++;
+        i.setInventarnummer(id);
+
         ItemList.add(i);
         System.out.println("**Item hinzugefügt");
     }
@@ -40,10 +44,7 @@ public class ItemContainer {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        /*for(int i = 0; i < ItemList.size(); i++){
-            ItemList.showItem();
-        }*/
+        
         System.out.println();
     }
 }
