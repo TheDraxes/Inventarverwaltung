@@ -2,9 +2,11 @@ package GUI.ViewGUI;
 
 import Data.Fuhrpark;
 import Data.Item;
+import GUI.StartGUI.StartController;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import javafx.util.Pair;
 
 import java.util.Date;
 import java.util.Hashtable;
@@ -20,14 +22,16 @@ public class ItemDialogs {
 
     }
 
-    public Item getNewItem(String itemTyp){
+    public Pair<Item, Boolean> getNewItem(String itemTyp){
         if(itemTyp != null){
             switch(itemTyp){
                 case "Fuhrpark":
-                    System.out.println("TESTETSTESTETSTTE");
                     setTextFieldsForFuhrpark();
                     Hashtable<String,String> newItemData = buildNewItemWindow();
-                    return getNewFuhrpark(newItemData);
+                    if(newItemData == null){
+                        return new Pair<>(new Fuhrpark(),false);
+                    }
+                    return new Pair<>(getNewFuhrpark(newItemData),true);
                 default:
                     return null;
             }
@@ -37,17 +41,37 @@ public class ItemDialogs {
     }
     public Item getNewFuhrpark(Hashtable<String,String> newItemData){
         Fuhrpark newFuhrpark = new Fuhrpark();
+        if(newItemData != null) {
+            if (newItemData.get(labelNames[0]).equals("") ||
+                    newItemData.get(labelNames[1]).equals("") ||
+                    newItemData.get(labelNames[2]).equals("") ||
+                    newItemData.get(labelNames[3]).equals("")) {
+                new StartController().warnDialog("Alle mit einem * markierten Felder müssen Ausgefüllt werden!");
+                return null;
+            }
 
-        newFuhrpark.setBezeichnung(newItemData.get(labelNames[0]));
-        if(newItemData.get(labelNames[1]).equals("")) {
-            double wert = Double.parseDouble(newItemData.get(labelNames[1]));
-            newFuhrpark.setAnschaffungswert(wert);
+            newFuhrpark.setBezeichnung(newItemData.get(labelNames[0]));
+
+            if (!newItemData.get(labelNames[1]).equals("")) {
+                double wert = Double.parseDouble(newItemData.get(labelNames[1]));
+                newFuhrpark.setAnschaffungswert(wert);
+            }
+
+            if (!newItemData.get(labelNames[2]).equals("")) {
+                int tnd = Integer.parseInt(newItemData.get(labelNames[2]));
+                newFuhrpark.setTnd(tnd);
+            }
+
+            if (!newItemData.get(labelNames[3]).equals("")) {
+                int anzahl = Integer.parseInt(newItemData.get(labelNames[3]));
+                newFuhrpark.setAnzahl(anzahl);
+            }
+
+            newFuhrpark.setInserierungsdatum(new Date(System.currentTimeMillis()));
+            return newFuhrpark;
+        } else {
+            return null;
         }
-
-
-
-        newFuhrpark.setInserierungsdatum(new Date(System.currentTimeMillis()));
-        return newFuhrpark;
     }
 
     public void setTextFieldsForFuhrpark(){
@@ -55,7 +79,11 @@ public class ItemDialogs {
         Labels = new Label[labelNames.length];
 
         for(int i = 0; i < labelNames.length; i++){
-            Labels[i] = new Label(labelNames[i]);
+            if(i < 4) {
+                Labels[i] = new Label(labelNames[i] + "*");
+            } else {
+                Labels[i] = new Label(labelNames[i]);
+            }
         }
 
         TextFields = new TextField[labelNames.length];
@@ -87,11 +115,11 @@ public class ItemDialogs {
             if(dialogButton == addButton){
                 Hashtable<String,String> hashtable = new Hashtable<>();
                 for(int i = 0; i < TextFields.length; i++){
-                    hashtable.put(Labels[i].getText(),TextFields[i].getText());
+                    hashtable.put(labelNames[i],TextFields[i].getText());
                 }
                 return hashtable;
             } else if(dialogButton == ButtonType.CANCEL){
-                return new Hashtable<>();
+                return null;
             }
             return new Hashtable<>();
         });

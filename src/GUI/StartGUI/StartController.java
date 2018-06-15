@@ -8,6 +8,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -22,6 +23,7 @@ import javafx.util.Pair;
 
 import javax.swing.*;
 import java.io.*;
+import java.lang.reflect.Array;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -96,6 +98,7 @@ public class StartController implements Initializable {
         File a = new File(path + "/" + InventarBox.getValue() + ".Inv");
         boolean confirmed = confirmDialog(InventarBox.getValue() + " wirklich Löschen?");
         if(confirmed && a.exists()){
+            System.out.println(a.getPath());
             a.delete();
             anz--;
             System.out.println("**" + "Inventar \"" + InventarBox.getValue() + "\" wurde gelöscht");
@@ -186,7 +189,6 @@ public class StartController implements Initializable {
             newWindow.setScene(new Scene(root));
             newWindow.show();
         } else {
-            setLookAndFeel();
             warnDialog("Keinen Eintrag ausgewählt!");
         }
 
@@ -229,15 +231,12 @@ public class StartController implements Initializable {
     }
     @FXML
     public void deleteUser(){
-        DeleteUserJPanel deleteUserJPanel = new DeleteUserJPanel(userContainer);
-        int result = JOptionPane.showConfirmDialog(null, deleteUserJPanel, "Benutzer löschen!", JOptionPane.OK_CANCEL_OPTION);
-        if(result == JOptionPane.CANCEL_OPTION){
-            System.out.println("**Vorgang abgebrochen");
-        } else if(result == JOptionPane.OK_OPTION){
-            String[] test = deleteUserJPanel.getPickedUser();
-            for(int i = 0; i < test.length; i++) {
-                System.out.println(test[i]);
-                userContainer.deleteUser(test[i]);
+        String[] deletedUsers = buildDeleteUserWindow();
+        for (int i = 0; i < deletedUsers.length; i++) {
+            if (!deletedUsers[i].equals("admin")) {
+                userContainer.deleteUser(deletedUsers[i]);
+            } else {
+                warnDialog("Der Admin Account kann nicht gelöscht werden!");
             }
         }
     }
@@ -286,6 +285,57 @@ public class StartController implements Initializable {
             return true;
         } else {
             return false;
+        }
+    }
+
+    public String[] buildDeleteUserWindow(){
+        int number = userContainer.getNumberOfUser();
+        CheckBox[] checkBoxes = new CheckBox[number];
+
+        for (int i = 0; i < number; i++) {
+            checkBoxes[i] = new CheckBox(userContainer.getUserName(i));
+        }
+
+        Dialog<String[]> dialog = new Dialog<>();
+        dialog.setTitle("Benutzer Löschen");
+
+        ButtonType OK_Button = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
+        dialog.getDialogPane().getButtonTypes().addAll(OK_Button, ButtonType.CANCEL);
+
+        GridPane grid = new GridPane();
+        grid.setHgap(10);
+        grid.setVgap(10);
+        grid.setPadding(new Insets(20, 150, 10, 10));
+        for (int i = 0; i < number; i++) {
+            grid.add(checkBoxes[i], 0, i);
+        }
+
+        dialog.getDialogPane().setContent(grid);
+
+        dialog.setResultConverter(dialogButton -> {
+            if(dialogButton == OK_Button){
+                int anz = 0;
+                for(int i = 0; i < number; i++){
+                    anz++;
+                }
+                String[] array = new String[anz];
+                for(int i = 0; i < number; i++){
+                    if(checkBoxes[i].isSelected()){
+                        array[i] = checkBoxes[i].getText();
+                    }
+                }
+                return array;
+            } else if(dialogButton == ButtonType.CANCEL){
+                return null;
+            }
+            return null;
+        });
+
+        Optional<String[]> result = dialog.showAndWait();
+        if(result.isPresent()) {
+            return result.get();
+        } else {
+            return null;
         }
     }
 

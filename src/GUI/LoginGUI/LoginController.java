@@ -52,8 +52,6 @@ public class LoginController {
     @FXML
     void loginButtonClicked() {
 
-        System.out.println(userContainer.checkLogin(usernameField.getText(),passwordField.getText()));
-
         if(userContainer.checkLogin(usernameField.getText(),passwordField.getText())){
             Stage lastWindow = (Stage) loginButton.getScene().getWindow();
             lastWindow.hide();

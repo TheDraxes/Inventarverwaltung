@@ -40,7 +40,7 @@ public class showStartWindow {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+        root.setStyle("-fx-background-color: #b5edff");
         StartController controller = loader.getController();
         controller.getParams(path,userContainer,user);
 

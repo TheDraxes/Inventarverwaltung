@@ -21,6 +21,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import javafx.util.Pair;
 
 import java.io.File;
 import java.io.IOException;
@@ -97,8 +98,8 @@ public class ViewController implements Initializable {
         NRColumn.setCellValueFactory(new PropertyValueFactory<>("inventarnummer"));
         bezColumn.setCellValueFactory(new PropertyValueFactory<>("bezeichnung"));
         countColumn.setCellValueFactory(new PropertyValueFactory<>("anzahl"));
-        valueColumn.setCellValueFactory(new PropertyValueFactory<>("anschaffungswert"));
-        dateColumn.setCellValueFactory(new PropertyValueFactory<>("inserierungsdatums"));
+        valueColumn.setCellValueFactory(new PropertyValueFactory<>("anschaffungswertString"));
+        dateColumn.setCellValueFactory(new PropertyValueFactory<>("inserierungsdatumString"));
 
         ActionColumn.setCellValueFactory(
                 new Callback<TableColumn.CellDataFeatures<Item, Boolean>,
@@ -140,7 +141,7 @@ public class ViewController implements Initializable {
                     // get Selected Item
                     Item selectedItem = (Item) ButtonCell.this.getTableView().getItems().get(ButtonCell.this.getIndex());
                     //remove selected item from the table list
-                    System.out.println(selectedItem.getInventarnummer());
+                    selectedItem.display();
                 }
             });
         }
@@ -160,9 +161,18 @@ public class ViewController implements Initializable {
     @FXML
     void addItemClicked(ActionEvent event) {
         String itemType = askForItemType();
-        Item a = new ItemDialogs().getNewItem(itemType);
+        while(true) {
+            Pair<Item, Boolean> a = new ItemDialogs().getNewItem(itemType);
+            if(a.getKey() == null || a.getValue().equals("")) {
 
-        itemContainer.insertItem(a);
+            } else if (a.getValue()) {
+                itemContainer.insertItem(a.getKey());
+                break;
+            } else {
+                System.out.println("**Vorgang abgebrochen!");
+                break;
+            }
+        }
 
         fillTable();
     }
@@ -188,7 +198,7 @@ public class ViewController implements Initializable {
             choices.add(a.getExistingItemTypes()[i]);
         }
 
-        ChoiceDialog<String> dialog = new ChoiceDialog<>("Mobiliar", choices);
+        ChoiceDialog<String> dialog = new ChoiceDialog<>("Fuhrpark", choices);
         dialog.setTitle("Item Anlegen");
         dialog.setHeaderText("Art des Gegenstandes wählen!");
         dialog.setContentText("Arten:");

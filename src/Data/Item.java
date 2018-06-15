@@ -1,6 +1,8 @@
 package Data;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -15,12 +17,13 @@ public abstract class Item implements Serializable {
     private long inventarnummer;
 	private String bezeichnung;
 	private double anschaffungswert;
+	private String anschaffungswertString;
 	private double buchwert;
 	private int tnd;
 	private Date ablaufdatum;
 	private Sachgebiet sachgebiet;
 	private Date inserierungsdatum;
-	private String inserierungsdatums;
+	private String inserierungsdatumString;
 	private int anzahl;
 	private int ParamAnzahl = 4;
 	private String[] paramNames = {
@@ -36,7 +39,7 @@ public abstract class Item implements Serializable {
     public Item(long inventarnummer, String bezeichnung, double anschaffungswert, int tnd, Date ablaufdatum, Sachgebiet sachgebiet, Date inserierungsdatum, int anzahl) {
         this.inventarnummer = inventarnummer;
 	    this.bezeichnung = bezeichnung;
-        this.anschaffungswert = anschaffungswert;
+        this.setAnschaffungswert(anschaffungswert);
         this.buchwert = anschaffungswert;
         this.tnd = tnd;
         this.ablaufdatum = ablaufdatum;
@@ -89,6 +92,7 @@ public abstract class Item implements Serializable {
 
     public void setAnschaffungswert(double anschaffungswert) {
         this.anschaffungswert = anschaffungswert;
+        this.anschaffungswertString = round(anschaffungswert,2) + "€";
     }
 
     public double getBuchwert() {
@@ -123,6 +127,10 @@ public abstract class Item implements Serializable {
         this.sachgebiet = sachgebiet;
     }
 
+    public String getAnschaffungswertString() {
+        return anschaffungswertString;
+    }
+
     public Date getInserierungsdatum() {
         return inserierungsdatum;
     }
@@ -130,15 +138,15 @@ public abstract class Item implements Serializable {
     public void setInserierungsdatum(Date inserierungsdatum) {
         this.inserierungsdatum = inserierungsdatum;
         SimpleDateFormat df = new SimpleDateFormat( "dd-MM-yyyy" );
-        this.inserierungsdatums = ""+ df.format(inserierungsdatum);
+        this.inserierungsdatumString = ""+ df.format(inserierungsdatum);
     }
 
-    public String getInserierungsdatums() {
-        return inserierungsdatums;
+    public String getInserierungsdatumString() {
+        return inserierungsdatumString;
     }
 
-    public void setInserierungsdatums(String inserierungsdatums) {
-        this.inserierungsdatums = inserierungsdatums;
+    public void setInserierungsdatumString(String inserierungsdatumString) {
+        this.inserierungsdatumString = inserierungsdatumString;
     }
 
     public int getAnzahl() {
@@ -147,5 +155,13 @@ public abstract class Item implements Serializable {
 
     public void setAnzahl(int anzahl) {
         this.anzahl = anzahl;
+    }
+
+    public static double round(double value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
+
+        BigDecimal bd = new BigDecimal(value);
+        bd = bd.setScale(places, RoundingMode.HALF_UP);
+        return bd.doubleValue();
     }
 }
