@@ -37,6 +37,7 @@ public abstract class Item {
     }
 
     public void display() {
+	    System.out.println("Inventarnummer: " + inventarnummer);
         System.out.println("Bezeichnung: " + bezeichnung);
         System.out.println("Anschaffungswert: " + anschaffungswert);
         System.out.println("Buchwert: " + buchwert);
@@ -45,6 +46,18 @@ public abstract class Item {
         //System.out.println("Inventarnummer: " + sachgebiet);
         System.out.println("Inserierungsdatum: " + inserierungsdatum);
         System.out.println("Anzahl: " + anzahl);
+    }
+
+    public Item(long inventarnummer) {
+        this.inventarnummer = inventarnummer;
+    }
+
+    public long getInventarnummer() {
+        return inventarnummer;
+    }
+
+    public void setInventarnummer(long inventarnummer) {
+        this.inventarnummer = inventarnummer;
     }
 
     public String getBezeichnung() {
