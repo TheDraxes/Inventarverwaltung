@@ -24,6 +24,8 @@ public class ItemContainerTest {
 
 
         ItemContainer myContainer = new ItemContainer();
+
+        /*
         myContainer.insertItem((Item) auto1);
         myContainer.insertItem((Item) auto2);
         myContainer.showAll();
@@ -31,5 +33,13 @@ public class ItemContainerTest {
         myContainer.deleteItem(auto1);
         myContainer.showAll();
         System.out.println("====================================");
+
+        myContainer.safeInventar("C:\\Inventarverwaltungspeicher\\ContainerTestInv.Inv");
+        */
+
+
+        myContainer = myContainer.loadInventar("C:\\Inventarverwaltungspeicher\\ContainerTestInv.Inv");
+        myContainer.showAll();
+
     }
 }

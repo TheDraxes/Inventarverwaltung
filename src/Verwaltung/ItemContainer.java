@@ -5,7 +5,7 @@ import Data.Item;
 import java.io.*;
 import java.util.*;
 
-public class ItemContainer {
+public class ItemContainer implements Serializable{
     private ArrayList<Item> ItemList = new ArrayList<Item>();
     private long id = 0;
     private String[] existingItemTypes = {"Boden und Gebäude", "Fuhrpark", "Hardware", "Mobiliar", "Software", "Sonstiges"};
@@ -30,14 +30,23 @@ public class ItemContainer {
             it.next().display();
         }
     }
+    public ArrayList<Item> getItemList(){
+        return this.ItemList;
+    }
+    public Item getItemOnIndex(int index){
+        return ItemList.get(index);
+    }
+    public long getID(){
+        return id;
+    }
 
-    public void safeInventar(String name){
+    public void safeInventar(String path){
         System.out.print("**Speichere Inventar");
         try {
-            FileOutputStream fileOutputStream = new FileOutputStream(name + ".dat");
+            FileOutputStream fileOutputStream = new FileOutputStream(new File(path));
             ObjectOutputStream outputStream = new ObjectOutputStream(fileOutputStream);
             outputStream.writeObject(this);
-            System.out.println("**Inventar abgespeichert in " + name + ".dat");
+            System.out.println("**Inventar abgespeichert in " + path);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -45,14 +54,14 @@ public class ItemContainer {
         }
     }
 
-    public ItemContainer loadInventar(String name) {
+    public ItemContainer loadInventar(String path) {
         System.out.print("**Lade Inventar");
         try {
-            FileInputStream fileInputStream = new FileInputStream(name + ".dat");
+            FileInputStream fileInputStream = new FileInputStream(new File(path));
             ObjectInputStream inputStream = new ObjectInputStream(fileInputStream);
             ItemContainer loaded = (ItemContainer) inputStream.readObject();
 
-            System.out.println("**Inventar " + name + ".dat geladen!");
+            System.out.println("**Inventar geladen!");
             return loaded;
         } catch (FileNotFoundException e) {
             e.printStackTrace();

@@ -1,5 +1,6 @@
 package Data;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /*
@@ -9,7 +10,7 @@ import java.util.Date;
     Muss noch um umfangreiche Funktionen Erweitert werden
 
  */
-public abstract class Item {
+public abstract class Item implements Serializable {
     private long inventarnummer;
 	private String bezeichnung;
 	private double anschaffungswert;

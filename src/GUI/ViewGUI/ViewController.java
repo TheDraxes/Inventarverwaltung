@@ -22,6 +22,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -60,19 +61,32 @@ public class ViewController implements Initializable {
 
     private UserContainer userContainer;
 
+    private ItemContainer itemContainer = new ItemContainer();
+
     private String path;
+
+    private String invName;
+
+    private String completePath;
 
     private String user;
 
     @FXML
-    public void initialize(){
-        ArrayList<Item> a = new ArrayList<Item>();
+    public void initialize(){ ;
+        completePath = path + "\\" + invName + ".Inv";
 
-        for(int i = 0 ; i <4; i++){
-            Fuhrpark b = new Fuhrpark();
-            b.setBezeichnung("BMW Coupe");
-            a.add(b);
-        }
+        File a = new File(completePath);
+
+        itemContainer = itemContainer.loadInventar(a.getPath());
+
+        ArrayList<Item> arrayList = itemContainer.getItemList();
+
+        fillTable();
+
+    }
+    public void fillTable(){
+        ArrayList<Item> arrayList = itemContainer.getItemList();
+
 
         NRColumn.setCellValueFactory(new PropertyValueFactory<>("inventarnummer"));
         bezColumn.setCellValueFactory(new PropertyValueFactory<>("bezeichnung"));
@@ -94,10 +108,9 @@ public class ViewController implements Initializable {
                 });
 
 
-        ObservableList<Item> list = FXCollections.observableArrayList(a);
+        ObservableList<Item> list = FXCollections.observableArrayList(arrayList);
 
         itemTable.setItems(list);
-
     }
 
     //Define the button cell
@@ -136,15 +149,23 @@ public class ViewController implements Initializable {
     //Hier werden an das ScrollPane Beispielhaft Platzhalter angehängt
     @FXML
     void addItemClicked(ActionEvent event) {
+        Fuhrpark a = new Fuhrpark();
+        a.setBezeichnung("BMW");
+        a.setInventarnummer(10);
+        itemContainer.insertItem(a);
+        /*
         String itemTyp = askForItemType();
         if(itemTyp != null){
 
         }
+        */
+        fillTable();
     }
 
     public void getParams(String inventoryName, String path, UserContainer userContainer, String user){
         nameLabel.setText("Eingeloggt als: " + user);
         this.path = path;
+        this.invName = inventoryName;
         this.userContainer = userContainer;
         this.user = user;
         initialize();
@@ -178,6 +199,7 @@ public class ViewController implements Initializable {
     @FXML
     void backClicked(ActionEvent event){
 
+        itemContainer.safeInventar(completePath);
         Stage lastWindow = (Stage) nameLabel.getScene().getWindow();
         lastWindow.hide();
 

@@ -1,5 +1,6 @@
 package GUI.StartGUI;
 
+import Verwaltung.ItemContainer;
 import Verwaltung.UserContainer;
 import GUI.ViewGUI.ViewController;
 import javafx.application.Platform;
@@ -146,8 +147,11 @@ public class StartController implements Initializable {
         } else {
             if (!input.equals("")) {
                 File newFile = new File(path + "\\" + input + ".Inv");
+                ItemContainer newContainer = new ItemContainer();
                 try {
-                    newFile.createNewFile();
+                    FileOutputStream outputStream = new FileOutputStream(newFile);
+                    ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
+                    objectOutputStream.writeObject(newContainer);
                     System.out.println("**Inventar \"" + newFile.getName() + "\"" +
                             " erstellt");
                 } catch (IOException e) {
