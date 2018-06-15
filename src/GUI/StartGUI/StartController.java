@@ -1,6 +1,5 @@
 package GUI.StartGUI;
 
-import GUI.LoginGUI.NewUserJPanel;
 import Verwaltung.UserContainer;
 import GUI.ViewGUI.ViewController;
 import javafx.application.Platform;
@@ -93,11 +92,9 @@ public class StartController implements Initializable {
 
     @FXML
     void deleteClicked(ActionEvent event) {
-        setLookAndFeel();
-        InventarBox.getValue();
         File a = new File(path + "/" + InventarBox.getValue() + ".Inv");
-        int result = JOptionPane.showConfirmDialog(null,InventarBox.getValue() + " wirklich Löschen?");
-        if(a.exists() && result == JOptionPane.OK_OPTION){
+        boolean confirmed = confirmDialog(InventarBox.getValue() + " wirklich Löschen?");
+        if(confirmed && a.exists()){
             a.delete();
             anz--;
             System.out.println("**" + "Inventar \"" + InventarBox.getValue() + "\" wurde gelöscht");
@@ -158,7 +155,7 @@ public class StartController implements Initializable {
                 }
                 initialize();
             } else {
-                JOptionPane.showMessageDialog(null, "Keinen Namen Eingegeben!");
+                warnDialog("Keinen Namen Eingegeben!");
             }
         }
     }
@@ -186,45 +183,43 @@ public class StartController implements Initializable {
             newWindow.show();
         } else {
             setLookAndFeel();
-            JOptionPane.showMessageDialog(null,"Keinen Eintrag ausgewählt");
+            warnDialog("Keinen Eintrag ausgewählt!");
         }
 
     }
     protected String askForName(){
-        setLookAndFeel();
-        return JOptionPane.showInputDialog("Namen der Datenbank eingeben!");
+        TextInputDialog dialog = new TextInputDialog("Inventar");
+        dialog.setTitle("Eingabe Dialog");
+        dialog.setHeaderText("Bitte den Namen des Inventars eingeben");
+
+        Optional<String> result = dialog.showAndWait();
+        if (result.isPresent()){
+            System.out.println("Your name: " + result.get());
+        }
+        return result.get();
     }
 
     @FXML
     void newUserClicked(ActionEvent event){
 
-        NewUserJPanel newUserJPanel = new NewUserJPanel();
-        int result;
-        boolean isDuplicate;
-        boolean pwConfirmed;
-
         while (true) {
-            result = JOptionPane.showConfirmDialog(null, newUserJPanel, "Benutzer anlegen!", JOptionPane.OK_CANCEL_OPTION);
-
-            isDuplicate = this.userContainer.userIsDuplicate(newUserJPanel.getUsername());
-            pwConfirmed = newUserJPanel.getPassword().equals(newUserJPanel.getConfirmpw());
-
-            if(result == JOptionPane.CANCEL_OPTION){
-                System.out.println("**Vorgang abgebrochen");
+            String[] a = buildNewUserWindow();
+            if (a == null) {
                 break;
-            } else if(newUserJPanel.usernameIsEmpty() || newUserJPanel.passwordIsEmpty()) {
-                JOptionPane.showMessageDialog(null,"Felder dürfen nicht leer sein!");
-            } else if (!isDuplicate && pwConfirmed){
-                userContainer.insertUser(newUserJPanel.getUsername(), newUserJPanel.getPassword());
-                userContainer.safeUserData();
-                JOptionPane.showMessageDialog(null,"Neuen Benutzer angelegt!");
-                System.out.println("**neuen Benutzer angelegt");
-                initialize();
-                break;
-            } else if(!pwConfirmed){
-                JOptionPane.showMessageDialog(null,"Passwörter stimmen nicht überein!");
-            } else if(isDuplicate){
-                JOptionPane.showMessageDialog(null,("Username bereits belegt!"));
+            } else {
+                if (userContainer.userIsDuplicate(a[0])) {
+                    warnDialog("Username Bereits belegt");
+                } else if (!a[1].equals(a[2])) {
+                    warnDialog("Passwörter stimmen nicht Überein!");
+                } else if (a[0].equals("")|| a[1].equals("") || a[2].equals(3)){
+                    warnDialog("Alle drei Felder müssen ausgefüllt werde!");
+                } else {
+                    userContainer.insertUser(a[0], a[1]);
+                    userContainer.safeUserData();
+                    System.out.println("**neuen Benutzer angelegt");
+                    initialize();
+                    break;
+                }
             }
         }
     }
@@ -277,6 +272,19 @@ public class StartController implements Initializable {
         alert.showAndWait();
     }
 
+    public boolean confirmDialog(String confirmation){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmation Dialog");
+        alert.setHeaderText(confirmation);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     public String[] buildNewUserWindow(){
         Dialog<String[]> dialog = new Dialog<>();
         dialog.setTitle("Neuer Benutzer");
@@ -293,7 +301,7 @@ public class StartController implements Initializable {
         PasswordField password = new PasswordField();
         password.setPromptText("Passwort");
         PasswordField passwordConfirm = new PasswordField();
-        password.setPromptText("Passwort bestätigen");
+        passwordConfirm.setPromptText("Passwort bestätigen");
 
         grid.add(new Label("Nutzername: "), 0, 0);
         grid.add(username,1,0);
@@ -329,22 +337,10 @@ public class StartController implements Initializable {
         });
 
         Optional<String[]> result = dialog.showAndWait();
-
-
-
-
-        final String[] a = new String[3];
-        result.ifPresent(userArray -> {
-            if(userArray != null) {
-                a[0] = userArray[0];
-                a[1] = userArray[1];
-                a[2] = userArray[2];
-            }
-        });
-        if(a[0].equals("") && a[1].equals("") && a[3].equals("")){
-            return null;
+        if(result.isPresent()) {
+            return result.get();
         } else {
-            return a;
+            return null;
         }
     }
 

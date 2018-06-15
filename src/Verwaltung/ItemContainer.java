@@ -47,4 +47,8 @@ public class ItemContainer {
         }*/
         System.out.println();
     }
+
+    public String[] getExistingItemTypes() {
+        return existingItemTypes;
+    }
 }

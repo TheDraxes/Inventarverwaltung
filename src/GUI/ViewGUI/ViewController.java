@@ -3,6 +3,7 @@ package GUI.ViewGUI;
 
 import Data.Fuhrpark;
 import Data.Item;
+import Verwaltung.ItemContainer;
 import Verwaltung.UserContainer;
 import GUI.StartGUI.StartController;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -24,6 +25,8 @@ import javafx.util.Callback;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 /*
@@ -133,9 +136,10 @@ public class ViewController implements Initializable {
     //Hier werden an das ScrollPane Beispielhaft Platzhalter angehängt
     @FXML
     void addItemClicked(ActionEvent event) {
-        Stage a = (Stage) nameLabel.getScene().getWindow();
+        String itemTyp = askForItemType();
+        if(itemTyp != null){
 
-
+        }
     }
 
     public void getParams(String inventoryName, String path, UserContainer userContainer, String user){
@@ -149,6 +153,26 @@ public class ViewController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+    }
+
+    protected String askForItemType(){
+        List<String> choices = new ArrayList<>();
+        ItemContainer a = new ItemContainer();
+        for(int i = 0; i < a.getExistingItemTypes().length; i++) {
+            choices.add(a.getExistingItemTypes()[i]);
+        }
+
+        ChoiceDialog<String> dialog = new ChoiceDialog<>("Mobiliar", choices);
+        dialog.setTitle("Item Anlegen");
+        dialog.setHeaderText("Art des Gegenstandes wählen!");
+        dialog.setContentText("Arten:");
+
+        Optional<String> result = dialog.showAndWait();
+        if (result.isPresent()){
+            System.out.println("**Item typ gewählt: " + result.get());
+            return result.get();
+        }
+        return null;
     }
 
     @FXML
