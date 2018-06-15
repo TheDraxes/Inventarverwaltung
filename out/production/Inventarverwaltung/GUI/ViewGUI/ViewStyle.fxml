@@ -28,7 +28,7 @@
         <menus>
           <Menu mnemonicParsing="false" text="Inventar">
             <items>
-              <MenuItem mnemonicParsing="false" onAction="#ShowClicked" text="Inventar Anzeigen" />
+              <MenuItem mnemonicParsing="false" onAction="#addItemClicked" text="Item Hinzufügen" />
             </items>
           </Menu>
         </menus>
@@ -42,7 +42,7 @@
                   <TableColumn prefWidth="77.0" text="Typ" />
                   <TableColumn prefWidth="76.0" text="Wert" />
                   <TableColumn prefWidth="94.0" text="Datum" />
-                  <TableColumn prefWidth="69.0" text="Sachgebiet" />
+                  <TableColumn prefWidth="69.0" />
                   <TableColumn fx:id="ActionColumn" prefWidth="65.0" />
               </columns>
             </TableView>

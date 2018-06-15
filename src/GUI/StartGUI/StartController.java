@@ -3,6 +3,7 @@ package GUI.StartGUI;
 import GUI.LoginGUI.NewUserJPanel;
 import Verwaltung.UserContainer;
 import GUI.ViewGUI.ViewController;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -10,14 +11,19 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import javafx.util.Pair;
 
 import javax.swing.*;
 import java.io.*;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 /*
@@ -191,6 +197,7 @@ public class StartController implements Initializable {
 
     @FXML
     void newUserClicked(ActionEvent event){
+
         NewUserJPanel newUserJPanel = new NewUserJPanel();
         int result;
         boolean isDuplicate;
@@ -259,6 +266,86 @@ public class StartController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+    }
+
+    public void warnDialog(String warning){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Warnung");
+        alert.setHeaderText("Warnung");
+        alert.setContentText(warning);
+
+        alert.showAndWait();
+    }
+
+    public String[] buildNewUserWindow(){
+        Dialog<String[]> dialog = new Dialog<>();
+        dialog.setTitle("Neuer Benutzer");
+        ButtonType addButton = new ButtonType("Hinzufügen" ,ButtonBar.ButtonData.OK_DONE);
+        dialog.getDialogPane().getButtonTypes().addAll(addButton, ButtonType.CANCEL);
+
+        GridPane grid = new GridPane();
+        grid.setHgap(10);
+        grid.setVgap(10);
+        grid.setPadding(new Insets(20,150,10,10));
+
+        TextField username = new TextField();
+        username.setPromptText("Nutzername");
+        PasswordField password = new PasswordField();
+        password.setPromptText("Passwort");
+        PasswordField passwordConfirm = new PasswordField();
+        password.setPromptText("Passwort bestätigen");
+
+        grid.add(new Label("Nutzername: "), 0, 0);
+        grid.add(username,1,0);
+
+        grid.add(new Label("Passwort: "), 0, 1);
+        grid.add(password,1,1);
+
+        grid.add(new Label("Passwort bestätigen: "), 0, 2);
+        grid.add(passwordConfirm,1,2);
+
+        Node Button = dialog.getDialogPane().lookupButton(addButton);
+        Button.setDisable(true);
+
+        username.textProperty().addListener(((observable, oldValue, newValue) -> {
+            Button.setDisable(newValue.trim().isEmpty());
+        }));
+
+        dialog.getDialogPane().setContent(grid);
+
+        Platform.runLater(() -> username.requestFocus());
+
+        dialog.setResultConverter(dialogButton -> {
+            if(dialogButton == addButton){
+                String[] array = new String[3];
+                array[0] = username.getText();
+                array[1] = password.getText();
+                array[2] = passwordConfirm.getText();
+                return array;
+            } else if(dialogButton == ButtonType.CANCEL){
+                return null;
+            }
+            return null;
+        });
+
+        Optional<String[]> result = dialog.showAndWait();
+
+
+
+
+        final String[] a = new String[3];
+        result.ifPresent(userArray -> {
+            if(userArray != null) {
+                a[0] = userArray[0];
+                a[1] = userArray[1];
+                a[2] = userArray[2];
+            }
+        });
+        if(a[0].equals("") && a[1].equals("") && a[3].equals("")){
+            return null;
+        } else {
+            return a;
+        }
     }
 
     private void setLookAndFeel(){

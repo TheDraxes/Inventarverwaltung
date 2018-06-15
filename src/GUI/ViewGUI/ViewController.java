@@ -71,8 +71,8 @@ public class ViewController implements Initializable {
             a.add(b);
         }
 
-        NRColumn.setCellValueFactory(new PropertyValueFactory<>("Inventarnr"));
-        bezColumn.setCellValueFactory(new PropertyValueFactory<>("itembez"));
+        NRColumn.setCellValueFactory(new PropertyValueFactory<>("inventarnummer"));
+        bezColumn.setCellValueFactory(new PropertyValueFactory<>("bezeichnung"));
         ActionColumn.setCellValueFactory(
                 new Callback<TableColumn.CellDataFeatures<Item, Boolean>,
                         ObservableValue<Boolean>>() {
