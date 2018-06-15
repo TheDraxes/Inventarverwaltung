@@ -1,5 +1,6 @@
 package GUI.LoginGUI;
 
+import GUI.StartGUI.StartController;
 import GUI.StartGUI.showStartWindow;
 import Verwaltung.UserContainer;
 import javafx.fxml.FXML;
@@ -57,6 +58,8 @@ public class LoginController {
             Stage lastWindow = (Stage) loginButton.getScene().getWindow();
             lastWindow.hide();
             new showStartWindow(this.userContainer, usernameField.getText());
+        } else {
+            new StartController().warnDialog(" Nutzername oder Passwort falsch!");
         }
     }
 }

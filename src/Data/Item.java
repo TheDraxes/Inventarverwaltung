@@ -1,6 +1,7 @@
 package Data;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /*
@@ -19,17 +20,14 @@ public abstract class Item implements Serializable {
 	private Date ablaufdatum;
 	private Sachgebiet sachgebiet;
 	private Date inserierungsdatum;
+	private String inserierungsdatums;
 	private int anzahl;
-	private int ParamAnzahl = 8;
+	private int ParamAnzahl = 4;
 	private String[] paramNames = {
-	        "inventarnummer",
-            "bezeichnung",
-            "anschaffungswert",
-            "buchwert",
-            "tnd",
-            "ablaufdatum",
-            "inserierungsdatum",
-            "anzahl"};
+            "Bezeichnung",
+            "Anschaffungswert",
+            "Tnd",
+            "Anzahl"};
 
 	public Item() {
 
@@ -43,8 +41,8 @@ public abstract class Item implements Serializable {
         this.tnd = tnd;
         this.ablaufdatum = ablaufdatum;
         this.sachgebiet = sachgebiet;
-        this.inserierungsdatum = inserierungsdatum;
         this.anzahl = anzahl;
+        this.setInserierungsdatum(inserierungsdatum);
     }
     public int getParamAnzahl(){
 	    return this.ParamAnzahl;
@@ -131,6 +129,16 @@ public abstract class Item implements Serializable {
 
     public void setInserierungsdatum(Date inserierungsdatum) {
         this.inserierungsdatum = inserierungsdatum;
+        SimpleDateFormat df = new SimpleDateFormat( "dd-MM-yyyy" );
+        this.inserierungsdatums = ""+ df.format(inserierungsdatum);
+    }
+
+    public String getInserierungsdatums() {
+        return inserierungsdatums;
+    }
+
+    public void setInserierungsdatums(String inserierungsdatums) {
+        this.inserierungsdatums = inserierungsdatums;
     }
 
     public int getAnzahl() {

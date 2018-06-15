@@ -24,6 +24,9 @@
     -fx-background-size: cover;
     -fx-focus-color:blue;
 }
+.editButton:hover{
+    -fx-background-image: url('/GUI/editbackgroundHover.png');
+}
 .logoutButton{
     -fx-background-color: #ff413a;
     -fx-border-color: #ff413a;

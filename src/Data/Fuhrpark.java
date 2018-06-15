@@ -11,11 +11,11 @@ public class Fuhrpark extends Item{
 	private int kilometerstand;
 	private int ParamAnzahl = 5;
 	private String[] paramNames = {
-			"kennzeichen",
-			"fahrzeugart",
-			"fahrgestellnummer",
-			"kw",
-			"kilometerstand"
+			"Kennzeichen",
+			"Fahrzeugart",
+			"Fahrgestellnummer",
+			"Leistung in kw",
+			"Kilometerstand"
 		};
 
 	public Fuhrpark() {

@@ -39,9 +39,9 @@
               <columns>
                 <TableColumn fx:id="NRColumn" prefWidth="76.0" text="NR." />
                 <TableColumn fx:id="bezColumn" prefWidth="138.0" text="Bezeichnung" />
-                  <TableColumn prefWidth="77.0" text="Typ" />
-                  <TableColumn prefWidth="76.0" text="Wert" />
-                  <TableColumn prefWidth="94.0" text="Datum" />
+                  <TableColumn fx:id="countColumn" prefWidth="77.0" text="Anzahl" />
+                  <TableColumn fx:id="valueColumn" prefWidth="76.0" text="Wert" />
+                  <TableColumn fx:id="dateColumn" prefWidth="94.0" text="Datum" />
                   <TableColumn prefWidth="69.0" />
                   <TableColumn fx:id="ActionColumn" prefWidth="65.0" />
               </columns>

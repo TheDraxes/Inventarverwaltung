@@ -25,10 +25,7 @@ import javafx.util.Callback;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.ResourceBundle;
+import java.util.*;
 
 /*
     Controller Klasse für das View Fenster
@@ -58,6 +55,15 @@ public class ViewController implements Initializable {
 
     @FXML
     private TableColumn ActionColumn;
+
+    @FXML
+    private TableColumn valueColumn;
+
+    @FXML
+    private TableColumn dateColumn;
+
+    @FXML
+    private TableColumn countColumn;
 
     private UserContainer userContainer;
 
@@ -90,6 +96,10 @@ public class ViewController implements Initializable {
 
         NRColumn.setCellValueFactory(new PropertyValueFactory<>("inventarnummer"));
         bezColumn.setCellValueFactory(new PropertyValueFactory<>("bezeichnung"));
+        countColumn.setCellValueFactory(new PropertyValueFactory<>("anzahl"));
+        valueColumn.setCellValueFactory(new PropertyValueFactory<>("anschaffungswert"));
+        dateColumn.setCellValueFactory(new PropertyValueFactory<>("inserierungsdatums"));
+
         ActionColumn.setCellValueFactory(
                 new Callback<TableColumn.CellDataFeatures<Item, Boolean>,
                         ObservableValue<Boolean>>() {
@@ -130,7 +140,7 @@ public class ViewController implements Initializable {
                     // get Selected Item
                     Item selectedItem = (Item) ButtonCell.this.getTableView().getItems().get(ButtonCell.this.getIndex());
                     //remove selected item from the table list
-                    System.out.println(selectedItem.getBuchwert());
+                    System.out.println(selectedItem.getInventarnummer());
                 }
             });
         }
@@ -149,13 +159,11 @@ public class ViewController implements Initializable {
     //Hier werden an das ScrollPane Beispielhaft Platzhalter angehängt
     @FXML
     void addItemClicked(ActionEvent event) {
-        Fuhrpark a = new Fuhrpark();
-        a.setBezeichnung("BMW");
+        String itemType = askForItemType();
+        Item a = new ItemDialogs().getNewItem(itemType);
+
         itemContainer.insertItem(a);
 
-        String itemTyp = askForItemType();
-
-        new ItemDialogs(itemTyp);
         fillTable();
     }
 
