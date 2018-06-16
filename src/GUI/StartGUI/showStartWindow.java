@@ -9,12 +9,27 @@ import javafx.stage.Stage;
 import javax.swing.*;
 import java.io.*;
 
-/*
-    Klasse die sich darum kümmert das im Scene Builder erstellte StartFenster Über die StartStyle.fxml einzulesen
-    und aufzubauen.
-*/
+/**
+ * Klasse die den userContainer und den Namen des Users aus dem Loginfenster
+ * übergeben bekommt.
+ *
+ * Sie ist dafür zuständig das Inventarverwaltungsfenster aufzubauen und mit den
+ * nötigen Informationen zu versorgen.
+ *
+ * @author Tim
+ * @version 1.0
+ */
 public class showStartWindow {
-
+    /**
+     * Konstruktor
+     *
+     * liest den speicherpfad für die Inventare ein. Wenn die datei für den gespeicherten pfad
+     * nicht vorhanden ist, wird nach einem Pfad gefragt und eine neue Datei erstellt.
+     *
+     * @see #readPath(File) {@link #askForPath()}
+     * @param userContainer Container zur Userdaten verwaltung
+     * @param user name des eingeloggten Users
+     */
     public showStartWindow(UserContainer userContainer, String user) {
         String path;
         File startUp = new File("startUp.dat");
@@ -49,17 +64,17 @@ public class showStartWindow {
         stage.setResizable(false);
         stage.setScene(new Scene(root));
         stage.show();
-
-        /*
-        Parent root = FXMLLoader.load(getClass().getResource("StartStyle.fxml"));
-        primaryStage.setTitle("Inventarverwaltung 1.0");
-        Scene a = new Scene(root);
-        primaryStage.setScene(a);
-        primaryStage.show();
-        */
-
     }
 
+    /**
+     *
+     * Liest ein String Object aus einer Datei
+     *
+     * Wird benutzt um den Abgespeicherten Speicherpfad einzulesen
+     *
+     * @param safe  File Objekt welches den Pfad zu der startUp.dat enthält
+     * @return String
+     */
     public static String readPath(File safe){
         try {
             FileInputStream inStream = new FileInputStream(safe);
