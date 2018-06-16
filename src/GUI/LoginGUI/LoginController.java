@@ -13,19 +13,41 @@ import javafx.stage.Stage;
 
 import java.io.*;
 
+/**
+ * Kontrollerklasse für das Loginfenster.
+ * Reagiert auf Userinteraktionen mit dem LoginGUI
+ *
+ * @author Tim
+ * @version 1.0
+ */
 
 public class LoginController {
+    // Button der den Login realisiert
     @FXML
     private Button loginButton;
 
+    //Textfeld für die Usernameneingabe
     @FXML
     private TextField usernameField;
 
+    //Passwortfeld
     @FXML
     private PasswordField passwordField;
 
+    //Container Klasse für die userlogin Daten
     private UserContainer userContainer = new UserContainer();
 
+    /**
+     * Methode die das Login Fenster Initalisiert.
+     *
+     * Hier wird der Usercontainer falls vorhanden eingelesen.
+     *
+     * Falls kein Usercontainer bisher abgeschpeichert wurde wird ein neuer mit dem
+     * Admin Account und dem Standartpasswort erstellt.
+     *
+     * @auther Tim
+     * @version 1.0
+     */
     @FXML
     public void initialize(){
 
@@ -42,12 +64,34 @@ public class LoginController {
         System.out.println("**Login Fenster Initialisiert");
     }
 
+    /**
+     * Fängt Keyboard eingaben ab und ruft die loginButtonClicked funktion auf
+     * falls die Entertaste gedrückt wurde.
+     *
+     * @auther Tim
+     * @version 1.0
+     * @see #loginButtonClicked()
+     * @param event
+     */
+
     @FXML
     void keyPressed(KeyEvent event){
         if(event.getCode().equals(KeyCode.ENTER)){
             loginButtonClicked();
         }
     }
+
+    /**
+     * Methode die aufgerufen wird wenn der Loginbutton geclicked wurde
+     *
+     * Prüft die eingegebenen angaben, vergleicht sie mit denen in dem Usercontainer,
+     * versteckt das aktuelle Fenster und Ruft das Inventarverwaltungsenster auf.
+     *
+     * @see showStartWindow#showStartWindow(UserContainer, String)
+     * @TODO sperrung nach 3 fehlgeschlagenen Loginversuchen
+     * @auther Tim
+     * @version 1.0
+     */
 
     @FXML
     void loginButtonClicked() {

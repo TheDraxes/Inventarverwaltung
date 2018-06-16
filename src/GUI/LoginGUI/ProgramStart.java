@@ -10,16 +10,26 @@ import javafx.stage.Stage;
 import javax.swing.*;
 import java.io.*;
 
-/*
-    Klasse die sich darum kümmert das im Scene Builder erstellte StartFenster Über die StartStyle.fxml einzulesen
-    und aufzubauen.
-*/
+/**
+ * Klasse die als einstiegspunkt für die Application dient.
+ *
+ * Sie baut das Initale Loginfenster auf
+ *
+ * @author Tim
+ * @version 1.0
+ */
 public class ProgramStart extends Application {
 
     public void ProgramStart() {
         launch();
     }
 
+    /**
+     * Methode aus dem Application Interface
+     *
+     * @param primaryStage Stage für das Loginfenster
+     * @throws Exception ClassNotFoundException
+     */
     public void start(Stage primaryStage) throws Exception {
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/LoginGUI/LoginStyle.fxml"));
@@ -30,14 +40,6 @@ public class ProgramStart extends Application {
         stage.setResizable(false);
         stage.setScene(new Scene(root));
         stage.show();
-
-        /*
-        Parent root = FXMLLoader.load(getClass().getResource("StartStyle.fxml"));
-        primaryStage.setTitle("Inventarverwaltung 1.0");
-        Scene a = new Scene(root);
-        primaryStage.setScene(a);
-        primaryStage.show();
-        */
     }
 }
 
