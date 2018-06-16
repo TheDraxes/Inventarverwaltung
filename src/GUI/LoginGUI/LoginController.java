@@ -26,6 +26,10 @@ public class LoginController {
 
     private UserContainer userContainer = new UserContainer();
 
+    int loginTries = 0;
+
+    private String lastUser = "";
+
     @FXML
     public void initialize(){
 
@@ -51,13 +55,23 @@ public class LoginController {
 
     @FXML
     void loginButtonClicked() {
-
         if(userContainer.checkLogin(usernameField.getText(),passwordField.getText())){
             Stage lastWindow = (Stage) loginButton.getScene().getWindow();
             lastWindow.hide();
             new showStartWindow(this.userContainer, usernameField.getText());
         } else {
-            new StartController().warnDialog(" Nutzername oder Passwort falsch!");
+            if(loginTries == 0){
+                lastUser = usernameField.getText();
+                loginTries++;
+            } else if(lastUser.equals(usernameField.getText())){
+                loginTries++;
+                lastUser = usernameField.getText();
+            }
+            if(!(loginTries == 3)) {
+                new StartController().warnDialog(" Nutzername oder Passwort falsch!");
+            } else {
+                new StartController().warnDialog("Anmeldung gesperrt!");
+            }
         }
     }
 }
