@@ -1,7 +1,7 @@
 package GUI.StartGUI;
 
 import Verwaltung.ItemContainer;
-import Verwaltung.UserContainer;
+import Verwaltung.UserContainerAlt;
 import GUI.ViewGUI.ViewController;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -51,7 +51,7 @@ public class StartController implements Initializable {
     @FXML
     private Tooltip Tooltip;
 
-    private UserContainer userContainer;
+    private UserContainerAlt userContainer;
 
     private int anz = 0;
 
@@ -129,7 +129,7 @@ public class StartController implements Initializable {
         initialize();
     }
 
-    public void getParams(String path, UserContainer userContainer, String user){
+    public void getParams(String path, UserContainerAlt userContainer, String user){
         this.userLabel.setText("Eingeloggt als: " + user);
         this.path = path;
         this.userContainer = userContainer;

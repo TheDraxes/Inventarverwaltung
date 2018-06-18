@@ -2,7 +2,7 @@ package GUI.LoginGUI;
 
 import GUI.StartGUI.StartController;
 import GUI.StartGUI.showStartWindow;
-import Verwaltung.UserContainer;
+import Verwaltung.UserContainerAlt;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
@@ -35,7 +35,7 @@ public class LoginController {
     private PasswordField passwordField;
 
     //Container Klasse für die userlogin Daten
-    private UserContainer userContainer = new UserContainer();
+    private UserContainerAlt userContainer = new UserContainerAlt();
 
     int loginTries = 0;
 
@@ -59,7 +59,7 @@ public class LoginController {
         File userLogins = new File("user.dat");
 
         if(userLogins.exists()) {
-            userContainer = new UserContainer().loadUserData();
+            userContainer = new UserContainerAlt().loadUserData();
             System.out.println("**Bestehende Userdaten eingelesen");
         } else {
             userContainer.insertUser("admin","123");
@@ -92,7 +92,7 @@ public class LoginController {
      * Prüft die eingegebenen angaben, vergleicht sie mit denen in dem Usercontainer,
      * versteckt das aktuelle Fenster und Ruft das Inventarverwaltungsenster auf.
      *
-     * @see showStartWindow#showStartWindow(UserContainer, String)
+     * @see showStartWindow#showStartWindow(UserContainerAlt, String)
      * @TODO sperrung nach 3 fehlgeschlagenen Loginversuchen
      * @auther Tim
      * @version 1.0

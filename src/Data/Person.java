@@ -1,6 +1,8 @@
 package Data;
 
-public class Person {
+import java.io.Serializable;
+
+public class Person implements Serializable {
     private String name;
     private String vorname;
     private boolean isMan;
@@ -23,6 +25,23 @@ public class Person {
         this.passwort = passwort;
         this.admin = admin;
         System.out.println("**Neuen Benutzer mit dem Benutzernamen " + benutzername + " angelegt!");
+    }
+
+    public void display() {
+        System.out.println("Benutzername:   " + benutzername);
+        System.out.println("--------------------------");
+        System.out.println("Vorname:        " + vorname);
+        System.out.println("Nachname:       " + name);
+        System.out.print("Geschlecht:     ");
+        if(isMan)
+            System.out.println("männlich");
+        else
+            System.out.println("weiblich");
+        //System.out.println("Raum:           " + raum);
+        //System.out.println("Telefonnummer:  " + telefonnummer);
+        //System.out.println("E-Mail Adresse: " + email);
+        System.out.println("Passwort:       " + passwort);
+        System.out.println("Admin:          " + admin);
     }
 
     public String getName() {
