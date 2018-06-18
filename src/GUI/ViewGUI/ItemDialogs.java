@@ -40,6 +40,7 @@ public class ItemDialogs {
             return null;
         }
     }
+
     public Item getNewFuhrpark(Hashtable<String,String> newItemData){
         Fuhrpark newFuhrpark = new Fuhrpark();
         if(newItemData != null) {

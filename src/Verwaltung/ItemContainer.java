@@ -30,12 +30,15 @@ public class ItemContainer implements Serializable{
             it.next().display();
         }
     }
+
     public ArrayList<Item> getItemList(){
         return this.ItemList;
     }
+
     public Item getItemOnIndex(int index){
         return ItemList.get(index);
     }
+
     public long getID(){
         return id;
     }

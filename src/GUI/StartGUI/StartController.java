@@ -1,6 +1,7 @@
 package GUI.StartGUI;
 
 import GUI.Dialogs;
+import Data.Person;
 import Verwaltung.ItemContainer;
 import Verwaltung.UserContainer;
 import GUI.ViewGUI.ViewController;
@@ -196,7 +197,6 @@ public class StartController implements Initializable {
 
     @FXML
     void newUserClicked(ActionEvent event){
-
         while (true) {
             String[] a = buildNewUserWindow();
             if (a == null) {
@@ -209,8 +209,12 @@ public class StartController implements Initializable {
                 } else if (a[0].equals("")|| a[1].equals("") || a[2].equals(3)){
                     Dialogs.warnDialog("Alle drei Felder müssen ausgefüllt werde!","Warnung");
                 } else {
-                    userContainer.insertUser(a[0], a[1]);
-                    userContainer.safeUserData();
+                    Person newUser = new Person();
+                    newUser.setBenutzername(a[0]);
+                    newUser.setPasswort(a[1]);
+
+                    userContainer.insertUser(newUser);
+
                     System.out.println("**neuen Benutzer angelegt");
                     initialize();
                     break;
@@ -266,8 +270,10 @@ public class StartController implements Initializable {
         int number = userContainer.getNumberOfUser();
         CheckBox[] checkBoxes = new CheckBox[number];
 
+        String[] usernames = userContainer.getUserNames();
+
         for (int i = 0; i < number; i++) {
-            checkBoxes[i] = new CheckBox(userContainer.getUserName(i));
+            checkBoxes[i] = new CheckBox(usernames[i]);
         }
 
         Dialog<String[]> dialog = new Dialog<>();

@@ -1,6 +1,7 @@
 package GUI.LoginGUI;
 
 import GUI.Dialogs;
+import Data.Person;
 import GUI.StartGUI.StartController;
 import GUI.StartGUI.showStartWindow;
 import Verwaltung.UserContainer;
@@ -65,9 +66,10 @@ public class LoginController {
             userContainer = new UserContainer().loadUserData();
             System.out.println("**Bestehende Userdaten eingelesen");
         } else {
-            userContainer.insertUser("admin","123");
-            userContainer.safeUserData();
-            System.out.println("**Neue Userdatenbank mit standart Adminpasswort erstellt");
+            Person admin = new Person();
+            admin.initAdmin();
+            userContainer.insertUser(admin);
+            System.out.println("**Neue Userdatenbank mit standard Adminpasswort erstellt");
         }
         System.out.println("**Login Fenster Initialisiert");
     }
@@ -96,7 +98,7 @@ public class LoginController {
      * Prüft die eingegebenen angaben, vergleicht sie mit denen in dem Usercontainer,
      * versteckt das aktuelle Fenster und Ruft das Inventarverwaltungsenster auf.
      *
-     * @see showStartWindow#showStartWindow(UserContainer, String)
+     * @see showStartWindow#showStartWindow(UserContainerAlt, String)
      * @TODO sperrung nach 3 fehlgeschlagenen Loginversuchen
      * @auther Tim
      * @version 1.0

@@ -9,6 +9,7 @@ public class Fuhrpark extends Item{
 	private double kw;
 	private double ps;
 	private int kilometerstand;
+
 	private int ParamAnzahl = 5;
 	private String[] paramNames = {
 			"Kennzeichen",
@@ -19,7 +20,7 @@ public class Fuhrpark extends Item{
 		};
 
 	public Fuhrpark() {
-		super();
+
 	}
 
 	public Fuhrpark(long inventarnummer, String bezeichnung, double anschaffungswert, int tnd, Date ablaufdatum, Sachgebiet sachgebiet, Date inserierungsdatum, int anzahl, String kennzeichen, String fahrzeugart, long fahrgestellnummer, double kw, int kilometerstand) {
@@ -31,6 +32,7 @@ public class Fuhrpark extends Item{
 		this.ps = kw*1.35962;
 		this.kilometerstand = kilometerstand;
 	}
+
 	public int getParamAnzahl(){
 		return super.getParamAnzahl()+ParamAnzahl;
 	}
@@ -48,6 +50,7 @@ public class Fuhrpark extends Item{
 		}
 		return allParams;
 	}
+
 	public void display() {
 		super.display();
 		System.out.println("Kennzeichen: " + kennzeichen);

@@ -1,20 +1,21 @@
 package Verwaltung;
 
-import javafx.stage.Stage;
+import Data.Person;
 
 import javax.swing.*;
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Iterator;
 
-public class UserContainer implements Serializable{
-    String[][] userData = new String[0][2];
+public class UserContainer implements Serializable {
+    private ArrayList<Person> userData = new ArrayList<Person>();
     private int numberOfUser = 0;
 
-
-    public String[][] getUserData() {
+    public ArrayList<Person> getUserData() {
         return userData;
     }
 
-    public void setUserData(String[][] userData) {
+    public void setUserData(ArrayList<Person> userData) {
         this.userData = userData;
     }
 
@@ -26,67 +27,35 @@ public class UserContainer implements Serializable{
         this.numberOfUser = numberOfUser;
     }
 
-    public void insertUser(String username, String passwort){
-        String[][] old = this.userData;
-        this.userData = new String[numberOfUser+1][2];
-        for(int i = 0; i < numberOfUser; i++){
-            userData[i][0] = old[i][0];
-            userData[i][1] = old[i][1];
-        }
-        this.userData[numberOfUser][0] = username;
-        this.userData[numberOfUser][1] = passwort;
-
+    public void insertUser(Person p){
+        userData.add(p);
         numberOfUser++;
+        System.out.println("**User " + p.getBenutzername() + " erstellt");
 
-        System.out.println("**User " + username + " erstellt");
+        safeUserData();
     }
 
     public boolean userIsDuplicate(String username){
-        for(int i = 0; i < numberOfUser; i++){
-            if(userData[i][0].equals(username)){
-                System.out.println(userData[i][0]);
-                System.out.println(username);
+        Iterator<Person> it = userData.iterator();
+        while (it.hasNext()) {
+            if(it.next().getBenutzername().equals(username))
                 return true;
-            }
         }
         return false;
     }
 
-    public String getUserName(int index){
-        return this.userData[index][0];
-    }
-
-    public int getIndexOfUser(String username){
-        for(int i = 0; i < numberOfUser; i++){
-            if(userData[i][0].equals(username)){
-                return i;
-            }
-        }
-        return -1;
-    }
-
-    public String getUserPasswort(int index){
-        return this.userData[index][1];
-    }
-
     public void safeUserData(){
+        System.out.print("**Speichere Inventar");
         try {
             FileOutputStream fileOutputStream = new FileOutputStream("user.dat");
             ObjectOutputStream outputStream = new ObjectOutputStream(fileOutputStream);
             outputStream.writeObject(this);
-            System.out.println("**Userdaten abgespeichert in user.dat");
+            System.out.println("**Inventar abgespeichert in user.dat");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("User: ");
-        System.out.println("======");
-
-        for(int i = 0; i < numberOfUser; i++){
-            System.out.println(userData[i][0] + " " + userData[i][1]);
-        }
-        System.out.println();
     }
 
     public UserContainer loadUserData(){
@@ -109,80 +78,82 @@ public class UserContainer implements Serializable{
         return loaded;
     }
 
+    public Person getPersonByUsername(String username) {
+        Iterator<Person> it = userData.iterator();
+        while (it.hasNext()) {
+            Person p = it.next();
+            if(p.getBenutzername().equals(username)) {
+                return p;
+            }
+        }
+        return null;
+    }
+
+    public String[] getUserNames() {
+        String[] usernames = new String[numberOfUser];
+        int i = 0;
+
+        Iterator<Person> it = userData.iterator();
+        while (it.hasNext()) {
+            usernames[i] = it.next().getBenutzername();
+            i++;
+        }
+        return usernames;
+    }
+
+    public boolean userExisting(String username) {
+        if(getPersonByUsername(username) != null) {
+            return true;
+        }
+        return false;
+    }
+
     public void deleteUser(String username){
 
         setLookAndFeel();
 
-        int result = JOptionPane.showConfirmDialog(null,"User " + username + " wirklich löschen?");
+        Person p = getPersonByUsername(username);
 
-        int index = getIndexOfUser(username);
+        if(p != null) {
+            int result = JOptionPane.showConfirmDialog(null,"User " + username + " wirklich löschen?");
 
-        if(result == JOptionPane.OK_OPTION){
-            String[][] old = this.userData;
-            String[][] newArray = new String[this.numberOfUser-1][2];
-            if(index > -1){
-                for(int i = 0; i <= index-1; i++){
-                    newArray[i][0] = old[i][0];
-                    newArray[i][1] = old[i][1];
-                }
-                if(index < numberOfUser-1) {
-                    newArray[index][0] = old[index + 1][0];
-                    newArray[index][1] = old[index + 1][1];
-                }
-                if(index+1 <= numberOfUser-1) {
-                    for (int i = index + 1; i < numberOfUser - 1; i++) {
-                        newArray[i][0] = old[i + 1][0];
-                        newArray[i][1] = old[i + 1][1];
-                    }
-                }
-                numberOfUser--;
-                userData = newArray;
-            } else {
-                System.out.println("User nicht gefunden!");
+            if(result == JOptionPane.OK_OPTION) {
+                userData.remove(p);
+            } else if(result == JOptionPane.CANCEL_OPTION || result == JOptionPane.NO_OPTION){
+                System.out.println("**Vorgang abgebrochen!");
             }
-        } else if(result == JOptionPane.CANCEL_OPTION || result == JOptionPane.NO_OPTION){
-            System.out.println("Vorgang abgebrochen!");
-        }
+
+        } else
+            System.out.println("**Username existiert nicht!");
+
         safeUserData();
     }
 
     public boolean checkLogin(String username, String pw){
-        int index = -1;
-        for(int i = 0 ; i < getNumberOfUser(); i++){
-            if (getUserName(i).equals(username)) {
-                index = i;
-            }
-        }
+        Person p = getPersonByUsername(username);
 
-
-        if(index != -1) {
-            if (username.equals(getUserName(index)) && pw.equals(getUserPasswort(index))) {
-                System.out.println("**Eingeloggt als " + username);
+        if(p != null) {
+            if(p.getPasswort().equals(pw)) {
+                System.out.println("**Eingeloggt als " + p.getBenutzername());
                 return true;
             } else {
-                System.out.println("**Nutzername oder Passwort falsch!");
+                System.out.println("**Benutzername existiert nicht oder Passwort ist falsch!");
                 return false;
             }
-        } else {
-            System.out.println("**Nutzername oder Passwort falsch!");
-            return false;
         }
+        System.out.println("**Benutzername existiert nicht oder Passwort ist falsch!");
+        return false;
     }
 
     public void printAllUser(){
-        for (int i = 0; i < numberOfUser; i++){
-            System.out.println(userData[i][0]);
+        System.out.println("**Ausgabe aller User");
+        Iterator<Person> it = userData.iterator();
+        while (it.hasNext()) {
+            it.next().display();
+            System.out.println("====================================================");
         }
     }
 
-    public boolean userExisting(String user){
-        for(int i = 0; i < userData.length; i++){
-            if(userData[i][0].equals(user)){
-                return true;
-            }
-        }
-        return false;
-    }
     private void setLookAndFeel(){
         String laf = UIManager.getSystemLookAndFeelClassName();
         try {

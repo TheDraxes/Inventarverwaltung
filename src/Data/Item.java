@@ -47,23 +47,25 @@ public abstract class Item implements Serializable {
         this.anzahl = anzahl;
         this.setInserierungsdatum(inserierungsdatum);
     }
+
     public int getParamAnzahl(){
 	    return this.ParamAnzahl;
     }
+
     public String[] getParamNames(){
 	    return this.paramNames;
     }
 
     public void display() {
-	    System.out.println("Inventarnummer: " + inventarnummer);
-        System.out.println("Bezeichnung: " + bezeichnung);
-        System.out.println("Anschaffungswert: " + anschaffungswert);
-        System.out.println("Buchwert: " + buchwert);
-        System.out.println("Techn. Nutzungsdauer: " + tnd);
-        System.out.println("Ablaufdatum: " + ablaufdatum);
+	    System.out.println("Inventarnummer:      " + inventarnummer);
+        System.out.println("Bezeichnung:         " + bezeichnung);
+        System.out.println("Anschaffungswert:    " + anschaffungswert);
+        System.out.println("Buchwert:            " + buchwert);
+        System.out.println("Techn. Nutzungsdauer:" + tnd);
+        System.out.println("Ablaufdatum:         " + ablaufdatum);
         //System.out.println("Inventarnummer: " + sachgebiet);
-        System.out.println("Inserierungsdatum: " + inserierungsdatum);
-        System.out.println("Anzahl: " + anzahl);
+        System.out.println("Inserierungsdatum:   " + inserierungsdatum);
+        System.out.println("Anzahl:              " + anzahl);
     }
 
     public Item(long inventarnummer) {
