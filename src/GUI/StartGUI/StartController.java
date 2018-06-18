@@ -210,8 +210,8 @@ public class StartController implements Initializable {
                     Dialogs.warnDialog("Alle drei Felder müssen ausgefüllt werde!","Warnung");
                 } else {
                     Person newUser = new Person();
-                    newUser.setBenutzername(a[0]);
-                    newUser.setPasswort(a[1]);
+                    newUser.setUsername(a[0]);
+                    newUser.setPassword(a[1]);
 
                     userContainer.insertUser(newUser);
 

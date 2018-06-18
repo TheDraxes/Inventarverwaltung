@@ -25,6 +25,7 @@ public abstract class Item implements Serializable {
 	private Date inserierungsdatum;
 	private String inserierungsdatumString;
 	private int anzahl;
+
 	private int ParamAnzahl = 4;
 	private String[] paramNames = {
             "Bezeichnung",

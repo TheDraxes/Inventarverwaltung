@@ -1,6 +1,226 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="RunManager">
+  <component name="ChangeListManager">
+    <list default="true" id="fd304cdb-a771-4f80-9175-d06f620034a5" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Data/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Data/Item.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Data/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Data/Person.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/StartGUI/StartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/StartGUI/StartController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TestKlassen/UserContainerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TestKlassen/UserContainerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Verwaltung/UserContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Verwaltung/UserContainer.java" afterDir="false" />
+    </list>
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="Item.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Data/Item.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="168">
+              <caret line="27" selection-start-line="27" selection-end-line="27" />
+              <folding>
+                <element signature="method#Item#1;class#Item#0" />
+                <element signature="method#display#0;class#Item#0" />
+                <element signature="method#setAnschaffungswert#0;class#Item#0" />
+                <element signature="method#setInserierungsdatum#0;class#Item#0" />
+                <element signature="method#setInserierungsdatumString#0;class#Item#0" />
+                <element signature="method#round#0;class#Item#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LoginController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/GUI/LoginGUI/LoginController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="294">
+              <caret line="71" column="36" lean-forward="true" selection-start-line="71" selection-start-column="36" selection-end-line="71" selection-end-column="36" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Person.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Data/Person.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="101">
+              <caret line="8" column="20" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="20" />
+              <folding>
+                <element signature="method#display#0;class#Person#0" />
+                <element signature="e#1867#1868#0" expanded="true" />
+                <element signature="e#1894#1895#0" expanded="true" />
+                <element signature="method#setName#0;class#Person#0" />
+                <element signature="e#2047#2048#0" expanded="true" />
+                <element signature="e#2077#2078#0" expanded="true" />
+                <element signature="method#setVorname#0;class#Person#0" />
+                <element signature="e#2241#2242#0" expanded="true" />
+                <element signature="e#2269#2270#0" expanded="true" />
+                <element signature="method#setMan#0;class#Person#0" />
+                <element signature="e#2416#2417#0" expanded="true" />
+                <element signature="e#2443#2444#0" expanded="true" />
+                <element signature="method#setRaum#0;class#Person#0" />
+                <element signature="e#2595#2596#0" expanded="true" />
+                <element signature="e#2629#2630#0" expanded="true" />
+                <element signature="method#setTelefonnummer#0;class#Person#0" />
+                <element signature="e#2815#2816#0" expanded="true" />
+                <element signature="e#2843#2844#0" expanded="true" />
+                <element signature="method#setEmail#0;class#Person#0" />
+                <element signature="e#3003#3004#0" expanded="true" />
+                <element signature="e#3034#3035#0" expanded="true" />
+                <element signature="method#setBenutzername#0;class#Person#0" />
+                <element signature="e#3213#3214#0" expanded="true" />
+                <element signature="e#3244#3245#0" expanded="true" />
+                <element signature="method#setPasswort#0;class#Person#0" />
+                <element signature="e#3415#3416#0" expanded="true" />
+                <element signature="e#3445#3446#0" expanded="true" />
+                <element signature="method#setAdmin#0;class#Person#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserContainerTest.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/TestKlassen/UserContainerTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="290">
+              <caret line="53" lean-forward="true" selection-start-line="53" selection-end-line="53" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserContainer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Verwaltung/UserContainer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="173">
+              <caret line="69" selection-start-line="69" selection-end-line="69" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="method#userIsDuplicate#0;class#UserContainer#0" />
+                <element signature="method#safeUserData#0;class#UserContainer#0" />
+                <element signature="method#getPersonByUsername#0;class#UserContainer#0" />
+                <element signature="method#getUserNames#0;class#UserContainer#0" />
+                <element signature="method#userExisting#0;class#UserContainer#0" />
+                <element signature="method#deleteUser#0;class#UserContainer#0" />
+                <element signature="method#checkLogin#0;class#UserContainer#0" />
+                <element signature="method#printAllUser#0;class#UserContainer#0" />
+                <element signature="method#setLookAndFeel#0;class#UserContainer#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/Data/Item.java" />
+        <option value="$PROJECT_DIR$/src/Verwaltung/UserContainer.java" />
+        <option value="$PROJECT_DIR$/src/Data/Person.java" />
+        <option value="$PROJECT_DIR$/src/TestKlassen/UserContainerTest.java" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="NodePackageJsonFileManager">
+    <packageJsonPaths />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="PackagesPane" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Inventarverwaltung" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Inventarverwaltung" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Inventarverwaltung" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Inventarverwaltung" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Inventarverwaltung" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Inventarverwaltung" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Data" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Inventarverwaltung" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Inventarverwaltung" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="GUI" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Inventarverwaltung" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Inventarverwaltung" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="TestKlassen" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Inventarverwaltung" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Inventarverwaltung" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Verwaltung" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="AndroidView" />
+      <pane id="Scope" />
+    </panes>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.UserContainerTest">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
+      <module name="Inventarverwaltung" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+    </configuration>
+    <configuration name="UserContainerTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="TestKlassen.UserContainerTest" />
+      <module name="Inventarverwaltung" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="TestKlassen.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+    </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
     </configuration>
@@ -42,5 +262,481 @@
       <properties />
       <listeners />
     </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="Application.UserContainerTest" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.UserContainerTest" />
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="fd304cdb-a771-4f80-9175-d06f620034a5" name="Default" comment="" />
+      <created>1529320794207</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1529320794207</updated>
+      <workItem from="1529320809084" duration="191000" />
+      <workItem from="1529323716270" duration="8996000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="1508000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-7" y="-7" width="1455" height="935" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info anchor="right" id="Palette" order="5" />
+      <window_info anchor="bottom" id="TODO" order="11" />
+      <window_info anchor="bottom" id="Messages" order="4" weight="0.32729468" />
+      <window_info anchor="right" id="Palette&#9;" order="1" />
+      <window_info id="Image Layers" order="4" />
+      <window_info anchor="right" id="Capture Analysis" order="0" />
+      <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" />
+      <window_info anchor="right" id="Maven Projects" order="4" />
+      <window_info anchor="bottom" id="Database Changes" order="0" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="3" weight="0.32850242" />
+      <window_info active="true" anchor="bottom" id="Run" order="7" visible="true" weight="0.30917874" />
+      <window_info anchor="bottom" id="Terminal" order="1" />
+      <window_info id="Capture Tool" order="2" />
+      <window_info id="Designer" order="0" />
+      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.18736988" />
+      <window_info anchor="right" id="Database" order="3" />
+      <window_info anchor="bottom" id="Find" order="6" weight="0.32850242" />
+      <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
+      <window_info anchor="right" id="Ant Build" order="7" weight="0.25" />
+      <window_info id="UI Designer" order="1" />
+      <window_info anchor="right" id="Theme Preview" order="2" />
+      <window_info id="Favorites" order="3" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="8" weight="0.39918947" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="8" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="10" weight="0.4" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="6" type="SLIDING" weight="0.4" />
+      <window_info anchor="bottom" id="Message" order="5" />
+      <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
+    </layout>
+    <layout-to-restore>
+      <window_info anchor="right" id="Palette" order="5" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="8" weight="0.25" />
+      <window_info anchor="right" id="Capture Analysis" order="0" />
+      <window_info anchor="right" id="Database" order="3" />
+      <window_info anchor="bottom" id="Version Control" order="3" weight="0.32900432" />
+      <window_info anchor="right" id="Theme Preview" order="2" />
+      <window_info anchor="bottom" id="Message" order="5" />
+      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.25260237" />
+      <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="6" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="7" weight="0.25" />
+      <window_info anchor="bottom" id="TODO" order="11" />
+      <window_info anchor="bottom" id="Run" order="7" weight="0.32850242" />
+      <window_info id="Image Layers" order="4" />
+      <window_info id="Designer" order="0" />
+      <window_info id="UI Designer" order="1" />
+      <window_info anchor="bottom" id="Database Changes" order="0" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Debug" order="8" weight="0.4" />
+      <window_info anchor="right" id="Palette&#9;" order="1" />
+      <window_info anchor="bottom" id="Terminal" order="1" />
+      <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Inspection" order="10" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
+      <window_info id="Capture Tool" order="2" />
+      <window_info active="true" anchor="bottom" id="Find" order="6" visible="true" weight="0.32850242" />
+      <window_info anchor="bottom" id="Messages" order="4" weight="0.32850242" />
+      <window_info anchor="right" id="Maven Projects" order="4" />
+      <window_info id="Favorites" order="3" side_tool="true" />
+    </layout-to-restore>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/Verwaltung/ItemContainer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="30" column="11" lean-forward="true" selection-start-line="30" selection-start-column="11" selection-end-line="30" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/TestKlassen/ItemContainerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/LoginGUI/LoginController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="483">
+          <caret line="33" selection-start-line="33" selection-end-line="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/StartGUI/StartController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3465">
+          <caret line="165" lean-forward="true" selection-start-line="165" selection-end-line="165" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/LoginGUI/NewUserJPanel.java" />
+    <entry file="file://$PROJECT_DIR$/src/GUI/ViewGUI/ViewController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1197">
+          <caret line="57" column="5" selection-start-line="57" selection-start-column="5" selection-end-line="57" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/LoginGUI/LoginController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1470">
+          <caret line="70" column="78" lean-forward="true" selection-start-line="70" selection-start-column="78" selection-end-line="70" selection-end-column="78" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/LoginGUI/ProgramStart.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="29" column="32" selection-start-line="29" selection-start-column="32" selection-end-line="29" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/StartGUI/showStartWindow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="903">
+          <caret line="49" lean-forward="true" selection-start-line="49" selection-end-line="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/StartGUI/StartController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1368">
+          <caret line="57" column="54" lean-forward="true" selection-start-line="57" selection-start-column="54" selection-end-line="57" selection-end-column="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/StartGUI/DeleteUserJPanel.java" />
+    <entry file="file://$PROJECT_DIR$/src/GUI/LoginGUI/NewUserJPanel.java" />
+    <entry file="file://$PROJECT_DIR$/src/Verwaltung/ItemContainer.java" />
+    <entry file="file://$PROJECT_DIR$/src/Verwaltung/UserContainerAlt.java" />
+    <entry file="file://$PROJECT_DIR$/src/GUI/ViewGUI/ViewController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="864">
+          <caret line="55" column="30" selection-start-line="55" selection-start-column="30" selection-end-line="55" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/LoginGUI/LoginController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="624">
+          <caret line="38" column="49" lean-forward="true" selection-start-line="38" selection-start-column="49" selection-end-line="38" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/StartGUI/showStartWindow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="888">
+          <caret line="44" column="33" lean-forward="true" selection-start-line="44" selection-start-column="33" selection-end-line="44" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/ViewGUI/ItemEntry.java" />
+    <entry file="file://$PROJECT_DIR$/src/Verwaltung/ItemContainer.java" />
+    <entry file="file://$PROJECT_DIR$/src/GUI/LoginGUI/NewUserJPanel.java" />
+    <entry file="file://$PROJECT_DIR$/src/SafedInv/Inventar 1.Inv" />
+    <entry file="file://$PROJECT_DIR$/src/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="3" column="13" selection-start-line="3" selection-start-column="13" selection-end-line="3" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Data/Sonstiges.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_152/src.zip!/java/util/Hashtable.java" />
+    <entry file="file://$PROJECT_DIR$/src/GUI/ViewGUI/AddItemJpanel.java" />
+    <entry file="file://$PROJECT_DIR$/src/TestKlassen/LoginWindowTest.java" />
+    <entry file="file://$PROJECT_DIR$/src/GUI/StartGUI/DeleteUserJPanel.java" />
+    <entry file="file://$PROJECT_DIR$/src/GUI/ViewGUI/ViewStyle.fxml">
+      <provider editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/LoginGUI/ProgramStart.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="651">
+          <caret line="43" column="1" selection-start-line="43" selection-start-column="1" selection-end-line="43" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/style.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="651">
+          <caret line="52" column="1" selection-start-line="52" selection-start-column="1" selection-end-line="52" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Data/Abteilung.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/TestKlassen/ItemContainerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Data/BodenUndGebaeude.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="77">
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
+          <folding>
+            <element signature="method#BodenUndGebaeude#0;class#BodenUndGebaeude#0" />
+            <element signature="e#1142#1143#0" expanded="true" />
+            <element signature="e#1190#1191#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Data/Mobiliar.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="12" column="22" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
+          <folding>
+            <element signature="method#Mobiliar#0;class#Mobiliar#0" />
+            <element signature="method#Mobiliar#1;class#Mobiliar#0" />
+            <element signature="method#getParamNames#0;class#Mobiliar#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/ViewGUI/ItemDialogs.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="42" selection-start-line="42" selection-end-line="42" />
+          <folding>
+            <element signature="method#getNewFuhrpark#0;class#ItemDialogs#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Data/Software.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="24" column="22" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
+          <folding>
+            <element signature="method#Software#0;class#Software#0" />
+            <element signature="method#Software#1;class#Software#0" />
+            <element signature="method#getParamNames#0;class#Software#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Verwaltung/ItemContainer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="422">
+          <caret line="56" column="9" lean-forward="true" selection-start-line="46" selection-start-column="8" selection-end-line="56" selection-end-column="9" />
+          <folding>
+            <element signature="method#loadInventar#0;class#ItemContainer#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Data/Fuhrpark.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="4" column="25" lean-forward="true" selection-start-line="4" selection-start-column="25" selection-end-line="4" selection-end-column="25" />
+          <folding>
+            <element signature="method#Fuhrpark#0;class#Fuhrpark#0" />
+            <element signature="method#Fuhrpark#1;class#Fuhrpark#0" />
+            <element signature="method#getParamNames#0;class#Fuhrpark#0" />
+            <element signature="method#setKw#0;class#Fuhrpark#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Verwaltung/UserContainerAlt.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-458">
+          <caret line="16" selection-start-line="16" selection-end-line="16" />
+          <folding>
+            <element signature="method#insertUser#0;class#UserContainer#0" />
+            <element signature="method#userIsDuplicate#0;class#UserContainer#0" />
+            <element signature="method#getIndexOfUser#0;class#UserContainer#0" />
+            <element signature="method#safeUserData#0;class#UserContainer#0" />
+            <element signature="method#loadUserData#0;class#UserContainer#0" />
+            <element signature="method#deleteUser#0;class#UserContainer#0" />
+            <element signature="method#printAllUser#0;class#UserContainer#0" />
+            <element signature="method#setLookAndFeel#0;class#UserContainer#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/StartGUI/StartController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3488">
+          <caret line="217" column="57" lean-forward="true" selection-start-line="217" selection-start-column="57" selection-end-line="217" selection-end-column="57" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Data/Sachgebiet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Data/Hardware.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="13" column="5" lean-forward="true" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
+          <folding>
+            <element signature="method#Hardware#0;class#Hardware#0" />
+            <element signature="method#Hardware#1;class#Hardware#0" />
+            <element signature="method#getParamNames#0;class#Hardware#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/StartGUI/showStartWindow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="32" column="40" selection-start-line="32" selection-start-column="40" selection-end-line="32" selection-end-column="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/ViewGUI/ViewController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="178" column="74" selection-start-line="178" selection-start-column="74" selection-end-line="178" selection-end-column="74" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Verwaltung/UserContainer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="173">
+          <caret line="69" selection-start-line="69" selection-end-line="69" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#userIsDuplicate#0;class#UserContainer#0" />
+            <element signature="method#safeUserData#0;class#UserContainer#0" />
+            <element signature="method#getPersonByUsername#0;class#UserContainer#0" />
+            <element signature="method#getUserNames#0;class#UserContainer#0" />
+            <element signature="method#userExisting#0;class#UserContainer#0" />
+            <element signature="method#deleteUser#0;class#UserContainer#0" />
+            <element signature="method#checkLogin#0;class#UserContainer#0" />
+            <element signature="method#printAllUser#0;class#UserContainer#0" />
+            <element signature="method#setLookAndFeel#0;class#UserContainer#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Data/Item.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="27" selection-start-line="27" selection-end-line="27" />
+          <folding>
+            <element signature="method#Item#1;class#Item#0" />
+            <element signature="method#display#0;class#Item#0" />
+            <element signature="method#setAnschaffungswert#0;class#Item#0" />
+            <element signature="method#setInserierungsdatum#0;class#Item#0" />
+            <element signature="method#setInserierungsdatumString#0;class#Item#0" />
+            <element signature="method#round#0;class#Item#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/LoginGUI/LoginController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="71" column="36" lean-forward="true" selection-start-line="71" selection-start-column="36" selection-end-line="71" selection-end-column="36" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Data/Person.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="101">
+          <caret line="8" column="20" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="20" />
+          <folding>
+            <element signature="method#display#0;class#Person#0" />
+            <element signature="e#1867#1868#0" expanded="true" />
+            <element signature="e#1894#1895#0" expanded="true" />
+            <element signature="method#setName#0;class#Person#0" />
+            <element signature="e#2047#2048#0" expanded="true" />
+            <element signature="e#2077#2078#0" expanded="true" />
+            <element signature="method#setVorname#0;class#Person#0" />
+            <element signature="e#2241#2242#0" expanded="true" />
+            <element signature="e#2269#2270#0" expanded="true" />
+            <element signature="method#setMan#0;class#Person#0" />
+            <element signature="e#2416#2417#0" expanded="true" />
+            <element signature="e#2443#2444#0" expanded="true" />
+            <element signature="method#setRaum#0;class#Person#0" />
+            <element signature="e#2595#2596#0" expanded="true" />
+            <element signature="e#2629#2630#0" expanded="true" />
+            <element signature="method#setTelefonnummer#0;class#Person#0" />
+            <element signature="e#2815#2816#0" expanded="true" />
+            <element signature="e#2843#2844#0" expanded="true" />
+            <element signature="method#setEmail#0;class#Person#0" />
+            <element signature="e#3003#3004#0" expanded="true" />
+            <element signature="e#3034#3035#0" expanded="true" />
+            <element signature="method#setBenutzername#0;class#Person#0" />
+            <element signature="e#3213#3214#0" expanded="true" />
+            <element signature="e#3244#3245#0" expanded="true" />
+            <element signature="method#setPasswort#0;class#Person#0" />
+            <element signature="e#3415#3416#0" expanded="true" />
+            <element signature="e#3445#3446#0" expanded="true" />
+            <element signature="method#setAdmin#0;class#Person#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/TestKlassen/UserContainerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="53" lean-forward="true" selection-start-line="53" selection-end-line="53" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
   </component>
 </project>

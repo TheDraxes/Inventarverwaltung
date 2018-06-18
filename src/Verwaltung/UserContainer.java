@@ -27,18 +27,19 @@ public class UserContainer implements Serializable {
         this.numberOfUser = numberOfUser;
     }
 
-    public void insertUser(Person p){
+    public void insertUser(Person p) {
         userData.add(p);
         numberOfUser++;
-        System.out.println("**User " + p.getBenutzername() + " erstellt");
 
+
+        System.out.println("**User " + p.getUsername() + " erstellt");
         safeUserData();
     }
 
     public boolean userIsDuplicate(String username){
         Iterator<Person> it = userData.iterator();
         while (it.hasNext()) {
-            if(it.next().getBenutzername().equals(username))
+            if(it.next().getUsername().equals(username))
                 return true;
         }
         return false;
@@ -82,7 +83,7 @@ public class UserContainer implements Serializable {
         Iterator<Person> it = userData.iterator();
         while (it.hasNext()) {
             Person p = it.next();
-            if(p.getBenutzername().equals(username)) {
+            if(p.getUsername().equals(username)) {
                 return p;
             }
         }
@@ -95,7 +96,7 @@ public class UserContainer implements Serializable {
 
         Iterator<Person> it = userData.iterator();
         while (it.hasNext()) {
-            usernames[i] = it.next().getBenutzername();
+            usernames[i] = it.next().getUsername();
             i++;
         }
         return usernames;
@@ -133,8 +134,8 @@ public class UserContainer implements Serializable {
         Person p = getPersonByUsername(username);
 
         if(p != null) {
-            if(p.getPasswort().equals(pw)) {
-                System.out.println("**Eingeloggt als " + p.getBenutzername());
+            if(p.getPassword().equals(pw)) {
+                System.out.println("**Eingeloggt als " + p.getUsername());
                 return true;
             } else {
                 System.out.println("**Benutzername existiert nicht oder Passwort ist falsch!");
