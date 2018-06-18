@@ -31,8 +31,11 @@ public class UserContainer implements Serializable {
         userData.add(p);
         numberOfUser++;
 
+        if(p.isAdmin())
+            System.out.println("**Neuen Admin mit dem Namen " + p.getUsername() + " angelegt!");
+        else
+            System.out.println("**Neuen User mit dem Namen " + p.getUsername() + " angelegt!");
 
-        System.out.println("**User " + p.getUsername() + " erstellt");
         safeUserData();
     }
 
@@ -46,12 +49,12 @@ public class UserContainer implements Serializable {
     }
 
     public void safeUserData(){
-        System.out.print("**Speichere Inventar");
+        System.out.println("**Speichere Nutzerdaten");
         try {
             FileOutputStream fileOutputStream = new FileOutputStream("user.dat");
             ObjectOutputStream outputStream = new ObjectOutputStream(fileOutputStream);
             outputStream.writeObject(this);
-            System.out.println("**Inventar abgespeichert in user.dat");
+            System.out.println("**Nutzerdaten abgespeichert in user.dat");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -128,6 +131,12 @@ public class UserContainer implements Serializable {
             System.out.println("**Username existiert nicht!");
 
         safeUserData();
+    }
+
+    public void deleteAllUser() {
+        System.out.println("**Lösche alle Benutzer");
+        userData.clear();
+        numberOfUser = 0;
     }
 
     public boolean checkLogin(String username, String pw){

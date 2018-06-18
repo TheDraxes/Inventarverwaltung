@@ -3,11 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="fd304cdb-a771-4f80-9175-d06f620034a5" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Data/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Data/Item.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/Data/Person.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Inventarverwaltung/Data/Person.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/TestKlassen/UserContainerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Inventarverwaltung/TestKlassen/UserContainerTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/Verwaltung/UserContainer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Inventarverwaltung/Verwaltung/UserContainer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Data/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Data/Person.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/StartGUI/StartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/StartGUI/StartController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/TestKlassen/UserContainerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TestKlassen/UserContainerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Verwaltung/UserContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Verwaltung/UserContainer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/user.dat" beforeDir="false" />
     </list>
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -20,7 +22,7 @@
       <file leaf-file-name="Item.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Data/Item.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
+            <state relative-caret-position="105">
               <caret line="27" selection-start-line="27" selection-end-line="27" />
               <folding>
                 <element signature="method#Item#1;class#Item#0" />
@@ -37,7 +39,7 @@
       <file leaf-file-name="LoginController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GUI/LoginGUI/LoginController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="294">
+            <state relative-caret-position="483">
               <caret line="71" column="36" lean-forward="true" selection-start-line="71" selection-start-column="36" selection-end-line="71" selection-end-column="36" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -46,50 +48,35 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Person.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Person.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Data/Person.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="101">
-              <caret line="8" column="20" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="20" />
+            <state relative-caret-position="53">
+              <caret line="61" column="34" selection-start-line="61" selection-start-column="34" selection-end-line="61" selection-end-column="34" />
               <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="method#generateUsername#0;class#Person#0" />
+                <element signature="method#generateEmail#0;class#Person#0" />
                 <element signature="method#display#0;class#Person#0" />
-                <element signature="e#1867#1868#0" expanded="true" />
-                <element signature="e#1894#1895#0" expanded="true" />
                 <element signature="method#setName#0;class#Person#0" />
-                <element signature="e#2047#2048#0" expanded="true" />
-                <element signature="e#2077#2078#0" expanded="true" />
                 <element signature="method#setVorname#0;class#Person#0" />
-                <element signature="e#2241#2242#0" expanded="true" />
-                <element signature="e#2269#2270#0" expanded="true" />
                 <element signature="method#setMan#0;class#Person#0" />
-                <element signature="e#2416#2417#0" expanded="true" />
-                <element signature="e#2443#2444#0" expanded="true" />
                 <element signature="method#setRaum#0;class#Person#0" />
-                <element signature="e#2595#2596#0" expanded="true" />
-                <element signature="e#2629#2630#0" expanded="true" />
                 <element signature="method#setTelefonnummer#0;class#Person#0" />
-                <element signature="e#2815#2816#0" expanded="true" />
-                <element signature="e#2843#2844#0" expanded="true" />
                 <element signature="method#setEmail#0;class#Person#0" />
-                <element signature="e#3003#3004#0" expanded="true" />
-                <element signature="e#3034#3035#0" expanded="true" />
                 <element signature="method#setBenutzername#0;class#Person#0" />
-                <element signature="e#3213#3214#0" expanded="true" />
-                <element signature="e#3244#3245#0" expanded="true" />
                 <element signature="method#setPasswort#0;class#Person#0" />
-                <element signature="e#3415#3416#0" expanded="true" />
-                <element signature="e#3445#3446#0" expanded="true" />
                 <element signature="method#setAdmin#0;class#Person#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UserContainerTest.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="UserContainerTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/TestKlassen/UserContainerTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="290">
-              <caret line="53" lean-forward="true" selection-start-line="53" selection-end-line="53" />
+            <state relative-caret-position="143">
+              <caret line="57" column="25" lean-forward="true" selection-start-line="57" selection-start-column="25" selection-end-line="57" selection-end-column="25" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -100,12 +87,14 @@
       <file leaf-file-name="UserContainer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Verwaltung/UserContainer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="173">
-              <caret line="69" selection-start-line="69" selection-end-line="69" />
+            <state relative-caret-position="201">
+              <caret line="50" column="30" selection-start-line="50" selection-start-column="30" selection-end-line="50" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="method#insertUser#0;class#UserContainer#0" />
                 <element signature="method#userIsDuplicate#0;class#UserContainer#0" />
                 <element signature="method#safeUserData#0;class#UserContainer#0" />
+                <element signature="method#loadUserData#0;class#UserContainer#0" />
                 <element signature="method#getPersonByUsername#0;class#UserContainer#0" />
                 <element signature="method#getUserNames#0;class#UserContainer#0" />
                 <element signature="method#userExisting#0;class#UserContainer#0" />
@@ -128,8 +117,8 @@
       <list>
         <option value="$PROJECT_DIR$/src/Data/Item.java" />
         <option value="$PROJECT_DIR$/src/Verwaltung/UserContainer.java" />
-        <option value="$PROJECT_DIR$/src/Data/Person.java" />
         <option value="$PROJECT_DIR$/src/TestKlassen/UserContainerTest.java" />
+        <option value="$PROJECT_DIR$/src/Data/Person.java" />
       </list>
     </option>
   </component>
@@ -284,16 +273,15 @@
       <option name="presentableId" value="Default" />
       <updated>1529320794207</updated>
       <workItem from="1529320809084" duration="191000" />
-      <workItem from="1529323716270" duration="8996000" />
+      <workItem from="1529323716270" duration="11250000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1508000" />
+    <option name="totallyTimeSpent" value="3762000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1455" height="935" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="5" />
       <window_info anchor="bottom" id="TODO" order="11" />
@@ -305,7 +293,7 @@
       <window_info anchor="right" id="Maven Projects" order="4" />
       <window_info anchor="bottom" id="Database Changes" order="0" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="3" weight="0.32850242" />
-      <window_info active="true" anchor="bottom" id="Run" order="7" visible="true" weight="0.30917874" />
+      <window_info anchor="bottom" id="Run" order="7" weight="0.30917874" />
       <window_info anchor="bottom" id="Terminal" order="1" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="0" />
@@ -317,7 +305,7 @@
       <window_info id="UI Designer" order="1" />
       <window_info anchor="right" id="Theme Preview" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
-      <window_info anchor="bottom" id="Debug" order="8" weight="0.39918947" />
+      <window_info anchor="bottom" id="Debug" order="8" weight="0.39855072" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="8" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="10" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="6" type="SLIDING" weight="0.4" />
@@ -357,6 +345,20 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/Verwaltung/ItemContainer.java</url>
+          <line>20</line>
+          <properties class="Verwaltung.ItemContainer" method="deleteItem">
+            <option name="EMULATED" value="true" />
+          </properties>
+        </line-breakpoint>
+      </breakpoints>
+      <option name="time" value="1" />
+    </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/Verwaltung/ItemContainer.java">
@@ -558,16 +560,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Verwaltung/ItemContainer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="422">
-          <caret line="56" column="9" lean-forward="true" selection-start-line="46" selection-start-column="8" selection-end-line="56" selection-end-column="9" />
-          <folding>
-            <element signature="method#loadInventar#0;class#ItemContainer#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Data/Fuhrpark.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="84">
@@ -647,28 +639,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Verwaltung/UserContainer.java">
+    <entry file="file://$PROJECT_DIR$/src/GUI/LoginGUI/LoginController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="173">
-          <caret line="69" selection-start-line="69" selection-end-line="69" />
+        <state relative-caret-position="483">
+          <caret line="71" column="36" lean-forward="true" selection-start-line="71" selection-start-column="36" selection-end-line="71" selection-end-column="36" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="method#userIsDuplicate#0;class#UserContainer#0" />
-            <element signature="method#safeUserData#0;class#UserContainer#0" />
-            <element signature="method#getPersonByUsername#0;class#UserContainer#0" />
-            <element signature="method#getUserNames#0;class#UserContainer#0" />
-            <element signature="method#userExisting#0;class#UserContainer#0" />
-            <element signature="method#deleteUser#0;class#UserContainer#0" />
-            <element signature="method#checkLogin#0;class#UserContainer#0" />
-            <element signature="method#printAllUser#0;class#UserContainer#0" />
-            <element signature="method#setLookAndFeel#0;class#UserContainer#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Data/Item.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
+        <state relative-caret-position="105">
           <caret line="27" selection-start-line="27" selection-end-line="27" />
           <folding>
             <element signature="method#Item#1;class#Item#0" />
@@ -681,10 +664,45 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/LoginGUI/LoginController.java">
+    <entry file="file://$PROJECT_DIR$/src/Verwaltung/ItemContainer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="71" column="36" lean-forward="true" selection-start-line="71" selection-start-column="36" selection-end-line="71" selection-end-column="36" />
+        <state relative-caret-position="441">
+          <caret line="45" selection-start-line="45" selection-end-line="45" />
+          <folding>
+            <element signature="method#insertItem#0;class#ItemContainer#0" />
+            <element signature="method#deleteItem#0;class#ItemContainer#0" />
+            <element signature="method#showAll#0;class#ItemContainer#0" />
+            <element signature="method#safeInventar#0;class#ItemContainer#0" />
+            <element signature="method#loadInventar#0;class#ItemContainer#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Verwaltung/UserContainer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="201">
+          <caret line="50" column="30" selection-start-line="50" selection-start-column="30" selection-end-line="50" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#insertUser#0;class#UserContainer#0" />
+            <element signature="method#userIsDuplicate#0;class#UserContainer#0" />
+            <element signature="method#safeUserData#0;class#UserContainer#0" />
+            <element signature="method#loadUserData#0;class#UserContainer#0" />
+            <element signature="method#getPersonByUsername#0;class#UserContainer#0" />
+            <element signature="method#getUserNames#0;class#UserContainer#0" />
+            <element signature="method#userExisting#0;class#UserContainer#0" />
+            <element signature="method#deleteUser#0;class#UserContainer#0" />
+            <element signature="method#checkLogin#0;class#UserContainer#0" />
+            <element signature="method#printAllUser#0;class#UserContainer#0" />
+            <element signature="method#setLookAndFeel#0;class#UserContainer#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/TestKlassen/UserContainerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="57" column="25" lean-forward="true" selection-start-line="57" selection-start-column="25" selection-end-line="57" selection-end-column="25" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -693,47 +711,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Data/Person.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="101">
-          <caret line="8" column="20" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="20" />
-          <folding>
-            <element signature="method#display#0;class#Person#0" />
-            <element signature="e#1867#1868#0" expanded="true" />
-            <element signature="e#1894#1895#0" expanded="true" />
-            <element signature="method#setName#0;class#Person#0" />
-            <element signature="e#2047#2048#0" expanded="true" />
-            <element signature="e#2077#2078#0" expanded="true" />
-            <element signature="method#setVorname#0;class#Person#0" />
-            <element signature="e#2241#2242#0" expanded="true" />
-            <element signature="e#2269#2270#0" expanded="true" />
-            <element signature="method#setMan#0;class#Person#0" />
-            <element signature="e#2416#2417#0" expanded="true" />
-            <element signature="e#2443#2444#0" expanded="true" />
-            <element signature="method#setRaum#0;class#Person#0" />
-            <element signature="e#2595#2596#0" expanded="true" />
-            <element signature="e#2629#2630#0" expanded="true" />
-            <element signature="method#setTelefonnummer#0;class#Person#0" />
-            <element signature="e#2815#2816#0" expanded="true" />
-            <element signature="e#2843#2844#0" expanded="true" />
-            <element signature="method#setEmail#0;class#Person#0" />
-            <element signature="e#3003#3004#0" expanded="true" />
-            <element signature="e#3034#3035#0" expanded="true" />
-            <element signature="method#setBenutzername#0;class#Person#0" />
-            <element signature="e#3213#3214#0" expanded="true" />
-            <element signature="e#3244#3245#0" expanded="true" />
-            <element signature="method#setPasswort#0;class#Person#0" />
-            <element signature="e#3415#3416#0" expanded="true" />
-            <element signature="e#3445#3446#0" expanded="true" />
-            <element signature="method#setAdmin#0;class#Person#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/TestKlassen/UserContainerTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="53" lean-forward="true" selection-start-line="53" selection-end-line="53" />
+        <state relative-caret-position="53">
+          <caret line="61" column="34" selection-start-line="61" selection-start-column="34" selection-end-line="61" selection-end-column="34" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#generateUsername#0;class#Person#0" />
+            <element signature="method#generateEmail#0;class#Person#0" />
+            <element signature="method#display#0;class#Person#0" />
+            <element signature="method#setName#0;class#Person#0" />
+            <element signature="method#setVorname#0;class#Person#0" />
+            <element signature="method#setMan#0;class#Person#0" />
+            <element signature="method#setRaum#0;class#Person#0" />
+            <element signature="method#setTelefonnummer#0;class#Person#0" />
+            <element signature="method#setEmail#0;class#Person#0" />
+            <element signature="method#setBenutzername#0;class#Person#0" />
+            <element signature="method#setPasswort#0;class#Person#0" />
+            <element signature="method#setAdmin#0;class#Person#0" />
           </folding>
         </state>
       </provider>
