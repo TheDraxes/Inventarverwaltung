@@ -198,7 +198,7 @@ public class StartController implements Initializable {
 
         Optional<String> result = dialog.showAndWait();
         if (result.isPresent()){
-            System.out.println("Your name: " + result.get());
+            System.out.println("**Inventarname: " + result.get());
         }
         return result.get();
     }
