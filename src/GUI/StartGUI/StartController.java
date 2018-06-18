@@ -1,7 +1,8 @@
 package GUI.StartGUI;
 
+import Data.Person;
 import Verwaltung.ItemContainer;
-import Verwaltung.UserContainerAlt;
+import Verwaltung.UserContainer;
 import GUI.ViewGUI.ViewController;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -51,7 +52,7 @@ public class StartController implements Initializable {
     @FXML
     private Tooltip Tooltip;
 
-    private UserContainerAlt userContainer;
+    private UserContainer userContainer;
 
     private int anz = 0;
 
@@ -129,7 +130,7 @@ public class StartController implements Initializable {
         initialize();
     }
 
-    public void getParams(String path, UserContainerAlt userContainer, String user){
+    public void getParams(String path, UserContainer userContainer, String user){
         this.userLabel.setText("Eingeloggt als: " + user);
         this.path = path;
         this.userContainer = userContainer;
@@ -205,7 +206,6 @@ public class StartController implements Initializable {
 
     @FXML
     void newUserClicked(ActionEvent event){
-
         while (true) {
             String[] a = buildNewUserWindow();
             if (a == null) {
@@ -218,8 +218,12 @@ public class StartController implements Initializable {
                 } else if (a[0].equals("")|| a[1].equals("") || a[2].equals(3)){
                     warnDialog("Alle drei Felder müssen ausgefüllt werde!");
                 } else {
-                    userContainer.insertUser(a[0], a[1]);
-                    userContainer.safeUserData();
+                    Person newUser = new Person();
+                    newUser.setBenutzername(a[0]);
+                    newUser.setPasswort(a[1]);
+
+                    userContainer.insertUser(newUser);
+
                     System.out.println("**neuen Benutzer angelegt");
                     initialize();
                     break;
@@ -297,8 +301,10 @@ public class StartController implements Initializable {
         int number = userContainer.getNumberOfUser();
         CheckBox[] checkBoxes = new CheckBox[number];
 
+        String[] usernames = userContainer.getUserNames();
+
         for (int i = 0; i < number; i++) {
-            checkBoxes[i] = new CheckBox(userContainer.getUserName(i));
+            checkBoxes[i] = new CheckBox(usernames[i]);
         }
 
         Dialog<String[]> dialog = new Dialog<>();

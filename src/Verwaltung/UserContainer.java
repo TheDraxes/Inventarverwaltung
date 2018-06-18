@@ -89,6 +89,18 @@ public class UserContainer implements Serializable {
         return null;
     }
 
+    public String[] getUserNames() {
+        String[] usernames = new String[numberOfUser];
+        int i = 0;
+
+        Iterator<Person> it = userData.iterator();
+        while (it.hasNext()) {
+            usernames[i] = it.next().getBenutzername();
+            i++;
+        }
+        return usernames;
+    }
+
     public boolean userExisting(String username) {
         if(getPersonByUsername(username) != null) {
             return true;

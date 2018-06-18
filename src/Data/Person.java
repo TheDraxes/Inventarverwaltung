@@ -17,6 +17,12 @@ public class Person implements Serializable {
         System.out.println("**Neuen Benutzer angelegt!");
     }
 
+    public void initAdmin() {
+        this.benutzername = "admin";
+        this.passwort = "123";
+        this.admin = true;
+    }
+
     public Person(String name, String vorname, boolean isMan, String benutzername, String passwort, boolean admin) {
         this.name = name;
         this.vorname = vorname;

@@ -1,8 +1,9 @@
 package GUI.LoginGUI;
 
+import Data.Person;
 import GUI.StartGUI.StartController;
 import GUI.StartGUI.showStartWindow;
-import Verwaltung.UserContainerAlt;
+import Verwaltung.UserContainer;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
@@ -35,7 +36,7 @@ public class LoginController {
     private PasswordField passwordField;
 
     //Container Klasse für die userlogin Daten
-    private UserContainerAlt userContainer = new UserContainerAlt();
+    private UserContainer userContainer = new UserContainer();
 
     int loginTries = 0;
 
@@ -59,12 +60,13 @@ public class LoginController {
         File userLogins = new File("user.dat");
 
         if(userLogins.exists()) {
-            userContainer = new UserContainerAlt().loadUserData();
+            userContainer = new UserContainer().loadUserData();
             System.out.println("**Bestehende Userdaten eingelesen");
         } else {
-            userContainer.insertUser("admin","123");
-            userContainer.safeUserData();
-            System.out.println("**Neue Userdatenbank mit standart Adminpasswort erstellt");
+            Person admin = new Person();
+            admin.initAdmin();
+            userContainer.insertUser(admin);
+            System.out.println("**Neue Userdatenbank mit standard Adminpasswort erstellt");
         }
         System.out.println("**Login Fenster Initialisiert");
     }

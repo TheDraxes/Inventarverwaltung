@@ -3,35 +3,29 @@
   <component name="ChangeListManager">
     <list default="true" id="fd304cdb-a771-4f80-9175-d06f620034a5" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/Data/BodenUndGebaeude.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Inventarverwaltung/Data/BodenUndGebaeude.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/Data/Fuhrpark.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Inventarverwaltung/Data/Fuhrpark.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/Data/Hardware.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Inventarverwaltung/Data/Hardware.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/Data/Item.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Inventarverwaltung/Data/Item.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/Data/Mobiliar.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Inventarverwaltung/Data/Mobiliar.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/Data/BodenUndGebaeude.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/Data/Fuhrpark.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/Data/Hardware.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/Data/Person.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Inventarverwaltung/Data/Person.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/Data/Software.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Inventarverwaltung/Data/Software.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/GUI/StartGUI/StartController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Inventarverwaltung/GUI/StartGUI/StartController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/GUI/ViewGUI/ItemDialogs.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Inventarverwaltung/GUI/ViewGUI/ItemDialogs.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/GUI/ViewGUI/ItemEntry.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/Data/Sonstiges.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/GUI/LoginGUI/LoginController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Inventarverwaltung/GUI/LoginGUI/LoginController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/GUI/StartGUI/StartController.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/GUI/StartGUI/showStartWindow.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/GUI/ViewGUI/ViewController$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/GUI/ViewGUI/ViewController$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/GUI/ViewGUI/ViewController$ButtonCell$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/GUI/ViewGUI/ViewController$ButtonCell.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/GUI/ViewGUI/ViewController.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/TestKlassen/UserContainerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Inventarverwaltung/TestKlassen/UserContainerTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/Verwaltung/ItemContainer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Inventarverwaltung/Verwaltung/ItemContainer.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/Verwaltung/ItemContainer.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/Verwaltung/UserContainer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Inventarverwaltung/Verwaltung/UserContainer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Data/BodenUndGebaeude.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Data/BodenUndGebaeude.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Data/Fuhrpark.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Data/Fuhrpark.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Data/Hardware.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Data/Hardware.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Data/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Data/Item.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Data/Mobiliar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Data/Mobiliar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/Verwaltung/UserContainerNeu.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Data/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Data/Person.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Data/Software.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Data/Software.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/LoginGUI/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/LoginGUI/LoginController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/StartGUI/StartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/StartGUI/StartController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/StartGUI/showStartWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/StartGUI/showStartWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/ViewGUI/ItemDialogs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/ViewGUI/ItemDialogs.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GUI/ViewGUI/ViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GUI/ViewGUI/ViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TestKlassen/UserContainerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TestKlassen/UserContainerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Verwaltung/ItemContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Verwaltung/ItemContainer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Verwaltung/UserContainer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Verwaltung/UserContainer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/user.dat" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -43,20 +37,60 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="UserContainer.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ViewController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/GUI/ViewGUI/ViewController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="168">
+              <caret line="178" column="74" selection-start-line="178" selection-start-column="74" selection-end-line="178" selection-end-column="74" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserContainer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Verwaltung/UserContainer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="314">
-              <caret line="141" column="9" lean-forward="true" selection-start-line="141" selection-start-column="9" selection-end-line="141" selection-end-column="9" />
+            <state relative-caret-position="198">
+              <caret line="91" column="32" selection-start-line="91" selection-start-column="20" selection-end-line="91" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#239#247#0" expanded="true" />
+                <element signature="method#insertUser#0;class#UserContainerNeu#0" />
                 <element signature="method#userIsDuplicate#0;class#UserContainerNeu#0" />
+                <element signature="method#safeUserData#0;class#UserContainerNeu#0" />
                 <element signature="method#loadUserData#0;class#UserContainerNeu#0" />
                 <element signature="method#getPersonByUsername#0;class#UserContainerNeu#0" />
                 <element signature="method#userExisting#0;class#UserContainerNeu#0" />
                 <element signature="method#deleteUser#0;class#UserContainerNeu#0" />
+                <element signature="method#checkLogin#0;class#UserContainerNeu#0" />
+                <element signature="method#printAllUser#0;class#UserContainerNeu#0" />
                 <element signature="method#setLookAndFeel#0;class#UserContainerNeu#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LoginController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/GUI/LoginGUI/LoginController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-483">
+              <caret line="61" column="33" lean-forward="true" selection-start-line="61" selection-start-column="33" selection-end-line="61" selection-end-column="33" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="showStartWindow.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/GUI/StartGUI/showStartWindow.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="168">
+              <caret line="32" column="40" selection-start-line="32" selection-start-column="40" selection-end-line="32" selection-end-column="40" />
+              <folding>
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -65,7 +99,7 @@
       <file leaf-file-name="UserContainerTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/TestKlassen/UserContainerTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="185">
+            <state relative-caret-position="189">
               <caret line="41" column="61" lean-forward="true" selection-start-line="41" selection-start-column="61" selection-end-line="41" selection-end-column="61" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -74,22 +108,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ItemContainer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Verwaltung/ItemContainer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="422">
-              <caret line="56" column="9" lean-forward="true" selection-start-line="46" selection-start-column="8" selection-end-line="56" selection-end-column="9" />
-              <folding>
-                <element signature="method#loadInventar#0;class#ItemContainer#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Item.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Data/Item.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
+            <state relative-caret-position="105">
               <caret line="15" column="50" selection-start-line="15" selection-start-column="27" selection-end-line="15" selection-end-column="50" />
               <folding>
                 <element signature="method#Item#1;class#Item#0" />
@@ -103,37 +125,22 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Person.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Data/Person.java">
+      <file leaf-file-name="Sachgebiet.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Data/Sachgebiet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="399">
-              <caret line="31" column="54" selection-start-line="31" selection-start-column="54" selection-end-line="31" selection-end-column="54" />
-              <folding>
-                <element signature="method#Person#1;class#Person#0" />
-                <element signature="method#setName#0;class#Person#0" />
-                <element signature="method#setVorname#0;class#Person#0" />
-                <element signature="method#setMan#0;class#Person#0" />
-                <element signature="method#setRaum#0;class#Person#0" />
-                <element signature="method#setTelefonnummer#0;class#Person#0" />
-                <element signature="method#setEmail#0;class#Person#0" />
-                <element signature="method#setBenutzername#0;class#Person#0" />
-                <element signature="method#setPasswort#0;class#Person#0" />
-                <element signature="method#setAdmin#0;class#Person#0" />
-              </folding>
+            <state relative-caret-position="42">
+              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Fuhrpark.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Data/Fuhrpark.java">
+      <file leaf-file-name="StartController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/GUI/StartGUI/StartController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="84">
-              <caret line="4" column="25" lean-forward="true" selection-start-line="4" selection-start-column="25" selection-end-line="4" selection-end-column="25" />
+            <state relative-caret-position="275">
+              <caret line="307" column="9" lean-forward="true" selection-start-line="307" selection-start-column="9" selection-end-line="307" selection-end-column="9" />
               <folding>
-                <element signature="method#Fuhrpark#0;class#Fuhrpark#0" />
-                <element signature="method#Fuhrpark#1;class#Fuhrpark#0" />
-                <element signature="method#getParamNames#0;class#Fuhrpark#0" />
-                <element signature="method#setKw#0;class#Fuhrpark#0" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -153,27 +160,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Software.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Data/Software.java">
+      <file leaf-file-name="Person.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Data/Person.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="24" column="22" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="22" />
+            <state relative-caret-position="421">
+              <caret line="22" column="26" selection-start-line="22" selection-start-column="26" selection-end-line="22" selection-end-column="26" />
               <folding>
-                <element signature="method#Software#0;class#Software#0" />
-                <element signature="method#Software#1;class#Software#0" />
-                <element signature="method#getParamNames#0;class#Software#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ItemDialogs.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GUI/ViewGUI/ItemDialogs.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="42" selection-start-line="42" selection-end-line="42" />
-              <folding>
-                <element signature="method#getNewFuhrpark#0;class#ItemDialogs#0" />
+                <element signature="e#307#308#0" expanded="true" />
+                <element signature="e#371#372#0" expanded="true" />
+                <element signature="method#Person#1;class#Person#0" />
+                <element signature="method#setName#0;class#Person#0" />
+                <element signature="method#setVorname#0;class#Person#0" />
+                <element signature="method#setMan#0;class#Person#0" />
+                <element signature="method#setRaum#0;class#Person#0" />
+                <element signature="method#setTelefonnummer#0;class#Person#0" />
+                <element signature="method#setEmail#0;class#Person#0" />
+                <element signature="method#setBenutzername#0;class#Person#0" />
+                <element signature="method#setPasswort#0;class#Person#0" />
+                <element signature="method#setAdmin#0;class#Person#0" />
               </folding>
             </state>
           </provider>
@@ -194,9 +198,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/GUI/LoginGUI/LoginController.java" />
-        <option value="$PROJECT_DIR$/src/GUI/StartGUI/showStartWindow.java" />
-        <option value="$PROJECT_DIR$/src/GUI/StartGUI/StartController.java" />
         <option value="$PROJECT_DIR$/src/Data/Fuhrpark.java" />
         <option value="$PROJECT_DIR$/src/Data/Mobiliar.java" />
         <option value="$PROJECT_DIR$/src/Data/BodenUndGebaeude.java" />
@@ -207,9 +208,13 @@
         <option value="$PROJECT_DIR$/src/Data/Item.java" />
         <option value="$PROJECT_DIR$/src/TestKlassen/UserContainerTest.java" />
         <option value="$PROJECT_DIR$/src/Verwaltung/UserContainerNeu.java" />
-        <option value="$PROJECT_DIR$/src/Data/Person.java" />
         <option value="$PROJECT_DIR$/src/Verwaltung/UserContainerAlt.java" />
+        <option value="$PROJECT_DIR$/src/GUI/ViewGUI/ViewController.java" />
+        <option value="$PROJECT_DIR$/src/GUI/StartGUI/showStartWindow.java" />
+        <option value="$PROJECT_DIR$/src/Data/Person.java" />
+        <option value="$PROJECT_DIR$/src/GUI/LoginGUI/LoginController.java" />
         <option value="$PROJECT_DIR$/src/Verwaltung/UserContainer.java" />
+        <option value="$PROJECT_DIR$/src/GUI/StartGUI/StartController.java" />
       </list>
     </option>
   </component>
@@ -294,7 +299,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.UserContainerTest">
+  <component name="RunManager" selected="Application.Main">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
     </configuration>
@@ -361,8 +366,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.UserContainerTest" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="Application.UserContainerTest" />
       </list>
     </recent_temporary>
   </component>
@@ -377,12 +382,12 @@
       <option name="presentableId" value="Default" />
       <updated>1529320794207</updated>
       <workItem from="1529320809084" duration="191000" />
-      <workItem from="1529323716270" duration="5133000" />
+      <workItem from="1529323716270" duration="6548000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5660000" />
+    <option name="totallyTimeSpent" value="7075000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1455" height="935" extended-state="6" />
@@ -390,7 +395,7 @@
     <layout>
       <window_info anchor="right" id="Palette" order="5" />
       <window_info anchor="bottom" id="TODO" order="11" />
-      <window_info anchor="bottom" id="Messages" order="4" weight="0.32792208" />
+      <window_info active="true" anchor="bottom" id="Messages" order="4" visible="true" weight="0.32729468" />
       <window_info anchor="right" id="Palette&#9;" order="1" />
       <window_info id="Image Layers" order="4" />
       <window_info anchor="right" id="Capture Analysis" order="0" />
@@ -398,11 +403,11 @@
       <window_info anchor="right" id="Maven Projects" order="4" />
       <window_info anchor="bottom" id="Database Changes" order="0" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="3" weight="0.32850242" />
-      <window_info anchor="bottom" id="Run" order="7" visible="true" weight="0.30917874" />
+      <window_info anchor="bottom" id="Run" order="7" weight="0.30917874" />
       <window_info anchor="bottom" id="Terminal" order="1" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="0" />
-      <window_info active="true" content_ui="combo" id="Project" order="5" visible="true" weight="0.18736988" />
+      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.18736988" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="7" weight="0.25" />
@@ -585,34 +590,10 @@
     <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/ViewGUI/ViewController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="92" column="28" selection-start-line="92" selection-start-column="28" selection-end-line="92" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/LoginGUI/LoginController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="735">
-          <caret line="122" selection-start-line="122" selection-end-line="122" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI/LoginGUI/ProgramStart.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="651">
           <caret line="43" column="1" selection-start-line="43" selection-start-column="1" selection-end-line="43" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/StartGUI/showStartWindow.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="735">
-          <caret line="63" column="9" selection-start-line="63" selection-start-column="9" selection-end-line="63" selection-end-column="9" />
         </state>
       </provider>
     </entry>
@@ -623,21 +604,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/StartGUI/StartController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="173">
-          <caret line="181" selection-start-line="181" selection-end-line="181" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Data/Abteilung.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Data/Sachgebiet.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="42">
           <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
@@ -697,39 +664,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Data/Hardware.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="13" column="5" lean-forward="true" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
-          <folding>
-            <element signature="method#Hardware#0;class#Hardware#0" />
-            <element signature="method#Hardware#1;class#Hardware#0" />
-            <element signature="method#getParamNames#0;class#Hardware#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Verwaltung/ItemContainer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="422">
           <caret line="56" column="9" lean-forward="true" selection-start-line="46" selection-start-column="8" selection-end-line="56" selection-end-column="9" />
           <folding>
             <element signature="method#loadInventar#0;class#ItemContainer#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Data/Item.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="15" column="50" selection-start-line="15" selection-start-column="27" selection-end-line="15" selection-end-column="50" />
-          <folding>
-            <element signature="method#Item#1;class#Item#0" />
-            <element signature="method#display#0;class#Item#0" />
-            <element signature="method#setAnschaffungswert#0;class#Item#0" />
-            <element signature="method#setInserierungsdatum#0;class#Item#0" />
-            <element signature="method#setInserierungsdatumString#0;class#Item#0" />
-            <element signature="method#round#0;class#Item#0" />
           </folding>
         </state>
       </provider>
@@ -743,35 +683,6 @@
             <element signature="method#Fuhrpark#1;class#Fuhrpark#0" />
             <element signature="method#getParamNames#0;class#Fuhrpark#0" />
             <element signature="method#setKw#0;class#Fuhrpark#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Data/Person.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="399">
-          <caret line="31" column="54" selection-start-line="31" selection-start-column="54" selection-end-line="31" selection-end-column="54" />
-          <folding>
-            <element signature="method#Person#1;class#Person#0" />
-            <element signature="method#setName#0;class#Person#0" />
-            <element signature="method#setVorname#0;class#Person#0" />
-            <element signature="method#setMan#0;class#Person#0" />
-            <element signature="method#setRaum#0;class#Person#0" />
-            <element signature="method#setTelefonnummer#0;class#Person#0" />
-            <element signature="method#setEmail#0;class#Person#0" />
-            <element signature="method#setBenutzername#0;class#Person#0" />
-            <element signature="method#setPasswort#0;class#Person#0" />
-            <element signature="method#setAdmin#0;class#Person#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/TestKlassen/UserContainerTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="41" column="61" lean-forward="true" selection-start-line="41" selection-start-column="61" selection-end-line="41" selection-end-column="61" />
-          <folding>
-            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -793,19 +704,128 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/ViewGUI/ViewController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="178" column="74" selection-start-line="178" selection-start-column="74" selection-end-line="178" selection-end-column="74" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/StartGUI/showStartWindow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="32" column="40" selection-start-line="32" selection-start-column="40" selection-end-line="32" selection-end-column="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Data/Person.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="421">
+          <caret line="22" column="26" selection-start-line="22" selection-start-column="26" selection-end-line="22" selection-end-column="26" />
+          <folding>
+            <element signature="e#307#308#0" expanded="true" />
+            <element signature="e#371#372#0" expanded="true" />
+            <element signature="method#Person#1;class#Person#0" />
+            <element signature="method#setName#0;class#Person#0" />
+            <element signature="method#setVorname#0;class#Person#0" />
+            <element signature="method#setMan#0;class#Person#0" />
+            <element signature="method#setRaum#0;class#Person#0" />
+            <element signature="method#setTelefonnummer#0;class#Person#0" />
+            <element signature="method#setEmail#0;class#Person#0" />
+            <element signature="method#setBenutzername#0;class#Person#0" />
+            <element signature="method#setPasswort#0;class#Person#0" />
+            <element signature="method#setAdmin#0;class#Person#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Data/Hardware.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="13" column="5" lean-forward="true" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
+          <folding>
+            <element signature="method#Hardware#0;class#Hardware#0" />
+            <element signature="method#Hardware#1;class#Hardware#0" />
+            <element signature="method#getParamNames#0;class#Hardware#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Data/Item.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="15" column="50" selection-start-line="15" selection-start-column="27" selection-end-line="15" selection-end-column="50" />
+          <folding>
+            <element signature="method#Item#1;class#Item#0" />
+            <element signature="method#display#0;class#Item#0" />
+            <element signature="method#setAnschaffungswert#0;class#Item#0" />
+            <element signature="method#setInserierungsdatum#0;class#Item#0" />
+            <element signature="method#setInserierungsdatumString#0;class#Item#0" />
+            <element signature="method#round#0;class#Item#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Data/Sachgebiet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/LoginGUI/LoginController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-483">
+          <caret line="61" column="33" lean-forward="true" selection-start-line="61" selection-start-column="33" selection-end-line="61" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/TestKlassen/UserContainerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="41" column="61" lean-forward="true" selection-start-line="41" selection-start-column="61" selection-end-line="41" selection-end-column="61" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Verwaltung/UserContainer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="314">
-          <caret line="141" column="9" lean-forward="true" selection-start-line="141" selection-start-column="9" selection-end-line="141" selection-end-column="9" />
+        <state relative-caret-position="198">
+          <caret line="91" column="32" selection-start-line="91" selection-start-column="20" selection-end-line="91" selection-end-column="32" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#239#247#0" expanded="true" />
+            <element signature="method#insertUser#0;class#UserContainerNeu#0" />
             <element signature="method#userIsDuplicate#0;class#UserContainerNeu#0" />
+            <element signature="method#safeUserData#0;class#UserContainerNeu#0" />
             <element signature="method#loadUserData#0;class#UserContainerNeu#0" />
             <element signature="method#getPersonByUsername#0;class#UserContainerNeu#0" />
             <element signature="method#userExisting#0;class#UserContainerNeu#0" />
             <element signature="method#deleteUser#0;class#UserContainerNeu#0" />
+            <element signature="method#checkLogin#0;class#UserContainerNeu#0" />
+            <element signature="method#printAllUser#0;class#UserContainerNeu#0" />
             <element signature="method#setLookAndFeel#0;class#UserContainerNeu#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/StartGUI/StartController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="307" column="9" lean-forward="true" selection-start-line="307" selection-start-column="9" selection-end-line="307" selection-end-column="9" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

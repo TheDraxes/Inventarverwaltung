@@ -3,7 +3,7 @@ package GUI.ViewGUI;
 
 import Data.Item;
 import Verwaltung.ItemContainer;
-import Verwaltung.UserContainerAlt;
+import Verwaltung.UserContainer;
 import GUI.StartGUI.StartController;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.value.ObservableValue;
@@ -65,7 +65,7 @@ public class ViewController implements Initializable {
     @FXML
     private TableColumn countColumn;
 
-    private UserContainerAlt userContainer;
+    private UserContainer userContainer;
 
     private ItemContainer itemContainer = new ItemContainer();
 
@@ -176,7 +176,7 @@ public class ViewController implements Initializable {
         fillTable();
     }
 
-    public void getParams(String inventoryName, String path, UserContainerAlt userContainer, String user){
+    public void getParams(String inventoryName, String path, UserContainer userContainer, String user){
         nameLabel.setText("Eingeloggt als: " + user);
         this.path = path;
         this.invName = inventoryName;
