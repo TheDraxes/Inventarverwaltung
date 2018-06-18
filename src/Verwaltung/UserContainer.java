@@ -174,6 +174,15 @@ public class UserContainer implements Serializable{
             System.out.println(userData[i][0]);
         }
     }
+
+    public boolean userExisting(String user){
+        for(int i = 0; i < userData.length; i++){
+            if(userData[i][0].equals(user)){
+                return true;
+            }
+        }
+        return false;
+    }
     private void setLookAndFeel(){
         String laf = UIManager.getSystemLookAndFeelClassName();
         try {

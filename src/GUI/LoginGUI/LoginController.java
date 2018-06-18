@@ -1,5 +1,6 @@
 package GUI.LoginGUI;
 
+import GUI.Dialogs;
 import GUI.StartGUI.StartController;
 import GUI.StartGUI.showStartWindow;
 import Verwaltung.UserContainer;
@@ -58,6 +59,8 @@ public class LoginController {
 
         File userLogins = new File("user.dat");
 
+        userContainer.printAllUser();
+
         if(userLogins.exists()) {
             userContainer = new UserContainer().loadUserData();
             System.out.println("**Bestehende Userdaten eingelesen");
@@ -70,6 +73,7 @@ public class LoginController {
     }
 
     /**
+     *
      * Fängt Keyboard eingaben ab und ruft die loginButtonClicked funktion auf
      * falls die Entertaste gedrückt wurde.
      *
@@ -100,22 +104,28 @@ public class LoginController {
 
     @FXML
     void loginButtonClicked() {
-        if(userContainer.checkLogin(usernameField.getText(),passwordField.getText())){
+        String username = usernameField.getText();
+        String password = passwordField.getText();
+
+        if(userContainer.checkLogin(username, password)){
             Stage lastWindow = (Stage) loginButton.getScene().getWindow();
             lastWindow.hide();
-            new showStartWindow(this.userContainer, usernameField.getText());
+            new showStartWindow(this.userContainer, username);
         } else {
-            if(loginTries == 0){
-                lastUser = usernameField.getText();
+            if(userContainer.userExisting(username) && loginTries == 0){
+                lastUser = username;
                 loginTries++;
-            } else if(lastUser.equals(usernameField.getText())){
+            } else if(username.equals(lastUser)){
                 loginTries++;
-                lastUser = usernameField.getText();
-            }
-            if(!(loginTries == 3)) {
-                new StartController().warnDialog(" Nutzername oder Passwort falsch!");
             } else {
-                new StartController().warnDialog("Anmeldung gesperrt!");
+                loginTries = 1;
+                lastUser = username;
+            }
+
+            if(loginTries < 4){
+                Dialogs.warnDialog("Nutzername oder Passwort falsch!", "Passwort " + loginTries + " mal falsch eingegeben!");
+            } else {
+                Dialogs.warnDialog("Nutzername oder Passwort falsch!", "Account Gesperrt!!");
             }
         }
     }

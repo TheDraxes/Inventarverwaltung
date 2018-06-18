@@ -2,6 +2,7 @@ package GUI.ViewGUI;
 
 import Data.Fuhrpark;
 import Data.Item;
+import GUI.Dialogs;
 import GUI.StartGUI.StartController;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
@@ -46,7 +47,7 @@ public class ItemDialogs {
                     newItemData.get(labelNames[1]).equals("") ||
                     newItemData.get(labelNames[2]).equals("") ||
                     newItemData.get(labelNames[3]).equals("")) {
-                new StartController().warnDialog("Alle mit einem * markierten Felder müssen Ausgefüllt werden!");
+                Dialogs.warnDialog("Alle mit einem * markierten Felder müssen Ausgefüllt werden!","Warnung");
                 return null;
             }
 
@@ -95,6 +96,7 @@ public class ItemDialogs {
 
     public Hashtable<String, String> buildNewItemWindow(){
         Dialog<Hashtable<String,String>> dialog = new Dialog<>();
+        
         dialog.setTitle("Neues Item");
         ButtonType addButton = new ButtonType("Hinzufügen" ,ButtonBar.ButtonData.OK_DONE);
         dialog.getDialogPane().getButtonTypes().addAll(addButton, ButtonType.CANCEL);

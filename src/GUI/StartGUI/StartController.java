@@ -1,5 +1,6 @@
 package GUI.StartGUI;
 
+import GUI.Dialogs;
 import Verwaltung.ItemContainer;
 import Verwaltung.UserContainer;
 import GUI.ViewGUI.ViewController;
@@ -94,7 +95,7 @@ public class StartController implements Initializable {
     @FXML
     void deleteClicked(ActionEvent event) {
         File a = new File(path + "/" + InventarBox.getValue() + ".Inv");
-        boolean confirmed = confirmDialog(InventarBox.getValue() + " wirklich Löschen?");
+        boolean confirmed = Dialogs.confirmDialog(InventarBox.getValue() + " wirklich Löschen?");
         if(confirmed && a.exists()){
             System.out.println(a.getPath());
             a.delete();
@@ -141,7 +142,7 @@ public class StartController implements Initializable {
     @FXML
     void newClicked(ActionEvent event) {
 
-        String input = askForName();
+        String input = Dialogs.inputDialog("Inventar","Eingabe", "Inventarnamen Eingeben!");
 
         if(input == null){
             System.out.println("**Anlgen abgebrochen abgebrochen");
@@ -160,7 +161,7 @@ public class StartController implements Initializable {
                 }
                 initialize();
             } else {
-                warnDialog("Keinen Namen Eingegeben!");
+                Dialogs.warnDialog("Keinen Namen Eingegeben!", "Warnung");
             }
         }
     }
@@ -187,21 +188,11 @@ public class StartController implements Initializable {
             newWindow.setScene(new Scene(root));
             newWindow.show();
         } else {
-            warnDialog("Keinen Eintrag ausgewählt!");
+            Dialogs.warnDialog("Keinen Eintrag ausgewählt!", "Warnung");
         }
 
     }
-    protected String askForName(){
-        TextInputDialog dialog = new TextInputDialog("Inventar");
-        dialog.setTitle("Eingabe Dialog");
-        dialog.setHeaderText("Bitte den Namen des Inventars eingeben");
 
-        Optional<String> result = dialog.showAndWait();
-        if (result.isPresent()){
-            System.out.println("**Inventarname: " + result.get());
-        }
-        return result.get();
-    }
 
     @FXML
     void newUserClicked(ActionEvent event){
@@ -212,11 +203,11 @@ public class StartController implements Initializable {
                 break;
             } else {
                 if (userContainer.userIsDuplicate(a[0])) {
-                    warnDialog("Username Bereits belegt");
+                    Dialogs.warnDialog("Username Bereits belegt", "Warnung");
                 } else if (!a[1].equals(a[2])) {
-                    warnDialog("Passwörter stimmen nicht Überein!");
+                    Dialogs.warnDialog("Passwörter stimmen nicht Überein!","Warnung");
                 } else if (a[0].equals("")|| a[1].equals("") || a[2].equals(3)){
-                    warnDialog("Alle drei Felder müssen ausgefüllt werde!");
+                    Dialogs.warnDialog("Alle drei Felder müssen ausgefüllt werde!","Warnung");
                 } else {
                     userContainer.insertUser(a[0], a[1]);
                     userContainer.safeUserData();
@@ -237,7 +228,7 @@ public class StartController implements Initializable {
                     if (!deletedUsers[i].equals("admin")) {
                         userContainer.deleteUser(deletedUsers[i]);
                     } else {
-                        warnDialog("Der Admin Account kann nicht gelöscht werden!");
+                        Dialogs.warnDialog("Der Admin Account kann nicht gelöscht werden!", "Warnung");
                     }
                 }
             }
@@ -269,28 +260,6 @@ public class StartController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
-    }
-
-    public void warnDialog(String warning){
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Warnung");
-        alert.setHeaderText("Warnung");
-        alert.setContentText(warning);
-
-        alert.showAndWait();
-    }
-
-    public boolean confirmDialog(String confirmation){
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Confirmation Dialog");
-        alert.setHeaderText(confirmation);
-
-        Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == ButtonType.OK){
-            return true;
-        } else {
-            return false;
-        }
     }
 
     public String[] buildDeleteUserWindow(){

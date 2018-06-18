@@ -17,16 +17,7 @@ public class UserContainerTest {
 
         System.out.println(a.getIndexOfUser("Tim"));
 
-        a.printAllUser();
-        a.deleteUser("Tim");
-
-        System.out.println();
-        a.printAllUser();
-
-        a.deleteUser("Marsl");
-
-        System.out.println();
-        a.printAllUser();
+        System.out.println(a.userExisting("sdiushgui"));
 
     }
 }
