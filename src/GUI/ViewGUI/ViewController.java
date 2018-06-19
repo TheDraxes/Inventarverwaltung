@@ -160,20 +160,22 @@ public class ViewController implements Initializable {
     @FXML
     void addItemClicked(ActionEvent event) {
         String itemType = askForItemType();
-        while(true) {
-            Pair<Item, Boolean> a = new ItemDialogs().getNewItem(itemType);
-            if(a.getKey() == null || a.getValue().equals("")) {
+        if (itemType != "" && itemType != null) {
+            while (true) {
+                Pair<Item, Boolean> a = new ItemDialogs().getNewItem(itemType);
+                if (a.getKey() == null || a.getValue().equals("")) {
 
-            } else if (a.getValue()) {
-                itemContainer.insertItem(a.getKey());
-                break;
-            } else {
-                System.out.println("**Vorgang abgebrochen!");
-                break;
+                } else if (a.getValue()) {
+                    itemContainer.insertItem(a.getKey());
+                    break;
+                } else {
+                    System.out.println("**Vorgang abgebrochen!");
+                    break;
+                }
             }
-        }
 
-        fillTable();
+            fillTable();
+        }
     }
 
     public void getParams(String inventoryName, String path, UserContainer userContainer, String user){
