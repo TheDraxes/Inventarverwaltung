@@ -4,6 +4,7 @@ import GUI.ViewGUI.ItemDialogs;
 
 public class DialogsTest {
     public static void main (String[] args){
-        new ItemDialogs().buildNewFurhparkWindow();
+
+        System.out.println(Integer.parseInt(new String("230kw").substring(0,3)));
     }
 }

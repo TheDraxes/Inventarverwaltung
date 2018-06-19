@@ -87,11 +87,20 @@ public class ItemDialogs {
                 int kmstand = Integer.parseInt(newItemData.get(labelNames[6]));
                 newFuhrpark.setKilometerstand(kmstand);
             }
-            /*
-            if(!newItemData.get(labelNames[7]).equals("")){
-                //Leistung
+
+            String input = newItemData.get(labelNames[7]);
+
+            if(!input.equals("")){
+                String type = input.substring(input.length()-2,input.length());
+                String power = input.substring(0,input.length()-2);
+
+                if(type.equals("Ps")){
+                    newFuhrpark.setPs(Integer.parseInt(power));
+                } else {
+                    newFuhrpark.setKw(Integer.parseInt(power));
+                }
             }
-            */
+
             newFuhrpark.setInserierungsdatum(new Date(System.currentTimeMillis()));
             return newFuhrpark;
         } else {

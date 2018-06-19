@@ -27,16 +27,12 @@ public class Fuhrpark extends Item{
 		String[] superiorParams = super.getParamNames();
 		String[] allParams = new String[getParamAnzahl()];
 
-		System.out.println("Hauptparameter: " + superiorParams.length);
-		System.out.println("Allparameter: " + allParams.length);
-
 		for(int i = 0; i < superiorParams.length; i++){
 			allParams[i] = superiorParams[i];
 		}
 		int anz = 0;
 		for(int i = superiorParams.length; i < allParams.length; i++){
 			allParams[i] = this.paramNames[anz];
-			System.out.println("anz: " + anz);
 			anz++;
 		}
 		return allParams;
