@@ -10,13 +10,12 @@ public class Fuhrpark extends Item{
 	private double ps;
 	private int kilometerstand;
 
-	private int ParamAnzahl = 5;
+	private int ParamAnzahl = 4;
 	private String[] paramNames = {
 			"Kennzeichen",
-			"Fahrzeugart",
 			"Fahrgestellnummer",
-			"Leistung in kw",
-			"Kilometerstand"
+			"Kilometerstand",
+			"Leistung"
 		};
 
 	public Fuhrpark() {
@@ -40,12 +39,17 @@ public class Fuhrpark extends Item{
 	public String[] getParamNames(){
 		String[] superiorParams = super.getParamNames();
 		String[] allParams = new String[getParamAnzahl()];
+
+		System.out.println("Hauptparameter: " + superiorParams.length);
+		System.out.println("Allparameter: " + allParams.length);
+
 		for(int i = 0; i < superiorParams.length; i++){
 			allParams[i] = superiorParams[i];
 		}
 		int anz = 0;
 		for(int i = superiorParams.length; i < allParams.length; i++){
 			allParams[i] = this.paramNames[anz];
+			System.out.println("anz: " + anz);
 			anz++;
 		}
 		return allParams;
