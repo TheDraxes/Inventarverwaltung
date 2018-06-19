@@ -65,32 +65,32 @@ public class StartController implements Initializable {
     @FXML
     public void initialize(){
 
-            ObservableList<String> _default = FXCollections.observableArrayList();
-            File lookUp = new File(path);
+        ObservableList<String> _default = FXCollections.observableArrayList();
+        File lookUp = new File(path);
 
-            if (lookUp.exists()) {
-                File[] fileArray = lookUp.listFiles();
-                anz = 0;
-                for (int i = 0; i < fileArray.length; i++) {
-                    if (fileArray[i].getName().endsWith(".Inv")) {
-                        _default.add(fileArray[i].getName().substring(0, fileArray[i].getName().length() - 4));
-                        anz++;
-                    }
-                }
-                InventarBox.setItems(_default);
-                if(anz != 0) {
-                    InventarBox.setValue(_default.get(0));
-                } else {
-                    InventarBox.setValue("Kein Eintrag gefunden!");
+        if (lookUp.exists()) {
+            File[] fileArray = lookUp.listFiles();
+            anz = 0;
+            for (int i = 0; i < fileArray.length; i++) {
+                if (fileArray[i].getName().endsWith(".Inv")) {
+                    _default.add(fileArray[i].getName().substring(0, fileArray[i].getName().length() - 4));
+                    anz++;
                 }
             }
-
-            if(user.equals("admin")){
-                adminMenue.setVisible(true);
+            InventarBox.setItems(_default);
+            if(anz != 0) {
+                InventarBox.setValue(_default.get(0));
             } else {
-                adminMenue.setVisible(false);
+                InventarBox.setValue("Kein Eintrag gefunden!");
             }
-            System.out.println("**Start Fenster Initialisiert");
+        }
+
+        if(user.equals("admin")){
+            adminMenue.setVisible(true);
+        } else {
+            adminMenue.setVisible(false);
+        }
+        System.out.println("**Start Fenster Initialisiert");
     }
 
     @FXML
@@ -202,16 +202,21 @@ public class StartController implements Initializable {
             if (a == null) {
                 break;
             } else {
-                if (userContainer.userIsDuplicate(a[0])) {
-                    Dialogs.warnDialog("Username Bereits belegt", "Warnung");
-                } else if (!a[1].equals(a[2])) {
+               if (!a[3].equals(a[4])) {
                     Dialogs.warnDialog("Passwörter stimmen nicht Überein!","Warnung");
-                } else if (a[0].equals("")|| a[1].equals("") || a[2].equals(3)){
-                    Dialogs.warnDialog("Alle drei Felder müssen ausgefüllt werde!","Warnung");
+                } else if (a[0].equals("")|| a[1].equals("") || a[2].equals("") || a[3].equals("") || a[4].equals("") || a[5].equals("")){
+                    Dialogs.warnDialog("Alle Felder müssen ausgefüllt werden!","Warnung");
                 } else {
-                    Person newUser = new Person();
-                    newUser.setUsername(a[0]);
-                    newUser.setPassword(a[1]);
+                   boolean men = false;
+                   if(a[2].equals("Männlich")) {
+                       men = true;
+                   }
+                   boolean admin = false;
+                   if(a[5].equals("Ja")){
+                       admin = true;
+                   }
+
+                    Person newUser = new Person(a[1],a[0],men,a[3], admin);
 
                     userContainer.insertUser(newUser);
 
@@ -221,6 +226,8 @@ public class StartController implements Initializable {
                 }
             }
         }
+
+        userContainer.printAllUser();
     }
     @FXML
     public void deleteUser(){
@@ -335,39 +342,59 @@ public class StartController implements Initializable {
         grid.setVgap(10);
         grid.setPadding(new Insets(20,150,10,10));
 
-        TextField username = new TextField();
-        username.setPromptText("Nutzername");
+        TextField firstName = new TextField();
+        firstName.setPromptText("Vorname");
+        TextField secoundName = new TextField();
+        secoundName.setPromptText("Nachname");
+
+        ObservableList<String> genderOptions =
+                FXCollections.observableArrayList(
+                        "Männlich",
+                        "Weiblich"
+                );
+        ComboBox gender = new ComboBox(genderOptions);
+        gender.setValue("Weiblich");
+
         PasswordField password = new PasswordField();
         password.setPromptText("Passwort");
         PasswordField passwordConfirm = new PasswordField();
         passwordConfirm.setPromptText("Passwort bestätigen");
 
-        grid.add(new Label("Nutzername: "), 0, 0);
-        grid.add(username,1,0);
+        ObservableList<String> adminOptions =
+                FXCollections.observableArrayList(
+                        "Ja",
+                        "Nein"
+                );
+        ComboBox admin = new ComboBox(adminOptions);
+        admin.setValue("Nein");
 
-        grid.add(new Label("Passwort: "), 0, 1);
-        grid.add(password,1,1);
+        grid.add(new Label("Vorname: "), 0, 0);
+        grid.add(firstName,1,0);
+        grid.add(new Label("Nachname: "), 0, 1);
+        grid.add(secoundName,1,1);
+        grid.add(new Label("Geschlecht: "), 0, 2);
+        grid.add(gender,1,2);
+        grid.add(new Label("Passwort: "), 0, 3);
+        grid.add(password,1,3);
+        grid.add(new Label("Passwort bestätigen: "), 0, 4);
+        grid.add(passwordConfirm,1,4);
 
-        grid.add(new Label("Passwort bestätigen: "), 0, 2);
-        grid.add(passwordConfirm,1,2);
-
-        Node Button = dialog.getDialogPane().lookupButton(addButton);
-        Button.setDisable(true);
-
-        username.textProperty().addListener(((observable, oldValue, newValue) -> {
-            Button.setDisable(newValue.trim().isEmpty());
-        }));
+        grid.add(new Label("Admin: "), 0, 5);
+        grid.add(admin,1,5);
 
         dialog.getDialogPane().setContent(grid);
 
-        Platform.runLater(() -> username.requestFocus());
+        Platform.runLater(() -> firstName.requestFocus());
 
         dialog.setResultConverter(dialogButton -> {
             if(dialogButton == addButton){
-                String[] array = new String[3];
-                array[0] = username.getText();
-                array[1] = password.getText();
-                array[2] = passwordConfirm.getText();
+                String[] array = new String[6];
+                array[0] = firstName.getText();
+                array[1] = secoundName.getText();
+                array[2] = (String)gender.getValue();
+                array[3] = password.getText();
+                array[4] = passwordConfirm.getText();
+                array[5] = (String)admin.getValue();
                 return array;
             } else if(dialogButton == ButtonType.CANCEL){
                 return null;
