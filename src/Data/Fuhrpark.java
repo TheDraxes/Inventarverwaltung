@@ -40,10 +40,10 @@ public class Fuhrpark extends Asset {
 
 	public void display() {
 		super.display();
-		System.out.println("Kennzeichen: " + kennzeichen);
-		System.out.println("Fahrgestellnummer: " + fahrgestellnummer);
-		System.out.println("Leistung: " + kw + "(" + ps + ")");
-		System.out.println("Kilomenterstand: " + kilometerstand);
+		System.out.println("Kennzeichen:         " + kennzeichen);
+		System.out.println("Fahrgestellnummer:   " + fahrgestellnummer);
+		System.out.println("Leistung:            " + kw + " kw (" + ps + " ps)");
+		System.out.println("Kilomenterstand:     " + kilometerstand);
 	}
 
 	public String getKennzeichen() {
