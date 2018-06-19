@@ -1,8 +1,6 @@
 package Data;
 
-import java.util.Date;
-
-public class Software extends Item{
+public class Software extends Asset {
     private String version;
 
     private int paramAnzahl = 1;

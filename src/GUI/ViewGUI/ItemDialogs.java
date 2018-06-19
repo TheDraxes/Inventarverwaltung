@@ -1,7 +1,7 @@
 package GUI.ViewGUI;
 
 import Data.Fuhrpark;
-import Data.Item;
+import Data.Asset;
 import GUI.Dialogs;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -28,7 +28,7 @@ public class ItemDialogs {
         this.kw_ps.setValue("Kw");
     }
 
-    public Pair<Item, Boolean> getNewItem(String itemTyp){
+    public Pair<Asset, Boolean> getNewItem(String itemTyp){
         this.itemType = itemTyp;
         setTextFields(itemType);
         if(itemTyp != null){
@@ -47,7 +47,7 @@ public class ItemDialogs {
         }
     }
 
-    public Item getNewFuhrpark(Hashtable<String,String> newItemData){
+    public Asset getNewFuhrpark(Hashtable<String,String> newItemData){
         Fuhrpark newFuhrpark = new Fuhrpark();
         if(newItemData != null) {
             if (newItemData.get(labelNames[0]).equals("") ||

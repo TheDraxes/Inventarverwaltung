@@ -1,20 +1,19 @@
 package Verwaltung;
 
-import Data.Item;
-import Data.Person;
+import Data.Asset;
 
 import java.io.*;
 import java.util.*;
 
 public class ItemContainer implements Serializable{
-    private ArrayList<Item> ItemList = new ArrayList<Item>();
+    private ArrayList<Asset> assetList = new ArrayList<Asset>();
     private long id = 0;
     private String[] existingItemTypes = {"Boden und Gebäude", "Fuhrpark", "Hardware", "Mobiliar", "Software", "Sonstiges"};
 
-    public Item getItemById(long id) {
-        Iterator<Item> it = ItemList.iterator();
+    public Asset getItemById(long id) {
+        Iterator<Asset> it = assetList.iterator();
         while (it.hasNext()) {
-            Item i = it.next();
+            Asset i = it.next();
             if(i.getInventarnummer() == id) {
                 return i;
             }
@@ -22,35 +21,35 @@ public class ItemContainer implements Serializable{
         return null;
     }
 
-    public void editItem(Item i) {
+    public void editItem(Asset i) {
 
     }
 
 
 
-    public void insertItem(Item i) {
+    public void insertItem(Asset i) {
         id++;
         i.setInventarnummer(id);
 
-        ItemList.add(i);
+        assetList.add(i);
         System.out.println("**Item hinzugefügt");
     }
 
-    public void deleteItem(Item i) {
-        ItemList.remove(i);
+    public void deleteItem(Asset i) {
+        assetList.remove(i);
         System.out.println("**Item entfernt");
     }
 
     public void showAll() {
         System.out.println("**Ausgabe aller Items");
-        Iterator<Item> it = ItemList.iterator();
+        Iterator<Asset> it = assetList.iterator();
         while (it.hasNext()) {
             it.next().display();
         }
     }
 
-    public ArrayList<Item> getItemList(){
-        return this.ItemList;
+    public ArrayList<Asset> getAssetList(){
+        return this.assetList;
     }
 
     public void safeInventar(String path){

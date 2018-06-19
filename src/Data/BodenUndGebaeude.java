@@ -1,8 +1,6 @@
 package Data;
 
-import java.util.Date;
-
-public class BodenUndGebaeude extends Item {
+public class BodenUndGebaeude extends Asset {
     private int plz;
     private String ort;
     private String strasse;

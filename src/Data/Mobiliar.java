@@ -1,8 +1,6 @@
 package Data;
 
-import java.util.Date;
-
-public class Mobiliar extends Item{
+public class Mobiliar extends Asset {
     private int raum;
 
     private int paramAnzahl = 1;

@@ -1,8 +1,6 @@
 package Data;
 
-import java.util.Date;
-
-public class Hardware extends Item{
+public class Hardware extends Asset {
     private int raum;
 
     private int paramAnzahl = 1;

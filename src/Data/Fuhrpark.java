@@ -1,6 +1,6 @@
 package Data;
 
-public class Fuhrpark extends Item{
+public class Fuhrpark extends Asset {
 	private String kennzeichen;
 	private long fahrgestellnummer;
 	private int kw;

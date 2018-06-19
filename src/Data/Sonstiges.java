@@ -1,7 +1,5 @@
 package Data;
 
-import java.util.Date;
-
-public class Sonstiges extends Item{
+public class Sonstiges extends Asset {
 
 }

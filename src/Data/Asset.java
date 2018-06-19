@@ -13,7 +13,7 @@ import java.util.Date;
     Muss noch um umfangreiche Funktionen Erweitert werden
 
  */
-public abstract class Item implements Serializable {
+public abstract class Asset implements Serializable {
     private long inventarnummer;
 	private String bezeichnung;
 	private double anschaffungswert;
@@ -36,12 +36,12 @@ public abstract class Item implements Serializable {
             "Anzahl"
 	};
 
-	public Item() {
+	public Asset() {
 
 
     }
 
-    public Item(long inventarnummer, String bezeichnung, double anschaffungswert, int tnd, Date ablaufdatum, Sachgebiet sachgebiet, Date inserierungsdatum, int anzahl) {
+    public Asset(long inventarnummer, String bezeichnung, double anschaffungswert, int tnd, Date ablaufdatum, Sachgebiet sachgebiet, Date inserierungsdatum, int anzahl) {
         this.inventarnummer = inventarnummer;
 	    this.bezeichnung = bezeichnung;
         this.setAnschaffungswert(anschaffungswert);
@@ -73,7 +73,7 @@ public abstract class Item implements Serializable {
         System.out.println("Anzahl:              " + anzahl);
     }
 
-    public Item(long inventarnummer) {
+    public Asset(long inventarnummer) {
         this.inventarnummer = inventarnummer;
     }
 

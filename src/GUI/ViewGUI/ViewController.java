@@ -1,7 +1,7 @@
 package GUI.ViewGUI;
 
 
-import Data.Item;
+import Data.Asset;
 import Verwaltung.ItemContainer;
 import Verwaltung.UserContainer;
 import GUI.StartGUI.StartController;
@@ -45,7 +45,7 @@ public class ViewController implements Initializable {
     private Label nameLabel;
 
     @FXML
-    private TableView<Item> itemTable = new TableView<Item>();
+    private TableView<Asset> itemTable = new TableView<Asset>();
 
     @FXML
     private TableColumn NRColumn;
@@ -85,13 +85,13 @@ public class ViewController implements Initializable {
 
         itemContainer = itemContainer.loadInventar(a.getPath());
 
-        ArrayList<Item> arrayList = itemContainer.getItemList();
+        ArrayList<Asset> arrayList = itemContainer.getAssetList();
 
         fillTable();
 
     }
     public void fillTable(){
-        ArrayList<Item> arrayList = itemContainer.getItemList();
+        ArrayList<Asset> arrayList = itemContainer.getAssetList();
 
 
         NRColumn.setCellValueFactory(new PropertyValueFactory<>("inventarnummer"));
@@ -101,30 +101,30 @@ public class ViewController implements Initializable {
         dateColumn.setCellValueFactory(new PropertyValueFactory<>("inserierungsdatumString"));
 
         ActionColumn.setCellValueFactory(
-                new Callback<TableColumn.CellDataFeatures<Item, Boolean>,
+                new Callback<TableColumn.CellDataFeatures<Asset, Boolean>,
                         ObservableValue<Boolean>>() {
 
                     @Override
-                    public ObservableValue<Boolean> call(TableColumn.CellDataFeatures<Item, Boolean> p) {
+                    public ObservableValue<Boolean> call(TableColumn.CellDataFeatures<Asset, Boolean> p) {
                         return new SimpleBooleanProperty(p.getValue() != null);
                     }
                 });
         ActionColumn.setCellFactory(
-                new Callback<TableColumn<Item, Boolean>, TableCell<Item, Boolean>>() {
+                new Callback<TableColumn<Asset, Boolean>, TableCell<Asset, Boolean>>() {
                     @Override
-                    public TableCell<Item, Boolean> call(TableColumn<Item, Boolean> p) {
+                    public TableCell<Asset, Boolean> call(TableColumn<Asset, Boolean> p) {
                         return new ButtonCell();
                     }
                 });
 
 
-        ObservableList<Item> list = FXCollections.observableArrayList(arrayList);
+        ObservableList<Asset> list = FXCollections.observableArrayList(arrayList);
 
         itemTable.setItems(list);
     }
 
     //Define the button cell
-    private class ButtonCell extends TableCell<Item, Boolean> {
+    private class ButtonCell extends TableCell<Asset, Boolean> {
         final Button cellButton = new Button("        ");
 
         ButtonCell(){
@@ -138,9 +138,9 @@ public class ViewController implements Initializable {
                 @Override
                 public void handle(ActionEvent t) {
                     // get Selected Item
-                    Item selectedItem = (Item) ButtonCell.this.getTableView().getItems().get(ButtonCell.this.getIndex());
+                    Asset selectedAsset = (Asset) ButtonCell.this.getTableView().getItems().get(ButtonCell.this.getIndex());
 
-                    selectedItem.display();
+                    selectedAsset.display();
                 }
             });
         }
@@ -162,7 +162,7 @@ public class ViewController implements Initializable {
         String itemType = askForItemType();
         if (itemType != "" && itemType != null) {
             while (true) {
-                Pair<Item, Boolean> a = new ItemDialogs().getNewItem(itemType);
+                Pair<Asset, Boolean> a = new ItemDialogs().getNewItem(itemType);
                 if (a.getKey() == null || a.getValue().equals("")) {
 
                 } else if (a.getValue()) {
@@ -232,7 +232,6 @@ public class ViewController implements Initializable {
         StartController controller = loader.getController();
         controller.getParams(path,userContainer,user);
 
-        
         Stage stage = new Stage();
         stage.setTitle("Inventarverwaltung 1.0");
         stage.setScene(new Scene(root));

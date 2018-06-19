@@ -1,8 +1,6 @@
 package TestKlassen;
 
 import Data.Fuhrpark;
-import Data.Item;
-import Verwaltung.ItemContainer;
 
 public class ItemContainerTest {
     public static void main(String [] args){
