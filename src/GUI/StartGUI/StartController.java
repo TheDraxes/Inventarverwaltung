@@ -202,16 +202,21 @@ public class StartController implements Initializable {
             if (a == null) {
                 break;
             } else {
-                if (userContainer.userIsDuplicate(a[0])) {
-                    Dialogs.warnDialog("Username Bereits belegt", "Warnung");
-                } else if (!a[1].equals(a[2])) {
+               if (!a[3].equals(a[4])) {
                     Dialogs.warnDialog("Passwörter stimmen nicht Überein!","Warnung");
-                } else if (a[0].equals("")|| a[1].equals("") || a[2].equals(3)){
-                    Dialogs.warnDialog("Mit * markierte Felder müssen ausgefüllt werden","Warnung");
+                } else if (a[0].equals("")|| a[1].equals("") || a[2].equals("") || a[3].equals("") || a[4].equals("") || a[5].equals("")){
+                    Dialogs.warnDialog("Alle Felder müssen ausgefüllt werden!","Warnung");
                 } else {
                     Person newUser = new Person();
-                    newUser.setUsername(a[0]);
-                    newUser.setPassword(a[1]);
+                    newUser.setSurname(a[0]);
+                    newUser.setName(a[1]);
+                    newUser.setPassword(a[3]);
+                    if(a[2].equals("Männlich")) {
+                        newUser.setMan(true);
+                    } else {
+                        newUser.setMan(false);
+                    }
+                    newUser.setPassword(a[5]);
 
                     userContainer.insertUser(newUser);
 
@@ -221,6 +226,8 @@ public class StartController implements Initializable {
                 }
             }
         }
+
+        userContainer.printAllUser();
     }
     @FXML
     public void deleteUser(){
@@ -381,10 +388,13 @@ public class StartController implements Initializable {
 
         dialog.setResultConverter(dialogButton -> {
             if(dialogButton == addButton){
-                String[] array = new String[3];
-                array[0] = secoundName.getText();
-                array[1] = password.getText();
-                array[2] = passwordConfirm.getText();
+                String[] array = new String[6];
+                array[0] = firstName.getText();
+                array[1] = secoundName.getText();
+                array[2] = (String)gender.getValue();
+                array[3] = password.getText();
+                array[4] = passwordConfirm.getText();
+                array[5] = (String)admin.getValue();
                 return array;
             } else if(dialogButton == ButtonType.CANCEL){
                 return null;

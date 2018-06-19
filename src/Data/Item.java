@@ -25,7 +25,7 @@ public abstract class Item implements Serializable {
 	private Date inserierungsdatum;
 	private String inserierungsdatumString;
 	private int anzahl;
-	
+
 	private final int ParamAnzahl = 4;
 
 	//Namen der Superioren Parameter
