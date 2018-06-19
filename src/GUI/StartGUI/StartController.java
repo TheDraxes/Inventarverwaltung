@@ -207,16 +207,16 @@ public class StartController implements Initializable {
                 } else if (a[0].equals("")|| a[1].equals("") || a[2].equals("") || a[3].equals("") || a[4].equals("") || a[5].equals("")){
                     Dialogs.warnDialog("Alle Felder müssen ausgefüllt werden!","Warnung");
                 } else {
-                    Person newUser = new Person();
-                    newUser.setSurname(a[0]);
-                    newUser.setName(a[1]);
-                    newUser.setPassword(a[3]);
-                    if(a[2].equals("Männlich")) {
-                        newUser.setMan(true);
-                    } else {
-                        newUser.setMan(false);
-                    }
-                    newUser.setPassword(a[5]);
+                   boolean men = false;
+                   if(a[2].equals("Männlich")) {
+                       men = true;
+                   }
+                   boolean admin = false;
+                   if(a[5].equals("Ja")){
+                       admin = true;
+                   }
+
+                    Person newUser = new Person(a[1],a[0],men,a[3], admin);
 
                     userContainer.insertUser(newUser);
 
