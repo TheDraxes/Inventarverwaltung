@@ -20,7 +20,7 @@
 .editButton{
     -fx-border-style: none;
     -fx-background-color: transparent;
-    -fx-background-image: url('/GUI/editbackgound.png');
+    -fx-background-image: url('/GUI/editbackground.png');
     -fx-background-size: cover;
     -fx-focus-color:blue;
 }

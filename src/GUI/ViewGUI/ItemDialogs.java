@@ -24,10 +24,11 @@ public class ItemDialogs {
     }
 
     public Pair<Item, Boolean> getNewItem(String itemTyp){
+        this.itemType = itemTyp;
+        setTextFields(itemType);
         if(itemTyp != null){
             switch(itemTyp){
                 case "Fuhrpark":
-                    setTextFieldsForFuhrpark();
                     Hashtable<String,String> newItemData = buildNewItemWindow();
                     if(newItemData == null){
                         return new Pair<>(new Fuhrpark(),false);
@@ -76,8 +77,11 @@ public class ItemDialogs {
         }
     }
 
-    public void setTextFieldsForFuhrpark(){
-        this.labelNames = new Fuhrpark().getParamNames();
+    public void setTextFields(String itemType){
+        switch (itemType){
+            case "Fuhrpark": this.labelNames = new Fuhrpark().getParamNames();
+                             break;
+        }
         Labels = new Label[labelNames.length];
 
         for(int i = 0; i < labelNames.length; i++){
