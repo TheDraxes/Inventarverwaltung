@@ -5,10 +5,10 @@ import Data.Asset;
 import java.io.*;
 import java.util.*;
 
-public class ItemContainer implements Serializable{
+public class AssetContainer implements Serializable{
     private ArrayList<Asset> assetList = new ArrayList<Asset>();
     private long id = 0;
-    private String[] existingItemTypes = {"Boden und Gebäude", "Fuhrpark", "Hardware", "Mobiliar", "Software", "Sonstiges"};
+    private String[] existingAssetTypes = {"Boden und Gebäude", "Fuhrpark", "Hardware", "Mobiliar", "Software", "Sonstiges"};
 
     public Asset getItemById(long id) {
         Iterator<Asset> it = assetList.iterator();
@@ -27,7 +27,7 @@ public class ItemContainer implements Serializable{
 
 
 
-    public void insertItem(Asset i) {
+    public void insertAsset(Asset i) {
         id++;
         i.setInventarnummer(id);
 
@@ -35,7 +35,7 @@ public class ItemContainer implements Serializable{
         System.out.println("**Item hinzugefügt");
     }
 
-    public void deleteItem(Asset i) {
+    public void deleteAsset(Asset i) {
         assetList.remove(i);
         System.out.println("**Item entfernt");
     }
@@ -66,12 +66,12 @@ public class ItemContainer implements Serializable{
         }
     }
 
-    public ItemContainer loadInventar(String path) {
+    public AssetContainer loadInventar(String path) {
         System.out.print("**Lade Inventar");
         try {
             FileInputStream fileInputStream = new FileInputStream(new File(path));
             ObjectInputStream inputStream = new ObjectInputStream(fileInputStream);
-            ItemContainer loaded = (ItemContainer) inputStream.readObject();
+            AssetContainer loaded = (AssetContainer) inputStream.readObject();
 
             System.out.println("**Inventar geladen!");
             return loaded;
@@ -85,7 +85,7 @@ public class ItemContainer implements Serializable{
         return null;
     }
 
-    public String[] getExistingItemTypes() {
-        return existingItemTypes;
+    public String[] getExistingAssetTypes() {
+        return existingAssetTypes;
     }
 }

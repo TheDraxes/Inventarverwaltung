@@ -2,7 +2,7 @@ package GUI.ViewGUI;
 
 
 import Data.Asset;
-import Verwaltung.ItemContainer;
+import Verwaltung.AssetContainer;
 import Verwaltung.UserContainer;
 import GUI.StartGUI.StartController;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -67,7 +67,7 @@ public class ViewController implements Initializable {
 
     private UserContainer userContainer;
 
-    private ItemContainer itemContainer = new ItemContainer();
+    private AssetContainer assetContainer = new AssetContainer();
 
     private String path;
 
@@ -83,15 +83,15 @@ public class ViewController implements Initializable {
 
         File a = new File(completePath);
 
-        itemContainer = itemContainer.loadInventar(a.getPath());
+        assetContainer = assetContainer.loadInventar(a.getPath());
 
-        ArrayList<Asset> arrayList = itemContainer.getAssetList();
+        ArrayList<Asset> arrayList = assetContainer.getAssetList();
 
         fillTable();
 
     }
     public void fillTable(){
-        ArrayList<Asset> arrayList = itemContainer.getAssetList();
+        ArrayList<Asset> arrayList = assetContainer.getAssetList();
 
 
         NRColumn.setCellValueFactory(new PropertyValueFactory<>("inventarnummer"));
@@ -166,7 +166,7 @@ public class ViewController implements Initializable {
                 if (a.getKey() == null || a.getValue().equals("")) {
 
                 } else if (a.getValue()) {
-                    itemContainer.insertItem(a.getKey());
+                    assetContainer.insertAsset(a.getKey());
                     break;
                 } else {
                     System.out.println("**Vorgang abgebrochen!");
@@ -194,9 +194,9 @@ public class ViewController implements Initializable {
 
     protected String askForItemType(){
         List<String> choices = new ArrayList<>();
-        ItemContainer a = new ItemContainer();
-        for(int i = 0; i < a.getExistingItemTypes().length; i++) {
-            choices.add(a.getExistingItemTypes()[i]);
+        AssetContainer a = new AssetContainer();
+        for(int i = 0; i < a.getExistingAssetTypes().length; i++) {
+            choices.add(a.getExistingAssetTypes()[i]);
         }
 
         ChoiceDialog<String> dialog = new ChoiceDialog<>("Fuhrpark", choices);
@@ -216,7 +216,7 @@ public class ViewController implements Initializable {
     @FXML
     void backClicked(ActionEvent event){
 
-        itemContainer.safeInventar(completePath);
+        assetContainer.safeInventar(completePath);
         Stage lastWindow = (Stage) nameLabel.getScene().getWindow();
         lastWindow.hide();
 

@@ -2,7 +2,7 @@ package GUI.StartGUI;
 
 import GUI.Dialogs;
 import Data.Person;
-import Verwaltung.ItemContainer;
+import Verwaltung.AssetContainer;
 import Verwaltung.UserContainer;
 import GUI.ViewGUI.ViewController;
 import javafx.application.Platform;
@@ -14,7 +14,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -150,7 +149,7 @@ public class StartController implements Initializable {
         } else {
             if (!input.equals("")) {
                 File newFile = new File(path + "\\" + input + ".Inv");
-                ItemContainer newContainer = new ItemContainer();
+                AssetContainer newContainer = new AssetContainer();
                 try {
                     FileOutputStream outputStream = new FileOutputStream(newFile);
                     ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
