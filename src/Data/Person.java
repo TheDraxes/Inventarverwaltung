@@ -14,17 +14,17 @@ public class Person implements Serializable {
     private String username;
     private String password;
     private boolean isAdmin;
-
     private boolean isLocked;
 
     public Person() {
-        System.out.println("**Neuen Benutzer angelegt!");
+        System.out.println("**Benutzer angelegt!");
     }
 
     public void initAdmin() {
         this.username = "admin";
         this.password = "123";
         this.isAdmin = true;
+        System.out.println("**Standardadmin angelegt!");
     }
 
     public Person(String name, String surname, boolean isMan, String password, boolean isAdmin) {
@@ -35,6 +35,7 @@ public class Person implements Serializable {
         this.isAdmin = isAdmin;
         this.username = generateUsername();
         this.email = generateEmail();
+        System.out.println("**Benutzer " + this.username + " angelegt!");
     }
 
     public String generateUsername() {

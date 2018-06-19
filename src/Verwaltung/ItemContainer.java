@@ -1,6 +1,7 @@
 package Verwaltung;
 
 import Data.Item;
+import Data.Person;
 
 import java.io.*;
 import java.util.*;
@@ -9,6 +10,23 @@ public class ItemContainer implements Serializable{
     private ArrayList<Item> ItemList = new ArrayList<Item>();
     private long id = 0;
     private String[] existingItemTypes = {"Boden und Gebäude", "Fuhrpark", "Hardware", "Mobiliar", "Software", "Sonstiges"};
+
+    public Item getItemById(long id) {
+        Iterator<Item> it = ItemList.iterator();
+        while (it.hasNext()) {
+            Item i = it.next();
+            if(i.getInventarnummer() == id) {
+                return i;
+            }
+        }
+        return null;
+    }
+
+    public void editItem(Item i) {
+
+    }
+
+
 
     public void insertItem(Item i) {
         id++;
@@ -33,14 +51,6 @@ public class ItemContainer implements Serializable{
 
     public ArrayList<Item> getItemList(){
         return this.ItemList;
-    }
-
-    public Item getItemOnIndex(int index){
-        return ItemList.get(index);
-    }
-
-    public long getID(){
-        return id;
     }
 
     public void safeInventar(String path){

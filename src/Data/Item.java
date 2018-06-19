@@ -26,7 +26,7 @@ public abstract class Item implements Serializable {
 	private String inserierungsdatumString;
 	private int anzahl;
 
-	private int ParamAnzahl = 4;
+	private int paramAnzahl = 4;
 	private String[] paramNames = {
             "Bezeichnung",
             "Anschaffungswert",
@@ -50,7 +50,7 @@ public abstract class Item implements Serializable {
     }
 
     public int getParamAnzahl(){
-	    return this.ParamAnzahl;
+	    return this.paramAnzahl;
     }
 
     public String[] getParamNames(){
