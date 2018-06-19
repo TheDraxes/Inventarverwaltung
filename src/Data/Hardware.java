@@ -5,7 +5,7 @@ import java.util.Date;
 public class Hardware extends Item{
     private int raum;
 
-    private int ParamAnzahl = 1;
+    private int paramAnzahl = 1;
     private String[] paramNames = {
             "Raum"
     };
@@ -13,13 +13,8 @@ public class Hardware extends Item{
     public Hardware() {
     }
 
-    public Hardware(long inventarnummer, String bezeichnung, double anschaffungswert, int tnd, Date ablaufdatum, Sachgebiet sachgebiet, Date inserierungsdatum, int anzahl, int raum) {
-        super(inventarnummer, bezeichnung, anschaffungswert, tnd, ablaufdatum, sachgebiet, inserierungsdatum, anzahl);
-        this.raum = raum;
-    }
-
     public int getParamAnzahl(){
-        return super.getParamAnzahl()+ParamAnzahl;
+        return super.getParamAnzahl()+ paramAnzahl;
     }
 
     public String[] getParamNames(){

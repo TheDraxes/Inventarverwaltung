@@ -27,10 +27,14 @@ public class UserContainer implements Serializable {
         this.numberOfUser = numberOfUser;
     }
 
-    public void insertUser(Person p){
+    public void insertUser(Person p) {
         userData.add(p);
         numberOfUser++;
-        System.out.println("**User " + p.getBenutzername() + " erstellt");
+
+        if(p.isAdmin())
+            System.out.println("**Neuen Admin mit dem Namen " + p.getUsername() + " angelegt!");
+        else
+            System.out.println("**Neuen User mit dem Namen " + p.getUsername() + " angelegt!");
 
         safeUserData();
     }
@@ -38,19 +42,19 @@ public class UserContainer implements Serializable {
     public boolean userIsDuplicate(String username){
         Iterator<Person> it = userData.iterator();
         while (it.hasNext()) {
-            if(it.next().getBenutzername().equals(username))
+            if(it.next().getUsername().equals(username))
                 return true;
         }
         return false;
     }
 
     public void safeUserData(){
-        System.out.print("**Speichere Inventar");
+        System.out.println("**Speichere Nutzerdaten");
         try {
             FileOutputStream fileOutputStream = new FileOutputStream("user.dat");
             ObjectOutputStream outputStream = new ObjectOutputStream(fileOutputStream);
             outputStream.writeObject(this);
-            System.out.println("**Inventar abgespeichert in user.dat");
+            System.out.println("**Nutzerdaten abgespeichert in user.dat");
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -82,7 +86,7 @@ public class UserContainer implements Serializable {
         Iterator<Person> it = userData.iterator();
         while (it.hasNext()) {
             Person p = it.next();
-            if(p.getBenutzername().equals(username)) {
+            if(p.getUsername().equals(username)) {
                 return p;
             }
         }
@@ -95,7 +99,7 @@ public class UserContainer implements Serializable {
 
         Iterator<Person> it = userData.iterator();
         while (it.hasNext()) {
-            usernames[i] = it.next().getBenutzername();
+            usernames[i] = it.next().getUsername();
             i++;
         }
         return usernames;
@@ -129,12 +133,18 @@ public class UserContainer implements Serializable {
         safeUserData();
     }
 
+    public void deleteAllUser() {
+        System.out.println("**Lösche alle Benutzer");
+        userData.clear();
+        numberOfUser = 0;
+    }
+
     public boolean checkLogin(String username, String pw){
         Person p = getPersonByUsername(username);
 
         if(p != null) {
-            if(p.getPasswort().equals(pw)) {
-                System.out.println("**Eingeloggt als " + p.getBenutzername());
+            if(p.getPassword().equals(pw)) {
+                System.out.println("**Eingeloggt als " + p.getUsername());
                 return true;
             } else {
                 System.out.println("**Benutzername existiert nicht oder Passwort ist falsch!");

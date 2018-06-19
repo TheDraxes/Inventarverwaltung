@@ -1,16 +1,13 @@
 package Data;
 
-import java.util.Date;
-
 public class Fuhrpark extends Item{
 	private String kennzeichen;
-	private String fahrzeugart;
 	private long fahrgestellnummer;
-	private double kw;
-	private double ps;
+	private int kw;
+	private int ps;
 	private int kilometerstand;
 
-	private int ParamAnzahl = 4;
+	private int paramAnzahl = 4;
 	private String[] paramNames = {
 			"Kennzeichen",
 			"Fahrgestellnummer",
@@ -22,18 +19,8 @@ public class Fuhrpark extends Item{
 
 	}
 
-	public Fuhrpark(long inventarnummer, String bezeichnung, double anschaffungswert, int tnd, Date ablaufdatum, Sachgebiet sachgebiet, Date inserierungsdatum, int anzahl, String kennzeichen, String fahrzeugart, long fahrgestellnummer, double kw, int kilometerstand) {
-		super(inventarnummer, bezeichnung, anschaffungswert, tnd, ablaufdatum, sachgebiet, inserierungsdatum, anzahl);
-		this.kennzeichen = kennzeichen;
-		this.fahrzeugart = fahrzeugart;
-		this.fahrgestellnummer = fahrgestellnummer;
-		this.kw = kw;
-		this.ps = kw*1.35962;
-		this.kilometerstand = kilometerstand;
-	}
-
 	public int getParamAnzahl(){
-		return super.getParamAnzahl()+ParamAnzahl;
+		return super.getParamAnzahl()+ paramAnzahl;
 	}
 
 	public String[] getParamNames(){
@@ -58,7 +45,6 @@ public class Fuhrpark extends Item{
 	public void display() {
 		super.display();
 		System.out.println("Kennzeichen: " + kennzeichen);
-		System.out.println("Fahrzeugart: " + fahrzeugart);
 		System.out.println("Fahrgestellnummer: " + fahrgestellnummer);
 		System.out.println("Leistung: " + kw + "(" + ps + ")");
 		System.out.println("Kilomenterstand: " + kilometerstand);
@@ -72,14 +58,6 @@ public class Fuhrpark extends Item{
 		this.kennzeichen = kennzeichen;
 	}
 
-	public String getFahrzeugart() {
-		return fahrzeugart;
-	}
-
-	public void setFahrzeugart(String fahrzeugart) {
-		this.fahrzeugart = fahrzeugart;
-	}
-
 	public long getFahrgestellnummer() {
 		return fahrgestellnummer;
 	}
@@ -88,16 +66,21 @@ public class Fuhrpark extends Item{
 		this.fahrgestellnummer = fahrgestellnummer;
 	}
 
-	public double getKw() {
+	public int getKw() {
 		return kw;
 	}
 
-	public void setKw(double kw) {
+	public void setKw(int kw) {
 		this.kw = kw;
-		this.ps = kw*1.35962;
+		this.ps = (int) round(kw*1.35962, 0);
 	}
 
-	public double getPs() {
+	public void setPs(int ps) {
+		this.ps = ps;
+		this.kw = (int) round(ps/1.35962, 0);
+	}
+
+	public int getPs() {
 		return ps;
 	}
 

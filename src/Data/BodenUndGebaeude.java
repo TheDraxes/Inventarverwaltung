@@ -10,7 +10,7 @@ public class BodenUndGebaeude extends Item {
     private double flaeche;
     private String besitzer;
 
-    private int ParamAnzahl = 6;
+    private int paramAnzahl = 6;
     private String[] paramNames = {
             "Postleitzahl",
             "Ort",
@@ -23,18 +23,8 @@ public class BodenUndGebaeude extends Item {
     public BodenUndGebaeude() {
     }
 
-    public BodenUndGebaeude(long inventarnummer, String bezeichnung, double anschaffungswert, int tnd, Date ablaufdatum, Sachgebiet sachgebiet, Date inserierungsdatum, int anzahl, int plz, String ort, String strasse, String hausnummer, double flaeche, String besitzer) {
-        super(inventarnummer, bezeichnung, anschaffungswert, tnd, ablaufdatum, sachgebiet, inserierungsdatum, anzahl);
-        this.plz = plz;
-        this.ort = ort;
-        this.strasse = strasse;
-        this.hausnummer = hausnummer;
-        this.flaeche = flaeche;
-        this.besitzer = besitzer;
-    }
-
     public int getParamAnzahl(){
-        return super.getParamAnzahl()+ParamAnzahl;
+        return super.getParamAnzahl()+ paramAnzahl;
     }
 
     public String[] getParamNames(){

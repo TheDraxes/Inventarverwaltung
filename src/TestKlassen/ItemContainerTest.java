@@ -15,7 +15,6 @@ public class ItemContainerTest {
         /*
         Fuhrpark auto1 = new Fuhrpark();
         auto1.setFahrgestellnummer(28741982);
-        auto1.setFahrzeugart("Limousine");
         auto1.setKw(188);
         auto1.setAnzahl(3);
         auto1.setBezeichnung("Mercedes Benz E Klasse");
@@ -23,7 +22,6 @@ public class ItemContainerTest {
         //auto1.display();
         Fuhrpark auto2 = new Fuhrpark();
         auto2.setFahrgestellnummer(124142);
-        auto2.setFahrzeugart("Combi");
         auto2.setKw(122);
         auto2.setAnzahl(5);
         auto2.setBezeichnung("Audi A3");

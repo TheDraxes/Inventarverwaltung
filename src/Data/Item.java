@@ -25,7 +25,8 @@ public abstract class Item implements Serializable {
 	private Date inserierungsdatum;
 	private String inserierungsdatumString;
 	private int anzahl;
-	private final int ParamAnzahl = 4;
+
+	private int paramAnzahl = 4;
 
 	//Namen der Superioren Parameter
 	private String[] paramNames = {
@@ -53,7 +54,7 @@ public abstract class Item implements Serializable {
     }
 
     public int getParamAnzahl(){
-	    return this.ParamAnzahl;
+	    return this.paramAnzahl;
     }
 
     public String[] getParamNames(){

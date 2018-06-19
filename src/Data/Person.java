@@ -1,53 +1,84 @@
 package Data;
 
+import Verwaltung.UserContainer;
+
 import java.io.Serializable;
 
 public class Person implements Serializable {
     private String name;
-    private String vorname;
+    private String surname;
     private boolean isMan;
-    private int raum;
-    private long telefonnummer;
+    private int room;
+    private long phonenumber;
     private String email;
-    private String benutzername;
-    private String passwort;
-    private boolean admin;
+    private String username;
+    private String password;
+    private boolean isAdmin;
+    private boolean isLocked;
 
     public Person() {
-        System.out.println("**Neuen Benutzer angelegt!");
+        System.out.println("**Benutzer angelegt!");
     }
 
     public void initAdmin() {
-        this.benutzername = "admin";
-        this.passwort = "123";
-        this.admin = true;
+        this.username = "admin";
+        this.password = "123";
+        this.isAdmin = true;
+        System.out.println("**Standardadmin angelegt!");
     }
 
-    public Person(String name, String vorname, boolean isMan, String benutzername, String passwort, boolean admin) {
+    public Person(String name, String surname, boolean isMan, String password, boolean isAdmin) {
         this.name = name;
-        this.vorname = vorname;
+        this.surname = surname;
         this.isMan = isMan;
-        this.benutzername = benutzername;
-        this.passwort = passwort;
-        this.admin = admin;
-        System.out.println("**Neuen Benutzer mit dem Benutzernamen " + benutzername + " angelegt!");
+        this.password = password;
+        this.isAdmin = isAdmin;
+        this.username = generateUsername();
+        this.email = generateEmail();
+        System.out.println("**Benutzer " + this.username + " angelegt!");
+    }
+
+    public String generateUsername() {
+        UserContainer userData = new UserContainer().loadUserData();
+        String generatedUsername = new String();
+
+        for(int i = 1; i <= surname.length(); i++) {
+            generatedUsername = name.toLowerCase() + surname.substring(0,i).toLowerCase();
+            if(!userData.userExisting(generatedUsername)) {
+                return generatedUsername;
+            }
+        }
+
+        int i = 1;
+        while(true) {
+            generatedUsername = name.toLowerCase() + surname.substring(0,1).toLowerCase() + i;
+
+            if(!userData.userExisting(generatedUsername)) {
+                return generatedUsername;
+            } else
+                i++;
+        }
+    }
+
+    public String generateEmail() {
+        return username.substring(name.length()) + "." + name.toLowerCase() + "@dvz-mv.de";
     }
 
     public void display() {
-        System.out.println("Benutzername:   " + benutzername);
+        System.out.println("Benutzername:   " + username);
         System.out.println("--------------------------");
-        System.out.println("Vorname:        " + vorname);
+        System.out.println("Vorname:        " + surname);
         System.out.println("Nachname:       " + name);
         System.out.print("Geschlecht:     ");
         if(isMan)
             System.out.println("männlich");
         else
             System.out.println("weiblich");
-        //System.out.println("Raum:           " + raum);
-        //System.out.println("Telefonnummer:  " + telefonnummer);
-        //System.out.println("E-Mail Adresse: " + email);
-        System.out.println("Passwort:       " + passwort);
-        System.out.println("Admin:          " + admin);
+        //System.out.println("Raum:           " + room);
+        //System.out.println("Telefonnummer:  " + phonenumber);
+        System.out.println("E-Mail Adresse: " + email);
+        System.out.println("Passwort:       " + password);
+        System.out.println("Admin:          " + isAdmin);
     }
 
     public String getName() {
@@ -59,12 +90,12 @@ public class Person implements Serializable {
         System.out.println("**Name geändert");
     }
 
-    public String getVorname() {
-        return vorname;
+    public String getSurname() {
+        return surname;
     }
 
-    public void setVorname(String vorname) {
-        this.vorname = vorname;
+    public void setSurname(String surname) {
+        this.surname = surname;
         System.out.println("**Vorname geändert");
     }
 
@@ -77,21 +108,21 @@ public class Person implements Serializable {
         System.out.println("**Geschlecht geändert");
     }
 
-    public int getRaum() {
-        return raum;
+    public int getRoom() {
+        return room;
     }
 
-    public void setRaum(int raum) {
-        this.raum = raum;
+    public void setRoom(int room) {
+        this.room = room;
         System.out.println("**Raum geändert");
     }
 
-    public long getTelefonnummer() {
-        return telefonnummer;
+    public long getPhonenumber() {
+        return phonenumber;
     }
 
-    public void setTelefonnummer(long telefonnummer) {
-        this.telefonnummer = telefonnummer;
+    public void setPhonenumber(long phonenumber) {
+        this.phonenumber = phonenumber;
         System.out.println("**Telefonnummer geändert");
     }
 
@@ -104,30 +135,38 @@ public class Person implements Serializable {
         System.out.println("**E-Mail geändert");
     }
 
-    public String getBenutzername() {
-        return benutzername;
+    public String getUsername() {
+        return username;
     }
 
-    public void setBenutzername(String benutzername) {
-        this.benutzername = benutzername;
+    public void setUsername(String username) {
+        this.username = username;
         System.out.println("**Benutzernamen geändert");
     }
 
-    public String getPasswort() {
-        return passwort;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPasswort(String passwort) {
-        this.passwort = passwort;
+    public void setPassword(String password) {
+        this.password = password;
         System.out.println("**Passwort geändert");
     }
 
     public boolean isAdmin() {
-        return admin;
+        return isAdmin;
     }
 
     public void setAdmin(boolean admin) {
-        this.admin = admin;
+        this.isAdmin = admin;
         System.out.println("**Adminzugriff geändert");
+    }
+
+    public boolean isLocked() {
+        return isLocked;
+    }
+
+    public void setLocked(boolean locked) {
+        isLocked = locked;
     }
 }
