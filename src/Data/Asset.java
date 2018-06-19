@@ -27,8 +27,8 @@ public abstract class Asset implements Serializable {
 	private int anzahl;
 
 	private int paramAnzahl = 4;
+	private final int ParamAnzahl = 4;
 
-	//Namen der Superioren Parameter
 	private String[] paramNames = {
             "Bezeichnung",
             "Anschaffungswert",
