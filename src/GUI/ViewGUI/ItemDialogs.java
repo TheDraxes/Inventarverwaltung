@@ -89,8 +89,9 @@ public class ItemDialogs {
             }
 
             String input = newItemData.get(labelNames[7]);
+            System.out.println(input);
 
-            if(!input.equals("")){
+            if(!(input.equals("Kw")) && !(input.equals("Ps"))){
                 String type = input.substring(input.length()-2,input.length());
                 String power = input.substring(0,input.length()-2);
 
