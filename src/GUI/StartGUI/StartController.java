@@ -58,7 +58,7 @@ public class StartController implements Initializable {
 
     private String path = "";
 
-    private String user = "";
+    private Person user;
 
     //Funktion die die werte des AuswahlDropdowns festlegt
     @FXML
@@ -84,7 +84,7 @@ public class StartController implements Initializable {
             }
         }
 
-        if(user.equals("admin")){
+        if(user.isAdmin()){
             adminMenue.setVisible(true);
         } else {
             adminMenue.setVisible(false);
@@ -130,8 +130,8 @@ public class StartController implements Initializable {
         initialize();
     }
 
-    public void getParams(String path, UserContainer userContainer, String user){
-        this.userLabel.setText("Eingeloggt als: " + user);
+    public void getParams(String path, UserContainer userContainer, Person user){
+        this.userLabel.setText("Eingeloggt als: " + user.getUsername());
         this.path = path;
         this.userContainer = userContainer;
         this.user = user;

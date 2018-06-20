@@ -2,6 +2,7 @@ package GUI.ViewGUI;
 
 
 import Data.Asset;
+import Data.Person;
 import Verwaltung.AssetContainer;
 import Verwaltung.UserContainer;
 import GUI.StartGUI.StartController;
@@ -75,7 +76,7 @@ public class ViewController implements Initializable {
 
     private String completePath;
 
-    private String user;
+    private Person user;
 
     @FXML
     public void initialize(){ ;
@@ -137,9 +138,8 @@ public class ViewController implements Initializable {
 
                 @Override
                 public void handle(ActionEvent t) {
-                    // get Selected Item
+                    // Das ausgewählte Asset auswählen
                     Asset selectedAsset = (Asset) ButtonCell.this.getTableView().getItems().get(ButtonCell.this.getIndex());
-
                     selectedAsset.display();
                 }
             });
@@ -173,13 +173,12 @@ public class ViewController implements Initializable {
                     break;
                 }
             }
-
             fillTable();
         }
     }
 
-    public void getParams(String inventoryName, String path, UserContainer userContainer, String user){
-        nameLabel.setText("Eingeloggt als: " + user);
+    public void getParams(String inventoryName, String path, UserContainer userContainer, Person user){
+        nameLabel.setText("Eingeloggt als: " + user.getUsername());
         this.path = path;
         this.invName = inventoryName;
         this.userContainer = userContainer;

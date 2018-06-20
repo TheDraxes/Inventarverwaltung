@@ -1,5 +1,6 @@
 package GUI.StartGUI;
 
+import Data.Person;
 import Verwaltung.UserContainer;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -30,7 +31,7 @@ public class showStartWindow {
      * @param userContainer Container zur Userdaten verwaltung
      * @param user name des eingeloggten Users
      */
-    public showStartWindow(UserContainer userContainer, String user) {
+    public showStartWindow(UserContainer userContainer, Person user) {
         String path;
         File startUp = new File("startUp.dat");
         if(startUp.exists()){

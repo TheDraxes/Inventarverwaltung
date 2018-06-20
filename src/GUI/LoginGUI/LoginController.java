@@ -112,7 +112,7 @@ public class LoginController {
         if(userContainer.checkLogin(username, password)){
             Stage lastWindow = (Stage) loginButton.getScene().getWindow();
             lastWindow.hide();
-            new showStartWindow(this.userContainer, username);
+            new showStartWindow(this.userContainer, userContainer.getPersonByUsername(username));
         } else {
             if(userContainer.userExisting(username) && loginTries == 0){
                 lastUser = username;
