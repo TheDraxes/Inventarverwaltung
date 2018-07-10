@@ -38,7 +38,7 @@ public class Person implements Serializable {
         System.out.println("**Benutzer " + this.username + " angelegt!");
     }
 
-    public String generateUsername() {
+    private String generateUsername() {
         UserContainer userData = new UserContainer().loadUserData();
         String generatedUsername = new String();
 
@@ -60,25 +60,31 @@ public class Person implements Serializable {
         }
     }
 
-    public String generateEmail() {
+    private String generateEmail() {
         return username.substring(name.length()) + "." + name.toLowerCase() + "@dvz-mv.de";
     }
 
     public void display() {
-        System.out.println("Benutzername:   " + username);
-        System.out.println("--------------------------");
-        System.out.println("Vorname:        " + surname);
-        System.out.println("Nachname:       " + name);
-        System.out.print("Geschlecht:     ");
-        if(isMan)
-            System.out.println("männlich");
-        else
-            System.out.println("weiblich");
-        //System.out.println("Raum:           " + room);
-        //System.out.println("Telefonnummer:  " + phonenumber);
-        System.out.println("E-Mail Adresse: " + email);
-        System.out.println("Passwort:       " + password);
-        System.out.println("Admin:          " + isAdmin);
+        if(!this.username.equals("admin")) {
+            System.out.println("Benutzername:   " + username);
+            System.out.println("--------------------------");
+            System.out.println("Vorname:        " + surname);
+            System.out.println("Nachname:       " + name);
+            System.out.print("Geschlecht:     ");
+            if(isMan)
+                System.out.println("männlich");
+            else
+                System.out.println("weiblich");
+            //System.out.println("Raum:           " + room);
+            //System.out.println("Telefonnummer:  " + phonenumber);
+            System.out.println("E-Mail Adresse: " + email);
+            System.out.println("Passwort:       " + password);
+            System.out.println("Admin:          " + isAdmin);
+        } else {
+            System.out.println("Benutzername:   " + username);
+            System.out.println("--------------------------");
+            System.out.println("Passwort:       " + password);
+        }
     }
 
     public String getName() {
