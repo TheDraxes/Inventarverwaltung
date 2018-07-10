@@ -146,7 +146,13 @@ public class ViewController implements Initializable {
 
                     String assetClass = selectedAsset.getClass().toString().substring(11);
 
-                    new AssetDialogs().getNewItem(assetClass,selectedAsset);
+                    Asset editedAsset = new AssetDialogs().getNewItem(assetClass,selectedAsset).getKey();
+                    editedAsset.display();
+
+                    assetContainer.editItemById(selectedAsset.getInventarnummer(),editedAsset);
+                    assetContainer.showAll();
+
+                    fillTable();
                 }
             });
         }

@@ -35,26 +35,42 @@ public class FuhrparkDialog extends AbstractDialog {
 
       if (edit.getKennzeichen() == null || edit.getKennzeichen().equals("")) {
         TextFields[4].setPromptText("Keine Angaben");
+      } else {
+        TextFields[4].setText(edit.getKennzeichen());
       }
 
       if ((edit.getFahrgestellnummer()) == 0L) {
         System.out.println(edit.getFahrgestellnummer());
         TextFields[5].setPromptText("Keine Angaben");
+      } else {
+        TextFields[5].setText("" + edit.getFahrgestellnummer());
       }
 
       if (edit.getKilometerstand() == 0.0) {
         TextFields[6].setPromptText("Keine Angaben");
+      } else {
+        TextFields[6].setText("" + edit.getKilometerstand());
       }
 
       if (edit.getKw() == 0) {
         TextFields[7].setPromptText("Keine Angaben");
+      } else {
+        TextFields[7].setText("" + edit.getKw());
       }
     }
 
     Dialog<Pair<Asset, String>> dialog = new Dialog<>();
 
+    String buttonText = "";
+
+    if(actual != null){
+      buttonText = "Fertig";
+    } else {
+      buttonText = "Hinzufügen";
+    }
+
     dialog.setTitle("Neues Item");
-    ButtonType addButton = new ButtonType("Hinzufügen", ButtonBar.ButtonData.OK_DONE);
+    ButtonType addButton = new ButtonType(buttonText, ButtonBar.ButtonData.OK_DONE);
     dialog.getDialogPane().getButtonTypes().addAll(addButton, ButtonType.CANCEL);
     dialog.getDialogPane().setStyle("-fx-background-color:  #b5edff");
 
@@ -77,6 +93,10 @@ public class FuhrparkDialog extends AbstractDialog {
     dialog.setResultConverter(dialogButton -> {
       if (dialogButton == addButton) {
         Fuhrpark fuhrpark = new Fuhrpark();
+
+        if(actual != null){
+          fuhrpark.setInventarnummer(actual.getInventarnummer());
+        }
 
         if (TextFields[0].getText().equals("")) {
           return new Pair<>(null, "Alle Felder mit einem * müssen ausgefüllt sein!");

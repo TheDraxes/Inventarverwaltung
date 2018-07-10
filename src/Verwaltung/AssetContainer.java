@@ -23,12 +23,10 @@ public class AssetContainer implements Serializable{
     }
 
     public void editItemById(long id, Asset a) {
-        Iterator<Asset> it = assetList.iterator();
-        while (it.hasNext()) {
-            Asset i = it.next();
-            if(i.getInventarnummer() == id) {
-                i = a;
-            }
+        for(int i = 0; i < assetList.size(); i++){
+          if(assetList.get(i).getInventarnummer() == id){
+            assetList.set(i,a);
+          }
         }
     }
 

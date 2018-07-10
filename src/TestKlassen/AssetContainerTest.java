@@ -13,7 +13,7 @@ public class AssetContainerTest {
         System.out.println(b[12]);*/
 
 
-        /*Fuhrpark auto1 = new Fuhrpark();
+        Fuhrpark auto1 = new Fuhrpark();
         auto1.setFahrgestellnummer(28741982);
         auto1.setKw(188);
         auto1.setAnzahl(3);
@@ -28,8 +28,21 @@ public class AssetContainerTest {
         auto2.setTnd(7);
 
 
-        AssetContainer myContainer = new AssetContainer();*/
+        AssetContainer myContainer = new AssetContainer();
 
+        myContainer.insertAsset(auto1);
+        myContainer.insertAsset(auto2);
+
+        myContainer.showAll();
+
+        Fuhrpark auto3 = auto1;
+
+        auto3.setPs(155);
+        auto3.setAnzahl(100);
+
+        myContainer.editItemById(1, auto3);
+
+        myContainer.showAll();
 
 
 
