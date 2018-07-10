@@ -1,0 +1,66 @@
+package GUI.ViewGUI.NewItemDialogs;
+
+import Data.*;
+import javafx.application.Application;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import javafx.util.Pair;
+
+public class AssetDialogs {
+  TextField[] TextFields = new TextField[0];
+  Label[] Labels = new Label[0];
+  String[] labelNames = new String[0];
+
+
+  public Pair<Asset, String> getNewItem(String itemType, Asset actual) {
+    Pair pair;
+    switch (itemType) {
+      case "Fuhrpark":          //Fuhrpark
+        this.labelNames = new Fuhrpark().getParamNames();
+        setTextFields();
+        pair = new FuhrparkDialog(labelNames, Labels, TextFields, actual).getFuhrpark();
+        return pair;
+      case "Boden und Gebäude": //Boden und Gebäude
+        this.labelNames = new BodenUndGebaeude().getParamNames();
+        setTextFields();
+        break;
+      case "Hardware":          //Hardware
+        this.labelNames = new Hardware().getParamNames();
+        System.out.println("Test");
+        setTextFields();
+        break;
+      case "Mobiliar":          //Mobiliar
+        this.labelNames = new Mobiliar().getParamNames();
+        setTextFields();
+        break;
+      case "Software":          //Software
+        this.labelNames = new Software().getParamNames();
+        setTextFields();
+        break;
+      case "Sonstiges":         //Sonstiges
+        this.labelNames = new Sonstiges().getParamNames();
+        setTextFields();
+        break;
+    }
+    return new Pair<>(null, null);
+  }
+
+  public void setTextFields() {
+    System.out.println(labelNames.length);
+    Labels = new Label[labelNames.length];
+    for (int i = 0; i < labelNames.length; i++) {
+      if (i < 4) {
+        Labels[i] = new Label(labelNames[i] + "*");
+      } else {
+        Labels[i] = new Label(labelNames[i]);
+      }
+    }
+
+    TextFields = new TextField[labelNames.length];
+    for (int i = 0; i < labelNames.length; i++) {
+      TextFields[i] = new TextField();
+      TextFields[i].setPromptText(Labels[i].getText());
+    }
+  }
+}

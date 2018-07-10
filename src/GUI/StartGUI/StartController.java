@@ -90,6 +90,8 @@ public class StartController implements Initializable {
             adminMenue.setVisible(false);
         }
         System.out.println("**Start Fenster Initialisiert");
+
+        System.out.println(path);
     }
 
     @FXML

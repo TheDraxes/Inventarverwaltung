@@ -2,7 +2,9 @@ package GUI.ViewGUI;
 
 
 import Data.Asset;
+import Data.Fuhrpark;
 import Data.Person;
+import GUI.ViewGUI.NewItemDialogs.AssetDialogs;
 import Verwaltung.AssetContainer;
 import Verwaltung.UserContainer;
 import GUI.StartGUI.StartController;
@@ -79,7 +81,7 @@ public class ViewController implements Initializable {
     private Person user;
 
     @FXML
-    public void initialize(){ ;
+    public void initialize(){
         completePath = path + "\\" + invName + ".Inv";
 
         File a = new File(completePath);
@@ -141,6 +143,10 @@ public class ViewController implements Initializable {
                     // Das ausgewählte Asset auswählen
                     Asset selectedAsset = (Asset) ButtonCell.this.getTableView().getItems().get(ButtonCell.this.getIndex());
                     selectedAsset.display();
+
+                    String assetClass = selectedAsset.getClass().toString().substring(11);
+
+                    new AssetDialogs().getNewItem(assetClass,selectedAsset);
                 }
             });
         }
@@ -162,15 +168,15 @@ public class ViewController implements Initializable {
         String itemType = askForItemType();
         if (itemType != "" && itemType != null) {
             while (true) {
-                Pair<Asset, Boolean> a = new ItemDialogs().getNewItem(itemType);
-                if (a.getKey() == null || a.getValue().equals("")) {
-
-                } else if (a.getValue()) {
-                    assetContainer.insertAsset(a.getKey());
+                Pair pair = new AssetDialogs().getNewItem(itemType, null);
+                if (pair.getValue() == null && pair.getKey() != null) {
+                    Asset b = (Asset) pair.getKey();
+                    assetContainer.insertAsset(b);
+                    break;
+                } else if (pair.getKey() == null && pair.getValue() == null) {
                     break;
                 } else {
-                    System.out.println("**Vorgang abgebrochen!");
-                    break;
+                    System.out.println(pair.getValue());
                 }
             }
             fillTable();
