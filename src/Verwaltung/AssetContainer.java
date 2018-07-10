@@ -10,6 +10,7 @@ public class AssetContainer implements Serializable{
     private long id = 0;
     private String[] existingAssetTypes = {"Boden und Gebäude", "Fuhrpark", "Hardware", "Mobiliar", "Software", "Sonstiges"};
 
+    //TEST
     public Asset getItemById(long id) {
         Iterator<Asset> it = assetList.iterator();
         while (it.hasNext()) {
