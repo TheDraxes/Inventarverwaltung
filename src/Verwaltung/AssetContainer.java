@@ -21,22 +21,26 @@ public class AssetContainer implements Serializable{
         return null;
     }
 
-    public void editItem(Asset i) {
-
+    public void editItemById(long id, Asset a) {
+        Iterator<Asset> it = assetList.iterator();
+        while (it.hasNext()) {
+            Asset i = it.next();
+            if(i.getInventarnummer() == id) {
+                i = a;
+            }
+        }
     }
 
-
-
-    public void insertAsset(Asset i) {
+    public void insertAsset(Asset a) {
         id++;
-        i.setInventarnummer(id);
+        a.setInventarnummer(id);
 
-        assetList.add(i);
+        assetList.add(a);
         System.out.println("**Item hinzugefügt");
     }
 
-    public void deleteAsset(Asset i) {
-        assetList.remove(i);
+    public void deleteAsset(Asset a) {
+        assetList.remove(a);
         System.out.println("**Item entfernt");
     }
 
@@ -45,6 +49,7 @@ public class AssetContainer implements Serializable{
         Iterator<Asset> it = assetList.iterator();
         while (it.hasNext()) {
             it.next().display();
+            System.out.println("- - - - - - - - - - - - - - - - - - -");
         }
     }
 
