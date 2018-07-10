@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3afe1bda-5f95-4b99-a161-bf7caccd7202" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/TestKlassen/AssetContainerTest.class" afterPath="$PROJECT_DIR$/out/production/Inventarverwaltung/TestKlassen/AssetContainerTest.class" />
       <change beforePath="$PROJECT_DIR$/src/Verwaltung/AssetContainer.java" afterPath="$PROJECT_DIR$/src/Verwaltung/AssetContainer.java" />
-      <change beforePath="$PROJECT_DIR$/user.dat" afterPath="" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,29 +17,19 @@
       <file leaf-file-name="AssetContainer.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Verwaltung/AssetContainer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="128" column="20" lean-forward="true" selection-start-line="128" selection-start-column="20" selection-end-line="128" selection-end-column="20" />
+            <state relative-caret-position="312">
+              <caret line="97" column="39" lean-forward="true" selection-start-line="97" selection-start-column="39" selection-end-line="97" selection-end-column="39" />
               <folding>
                 <element signature="e#183#190#0" expanded="true" />
                 <element signature="method#getItemById#0;class#AssetContainer#0" expanded="false" />
                 <element signature="method#editItemById#0;class#AssetContainer#0" expanded="false" />
+                <element signature="method#insertAsset#0;class#AssetContainer#0" expanded="false" />
                 <element signature="method#deleteAsset#0;class#AssetContainer#0" expanded="false" />
                 <element signature="method#showAll#0;class#AssetContainer#0" expanded="false" />
                 <element signature="method#safeInventar#0;class#AssetContainer#0" expanded="false" />
                 <element signature="method#loadInventar#0;class#AssetContainer#0" expanded="false" />
-                <element signature="e#3048#3055#0" expanded="true" />
-                <element signature="e#3823#3824#0" expanded="true" />
-                <element signature="e#3850#3851#0" expanded="true" />
-                <element signature="e#3901#3902#0" expanded="true" />
-                <element signature="e#3928#3929#0" expanded="true" />
-                <element signature="e#3979#3980#0" expanded="true" />
-                <element signature="e#4006#4007#0" expanded="true" />
-                <element signature="e#4057#4058#0" expanded="true" />
-                <element signature="e#4084#4085#0" expanded="true" />
-                <element signature="e#4135#4136#0" expanded="true" />
-                <element signature="e#4162#4163#0" expanded="true" />
-                <element signature="e#4215#4216#0" expanded="true" />
-                <element signature="e#4242#4243#0" expanded="true" />
+                <element signature="method#getAssetsByFilter#0;class#AssetContainer#0" expanded="false" />
+                <element signature="e#3203#3210#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -454,7 +441,7 @@
         <state relative-caret-position="329">
           <caret line="30" column="60" lean-forward="false" selection-start-line="30" selection-start-column="60" selection-end-line="30" selection-end-column="60" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -467,23 +454,13 @@
             <element signature="e#183#190#0" expanded="true" />
             <element signature="method#getItemById#0;class#AssetContainer#0" expanded="false" />
             <element signature="method#editItemById#0;class#AssetContainer#0" expanded="false" />
+            <element signature="method#insertAsset#0;class#AssetContainer#0" expanded="false" />
             <element signature="method#deleteAsset#0;class#AssetContainer#0" expanded="false" />
             <element signature="method#showAll#0;class#AssetContainer#0" expanded="false" />
             <element signature="method#safeInventar#0;class#AssetContainer#0" expanded="false" />
             <element signature="method#loadInventar#0;class#AssetContainer#0" expanded="false" />
-            <element signature="e#3048#3055#0" expanded="true" />
-            <element signature="e#3823#3824#0" expanded="true" />
-            <element signature="e#3850#3851#0" expanded="true" />
-            <element signature="e#3901#3902#0" expanded="true" />
-            <element signature="e#3928#3929#0" expanded="true" />
-            <element signature="e#3979#3980#0" expanded="true" />
-            <element signature="e#4006#4007#0" expanded="true" />
-            <element signature="e#4057#4058#0" expanded="true" />
-            <element signature="e#4084#4085#0" expanded="true" />
-            <element signature="e#4135#4136#0" expanded="true" />
-            <element signature="e#4162#4163#0" expanded="true" />
-            <element signature="e#4215#4216#0" expanded="true" />
-            <element signature="e#4242#4243#0" expanded="true" />
+            <element signature="method#getAssetsByFilter#0;class#AssetContainer#0" expanded="false" />
+            <element signature="e#3203#3210#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -627,36 +604,26 @@
         <state relative-caret-position="329">
           <caret line="30" column="60" lean-forward="false" selection-start-line="30" selection-start-column="60" selection-end-line="30" selection-end-column="60" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Verwaltung/AssetContainer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="128" column="20" lean-forward="true" selection-start-line="128" selection-start-column="20" selection-end-line="128" selection-end-column="20" />
+        <state relative-caret-position="312">
+          <caret line="97" column="39" lean-forward="true" selection-start-line="97" selection-start-column="39" selection-end-line="97" selection-end-column="39" />
           <folding>
             <element signature="e#183#190#0" expanded="true" />
             <element signature="method#getItemById#0;class#AssetContainer#0" expanded="false" />
             <element signature="method#editItemById#0;class#AssetContainer#0" expanded="false" />
+            <element signature="method#insertAsset#0;class#AssetContainer#0" expanded="false" />
             <element signature="method#deleteAsset#0;class#AssetContainer#0" expanded="false" />
             <element signature="method#showAll#0;class#AssetContainer#0" expanded="false" />
             <element signature="method#safeInventar#0;class#AssetContainer#0" expanded="false" />
             <element signature="method#loadInventar#0;class#AssetContainer#0" expanded="false" />
-            <element signature="e#3048#3055#0" expanded="true" />
-            <element signature="e#3823#3824#0" expanded="true" />
-            <element signature="e#3850#3851#0" expanded="true" />
-            <element signature="e#3901#3902#0" expanded="true" />
-            <element signature="e#3928#3929#0" expanded="true" />
-            <element signature="e#3979#3980#0" expanded="true" />
-            <element signature="e#4006#4007#0" expanded="true" />
-            <element signature="e#4057#4058#0" expanded="true" />
-            <element signature="e#4084#4085#0" expanded="true" />
-            <element signature="e#4135#4136#0" expanded="true" />
-            <element signature="e#4162#4163#0" expanded="true" />
-            <element signature="e#4215#4216#0" expanded="true" />
-            <element signature="e#4242#4243#0" expanded="true" />
+            <element signature="method#getAssetsByFilter#0;class#AssetContainer#0" expanded="false" />
+            <element signature="e#3203#3210#0" expanded="true" />
           </folding>
         </state>
       </provider>
