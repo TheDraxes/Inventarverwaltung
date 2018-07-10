@@ -1,6 +1,6 @@
 package Verwaltung;
 
-import Data.Asset;
+import Data.*;
 
 import java.io.*;
 import java.util.*;
@@ -10,6 +10,7 @@ public class AssetContainer implements Serializable{
     private long id = 0;
     private String[] existingAssetTypes = {"Boden und Gebäude", "Fuhrpark", "Hardware", "Mobiliar", "Software", "Sonstiges"};
 
+    //TEST
     public Asset getItemById(long id) {
         Iterator<Asset> it = assetList.iterator();
         while (it.hasNext()) {
@@ -21,22 +22,26 @@ public class AssetContainer implements Serializable{
         return null;
     }
 
-    public void editItem(Asset i) {
-
+    public void editItemById(long id, Asset a) {
+        Iterator<Asset> it = assetList.iterator();
+        while (it.hasNext()) {
+            Asset i = it.next();
+            if(i.getInventarnummer() == id) {
+                i = a;
+            }
+        }
     }
 
-
-
-    public void insertAsset(Asset i) {
+    public void insertAsset(Asset a) {
         id++;
-        i.setInventarnummer(id);
+        a.setInventarnummer(id);
 
-        assetList.add(i);
+        assetList.add(a);
         System.out.println("**Item hinzugefügt");
     }
 
-    public void deleteAsset(Asset i) {
-        assetList.remove(i);
+    public void deleteAsset(Asset a) {
+        assetList.remove(a);
         System.out.println("**Item entfernt");
     }
 
@@ -45,6 +50,7 @@ public class AssetContainer implements Serializable{
         Iterator<Asset> it = assetList.iterator();
         while (it.hasNext()) {
             it.next().display();
+            System.out.println("- - - - - - - - - - - - - - - - - - -");
         }
     }
 
@@ -88,4 +94,55 @@ public class AssetContainer implements Serializable{
     public String[] getExistingAssetTypes() {
         return existingAssetTypes;
     }
+
+    // Filter
+
+    public ArrayList<Asset> getFilteredAssets(boolean[] filter) {
+        try {
+            ArrayList<Asset> filteredList = new ArrayList<Asset>();
+
+            if(filter[0]) {
+                filteredList.addAll(getAllBodenUndGebaeude());
+            }
+            if(filter[1]) {
+                filteredList.addAll(getAllFuhrpark());
+            }
+            if(filter[2]) {
+                filteredList.addAll(getAllHardware());
+            }
+            if(filter[3]) {
+                filteredList.addAll(getAllMobiliar());
+            }
+            if(filter[4]) {
+                filteredList.addAll(getAllSoftware());
+            }
+            if(filter[5]) {
+                filteredList.addAll(getAllFuhrpark());
+            }
+
+            return filteredList;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    private ArrayList<BodenUndGebaeude> getAllBodenUndGebaeude() {
+        return null;
+    }
+    private ArrayList<Fuhrpark> getAllFuhrpark() {
+        return null;
+    }
+    private ArrayList<Hardware> getAllHardware() {
+        return null;
+    }
+    private ArrayList<Mobiliar> getAllMobiliar() {
+        return null;
+    }
+    private ArrayList<Software> getAllSoftware() {
+        return null;
+    }
+    private ArrayList<Sonstiges> getAllSonstiges() {
+        return null;
+    }
+
 }
