@@ -10,7 +10,12 @@ public class AssetContainer implements Serializable{
     private long id = 0;
     private String[] existingAssetTypes = {"Boden und Gebäude", "Fuhrpark", "Hardware", "Mobiliar", "Software", "Sonstiges"};
 
+<<<<<<< HEAD
     //TEST
+=======
+
+    // Eingabe der Inventarnummer id, Rückgabe des zugehörigen Assets
+>>>>>>> Klassenstruktur
     public Asset getItemById(long id) {
         Iterator<Asset> it = assetList.iterator();
         while (it.hasNext()) {
@@ -22,6 +27,7 @@ public class AssetContainer implements Serializable{
         return null;
     }
 
+    // Veränderung eines Assets mit der Inventarnummer id
     public void editItemById(long id, Asset a) {
         for(int i = 0; i < assetList.size(); i++){
           if(assetList.get(i).getInventarnummer() == id){
@@ -30,6 +36,7 @@ public class AssetContainer implements Serializable{
         }
     }
 
+    // neues Asset einfügen, Inventarnummer wird automatisch generiert
     public void insertAsset(Asset a) {
         id++;
         a.setInventarnummer(id);
@@ -38,11 +45,13 @@ public class AssetContainer implements Serializable{
         System.out.println("**Item hinzugefügt");
     }
 
+    // Asset a löschen
     public void deleteAsset(Asset a) {
         assetList.remove(a);
         System.out.println("**Item entfernt");
     }
 
+    // alle Assets ausgeben (Konsole) - für Testzwecke
     public void showAll() {
         System.out.println("**Ausgabe aller Items");
         Iterator<Asset> it = assetList.iterator();
@@ -52,10 +61,7 @@ public class AssetContainer implements Serializable{
         }
     }
 
-    public ArrayList<Asset> getAssetList(){
-        return this.assetList;
-    }
-
+    // Inventar speichern
     public void safeInventar(String path){
         System.out.print("**Speichere Inventar");
         try {
@@ -70,6 +76,7 @@ public class AssetContainer implements Serializable{
         }
     }
 
+    // Inventar laden
     public AssetContainer loadInventar(String path) {
         System.out.print("**Lade Inventar");
         try {
@@ -89,13 +96,8 @@ public class AssetContainer implements Serializable{
         return null;
     }
 
-    public String[] getExistingAssetTypes() {
-        return existingAssetTypes;
-    }
-
     // Filter
-
-    public ArrayList<Asset> getFilteredAssets(boolean[] filter) {
+    public ArrayList<Asset> getAssetsByFilter(boolean[] filter) {
         try {
             ArrayList<Asset> filteredList = new ArrayList<Asset>();
 
@@ -123,7 +125,6 @@ public class AssetContainer implements Serializable{
             return null;
         }
     }
-
     private ArrayList<BodenUndGebaeude> getAllBodenUndGebaeude() {
         return null;
     }
@@ -141,6 +142,14 @@ public class AssetContainer implements Serializable{
     }
     private ArrayList<Sonstiges> getAllSonstiges() {
         return null;
+    }
+
+    public ArrayList<Asset> getAssetList(){
+        return this.assetList;
+    }
+
+    public String[] getExistingAssetTypes() {
+        return existingAssetTypes;
     }
 
 }

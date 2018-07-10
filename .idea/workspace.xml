@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="489def6d-61e6-48f2-adb7-8b0c787ec216" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/GUI/ViewGUI/NewItemDialogs/FuhrparkDialog.class" afterPath="$PROJECT_DIR$/out/production/Inventarverwaltung/GUI/ViewGUI/NewItemDialogs/FuhrparkDialog.class" />
@@ -12,6 +13,9 @@
       <change beforePath="$PROJECT_DIR$/src/GUI/ViewGUI/NewItemDialogs/FuhrparkDialog.java" afterPath="$PROJECT_DIR$/src/GUI/ViewGUI/NewItemDialogs/FuhrparkDialog.java" />
       <change beforePath="$PROJECT_DIR$/src/GUI/ViewGUI/ViewController.java" afterPath="$PROJECT_DIR$/src/GUI/ViewGUI/ViewController.java" />
       <change beforePath="$PROJECT_DIR$/src/TestKlassen/AssetContainerTest.java" afterPath="$PROJECT_DIR$/src/TestKlassen/AssetContainerTest.java" />
+=======
+    <list default="true" id="3afe1bda-5f95-4b99-a161-bf7caccd7202" name="Default" comment="">
+>>>>>>> Klassenstruktur
       <change beforePath="$PROJECT_DIR$/src/Verwaltung/AssetContainer.java" afterPath="$PROJECT_DIR$/src/Verwaltung/AssetContainer.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -47,6 +51,7 @@
       <file leaf-file-name="AssetContainer.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Verwaltung/AssetContainer.java">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="229">
               <caret line="29" column="9" lean-forward="false" selection-start-line="29" selection-start-column="9" selection-end-line="29" selection-end-column="9" />
               <folding>
@@ -66,6 +71,21 @@
                 <element signature="e#4128#4129#0" expanded="true" />
                 <element signature="e#4181#4182#0" expanded="true" />
                 <element signature="e#4208#4209#0" expanded="true" />
+=======
+            <state relative-caret-position="312">
+              <caret line="97" column="39" lean-forward="true" selection-start-line="97" selection-start-column="39" selection-end-line="97" selection-end-column="39" />
+              <folding>
+                <element signature="e#183#190#0" expanded="true" />
+                <element signature="method#getItemById#0;class#AssetContainer#0" expanded="false" />
+                <element signature="method#editItemById#0;class#AssetContainer#0" expanded="false" />
+                <element signature="method#insertAsset#0;class#AssetContainer#0" expanded="false" />
+                <element signature="method#deleteAsset#0;class#AssetContainer#0" expanded="false" />
+                <element signature="method#showAll#0;class#AssetContainer#0" expanded="false" />
+                <element signature="method#safeInventar#0;class#AssetContainer#0" expanded="false" />
+                <element signature="method#loadInventar#0;class#AssetContainer#0" expanded="false" />
+                <element signature="method#getAssetsByFilter#0;class#AssetContainer#0" expanded="false" />
+                <element signature="e#3203#3210#0" expanded="true" />
+>>>>>>> Klassenstruktur
               </folding>
             </state>
           </provider>
@@ -435,9 +455,36 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/TestKlassen/AssetContainerTest.java">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="315">
           <caret line="38" column="0" lean-forward="true" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
           <folding />
+=======
+        <state relative-caret-position="329">
+          <caret line="30" column="60" lean-forward="false" selection-start-line="30" selection-start-column="60" selection-end-line="30" selection-end-column="60" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Verwaltung/AssetContainer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="816">
+          <caret line="52" column="72" lean-forward="false" selection-start-line="52" selection-start-column="72" selection-end-line="52" selection-end-column="72" />
+          <folding>
+            <element signature="e#183#190#0" expanded="true" />
+            <element signature="method#getItemById#0;class#AssetContainer#0" expanded="false" />
+            <element signature="method#editItemById#0;class#AssetContainer#0" expanded="false" />
+            <element signature="method#insertAsset#0;class#AssetContainer#0" expanded="false" />
+            <element signature="method#deleteAsset#0;class#AssetContainer#0" expanded="false" />
+            <element signature="method#showAll#0;class#AssetContainer#0" expanded="false" />
+            <element signature="method#safeInventar#0;class#AssetContainer#0" expanded="false" />
+            <element signature="method#loadInventar#0;class#AssetContainer#0" expanded="false" />
+            <element signature="method#getAssetsByFilter#0;class#AssetContainer#0" expanded="false" />
+            <element signature="e#3203#3210#0" expanded="true" />
+          </folding>
+>>>>>>> Klassenstruktur
         </state>
       </provider>
     </entry>
@@ -465,6 +512,7 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/Verwaltung/AssetContainer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="229">
@@ -486,6 +534,104 @@
             <element signature="e#4128#4129#0" expanded="true" />
             <element signature="e#4181#4182#0" expanded="true" />
             <element signature="e#4208#4209#0" expanded="true" />
+=======
+    <entry file="file://$PROJECT_DIR$/src/Data/Person.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="126" column="21" lean-forward="false" selection-start-line="126" selection-start-column="21" selection-end-line="126" selection-end-column="21" />
+          <folding>
+            <element signature="method#initAdmin#0;class#Person#0" expanded="false" />
+            <element signature="method#Person#1;class#Person#0" expanded="false" />
+            <element signature="method#generateUsername#0;class#Person#0" expanded="false" />
+            <element signature="method#generateEmail#0;class#Person#0" expanded="false" />
+            <element signature="method#display#0;class#Person#0" expanded="false" />
+            <element signature="method#setName#0;class#Person#0" expanded="false" />
+            <element signature="method#setSurname#0;class#Person#0" expanded="false" />
+            <element signature="method#setMan#0;class#Person#0" expanded="false" />
+            <element signature="method#setRoom#0;class#Person#0" expanded="false" />
+            <element signature="method#setPhonenumber#0;class#Person#0" expanded="false" />
+            <element signature="method#setEmail#0;class#Person#0" expanded="false" />
+            <element signature="method#setUsername#0;class#Person#0" expanded="false" />
+            <element signature="method#setPassword#0;class#Person#0" expanded="false" />
+            <element signature="method#setAdmin#0;class#Person#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Verwaltung/UserContainer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="69" column="17" lean-forward="true" selection-start-line="69" selection-start-column="17" selection-end-line="69" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/Dialogs.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/StartGUI/StartController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="752">
+          <caret line="144" column="0" lean-forward="false" selection-start-line="144" selection-start-column="0" selection-end-line="144" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/LoginGUI/ProgramStart.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="42" column="5" lean-forward="true" selection-start-line="42" selection-start-column="5" selection-end-line="42" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/LoginGUI/LoginController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="191">
+          <caret line="65" column="0" lean-forward="false" selection-start-line="65" selection-start-column="0" selection-end-line="65" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Data/Asset.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="352">
+          <caret line="71" column="72" lean-forward="false" selection-start-line="71" selection-start-column="72" selection-end-line="71" selection-end-column="72" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/TestKlassen/AssetContainerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="329">
+          <caret line="30" column="60" lean-forward="false" selection-start-line="30" selection-start-column="60" selection-end-line="30" selection-end-column="60" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Verwaltung/AssetContainer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="97" column="39" lean-forward="true" selection-start-line="97" selection-start-column="39" selection-end-line="97" selection-end-column="39" />
+          <folding>
+            <element signature="e#183#190#0" expanded="true" />
+            <element signature="method#getItemById#0;class#AssetContainer#0" expanded="false" />
+            <element signature="method#editItemById#0;class#AssetContainer#0" expanded="false" />
+            <element signature="method#insertAsset#0;class#AssetContainer#0" expanded="false" />
+            <element signature="method#deleteAsset#0;class#AssetContainer#0" expanded="false" />
+            <element signature="method#showAll#0;class#AssetContainer#0" expanded="false" />
+            <element signature="method#safeInventar#0;class#AssetContainer#0" expanded="false" />
+            <element signature="method#loadInventar#0;class#AssetContainer#0" expanded="false" />
+            <element signature="method#getAssetsByFilter#0;class#AssetContainer#0" expanded="false" />
+            <element signature="e#3203#3210#0" expanded="true" />
+>>>>>>> Klassenstruktur
           </folding>
         </state>
       </provider>
