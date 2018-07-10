@@ -13,7 +13,7 @@ import java.util.Date;
 import java.util.Optional;
 
 public class FuhrparkDialog extends AbstractDialog {
-  ComboBox kw_ps;
+  private ComboBox kw_ps;
 
   public FuhrparkDialog(String[] labelNames, Label[] labels, TextField[] textFields, Asset actual) {
     super(labelNames, labels, textFields, actual);

@@ -8,9 +8,9 @@ import javafx.stage.Stage;
 import javafx.util.Pair;
 
 public class AssetDialogs {
-  TextField[] TextFields = new TextField[0];
-  Label[] Labels = new Label[0];
-  String[] labelNames = new String[0];
+  private TextField[] TextFields = new TextField[0];
+  private Label[] Labels = new Label[0];
+  private String[] labelNames = new String[0];
 
 
   public Pair<Asset, String> getNewItem(String itemType, Asset actual) {
@@ -37,7 +37,8 @@ public class AssetDialogs {
       case "Software":          //Software
         this.labelNames = new Software().getParamNames();
         setTextFields();
-        break;
+        pair = new SoftwareDialog(labelNames,Labels,TextFields,actual).getSoftware();
+        return pair;
       case "Sonstiges":         //Sonstiges
         this.labelNames = new Sonstiges().getParamNames();
         setTextFields();
@@ -46,7 +47,7 @@ public class AssetDialogs {
     return new Pair<>(null, null);
   }
 
-  public void setTextFields() {
+  protected void setTextFields() {
     System.out.println(labelNames.length);
     Labels = new Label[labelNames.length];
     for (int i = 0; i < labelNames.length; i++) {

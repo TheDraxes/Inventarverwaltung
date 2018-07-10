@@ -141,18 +141,22 @@ public class ViewController implements Initializable {
                 @Override
                 public void handle(ActionEvent t) {
                     // Das ausgewählte Asset auswählen
+                  try {
                     Asset selectedAsset = (Asset) ButtonCell.this.getTableView().getItems().get(ButtonCell.this.getIndex());
                     selectedAsset.display();
 
                     String assetClass = selectedAsset.getClass().toString().substring(11);
 
-                    Asset editedAsset = new AssetDialogs().getNewItem(assetClass,selectedAsset).getKey();
+                    Asset editedAsset = new AssetDialogs().getNewItem(assetClass, selectedAsset).getKey();
                     editedAsset.display();
 
-                    assetContainer.editItemById(selectedAsset.getInventarnummer(),editedAsset);
+                    assetContainer.editItemById(selectedAsset.getInventarnummer(), editedAsset);
                     assetContainer.showAll();
 
                     fillTable();
+                  } catch (Exception e){
+                    System.out.println("Cancel Button Clicked");
+                  }
                 }
             });
         }
