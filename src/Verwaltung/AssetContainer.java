@@ -10,12 +10,7 @@ public class AssetContainer implements Serializable{
     private long id = 0;
     private String[] existingAssetTypes = {"Boden und Gebäude", "Fuhrpark", "Hardware", "Mobiliar", "Software", "Sonstiges"};
 
-<<<<<<< HEAD
-    //TEST
-=======
-
     // Eingabe der Inventarnummer id, Rückgabe des zugehörigen Assets
->>>>>>> Klassenstruktur
     public Asset getItemById(long id) {
         Iterator<Asset> it = assetList.iterator();
         while (it.hasNext()) {
@@ -100,7 +95,6 @@ public class AssetContainer implements Serializable{
     public ArrayList<Asset> getAssetsByFilter(boolean[] filter) {
         try {
             ArrayList<Asset> filteredList = new ArrayList<Asset>();
-
             if(filter[0]) {
                 filteredList.addAll(getAllBodenUndGebaeude());
             }
@@ -126,10 +120,24 @@ public class AssetContainer implements Serializable{
         }
     }
     private ArrayList<BodenUndGebaeude> getAllBodenUndGebaeude() {
-        return null;
+        ArrayList<BodenUndGebaeude> newList = new ArrayList<BodenUndGebaeude>();
+
+        for(int i = 0; i < assetList.size(); i++){
+            if(assetList.get(i).getClass() == BodenUndGebaeude.class){
+                newList.add((BodenUndGebaeude) assetList.get(i));
+            }
+        }
+        return newList;
     }
     private ArrayList<Fuhrpark> getAllFuhrpark() {
-        return null;
+        ArrayList<Fuhrpark> newList = new ArrayList<Fuhrpark>();
+
+        for(int i = 0; i < assetList.size(); i++){
+            if(assetList.get(i).getClass() == Fuhrpark.class){
+                newList.add((Fuhrpark) assetList.get(i));
+            }
+        }
+        return newList;
     }
     private ArrayList<Hardware> getAllHardware() {
         return null;
@@ -138,7 +146,14 @@ public class AssetContainer implements Serializable{
         return null;
     }
     private ArrayList<Software> getAllSoftware() {
-        return null;
+        ArrayList<Software> newList = new ArrayList<Software>();
+
+        for(int i = 0; i < assetList.size(); i++){
+            if(assetList.get(i).getClass() == Software.class){
+                newList.add((Software) assetList.get(i));
+            }
+        }
+        return newList;
     }
     private ArrayList<Sonstiges> getAllSonstiges() {
         return null;
