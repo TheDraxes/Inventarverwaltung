@@ -111,7 +111,7 @@ public class AssetContainer implements Serializable{
                 filteredList.addAll(getAllSoftware());
             }
             if(filter[5]) {
-                filteredList.addAll(getAllFuhrpark());
+                filteredList.addAll(getAllSonstiges());
             }
 
             return filteredList;
