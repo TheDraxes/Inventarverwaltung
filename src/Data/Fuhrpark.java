@@ -1,5 +1,12 @@
 package Data;
 
+/**
+ *
+ *
+ * @author mixd
+ * @version 1.0
+ */
+
 public class Fuhrpark extends Asset {
 	private String kennzeichen;
 	private long fahrgestellnummer;

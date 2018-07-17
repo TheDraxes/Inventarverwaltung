@@ -17,16 +17,18 @@ public class Person implements Serializable {
     private boolean isLocked;
 
     public Person() {
-        System.out.println("**Benutzer angelegt!");
+        System.out.println("[INFO] Benutzer angelegt!");
     }
 
+    // Beim ersten Programmstart bzw. zurücksetzen der Userdaten (user.dat) wird automatisch ein Admin mit der passwort 123 zur Anmeldung erstellt
     public void initAdmin() {
         this.username = "admin";
         this.password = "123";
         this.isAdmin = true;
-        System.out.println("**Standardadmin angelegt!");
+        System.out.println("[INFO] Standardadmin angelegt!");
     }
 
+    // Konstruktor zum Anlegen eines neuen Nutzers
     public Person(String name, String surname, boolean isMan, String password, boolean isAdmin) {
         this.name = name;
         this.surname = surname;
@@ -35,9 +37,10 @@ public class Person implements Serializable {
         this.isAdmin = isAdmin;
         this.username = generateUsername();
         this.email = generateEmail();
-        System.out.println("**Benutzer " + this.username + " angelegt!");
+        System.out.println("[INFO] Benutzer " + this.username + " angelegt!");
     }
 
+    // Beim Anlegen eines neuen Nutzers wird der Benutzername automatisch aus Nachname + Anfangsbuchstaben vom Vornamen erstellt
     private String generateUsername() {
         UserContainer userData = new UserContainer().loadUserData();
         String generatedUsername = new String();
@@ -60,10 +63,12 @@ public class Person implements Serializable {
         }
     }
 
+    // Beim Anlegen eines neuen Nutzers wird die E-Mail automatisch aus 'Anfangsbuchstaben vom Vornamen' . 'Nachname' @ 'dvz-mv.de' erstellt
     private String generateEmail() {
         return username.substring(name.length()) + "." + name.toLowerCase() + "@dvz-mv.de";
     }
 
+    // Konsolenausgabe aller Parameter für Testzwecke
     public void display() {
         if(!this.username.equals("admin")) {
             System.out.println("Benutzername:   " + username);
@@ -87,92 +92,79 @@ public class Person implements Serializable {
         }
     }
 
+    // Getter & Setter
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
-        System.out.println("**Name geändert");
+        System.out.println("[EDIT] Name geändert");
     }
-
     public String getSurname() {
         return surname;
     }
-
     public void setSurname(String surname) {
         this.surname = surname;
-        System.out.println("**Vorname geändert");
+        System.out.println("[EDIT] Vorname geändert");
     }
-
     public boolean isMan() {
         return isMan;
     }
-
     public void setMan(boolean man) {
         isMan = man;
-        System.out.println("**Geschlecht geändert");
+        System.out.println("[EDIT] Geschlecht geändert");
     }
-
     public int getRoom() {
         return room;
     }
-
     public void setRoom(int room) {
         this.room = room;
-        System.out.println("**Raum geändert");
+        System.out.println("[EDIT] Raum geändert");
     }
-
     public long getPhonenumber() {
         return phonenumber;
     }
-
     public void setPhonenumber(long phonenumber) {
         this.phonenumber = phonenumber;
-        System.out.println("**Telefonnummer geändert");
+        System.out.println("[EDIT] Telefonnummer geändert");
     }
-
     public String getEmail() {
         return email;
     }
-
     public void setEmail(String email) {
         this.email = email;
-        System.out.println("**E-Mail geändert");
+        System.out.println("[EDIT] E-Mail geändert");
     }
-
     public String getUsername() {
         return username;
     }
-
     public void setUsername(String username) {
         this.username = username;
-        System.out.println("**Benutzernamen geändert");
+        System.out.println("[EDIT] Benutzernamen geändert");
     }
-
     public String getPassword() {
         return password;
     }
-
     public void setPassword(String password) {
         this.password = password;
-        System.out.println("**Passwort geändert");
+        System.out.println("[EDIT] Passwort geändert");
     }
-
     public boolean isAdmin() {
         return isAdmin;
     }
-
     public void setAdmin(boolean admin) {
         this.isAdmin = admin;
-        System.out.println("**Adminzugriff geändert");
+        System.out.println("[EDIT] Adminzugriff geändert");
     }
-
     public boolean isLocked() {
         return isLocked;
     }
-
     public void setLocked(boolean locked) {
         isLocked = locked;
+        if(isLocked) {
+            System.out.println("[INFO] Benutzer " + this.username + " wurde gesperrt!");
+        }
+        else
+            System.out.println("[INFO] Benutzer " + this.username + " wurde entsperrt!");
     }
 }

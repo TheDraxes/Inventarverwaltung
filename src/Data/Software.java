@@ -1,5 +1,13 @@
 package Data;
 
+/**
+ *
+ *
+ * @author mixd
+ *
+ * @version 1.0
+ */
+
 public class Software extends Asset {
     private String version;
 

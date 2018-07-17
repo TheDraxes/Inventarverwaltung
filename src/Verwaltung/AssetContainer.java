@@ -5,6 +5,14 @@ import Data.*;
 import java.io.*;
 import java.util.*;
 
+/**
+ *
+ *
+ * @author mixd
+ *
+ * @version 1.0
+ */
+
 public class AssetContainer implements Serializable{
     private ArrayList<Asset> assetList = new ArrayList<Asset>();
     private long id = 0;
@@ -119,6 +127,7 @@ public class AssetContainer implements Serializable{
             return null;
         }
     }
+
     private ArrayList<BodenUndGebaeude> getAllBodenUndGebaeude() {
         ArrayList<BodenUndGebaeude> newList = new ArrayList<BodenUndGebaeude>();
 
@@ -140,10 +149,24 @@ public class AssetContainer implements Serializable{
         return newList;
     }
     private ArrayList<Hardware> getAllHardware() {
-        return null;
+        ArrayList<Hardware> newList = new ArrayList<Hardware>();
+
+        for(int i = 0; i < assetList.size(); i++){
+            if(assetList.get(i).getClass() == Hardware.class){
+                newList.add((Hardware) assetList.get(i));
+            }
+        }
+        return newList;
     }
     private ArrayList<Mobiliar> getAllMobiliar() {
-        return null;
+        ArrayList<Mobiliar> newList = new ArrayList<Mobiliar>();
+
+        for(int i = 0; i < assetList.size(); i++){
+            if(assetList.get(i).getClass() == Mobiliar.class){
+                newList.add((Mobiliar) assetList.get(i));
+            }
+        }
+        return newList;
     }
     private ArrayList<Software> getAllSoftware() {
         ArrayList<Software> newList = new ArrayList<Software>();
@@ -156,7 +179,14 @@ public class AssetContainer implements Serializable{
         return newList;
     }
     private ArrayList<Sonstiges> getAllSonstiges() {
-        return null;
+        ArrayList<Sonstiges> newList = new ArrayList<Sonstiges>();
+
+        for(int i = 0; i < assetList.size(); i++){
+            if(assetList.get(i).getClass() == Sonstiges.class){
+                newList.add((Sonstiges) assetList.get(i));
+            }
+        }
+        return newList;
     }
 
     public ArrayList<Asset> getAssetList(){

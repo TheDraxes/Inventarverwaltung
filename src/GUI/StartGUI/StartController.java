@@ -228,7 +228,7 @@ public class StartController implements Initializable {
             }
         }
 
-        userContainer.printAllUser();
+        userContainer.display();
     }
     @FXML
     public void deleteUser(){

@@ -1,5 +1,12 @@
 package Data;
 
+/**
+ *
+ *
+ * @author mixd
+ * @version 1.0
+ */
+
 public class BodenUndGebaeude extends Asset {
     private int plz;
     private String ort;

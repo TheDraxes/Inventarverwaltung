@@ -7,6 +7,14 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+/**
+ *
+ *
+ * @author mixd
+ *
+ * @version 1.0
+ */
+
 public class UserContainer implements Serializable {
     private ArrayList<Person> userData = new ArrayList<Person>();
     private int numberOfUser = 0;
@@ -155,7 +163,7 @@ public class UserContainer implements Serializable {
         return false;
     }
 
-    public void printAllUser(){
+    public void display(){
         System.out.println("**Ausgabe aller User");
         Iterator<Person> it = userData.iterator();
         while (it.hasNext()) {

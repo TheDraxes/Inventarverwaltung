@@ -1,5 +1,10 @@
 package TestKlassen;
 
+/**
+ *
+ *
+ */
+
 public class DialogsTest {
     public static void main (String[] args){
 

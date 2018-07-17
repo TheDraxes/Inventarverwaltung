@@ -2,7 +2,6 @@ package GUI.LoginGUI;
 
 import GUI.Dialogs;
 import Data.Person;
-import GUI.StartGUI.StartController;
 import GUI.StartGUI.showStartWindow;
 import Verwaltung.UserContainer;
 import javafx.fxml.FXML;
@@ -60,7 +59,7 @@ public class LoginController {
 
         File userLogins = new File("user.dat");
 
-        userContainer.printAllUser();
+        userContainer.display();
 
         if(userLogins.exists()) {
             userContainer = new UserContainer().loadUserData();
