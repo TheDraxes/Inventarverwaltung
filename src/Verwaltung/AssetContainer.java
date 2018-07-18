@@ -6,7 +6,9 @@ import java.io.*;
 import java.util.*;
 
 /**
- *
+ * AssetContainer stellt ein ganzes Inventar dar, in welches alle
+ * Assets eingetragen werden können. Weiterhin wird in diesem die
+ * Inventarnummer eines Assets automatisch generiert (ID).
  *
  * @author mixd
  *

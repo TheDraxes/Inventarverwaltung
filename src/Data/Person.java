@@ -70,6 +70,8 @@ public class Person implements Serializable {
 
     // Konsolenausgabe aller Parameter für Testzwecke
     public void display() {
+        System.out.println("[INFO] DISPLAYMETHODE PERSON");
+        System.out.println("============================");
         if(!this.username.equals("admin")) {
             System.out.println("Benutzername:   " + username);
             System.out.println("--------------------------");

@@ -11,21 +11,31 @@ package Data;
 public class Software extends Asset {
     private String version;
 
-    private int paramAnzahl = 1;
     private String[] paramNames = {
             "Softwareversion"
     };
+    private int paramAnzahl = paramNames.length;
 
+
+    // Konstruktor ohne Parameter
     public Software() {
+
     }
 
+    // Konsolenausgabe aller Parameter für Testzwecke
+    public void display() {
+        super.display();
+        System.out.println("Version:             " + version);
+    }
+
+    // Getter und Setter
     public int getParamAnzahl(){
         return super.getParamAnzahl()+ paramAnzahl;
     }
-
     public String[] getParamNames(){
         String[] superiorParams = super.getParamNames();
         String[] allParams = new String[getParamAnzahl()];
+
         for(int i = 0; i < superiorParams.length; i++){
             allParams[i] = superiorParams[i];
         }
@@ -40,8 +50,8 @@ public class Software extends Asset {
     public String getVersion() {
         return version;
     }
-
     public void setVersion(String version) {
         this.version = version;
+        System.out.println("[EDIT] Version geändert");
     }
 }

@@ -25,26 +25,25 @@ public abstract class Asset implements Serializable {
 	private String inserierungsdatumString;
 	private int anzahl;
 
-	private int paramAnzahl = 4;
-	private final int ParamAnzahl = 4;
-
 	private String[] paramNames = {
             "Bezeichnung",
             "Anschaffungswert",
             "Tnd",
             "Anzahl"
 	};
+    private int paramAnzahl = paramNames.length;
+    private final int ParamAnzahl = paramNames.length;
 
 
 	// Konstruktor zum Anlegen eines Assets ohne Parameter
 	public Asset() {
-
-
+        System.out.println("[INFO] Asset ohne Parameter angelegt!");
     }
 
     // Konstruktor zum Anlegen eines Assets ohne Parameter nur mit Inventarnummer
     public Asset(long inventarnummer) {
         this.inventarnummer = inventarnummer;
+        System.out.println("[INFO] Asset mit Inventarnummer angelegt!");
     }
 
     // Konstruktor zum Anlegen eines Assets mit Parametern
@@ -58,17 +57,20 @@ public abstract class Asset implements Serializable {
         this.standort = standort;
         this.anzahl = anzahl;
         this.setInserierungsdatum(inserierungsdatum);
+        System.out.println("[INFO] Asset mit Parametern angelegt!");
     }
 
     // Konsolenausgabe aller Parameter für Testzwecke
     public void display() {
+        System.out.println("[INFO] DISPLAYMETHODE EINES ASSETS AUFGERUFEN");
+        System.out.println("=============================================");
 	    System.out.println("Inventarnummer:      " + inventarnummer);
         System.out.println("Bezeichnung:         " + bezeichnung);
         System.out.println("Anschaffungswert:    " + anschaffungswert);
         System.out.println("Buchwert:            " + buchwert);
         System.out.println("Techn. Nutzungsdauer:" + tnd);
         System.out.println("Ablaufdatum:         " + ablaufdatum);
-        //System.out.println("Inventarnummer: " + standort);
+        //System.out.println("Sachgebiet:          " + standort);
         System.out.println("Inserierungsdatum:   " + inserierungsdatum);
         System.out.println("Anzahl:              " + anzahl);
     }
@@ -160,6 +162,7 @@ public abstract class Asset implements Serializable {
 
     // Methode zum Runden auf x Stellen
     public static double round(double value, int x) {
+        System.out.println("[INFO] round aufgerufen");
         if (x < 0) throw new IllegalArgumentException();
 
         BigDecimal bd = new BigDecimal(value);

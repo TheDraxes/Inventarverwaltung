@@ -9,7 +9,7 @@ import Verwaltung.AssetContainer;
 import java.util.ArrayList;
 
 /**
- *
+ * AssetContainerTest dient für Tests des AssetContainers.
  *
  */
 
@@ -60,6 +60,17 @@ public class AssetContainerTest {
             System.out.println("-------------------------------------");
         }
 
+
+        String[] paramNames = {
+                "Postleitzahl",
+                "Ort",
+                "Strasse",
+                "Hausnummer",
+                "Flächengröße",
+                "Besitzer"
+        };
+
+        System.out.println(paramNames.length);
 
     }
 }

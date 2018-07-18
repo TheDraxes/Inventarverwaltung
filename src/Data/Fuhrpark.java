@@ -14,22 +14,33 @@ public class Fuhrpark extends Asset {
 	private int ps;
 	private int kilometerstand;
 
-	private int paramAnzahl = 4;
 	private String[] paramNames = {
 			"Kennzeichen",
 			"Fahrgestellnummer",
 			"Kilometerstand",
 			"Leistung"
 		};
+	private int paramAnzahl = paramNames.length;
 
+
+	// Konstruktor ohne Parameter
 	public Fuhrpark() {
-
+		System.out.println("[INFO] Fuhrpark ohne Parameter angelegt!");
 	}
 
+	// Konsolenausgabe aller Parameter für Testzwecke
+	public void display() {
+		super.display();
+		System.out.println("Kennzeichen:         " + kennzeichen);
+		System.out.println("Fahrgestellnummer:   " + fahrgestellnummer);
+		System.out.println("Leistung:            " + kw + " kw (" + ps + " ps)");
+		System.out.println("Kilomenterstand:     " + kilometerstand);
+	}
+
+	// Getter und Setter
 	public int getParamAnzahl(){
 		return super.getParamAnzahl()+ paramAnzahl;
 	}
-
 	public String[] getParamNames(){
 		String[] superiorParams = super.getParamNames();
 		String[] allParams = new String[getParamAnzahl()];
@@ -45,53 +56,41 @@ public class Fuhrpark extends Asset {
 		return allParams;
 	}
 
-	public void display() {
-		super.display();
-		System.out.println("Kennzeichen:         " + kennzeichen);
-		System.out.println("Fahrgestellnummer:   " + fahrgestellnummer);
-		System.out.println("Leistung:            " + kw + " kw (" + ps + " ps)");
-		System.out.println("Kilomenterstand:     " + kilometerstand);
-	}
-
 	public String getKennzeichen() {
 		return kennzeichen;
 	}
-
 	public void setKennzeichen(String kennzeichen) {
 		this.kennzeichen = kennzeichen;
+		System.out.println("[EDIT] Kennzeichen geändert");
 	}
-
 	public long getFahrgestellnummer() {
 		return fahrgestellnummer;
 	}
-
 	public void setFahrgestellnummer(long fahrgestellnummer) {
 		this.fahrgestellnummer = fahrgestellnummer;
+		System.out.println("[EDIT] Fahrgestellnummer geändert");
 	}
-
 	public int getKw() {
 		return kw;
 	}
-
 	public void setKw(int kw) {
 		this.kw = kw;
 		this.ps = (int) round(kw*1.35962, 0);
+		System.out.println("[EDIT] Leistung geändert");
 	}
-
 	public void setPs(int ps) {
 		this.ps = ps;
 		this.kw = (int) round(ps/1.35962, 0);
+		System.out.println("[EDIT] Leistung geändert");
 	}
-
 	public int getPs() {
 		return ps;
 	}
-
 	public int getKilometerstand() {
 		return kilometerstand;
 	}
-
 	public void setKilometerstand(int kilometerstand) {
 		this.kilometerstand = kilometerstand;
+		System.out.println("[EDIT] Kilometerstand geändert");
 	}
 }
