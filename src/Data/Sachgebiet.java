@@ -9,16 +9,16 @@ package Data;
 
 public class Sachgebiet extends Abteilung {
 
-	private Person sgLeiter;
+	private Person sachgebietsleiter;
 
 
 	// Konstruktoren
 	public Sachgebiet() {
 		System.out.println("[INFO] Sachgebiet ohne Parameter angelegt!");
 	}
-	public Sachgebiet(Person sgLeiter) {
+	public Sachgebiet(Person sachgebietsleiter) {
 		System.out.println("[INFO] Sachgebiet mit Parameter angelegt!");
-		this.sgLeiter = sgLeiter;
+		this.sachgebietsleiter = sachgebietsleiter;
 	}
 
 	// Konsolenausgabe aller Parameter für Testzwecke
@@ -26,8 +26,15 @@ public class Sachgebiet extends Abteilung {
 		System.out.println("[INFO] DISPLAYMETHODE SACHGEBIET");
 		System.out.println("Sachgebietsleiter");
 		System.out.println("-----------------");
-		sgLeiter.display();
+		sachgebietsleiter.display();
 	}
 
-
+	// Getter und Setter
+	public Person getSachgebietsleiter() {
+		return sachgebietsleiter;
+	}
+	public void setSachgebietsleiter(Person sachgebietsleiter) {
+		this.sachgebietsleiter = sachgebietsleiter;
+		System.out.println("[EDIT] Sachgebietsleiter geändert");
+	}
 }

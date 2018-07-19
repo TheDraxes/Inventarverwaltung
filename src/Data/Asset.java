@@ -60,6 +60,16 @@ public abstract class Asset implements Serializable {
         System.out.println("[INFO] Asset mit Parametern angelegt!");
     }
 
+    // Methode zum Runden auf x Stellen
+    public static double round(double value, int x) {
+        System.out.println("[INFO] round aufgerufen");
+        if (x < 0) throw new IllegalArgumentException();
+
+        BigDecimal bd = new BigDecimal(value);
+        bd = bd.setScale(x, RoundingMode.HALF_UP);
+        return bd.doubleValue();
+    }
+
     // Konsolenausgabe aller Parameter für Testzwecke
     public void display() {
         System.out.println("[INFO] DISPLAYMETHODE EINES ASSETS AUFGERUFEN");
@@ -158,15 +168,5 @@ public abstract class Asset implements Serializable {
     public void setAnzahl(int anzahl) {
         this.anzahl = anzahl;
         System.out.println("[EDIT] Anzahl geändert");
-    }
-
-    // Methode zum Runden auf x Stellen
-    public static double round(double value, int x) {
-        System.out.println("[INFO] round aufgerufen");
-        if (x < 0) throw new IllegalArgumentException();
-
-        BigDecimal bd = new BigDecimal(value);
-        bd = bd.setScale(x, RoundingMode.HALF_UP);
-        return bd.doubleValue();
     }
 }

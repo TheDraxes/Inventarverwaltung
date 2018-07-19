@@ -20,14 +20,6 @@ public class Person implements Serializable {
         System.out.println("[INFO] Benutzer angelegt!");
     }
 
-    // Beim ersten Programmstart bzw. zurücksetzen der Userdaten (user.dat) wird automatisch ein Admin mit der passwort 123 zur Anmeldung erstellt
-    public void initAdmin() {
-        this.username = "admin";
-        this.password = "123";
-        this.isAdmin = true;
-        System.out.println("[INFO] Standardadmin angelegt!");
-    }
-
     // Konstruktor zum Anlegen eines neuen Nutzers
     public Person(String name, String surname, boolean isMan, String password, boolean isAdmin) {
         this.name = name;
@@ -38,6 +30,14 @@ public class Person implements Serializable {
         this.username = generateUsername();
         this.email = generateEmail();
         System.out.println("[INFO] Benutzer " + this.username + " angelegt!");
+    }
+
+    // Beim ersten Programmstart bzw. zurücksetzen der Userdaten (user.dat) wird automatisch ein Admin mit dem Passwort 123 zur Anmeldung erstellt
+    public void initAdmin() {
+        this.username = "admin";
+        this.password = "123";
+        this.isAdmin = true;
+        System.out.println("[INFO] Standardadmin angelegt!");
     }
 
     // Beim Anlegen eines neuen Nutzers wird der Benutzername automatisch aus Nachname + Anfangsbuchstaben vom Vornamen erstellt
@@ -63,7 +63,7 @@ public class Person implements Serializable {
         }
     }
 
-    // Beim Anlegen eines neuen Nutzers wird die E-Mail automatisch aus 'Anfangsbuchstaben vom Vornamen' . 'Nachname' @ 'dvz-mv.de' erstellt
+    // Beim Anlegen eines neuen Nutzers wird die E-Mail automatisch aus 'Anfangsbuchstaben des Vornamen' . 'Nachname' @ 'dvz-mv.de' erstellt
     private String generateEmail() {
         return username.substring(name.length()) + "." + name.toLowerCase() + "@dvz-mv.de";
     }

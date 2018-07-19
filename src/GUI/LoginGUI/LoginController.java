@@ -50,7 +50,7 @@ public class LoginController {
      * Falls kein Usercontainer bisher abgeschpeichert wurde wird ein neuer mit dem
      * Admin Account und dem Standartpasswort erstellt.
      *
-     * @auther Tim
+     * @author Tim
      * @version 1.0
      */
 
@@ -78,10 +78,10 @@ public class LoginController {
      * Fängt Keyboard eingaben ab und ruft die loginButtonClicked funktion auf
      * falls die Entertaste gedrückt wurde.
      *
-     * @auther Tim
-     * @version 1.0
      * @see #loginButtonClicked()
      * @param event
+     * @author Tim
+     * @version 1.0
      */
 
     @FXML
@@ -92,14 +92,14 @@ public class LoginController {
     }
 
     /**
-     * Methode die aufgerufen wird wenn der Loginbutton geclicked wurde
+     * Methode die aufgerufen wird wenn der Loginbutton geklickt wurde
      *
-     * Prüft die eingegebenen angaben, vergleicht sie mit denen in dem Usercontainer,
-     * versteckt das aktuelle Fenster und Ruft das Inventarverwaltungsenster auf.
+     * Prüft die eingegebenen Angaben, vergleicht sie mit denen in dem Usercontainer,
+     * versteckt das aktuelle Fenster und ruft das Inventarverwaltungsenster auf.
      *
      * @see showStartWindow#showStartWindow(UserContainerAlt, String)
      * @TODO sperrung nach 3 fehlgeschlagenen Loginversuchen
-     * @auther Tim
+     * @author Tim
      * @version 1.0
      */
 

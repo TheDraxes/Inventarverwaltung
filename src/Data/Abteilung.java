@@ -27,4 +27,13 @@ public class Abteilung {
 		System.out.println("----------------");
 		abteilungsleiter.display();
 	}
+
+	// Getter und Setter
+	public Person getAbteilungsleiter() {
+		return abteilungsleiter;
+	}
+	public void setAbteilungsleiter(Person abteilungsleiter) {
+		this.abteilungsleiter = abteilungsleiter;
+		System.out.println("[EDIT] Abteilungsleiter geändert");
+	}
 }

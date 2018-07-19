@@ -22,43 +22,85 @@ public class AssetContainer implements Serializable{
 
     // Eingabe der Inventarnummer id, Rückgabe des zugehörigen Assets
     public Asset getItemById(long id) {
-        Iterator<Asset> it = assetList.iterator();
-        while (it.hasNext()) {
-            Asset i = it.next();
-            if(i.getInventarnummer() == id) {
-                return i;
+        System.out.println("[INFO] Asset mit der Inventarnummer " + id + " suchen");
+        try {
+            Iterator<Asset> it = assetList.iterator();
+            while (it.hasNext()) {
+                Asset i = it.next();
+                if(i.getInventarnummer() == id) {
+                    System.out.println("[INFO] Asset gefunden");
+                    return i;
+                }
             }
-        }
-        return null;
-    }
-
-    // Veränderung eines Assets mit der Inventarnummer id
-    public void editItemById(long id, Asset a) {
-        for(int i = 0; i < assetList.size(); i++){
-          if(assetList.get(i).getInventarnummer() == id){
-            assetList.set(i,a);
-          }
+            System.out.println("[WARNING] Inventarnummer konnte nicht gefunden werden");
+            return null;
+        } catch(Exception e) {
+            System.out.println("[ERROR] Fehler beim Suchen des Assets");
+            e.printStackTrace();
+            return null;
         }
     }
 
-    // neues Asset einfügen, Inventarnummer wird automatisch generiert
-    public void insertAsset(Asset a) {
-        id++;
-        a.setInventarnummer(id);
+    // Veränderung eines Assets mit der Inventarnummer id durch Asset a
+    public boolean editItemById(long id, Asset a) {
+        System.out.println("[INFO] Asset editieren...");
+        try {
+            for(int i = 0; i < assetList.size(); i++){
+                if(assetList.get(i).getInventarnummer() == id){
+                    assetList.set(i,a);
+                    System.out.println("[INFO] Asset erfolgreich editiert");
+                    return true;
+                }
+            }
+            System.out.println("[WARNING] Inventarnummer konnte nicht gefunden werden");
+            return false;
+        } catch(Exception e) {
+            System.out.println("[ERROR] Fehler beim Editieren des Assets");
+            e.printStackTrace();
+            return false;
+        }
+    }
 
-        assetList.add(a);
-        System.out.println("**Item hinzugefügt");
+    // neues Asset einfügen, Inventarnummer wird automatisch generiert (hochgezählt)
+    public boolean insertAsset(Asset a) {
+        System.out.println("[INFO] Asset hinzufügen...");
+        try {
+            id++;
+            a.setInventarnummer(id);
+            if(assetList.add(a)) {
+                System.out.println("[INFO] Asset erfolgreich hinzugefügt");
+                return true;
+            } else
+                System.out.println("[ERROR] Fehler beim hinzufügen des Assets");
+            return false;
+        } catch(Exception e) {
+            System.out.println("[ERROR] Fehler beim hinzufügen des Assets");
+            e.printStackTrace();
+            return false;
+        }
     }
 
     // Asset a löschen
-    public void deleteAsset(Asset a) {
-        assetList.remove(a);
-        System.out.println("**Item entfernt");
+    public boolean deleteAsset(Asset a) {
+        System.out.println("[INFO] Asset löschen...");
+        try {
+            if(assetList.contains(a)) {
+                assetList.remove(a);
+                System.out.println("[INFO] Asset erfolgreich gelöscht");
+                return true;
+            } else
+                System.out.println("[WARNING] Asset existiert nicht");
+                return false;
+        } catch(Exception e) {
+            System.out.println("[ERROR] Fehler beim löschen des Assets");
+            e.printStackTrace();
+            return false;
+        }
     }
 
     // alle Assets ausgeben (Konsole) - für Testzwecke
     public void showAll() {
-        System.out.println("**Ausgabe aller Items");
+        System.out.println("[INFO] Ausgabe aller Assets");
         Iterator<Asset> it = assetList.iterator();
         while (it.hasNext()) {
             it.next().display();
@@ -67,29 +109,32 @@ public class AssetContainer implements Serializable{
     }
 
     // Inventar speichern
-    public void safeInventar(String path){
-        System.out.print("**Speichere Inventar");
+    public boolean safeInventar(String path){
+        System.out.println("[INFO] Speichere Inventar...");
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(new File(path));
             ObjectOutputStream outputStream = new ObjectOutputStream(fileOutputStream);
             outputStream.writeObject(this);
-            System.out.println("**Inventar abgespeichert in " + path);
+            System.out.println("[INFO] Inventar gespeichert unter " + path);
+            return true;
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
+        System.out.println("[ERROR] Fehler beim speichern des Inventars");
+        return false;
     }
 
     // Inventar laden
     public AssetContainer loadInventar(String path) {
-        System.out.print("**Lade Inventar");
+        System.out.println("[INFO] Lade Inventar...");
         try {
             FileInputStream fileInputStream = new FileInputStream(new File(path));
             ObjectInputStream inputStream = new ObjectInputStream(fileInputStream);
             AssetContainer loaded = (AssetContainer) inputStream.readObject();
 
-            System.out.println("**Inventar geladen!");
+            System.out.println("[INFO] Inventar geladen!");
             return loaded;
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -98,11 +143,13 @@ public class AssetContainer implements Serializable{
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+        System.out.println("[ERROR] Fehler beim laden des Inventars");
         return null;
     }
 
-    // Filter
+    // Filtermethoden
     public ArrayList<Asset> getAssetsByFilter(boolean[] filter) {
+        System.out.println("[INFO] Filter anwenden...");
         try {
             ArrayList<Asset> filteredList = new ArrayList<Asset>();
             if(filter[0]) {
@@ -124,77 +171,128 @@ public class AssetContainer implements Serializable{
                 filteredList.addAll(getAllSonstiges());
             }
 
+            System.out.println("[INFO] Filterung erfolgreich");
             return filteredList;
         } catch (Exception e) {
-            return null;
+            e.printStackTrace();
         }
+        System.out.println("[ERROR] Filterung fehlgeschlagen");
+        return null;
     }
 
     private ArrayList<BodenUndGebaeude> getAllBodenUndGebaeude() {
-        ArrayList<BodenUndGebaeude> newList = new ArrayList<BodenUndGebaeude>();
+        System.out.println("[INFO] nach BodenUndGebaeude filtern...");
+        try {
+            ArrayList<BodenUndGebaeude> newList = new ArrayList<BodenUndGebaeude>();
 
-        for(int i = 0; i < assetList.size(); i++){
-            if(assetList.get(i).getClass() == BodenUndGebaeude.class){
-                newList.add((BodenUndGebaeude) assetList.get(i));
+            for(int i = 0; i < assetList.size(); i++){
+                if(assetList.get(i).getClass() == BodenUndGebaeude.class){
+                    newList.add((BodenUndGebaeude) assetList.get(i));
+                }
             }
+            System.out.println("[INFO] Filterung nach BodenUndGebaeude erfolgreich");
+            return newList;
+        } catch(Exception e) {
+            e.printStackTrace();
         }
-        return newList;
+        System.out.println("[INFO] Fehler bei der Filterung nach BodenUndGebaeude");
+        return null;
     }
     private ArrayList<Fuhrpark> getAllFuhrpark() {
-        ArrayList<Fuhrpark> newList = new ArrayList<Fuhrpark>();
+        System.out.println("[INFO] nach Fuhrpark filtern...");
+        try {
+            ArrayList<Fuhrpark> newList = new ArrayList<Fuhrpark>();
 
-        for(int i = 0; i < assetList.size(); i++){
-            if(assetList.get(i).getClass() == Fuhrpark.class){
-                newList.add((Fuhrpark) assetList.get(i));
+            for(int i = 0; i < assetList.size(); i++){
+                if(assetList.get(i).getClass() == Fuhrpark.class){
+                    newList.add((Fuhrpark) assetList.get(i));
+                }
             }
+            System.out.println("[INFO] Filterung nach Fuhrpark erfolgreich");
+            return newList;
+        } catch(Exception e) {
+            e.printStackTrace();
         }
-        return newList;
+        System.out.println("[INFO] Fehler bei der Filterung nach Fuhrpark");
+        return null;
     }
     private ArrayList<Hardware> getAllHardware() {
-        ArrayList<Hardware> newList = new ArrayList<Hardware>();
+        System.out.println("[INFO] nach Hardware filtern...");
+        try {
+            ArrayList<Hardware> newList = new ArrayList<Hardware>();
 
-        for(int i = 0; i < assetList.size(); i++){
-            if(assetList.get(i).getClass() == Hardware.class){
-                newList.add((Hardware) assetList.get(i));
+            for(int i = 0; i < assetList.size(); i++){
+                if(assetList.get(i).getClass() == Hardware.class){
+                    newList.add((Hardware) assetList.get(i));
+                }
             }
+            System.out.println("[INFO] Filterung nach Hardware erfolgreich");
+            return newList;
+        } catch(Exception e) {
+            e.printStackTrace();
         }
-        return newList;
+        System.out.println("[INFO] Fehler bei der Filterung nach Hardware");
+        return null;
     }
     private ArrayList<Mobiliar> getAllMobiliar() {
-        ArrayList<Mobiliar> newList = new ArrayList<Mobiliar>();
+        System.out.println("[INFO] nach Mobiliar filtern...");
+        try {
+            ArrayList<Mobiliar> newList = new ArrayList<Mobiliar>();
 
-        for(int i = 0; i < assetList.size(); i++){
-            if(assetList.get(i).getClass() == Mobiliar.class){
-                newList.add((Mobiliar) assetList.get(i));
+            for(int i = 0; i < assetList.size(); i++){
+                if(assetList.get(i).getClass() == Mobiliar.class){
+                    newList.add((Mobiliar) assetList.get(i));
+                }
             }
+            System.out.println("[INFO] Filterung nach Mobiliar erfolgreich");
+            return newList;
+        } catch(Exception e) {
+            e.printStackTrace();
         }
-        return newList;
+        System.out.println("[INFO] Fehler bei der Filterung nach Mobiliar");
+        return null;
     }
     private ArrayList<Software> getAllSoftware() {
-        ArrayList<Software> newList = new ArrayList<Software>();
+        System.out.println("[INFO] nach Software filtern...");
+        try {
+            ArrayList<Software> newList = new ArrayList<Software>();
 
-        for(int i = 0; i < assetList.size(); i++){
-            if(assetList.get(i).getClass() == Software.class){
-                newList.add((Software) assetList.get(i));
+            for(int i = 0; i < assetList.size(); i++){
+                if(assetList.get(i).getClass() == Software.class){
+                    newList.add((Software) assetList.get(i));
+                }
             }
+            System.out.println("[INFO] Filterung nach Software erfolgreich");
+            return newList;
+        } catch(Exception e) {
+            e.printStackTrace();
         }
-        return newList;
+        System.out.println("[INFO] Fehler bei der Filterung nach Software");
+        return null;
     }
     private ArrayList<Sonstiges> getAllSonstiges() {
-        ArrayList<Sonstiges> newList = new ArrayList<Sonstiges>();
+        System.out.println("[INFO] nach Sonstiges filtern...");
+        try {
+            ArrayList<Sonstiges> newList = new ArrayList<Sonstiges>();
 
-        for(int i = 0; i < assetList.size(); i++){
-            if(assetList.get(i).getClass() == Sonstiges.class){
-                newList.add((Sonstiges) assetList.get(i));
+            for(int i = 0; i < assetList.size(); i++){
+                if(assetList.get(i).getClass() == Sonstiges.class){
+                    newList.add((Sonstiges) assetList.get(i));
+                }
             }
+            System.out.println("[INFO] Filterung nach Sonstiges erfolgreich");
+            return newList;
+        } catch(Exception e) {
+            e.printStackTrace();
         }
-        return newList;
+        System.out.println("[INFO] Fehler bei der Filterung nach Sonstiges");
+        return null;
     }
 
+    // Getter
     public ArrayList<Asset> getAssetList(){
         return this.assetList;
     }
-
     public String[] getExistingAssetTypes() {
         return existingAssetTypes;
     }
