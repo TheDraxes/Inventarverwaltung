@@ -52,7 +52,7 @@ public class LoginController {
     @FXML
     public void initialize(){
         this.userContainer = userContainer.loadUserData();
-        this.userContainer.displayAllUserNames();
+        this.userContainer.displayAllUserName();
         System.out.println("[INFO] Login Fenster Initialisiert");
     }
 

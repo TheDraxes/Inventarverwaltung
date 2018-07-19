@@ -25,15 +25,21 @@ public class UserContainer implements Serializable {
      * @author mixd
      * @version 1.0
      */
-    public void insertUser(Person p) {
-        userData.add(p);
+    public boolean insertUser(Person p) {
+        try {
+            userData.add(p);
 
-        if(p.isAdmin())
-            System.out.println("[INFO] Neuen Admin mit dem Benutzernamen " + p.getUsername() + " angelegt!");
-        else
-            System.out.println("[INFO] Neuen User mit dem Benutzernamen " + p.getUsername() + " angelegt!");
+            if(p.isAdmin())
+                System.out.println("[INFO] Neuen Admin mit dem Benutzernamen " + p.getUsername() + " angelegt!");
+            else
+                System.out.println("[INFO] Neuen User mit dem Benutzernamen " + p.getUsername() + " angelegt!");
 
-        safeUserData();
+            safeUserData();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     /**
@@ -251,7 +257,7 @@ public class UserContainer implements Serializable {
     }
 
     // Konsolenausgabe aller Nutzernamen für Testzwecke
-    public void displayAllUserNames() {
+    public void displayAllUserName(){
         System.out.println("[INFO] Ausgabe aller Benutzernamen");
         Iterator<Person> it = userData.iterator();
         while (it.hasNext()) {
