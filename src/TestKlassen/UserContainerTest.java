@@ -57,23 +57,5 @@ public class UserContainerTest {
         System.out.print("falsches Login: ");
         System.out.println(c.checkLogin("marsl", "bockwurst007"));*/
 
-
-        // TEST FÜR BENUTZERNAMEN GENERIERUNG
-        b.deleteAllUser();
-        b.safeUserData();
-
-        b.display();
-
-        Person user1 = new Person("Mix", "Tim", true, "bockwurst123", true);
-        b.insertUser(user1);
-        Person user2 = new Person("Mix", "Tim", true, "bockwurst123", true);
-        b.insertUser(user2);
-        Person user3 = new Person("Mix", "Tim", true, "bockwurst123", true);
-        b.insertUser(user3);
-        Person user4 = new Person("Mix", "Tim", true, "bockwurst123", true);
-        b.insertUser(user4);
-        Person user5 = new Person("Mix", "Tim", true, "bockwurst123", true);
-        b.insertUser(user5);
-        b.display();
     }
 }

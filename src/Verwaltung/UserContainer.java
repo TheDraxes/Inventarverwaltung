@@ -18,7 +18,6 @@ import java.util.Iterator;
 
 public class UserContainer implements Serializable {
     private ArrayList<Person> userData = new ArrayList<Person>();
-    private int numberOfUser = 0;
 
     /**
      * insertUser fügt einen neuen Benutzer hinzu
@@ -26,16 +25,21 @@ public class UserContainer implements Serializable {
      * @author mixd
      * @version 1.0
      */
-    public void insertUser(Person p) {
-        userData.add(p);
-        numberOfUser++;
+    public boolean insertUser(Person p) {
+        try {
+            userData.add(p);
 
-        if(p.isAdmin())
-            System.out.println("[INFO] Neuen Admin mit dem Benutzernamen " + p.getUsername() + " angelegt!");
-        else
-            System.out.println("[INFO] Neuen User mit dem Benutzernamen " + p.getUsername() + " angelegt!");
+            if(p.isAdmin())
+                System.out.println("[INFO] Neuen Admin mit dem Benutzernamen " + p.getUsername() + " angelegt!");
+            else
+                System.out.println("[INFO] Neuen User mit dem Benutzernamen " + p.getUsername() + " angelegt!");
 
-        safeUserData();
+            safeUserData();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     /**
@@ -133,7 +137,7 @@ public class UserContainer implements Serializable {
      * @version 1.0
      */
     public String[] getUserNames() {
-        String[] usernames = new String[numberOfUser];
+        String[] usernames = new String[userData.size()];
         int i = 0;
 
         Iterator<Person> it = userData.iterator();
@@ -174,7 +178,6 @@ public class UserContainer implements Serializable {
 
             if(result == JOptionPane.OK_OPTION) {
                 userData.remove(p);
-                numberOfUser--;
             } else if(result == JOptionPane.CANCEL_OPTION || result == JOptionPane.NO_OPTION){
                 System.out.println("[INFO] Vorgang abgebrochen!");
             }
@@ -194,7 +197,6 @@ public class UserContainer implements Serializable {
     public void deleteAllUser() {
         System.out.println("[INFO] Lösche alle Benutzer");
         userData.clear();
-        numberOfUser = 0;
     }
 
     /**
@@ -254,6 +256,14 @@ public class UserContainer implements Serializable {
         }
     }
 
+    public void displayAllUserName(){
+        System.out.println("[INFO] Ausgabe aller Benutzernamen");
+        Iterator<Person> it = userData.iterator();
+        while (it.hasNext()) {
+            System.out.println(it.next().getUsername().toString());
+        }
+    }
+
     // Getter und Setter
     public ArrayList<Person> getUserData() {
         return userData;
@@ -262,6 +272,6 @@ public class UserContainer implements Serializable {
         this.userData = userData;
     }
     public int getNumberOfUser() {
-        return numberOfUser;
+        return userData.size();
     }
 }
