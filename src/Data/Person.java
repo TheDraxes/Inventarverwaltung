@@ -17,7 +17,7 @@ public class Person implements Serializable {
     private boolean isLocked;
 
     public Person() {
-        System.out.println("[INFO] Benutzer angelegt!");
+        System.out.println("[KONSTRUKTOR] Person ohne Parameter angelegt!");
     }
 
     // Konstruktor zum Anlegen eines neuen Nutzers
@@ -29,7 +29,7 @@ public class Person implements Serializable {
         this.isAdmin = isAdmin;
         this.username = generateUsername();
         this.email = generateEmail();
-        System.out.println("[INFO] Benutzer " + this.username + " angelegt!");
+        System.out.println("[KONSTRUKTOR] Benutzer " + this.username + " angelegt!");
     }
 
     // Beim ersten Programmstart bzw. zurücksetzen der Userdaten (user.dat) wird automatisch ein Admin mit dem Passwort 123 zur Anmeldung erstellt
@@ -71,7 +71,6 @@ public class Person implements Serializable {
     // Konsolenausgabe aller Parameter für Testzwecke
     public void display() {
         System.out.println("[INFO] DISPLAYMETHODE PERSON");
-        System.out.println("============================");
         if(!this.username.equals("admin")) {
             System.out.println("Benutzername:   " + username);
             System.out.println("--------------------------");

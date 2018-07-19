@@ -147,7 +147,7 @@ public class StartController implements Initializable {
         String input = Dialogs.inputDialog("Inventar","Eingabe", "Inventarnamen Eingeben!");
 
         if(input == null){
-            System.out.println("**Anlgen abgebrochen abgebrochen");
+            System.out.println("**Anlegen abgebrochen abgebrochen");
         } else {
             if (!input.equals("")) {
                 File newFile = new File(path + "\\" + input + ".Inv");

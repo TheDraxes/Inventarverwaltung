@@ -25,7 +25,7 @@ public class Fuhrpark extends Asset {
 
 	// Konstruktor ohne Parameter
 	public Fuhrpark() {
-		System.out.println("[INFO] Fuhrpark ohne Parameter angelegt!");
+		System.out.println("[KONSTRUKTOR] Fuhrpark ohne Parameter angelegt!");
 	}
 
 	// Konsolenausgabe aller Parameter für Testzwecke

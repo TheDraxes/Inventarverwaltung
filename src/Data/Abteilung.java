@@ -13,10 +13,10 @@ public class Abteilung {
 
 	// Konstruktoren
 	public Abteilung() {
-		System.out.println("[INFO] Abteilung ohne Parameter angelegt!");
+		System.out.println("[KONSTRUKTOR] Abteilung ohne Parameter angelegt!");
 	}
 	public Abteilung(Person abteilungsleiter) {
-		System.out.println("[INFO] Abteilung mit Parameter angelegt!");
+		System.out.println("[KONSTRUKTOR] Abteilung mit Parameter angelegt!");
 		this.abteilungsleiter = abteilungsleiter;
 	}
 

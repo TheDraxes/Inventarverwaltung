@@ -37,13 +37,13 @@ public abstract class Asset implements Serializable {
 
 	// Konstruktor zum Anlegen eines Assets ohne Parameter
 	public Asset() {
-        System.out.println("[INFO] Asset ohne Parameter angelegt!");
+        System.out.println("[KONSTRUKTOR] Asset ohne Parameter angelegt!");
     }
 
     // Konstruktor zum Anlegen eines Assets ohne Parameter nur mit Inventarnummer
     public Asset(long inventarnummer) {
         this.inventarnummer = inventarnummer;
-        System.out.println("[INFO] Asset mit Inventarnummer angelegt!");
+        System.out.println("[KONSTRUKTOR] Asset mit Inventarnummer angelegt!");
     }
 
     // Konstruktor zum Anlegen eines Assets mit Parametern
@@ -57,7 +57,7 @@ public abstract class Asset implements Serializable {
         this.standort = standort;
         this.anzahl = anzahl;
         this.setInserierungsdatum(inserierungsdatum);
-        System.out.println("[INFO] Asset mit Parametern angelegt!");
+        System.out.println("[KONSTRUKTOR] Asset mit Parametern angelegt!");
     }
 
     // Methode zum Runden auf x Stellen

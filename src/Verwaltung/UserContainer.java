@@ -8,7 +8,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
- *
+ * UserContainer verwaltet eine Nutzerdatenbank,
+ * welche unter anderem für das Login benötigt wird.
  *
  * @author mixd
  *
@@ -19,77 +20,101 @@ public class UserContainer implements Serializable {
     private ArrayList<Person> userData = new ArrayList<Person>();
     private int numberOfUser = 0;
 
-    public ArrayList<Person> getUserData() {
-        return userData;
-    }
-
-    public void setUserData(ArrayList<Person> userData) {
-        this.userData = userData;
-    }
-
-    public int getNumberOfUser() {
-        return numberOfUser;
-    }
-
-    public void setNumberOfUser(int numberOfUser) {
-        this.numberOfUser = numberOfUser;
-    }
-
+    /**
+     * insertUser fügt einen neuen Benutzer hinzu
+     *
+     * @author mixd
+     * @version 1.0
+     */
     public void insertUser(Person p) {
         userData.add(p);
         numberOfUser++;
 
         if(p.isAdmin())
-            System.out.println("**Neuen Admin mit dem Namen " + p.getUsername() + " angelegt!");
+            System.out.println("[INFO] Neuen Admin mit dem Benutzernamen " + p.getUsername() + " angelegt!");
         else
-            System.out.println("**Neuen User mit dem Namen " + p.getUsername() + " angelegt!");
+            System.out.println("[INFO] Neuen User mit dem Benutzernamen " + p.getUsername() + " angelegt!");
 
         safeUserData();
     }
 
-    public boolean userIsDuplicate(String username){
-        Iterator<Person> it = userData.iterator();
-        while (it.hasNext()) {
-            if(it.next().getUsername().equals(username))
-                return true;
-        }
-        return false;
-    }
-
-    public void safeUserData(){
-        System.out.println("**Speichere Nutzerdaten");
+    /**
+     * safeUserData speichert die Nutzerdaten unter 'user.dat'
+     *
+     * @author mixd
+     * @version 1.0
+     */
+    public boolean safeUserData(){
+        System.out.println("[INFO] Speichere Nutzerdaten...");
         try {
             FileOutputStream fileOutputStream = new FileOutputStream("user.dat");
             ObjectOutputStream outputStream = new ObjectOutputStream(fileOutputStream);
             outputStream.writeObject(this);
-            System.out.println("**Nutzerdaten abgespeichert in user.dat");
+            System.out.println("[INFO] Nutzerdaten gespeichert unter '" + "user.dat" + "'!");
+            return true;
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
+        System.out.println("[ERROR] Fehler beim speichern der Nutzerdaten!");
+        return false;
     }
 
+    /**
+     * loadUserData liest die Nutzerdaten ein
+     *
+     * Falls die Datei user.dat existiert, wird diese eingelesen
+     *
+     * Falls die Datei user.dat nicht existiert, wird die Datei mit dem
+     * Standardadmin neu angelegt!
+     *
+     * @author mixd
+     * @version 1.0
+     */
     public UserContainer loadUserData(){
-        FileInputStream fileInputStream = null;
-        File userLogins = new File("user.dat");
-        UserContainer loaded = new UserContainer();
-        if(userLogins.exists()) {
-            try {
+        System.out.println("[INFO] Suche Nutzerdaten...");
+
+        try {
+            FileInputStream fileInputStream = null;
+            File userLogins = new File("user.dat");
+
+            if(userLogins.exists()) {
+                System.out.println("[INFO] Nutzerdaten gefunden!");
+                System.out.println("[INFO] Lese Nutzerdaten ein...");
+
                 fileInputStream = new FileInputStream(userLogins);
                 ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-                loaded = (UserContainer) objectInputStream.readObject();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
+                UserContainer loaded = (UserContainer) objectInputStream.readObject();
+
+                System.out.println("[INFO] Nutzerdaten erfolgreich eingelesen!");
+                return loaded;
+            } else {
+                System.out.println("[INFO] Nutzerdaten konnten nicht gefunden werden!");
+                UserContainer newUserdata = new UserContainer();
+                Person admin = new Person();
+                admin.initAdmin();
+                newUserdata.insertUser(admin);
+                System.out.println("[INFO] Neue Nutzerdaten mit Standardadmin erstellt");
+                return newUserdata;
             }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
         }
-        return loaded;
+        System.out.println("[ERROR] Fehler beim Laden der Nutzerdaten!");
+        return null;
     }
 
+    /**
+     * getPersonByUsername gibt ein Objekt Person mit dem Nutzernamen username zurück
+     *
+     * @author mixd
+     * @version 1.0
+     */
     public Person getPersonByUsername(String username) {
         Iterator<Person> it = userData.iterator();
         while (it.hasNext()) {
@@ -101,6 +126,12 @@ public class UserContainer implements Serializable {
         return null;
     }
 
+    /**
+     * getUserNames gibt alle Nutzernamen zurück
+     *
+     * @author mixd
+     * @version 1.0
+     */
     public String[] getUserNames() {
         String[] usernames = new String[numberOfUser];
         int i = 0;
@@ -113,6 +144,12 @@ public class UserContainer implements Serializable {
         return usernames;
     }
 
+    /**
+     * userExisting prüft, ob ein Nutzername bereits vorhanden ist
+     *
+     * @author mixd
+     * @version 1.0
+     */
     public boolean userExisting(String username) {
         if(getPersonByUsername(username) != null) {
             return true;
@@ -120,6 +157,12 @@ public class UserContainer implements Serializable {
         return false;
     }
 
+    /**
+     * deleteUser löscht einen Nutzer mithilfe des Nutzernames
+     *
+     * @author Tim
+     * @version 1.0
+     */
     public void deleteUser(String username){
 
         setLookAndFeel();
@@ -127,51 +170,62 @@ public class UserContainer implements Serializable {
         Person p = getPersonByUsername(username);
 
         if(p != null) {
-            int result = JOptionPane.showConfirmDialog(null,"User " + username + " wirklich löschen?");
+            int result = JOptionPane.showConfirmDialog(null,"Benutzer " + username + " wirklich löschen?");
 
             if(result == JOptionPane.OK_OPTION) {
                 userData.remove(p);
+                numberOfUser--;
             } else if(result == JOptionPane.CANCEL_OPTION || result == JOptionPane.NO_OPTION){
-                System.out.println("**Vorgang abgebrochen!");
+                System.out.println("[INFO] Vorgang abgebrochen!");
             }
 
         } else
-            System.out.println("**Username existiert nicht!");
+            System.out.println("[WARNING] Benutzername existiert nicht!");
 
         safeUserData();
     }
 
+    /**
+     * deleteAllUser löscht alle vorhandenen Benutzer.
+     *
+     * @author mixd
+     * @version 1.0
+     */
     public void deleteAllUser() {
-        System.out.println("**Lösche alle Benutzer");
+        System.out.println("[INFO] Lösche alle Benutzer");
         userData.clear();
         numberOfUser = 0;
     }
 
+    /**
+     * checkLogin prüft, ob der eingebenene Name und das eingegebene
+     * Passwort übereinstimmen.
+     *
+     * @author mixd
+     * @version 1.0
+     */
     public boolean checkLogin(String username, String pw){
         Person p = getPersonByUsername(username);
 
         if(p != null) {
             if(p.getPassword().equals(pw)) {
-                System.out.println("**Eingeloggt als " + p.getUsername());
+                System.out.println("[INFO] Eingeloggt als " + p.getUsername());
                 return true;
             } else {
-                System.out.println("**Benutzername existiert nicht oder Passwort ist falsch!");
+                System.out.println("[WARNING] Benutzername existiert nicht oder Passwort ist falsch!");
                 return false;
             }
         }
-        System.out.println("**Benutzername existiert nicht oder Passwort ist falsch!");
+        System.out.println("[WARNING] Benutzername existiert nicht oder Passwort ist falsch!");
         return false;
     }
 
-    public void display(){
-        System.out.println("**Ausgabe aller User");
-        Iterator<Person> it = userData.iterator();
-        while (it.hasNext()) {
-            it.next().display();
-            System.out.println("====================================================");
-        }
-    }
-
+    /**
+     * setLookAndFeel
+     *
+     * @author Tim
+     * @version 1.0
+     */
     private void setLookAndFeel(){
         String laf = UIManager.getSystemLookAndFeelClassName();
         try {
@@ -185,5 +239,29 @@ public class UserContainer implements Serializable {
         } catch (UnsupportedLookAndFeelException e) {
             e.printStackTrace();
         }
+    }
+
+    // Konsolenausgabe aller Nutzer für Testzwecke
+    public void display(){
+        System.out.println("[INFO] Ausgabe aller Benutzer");
+        System.out.println("=============================");
+        Iterator<Person> it = userData.iterator();
+        while (it.hasNext()) {
+            it.next().display();
+            if(it.hasNext()) {
+                System.out.println("- - - - - - - - - - - - - -");
+            }
+        }
+    }
+
+    // Getter und Setter
+    public ArrayList<Person> getUserData() {
+        return userData;
+    }
+    public void setUserData(ArrayList<Person> userData) {
+        this.userData = userData;
+    }
+    public int getNumberOfUser() {
+        return numberOfUser;
     }
 }

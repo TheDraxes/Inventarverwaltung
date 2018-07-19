@@ -14,10 +14,10 @@ public class Sachgebiet extends Abteilung {
 
 	// Konstruktoren
 	public Sachgebiet() {
-		System.out.println("[INFO] Sachgebiet ohne Parameter angelegt!");
+		System.out.println("[KONSTRUKTOR] Sachgebiet ohne Parameter angelegt!");
 	}
 	public Sachgebiet(Person sachgebietsleiter) {
-		System.out.println("[INFO] Sachgebiet mit Parameter angelegt!");
+		System.out.println("[KONSTRUKTOR] Sachgebiet mit Parameter angelegt!");
 		this.sachgebietsleiter = sachgebietsleiter;
 	}
 

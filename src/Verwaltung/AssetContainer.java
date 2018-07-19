@@ -115,14 +115,14 @@ public class AssetContainer implements Serializable{
             FileOutputStream fileOutputStream = new FileOutputStream(new File(path));
             ObjectOutputStream outputStream = new ObjectOutputStream(fileOutputStream);
             outputStream.writeObject(this);
-            System.out.println("[INFO] Inventar gespeichert unter " + path);
+            System.out.println("[INFO] Inventar gespeichert unter '" + path + "'!");
             return true;
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println("[ERROR] Fehler beim speichern des Inventars");
+        System.out.println("[ERROR] Fehler beim speichern des Inventars!");
         return false;
     }
 
@@ -143,7 +143,7 @@ public class AssetContainer implements Serializable{
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        System.out.println("[ERROR] Fehler beim laden des Inventars");
+        System.out.println("[ERROR] Fehler beim laden des Inventars!");
         return null;
     }
 
@@ -171,12 +171,12 @@ public class AssetContainer implements Serializable{
                 filteredList.addAll(getAllSonstiges());
             }
 
-            System.out.println("[INFO] Filterung erfolgreich");
+            System.out.println("[INFO] Filterung erfolgreich!");
             return filteredList;
         } catch (Exception e) {
             e.printStackTrace();
         }
-        System.out.println("[ERROR] Filterung fehlgeschlagen");
+        System.out.println("[ERROR] Filterung fehlgeschlagen!");
         return null;
     }
 
@@ -190,12 +190,12 @@ public class AssetContainer implements Serializable{
                     newList.add((BodenUndGebaeude) assetList.get(i));
                 }
             }
-            System.out.println("[INFO] Filterung nach BodenUndGebaeude erfolgreich");
+            System.out.println("[INFO] Filterung nach BodenUndGebaeude erfolgreich!");
             return newList;
         } catch(Exception e) {
             e.printStackTrace();
         }
-        System.out.println("[INFO] Fehler bei der Filterung nach BodenUndGebaeude");
+        System.out.println("[INFO] Fehler bei der Filterung nach BodenUndGebaeude!");
         return null;
     }
     private ArrayList<Fuhrpark> getAllFuhrpark() {
@@ -208,12 +208,12 @@ public class AssetContainer implements Serializable{
                     newList.add((Fuhrpark) assetList.get(i));
                 }
             }
-            System.out.println("[INFO] Filterung nach Fuhrpark erfolgreich");
+            System.out.println("[INFO] Filterung nach Fuhrpark erfolgreich!");
             return newList;
         } catch(Exception e) {
             e.printStackTrace();
         }
-        System.out.println("[INFO] Fehler bei der Filterung nach Fuhrpark");
+        System.out.println("[INFO] Fehler bei der Filterung nach Fuhrpark!");
         return null;
     }
     private ArrayList<Hardware> getAllHardware() {
@@ -226,12 +226,12 @@ public class AssetContainer implements Serializable{
                     newList.add((Hardware) assetList.get(i));
                 }
             }
-            System.out.println("[INFO] Filterung nach Hardware erfolgreich");
+            System.out.println("[INFO] Filterung nach Hardware erfolgreich!");
             return newList;
         } catch(Exception e) {
             e.printStackTrace();
         }
-        System.out.println("[INFO] Fehler bei der Filterung nach Hardware");
+        System.out.println("[INFO] Fehler bei der Filterung nach Hardware!");
         return null;
     }
     private ArrayList<Mobiliar> getAllMobiliar() {
@@ -244,12 +244,12 @@ public class AssetContainer implements Serializable{
                     newList.add((Mobiliar) assetList.get(i));
                 }
             }
-            System.out.println("[INFO] Filterung nach Mobiliar erfolgreich");
+            System.out.println("[INFO] Filterung nach Mobiliar erfolgreich!");
             return newList;
         } catch(Exception e) {
             e.printStackTrace();
         }
-        System.out.println("[INFO] Fehler bei der Filterung nach Mobiliar");
+        System.out.println("[INFO] Fehler bei der Filterung nach Mobiliar!");
         return null;
     }
     private ArrayList<Software> getAllSoftware() {
@@ -262,12 +262,12 @@ public class AssetContainer implements Serializable{
                     newList.add((Software) assetList.get(i));
                 }
             }
-            System.out.println("[INFO] Filterung nach Software erfolgreich");
+            System.out.println("[INFO] Filterung nach Software erfolgreich!");
             return newList;
         } catch(Exception e) {
             e.printStackTrace();
         }
-        System.out.println("[INFO] Fehler bei der Filterung nach Software");
+        System.out.println("[INFO] Fehler bei der Filterung nach Software!");
         return null;
     }
     private ArrayList<Sonstiges> getAllSonstiges() {
@@ -280,12 +280,12 @@ public class AssetContainer implements Serializable{
                     newList.add((Sonstiges) assetList.get(i));
                 }
             }
-            System.out.println("[INFO] Filterung nach Sonstiges erfolgreich");
+            System.out.println("[INFO] Filterung nach Sonstiges erfolgreich!");
             return newList;
         } catch(Exception e) {
             e.printStackTrace();
         }
-        System.out.println("[INFO] Fehler bei der Filterung nach Sonstiges");
+        System.out.println("[INFO] Fehler bei der Filterung nach Sonstiges!");
         return null;
     }
 

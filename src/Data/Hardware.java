@@ -17,7 +17,7 @@ public class Hardware extends Asset {
 
     // Konstruktor ohne Parameter
     public Hardware() {
-        System.out.println("[INFO] Hardware ohne Parameter angelegt!");
+        System.out.println("[KONSTRUKTOR] Hardware ohne Parameter angelegt!");
     }
 
     // Konsolenausgabe aller Parameter für Testzwecke

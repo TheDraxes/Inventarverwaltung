@@ -19,7 +19,7 @@ public class Software extends Asset {
 
     // Konstruktor ohne Parameter
     public Software() {
-
+        System.out.println("[KONSTRUKTOR] Software ohne Parameter angelegt!");
     }
 
     // Konsolenausgabe aller Parameter für Testzwecke

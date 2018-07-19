@@ -28,7 +28,7 @@ public class BodenUndGebaeude extends Asset {
 
     // Konstruktor ohne Parameter
     public BodenUndGebaeude() {
-        System.out.println("[INFO] BodenUndGebaeude angelegt!");
+        System.out.println("[KONSTRUKTOR] BodenUndGebaeude angelegt!");
     }
 
     // Konsolenausgabe aller Parameter für Testzwecke

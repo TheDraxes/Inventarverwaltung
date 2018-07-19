@@ -17,7 +17,7 @@ public class Mobiliar extends Asset {
 
     // Konstruktor ohne Parameter
     public Mobiliar() {
-        System.out.println("[INFO] Mobiliar ohne Parameter angelegt!");
+        System.out.println("[KONSTRUKTOR] Mobiliar ohne Parameter angelegt!");
     }
 
     // Konsolenausgabe aller Parameter für Testzwecke

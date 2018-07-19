@@ -43,12 +43,7 @@ public class LoginController {
     private String lastUser = "";
 
     /**
-     * Methode die das Login Fenster Initalisiert.
-     *
-     * Hier wird der Usercontainer falls vorhanden eingelesen.
-     *
-     * Falls kein Usercontainer bisher abgeschpeichert wurde wird ein neuer mit dem
-     * Admin Account und dem Standartpasswort erstellt.
+     * Methode die das Login Fenster Initalisiert und die Nutzerdaten eingelesen.
      *
      * @author Tim
      * @version 1.0
@@ -56,21 +51,8 @@ public class LoginController {
 
     @FXML
     public void initialize(){
-
-        File userLogins = new File("user.dat");
-
-        userContainer.display();
-
-        if(userLogins.exists()) {
-            userContainer = new UserContainer().loadUserData();
-            System.out.println("**Bestehende Userdaten eingelesen");
-        } else {
-            Person admin = new Person();
-            admin.initAdmin();
-            userContainer.insertUser(admin);
-            System.out.println("**Neue Userdatenbank mit standard Adminpasswort erstellt");
-        }
-        System.out.println("**Login Fenster Initialisiert");
+        userContainer.loadUserData();
+        System.out.println("[INFO] Login Fenster Initialisiert");
     }
 
     /**

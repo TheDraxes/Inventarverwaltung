@@ -19,7 +19,7 @@ public class Sonstiges extends Asset {
 
     // Konstruktor ohne Parameter
     public Sonstiges() {
-
+        System.out.println("[KONSTRUKTOR] Sonstiges ohne Parameter angelegt!");
     }
 
     // Konsolenausgabe aller Parameter für Testzwecke
