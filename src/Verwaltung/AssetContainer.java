@@ -15,7 +15,7 @@ import java.util.*;
  * @version 1.0
  */
 
-public class AssetContainer implements Serializable{
+public class AssetContainer implements Serializable {
     private ArrayList<Asset> assetList = new ArrayList<Asset>();
     private long id = 0;
     private String[] existingAssetTypes = {"Boden und Gebäude", "Fuhrpark", "Hardware", "Mobiliar", "Software", "Sonstiges"};

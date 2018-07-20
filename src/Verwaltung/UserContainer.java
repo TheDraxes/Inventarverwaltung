@@ -46,14 +46,14 @@ public class UserContainer implements Serializable {
      * safeUserData speichert die Nutzerdaten unter 'user.dat'
      *
      * @author mixd
-     * @version 1.0
+     * @version 1.1
      */
     public boolean safeUserData(){
         System.out.println("[INFO] Speichere Nutzerdaten...");
         try {
             FileOutputStream fileOutputStream = new FileOutputStream("user.dat");
             ObjectOutputStream outputStream = new ObjectOutputStream(fileOutputStream);
-            outputStream.writeObject(this);
+            outputStream.writeObject(this.userData);
             System.out.println("[INFO] Nutzerdaten gespeichert unter '" + "user.dat" + "'!");
             return true;
         } catch (FileNotFoundException e) {
@@ -74,7 +74,7 @@ public class UserContainer implements Serializable {
      * Standardadmin neu angelegt!
      *
      * @author mixd
-     * @version 1.0
+     * @version 1.1
      */
     public UserContainer loadUserData(){
         System.out.println("[INFO] Suche Nutzerdaten...");
@@ -89,7 +89,10 @@ public class UserContainer implements Serializable {
 
                 fileInputStream = new FileInputStream(userLogins);
                 ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-                UserContainer loaded = (UserContainer) objectInputStream.readObject();
+                ArrayList<Person> list = (ArrayList<Person>) objectInputStream.readObject();
+
+                UserContainer loaded = new UserContainer();
+                loaded.setUserData(list);
 
                 System.out.println("[INFO] Nutzerdaten erfolgreich eingelesen!");
                 return loaded;
