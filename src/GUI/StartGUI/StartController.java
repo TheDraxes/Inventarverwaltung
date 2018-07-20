@@ -150,17 +150,11 @@ public class StartController implements Initializable {
             System.out.println("[INFO] Anlegen abgebrochen");
         } else {
             if (!input.equals("")) {
-                File newFile = new File(path + "\\" + input + ".Inv");
+                String path = this.path + "\\" + input + ".Inv";
                 AssetContainer newContainer = new AssetContainer();
-                try {
-                    FileOutputStream outputStream = new FileOutputStream(newFile);
-                    ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
-                    objectOutputStream.writeObject(newContainer);
-                    System.out.println("[INFO] Inventar \"" + newFile.getName() + "\"" +
-                            " erstellt");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+
+                newContainer.safeInventar(path);
+                System.out.println("[INFO] Inventar '" + input + ".Inv' erstellt");
                 initialize();
             } else {
                 Dialogs.warnDialog("Keinen Namen Eingegeben!", "Warnung");

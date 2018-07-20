@@ -108,13 +108,21 @@ public class AssetContainer implements Serializable {
         }
     }
 
-    // Inventar speichern
+    /**
+     * safeInventar speichert ein Inventar unter 'inventarname.inv'
+     *
+     * @author mixd
+     * @version 1.1
+     */
     public boolean safeInventar(String path){
         System.out.println("[INFO] Speichere Inventar...");
         try {
             FileOutputStream fileOutputStream = new FileOutputStream(new File(path));
             ObjectOutputStream outputStream = new ObjectOutputStream(fileOutputStream);
-            outputStream.writeObject(this);
+
+            outputStream.writeLong(this.id);
+            outputStream.writeObject(this.assetList);
+
             System.out.println("[INFO] Inventar gespeichert unter '" + path + "'!");
             return true;
         } catch (FileNotFoundException e) {
@@ -126,13 +134,24 @@ public class AssetContainer implements Serializable {
         return false;
     }
 
-    // Inventar laden
+    /**
+     * loadInventar liest ein Inventar aus 'inventarname.Inv' aus.
+     *
+     * @author mixd
+     * @version 1.1
+     */
     public AssetContainer loadInventar(String path) {
         System.out.println("[INFO] Lade Inventar...");
         try {
             FileInputStream fileInputStream = new FileInputStream(new File(path));
-            ObjectInputStream inputStream = new ObjectInputStream(fileInputStream);
-            AssetContainer loaded = (AssetContainer) inputStream.readObject();
+            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+
+            long id = (long) objectInputStream.readLong();
+            ArrayList<Asset> list = (ArrayList<Asset>) objectInputStream.readObject();
+            AssetContainer loaded = new AssetContainer();
+
+            loaded.setId(id);
+            loaded.setAssetList(list);
 
             System.out.println("[INFO] Inventar geladen!");
             return loaded;
@@ -289,12 +308,23 @@ public class AssetContainer implements Serializable {
         return null;
     }
 
-    // Getter
-    public ArrayList<Asset> getAssetList(){
-        return this.assetList;
+    // Getter und Setter
+    public ArrayList<Asset> getAssetList() {
+        return assetList;
+    }
+    public void setAssetList(ArrayList<Asset> assetList) {
+        this.assetList = assetList;
+    }
+    public long getId() {
+        return id;
+    }
+    public void setId(long id) {
+        this.id = id;
     }
     public String[] getExistingAssetTypes() {
         return existingAssetTypes;
     }
-
+    public void setExistingAssetTypes(String[] existingAssetTypes) {
+        this.existingAssetTypes = existingAssetTypes;
+    }
 }
