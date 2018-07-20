@@ -53,7 +53,7 @@ public class LoginController {
     public void initialize(){
         this.userContainer = userContainer.loadUserData();
         this.userContainer.displayAllUserName();
-        System.out.println("[INFO] Login Fenster Initialisiert");
+        System.out.println("[GUI] Login Fenster Initialisiert");
     }
 
     /**
