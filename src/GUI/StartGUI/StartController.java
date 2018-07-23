@@ -214,6 +214,7 @@ public class StartController implements Initializable {
                     Person newUser = new Person(a[1],a[0],men,a[3], admin);
 
                     userContainer.insertUser(newUser);
+                    Dialogs.warnDialog("Neuen Benutzer erfolgreich angelegt!", "Warnung");
 
                     System.out.println("[INFO] neuen Benutzer angelegt");
                     initialize();
