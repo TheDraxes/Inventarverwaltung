@@ -43,7 +43,7 @@
                 <RowConstraints maxHeight="98.0" minHeight="10.0" prefHeight="98.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button fx:id="ConfirmButton" mnemonicParsing="false" onAction="#confirmInventoryClicked" styleClass="confirmButton" stylesheets="@../style.css" text="Bestätigen" GridPane.columnIndex="2" GridPane.halignment="LEFT">
+                  <Button fx:id="ConfirmButton" mnemonicParsing="false" onAction="#confirmClicked" styleClass="confirmButton" stylesheets="@../style.css" text="Bestätigen" GridPane.columnIndex="2" GridPane.halignment="LEFT">
                      <font>
                         <Font size="13.0" />
                      </font>
@@ -59,8 +59,8 @@
         <menus>
           <Menu mnemonicParsing="false" text="Inventar">
             <items>
-                  <MenuItem fx:id="newButton" mnemonicParsing="false" onAction="#newInventoryClicked" text="Inventar anlegen" />
-              <MenuItem fx:id="deleteButton" mnemonicParsing="false" onAction="#deleteInventoryClicked" text="Inventar löschen" />
+                  <MenuItem fx:id="newButton" mnemonicParsing="false" onAction="#newClicked" text="Inventar anlegen" />
+              <MenuItem fx:id="deleteButton" mnemonicParsing="false" onAction="#deleteClicked" text="Inventar löschen" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Edit">

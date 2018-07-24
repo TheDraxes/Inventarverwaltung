@@ -40,7 +40,6 @@ public class FuhrparkDialog extends AbstractDialog {
       }
 
       if ((edit.getFahrgestellnummer()) == 0L) {
-        System.out.println(edit.getFahrgestellnummer());
         TextFields[5].setPromptText("Keine Angaben");
       } else {
         TextFields[5].setText("" + edit.getFahrgestellnummer());

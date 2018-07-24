@@ -155,7 +155,7 @@ public class ViewController implements Initializable {
 
                     fillTable();
                   } catch (Exception e){
-                    System.out.println("Cancel Button Clicked");
+                    System.out.println("[INFO] Cancel Button Clicked");
                   }
                 }
             });
@@ -222,7 +222,7 @@ public class ViewController implements Initializable {
 
         Optional<String> result = dialog.showAndWait();
         if (result.isPresent()){
-            System.out.println("**Item typ gewählt: " + result.get());
+            System.out.println("[INFO] Item typ gewählt: " + result.get());
             return result.get();
         }
         return null;

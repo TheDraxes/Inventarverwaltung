@@ -10,6 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -19,6 +20,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import javafx.util.Pair;
 
 import javax.swing.*;
 import java.io.*;
@@ -91,15 +93,14 @@ public class StartController implements Initializable {
         }
         System.out.println("[GUI] Start Fenster Initialisiert");
 
-        System.out.println(path);
+        System.out.println("[INFO] Speicherpfad: " + path);
     }
 
     @FXML
-    void deleteClicked(ActionEvent event) {
+    void deleteInventoryClicked(ActionEvent event) {
         File a = new File(path + "/" + InventarBox.getValue() + ".Inv");
         boolean confirmed = Dialogs.confirmDialog(InventarBox.getValue() + " wirklich Löschen?");
         if(confirmed && a.exists()){
-            System.out.println(a.getPath());
             a.delete();
             anz--;
             System.out.println("[INFO]" + "Inventar \"" + InventarBox.getValue() + "\" wurde gelöscht");
@@ -142,7 +143,7 @@ public class StartController implements Initializable {
 
     //Methode die aufgerufen wird wenn der newButton gedrückt wird
     @FXML
-    void newClicked(ActionEvent event) {
+    void newInventoryClicked(ActionEvent event) {
 
         String input = Dialogs.inputDialog("Inventar","Eingabe", "Inventarnamen Eingeben!");
 
@@ -165,7 +166,7 @@ public class StartController implements Initializable {
     //Methode die aufgerufen wird wenn der ConfirmButton gedrückt wird
     //Versteckt das Aktuelle Fenster und öffnet das neue Fenster
     @FXML
-    void confirmClicked(ActionEvent event) throws IOException {
+    void confirmInventoryClicked(ActionEvent event) throws IOException {
         System.out.println("[INFO] Speicherpfad: " + path);
         if(anz != 0) {
 
@@ -222,9 +223,39 @@ public class StartController implements Initializable {
                 }
             }
         }
-
         userContainer.display();
     }
+
+    /**
+     * Aufgerufene Methode beim click auf den Passwort ändern Menüeintrag
+     *
+     * @TODO Sollte Funktionieren sobald die Methode im UserContainer Implementiert ist
+     */
+
+    @FXML
+    public void editPasswordClicked(){
+        while (true) {
+            Pair pwPair = Dialogs.changePw(user);
+            String errMessage = (String) pwPair.getValue();
+
+            if (pwPair.getValue() != null) {
+                if (errMessage.startsWith("[INFO]")) {
+                    break;
+                }
+            }
+
+            if(pwPair.getKey() != null) {
+                userContainer.changePassword(user.getUsername(), (String) pwPair.getKey());
+                break;
+            }
+        }
+    }
+
+    @FXML
+    public void editUserClicked(){
+
+    }
+
     @FXML
     public void deleteUser(){
         String[] deletedUsers = buildDeleteUserWindow();
@@ -242,6 +273,10 @@ public class StartController implements Initializable {
         } else {
             System.out.println("[INFO] Vorgang abgebrochen!");
         }
+    }
+
+    public void chooseUserWindow() {
+
     }
 
     @FXML

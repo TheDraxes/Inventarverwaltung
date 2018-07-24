@@ -27,7 +27,6 @@ public class AssetDialogs {
         break;
       case "Hardware":          //Hardware
         this.labelNames = new Hardware().getParamNames();
-        System.out.println("Test");
         setTextFields();
         break;
       case "Mobiliar":          //Mobiliar

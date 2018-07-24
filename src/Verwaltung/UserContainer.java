@@ -43,6 +43,26 @@ public class UserContainer implements Serializable {
     }
 
     /**
+     *
+     * Änderung des Passwortes eines Nutzers
+     *
+     * @TODO: änderung des Passwortes Implementieren
+     * @param username
+     * @param newPassword
+     * @return boolean ob änderung erfolgreich war
+     */
+
+    public boolean changePassword(String username, String newPassword){
+        if(true){
+            System.out.println("[INFO] Passwort geändert!");
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+    /**
      * safeUserData speichert die Nutzerdaten unter 'user.dat'
      *
      * @author mixd
@@ -264,7 +284,7 @@ public class UserContainer implements Serializable {
         System.out.println("[INFO] Ausgabe aller Benutzernamen");
         Iterator<Person> it = userData.iterator();
         while (it.hasNext()) {
-            System.out.println(it.next().getUsername().toString());
+            System.out.println("        -" + it.next().getUsername().toString());
         }
     }
 

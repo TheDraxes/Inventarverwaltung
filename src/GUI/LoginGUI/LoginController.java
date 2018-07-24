@@ -68,7 +68,7 @@ public class LoginController {
      */
 
     @FXML
-    void keyPressed(KeyEvent event){
+    void keyBoardPressed(KeyEvent event){
         if(event.getCode().equals(KeyCode.ENTER)){
             loginButtonClicked();
         }
