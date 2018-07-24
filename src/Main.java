@@ -1,6 +1,11 @@
 import GUI.LoginGUI.ProgramStart;
 import GUI.StartGUI.showStartWindow;
 
+/**
+ * Main dient zum Starten des Programms
+ *
+ */
+
 public class Main {
     public static void main(String[] args){
 

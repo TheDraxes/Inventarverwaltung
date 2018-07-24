@@ -2,7 +2,6 @@ package GUI.LoginGUI;
 
 import GUI.Dialogs;
 import Data.Person;
-import GUI.StartGUI.StartController;
 import GUI.StartGUI.showStartWindow;
 import Verwaltung.UserContainer;
 import javafx.fxml.FXML;
@@ -44,34 +43,17 @@ public class LoginController {
     private String lastUser = "";
 
     /**
-     * Methode die das Login Fenster Initalisiert.
+     * Methode die das Login Fenster Initalisiert und die Nutzerdaten eingelesen.
      *
-     * Hier wird der Usercontainer falls vorhanden eingelesen.
-     *
-     * Falls kein Usercontainer bisher abgeschpeichert wurde wird ein neuer mit dem
-     * Admin Account und dem Standartpasswort erstellt.
-     *
-     * @auther Tim
+     * @author Tim
      * @version 1.0
      */
 
     @FXML
     public void initialize(){
-
-        File userLogins = new File("user.dat");
-
-        userContainer.printAllUser();
-
-        if(userLogins.exists()) {
-            userContainer = new UserContainer().loadUserData();
-            System.out.println("**Bestehende Userdaten eingelesen");
-        } else {
-            Person admin = new Person();
-            admin.initAdmin();
-            userContainer.insertUser(admin);
-            System.out.println("**Neue Userdatenbank mit standard Adminpasswort erstellt");
-        }
-        System.out.println("**Login Fenster Initialisiert");
+        this.userContainer = userContainer.loadUserData();
+        this.userContainer.displayAllUserName();
+        System.out.println("[GUI] Login Fenster Initialisiert");
     }
 
     /**
@@ -79,10 +61,10 @@ public class LoginController {
      * Fängt Keyboard eingaben ab und ruft die loginButtonClicked funktion auf
      * falls die Entertaste gedrückt wurde.
      *
-     * @auther Tim
-     * @version 1.0
      * @see #loginButtonClicked()
      * @param event
+     * @author Tim
+     * @version 1.0
      */
 
     @FXML
@@ -93,14 +75,14 @@ public class LoginController {
     }
 
     /**
-     * Methode die aufgerufen wird wenn der Loginbutton geclicked wurde
+     * Methode die aufgerufen wird wenn der Loginbutton geklickt wurde
      *
-     * Prüft die eingegebenen angaben, vergleicht sie mit denen in dem Usercontainer,
-     * versteckt das aktuelle Fenster und Ruft das Inventarverwaltungsenster auf.
+     * Prüft die eingegebenen Angaben, vergleicht sie mit denen in dem Usercontainer,
+     * versteckt das aktuelle Fenster und ruft das Inventarverwaltungsenster auf.
      *
      * @see showStartWindow#showStartWindow(UserContainerAlt, String)
      * @TODO sperrung nach 3 fehlgeschlagenen Loginversuchen
-     * @auther Tim
+     * @author Tim
      * @version 1.0
      */
 

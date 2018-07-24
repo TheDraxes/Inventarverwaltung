@@ -232,6 +232,7 @@ public class ViewController implements Initializable {
     void backClicked(ActionEvent event){
 
         assetContainer.safeInventar(completePath);
+
         Stage lastWindow = (Stage) nameLabel.getScene().getWindow();
         lastWindow.hide();
 

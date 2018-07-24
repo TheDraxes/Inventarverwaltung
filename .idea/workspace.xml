@@ -2,23 +2,68 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="489def6d-61e6-48f2-adb7-8b0c787ec216" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/GUI/ViewGUI/NewItemDialogs/SoftwareDialog.java" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/GUI/ViewGUI/NewItemDialogs/AbstractDialog.class" afterPath="$PROJECT_DIR$/out/production/Inventarverwaltung/GUI/ViewGUI/NewItemDialogs/AbstractDialog.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/GUI/ViewGUI/NewItemDialogs/AssetDialogs.class" afterPath="$PROJECT_DIR$/out/production/Inventarverwaltung/GUI/ViewGUI/NewItemDialogs/AssetDialogs.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/GUI/ViewGUI/NewItemDialogs/FuhrparkDialog.class" afterPath="$PROJECT_DIR$/out/production/Inventarverwaltung/GUI/ViewGUI/NewItemDialogs/FuhrparkDialog.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/Data/Abteilung.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/Data/Asset.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/Data/BodenUndGebaeude.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/Data/Fuhrpark.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/Data/Hardware.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/Data/Mobiliar.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/Data/Person.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/Data/Sachgebiet.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/Data/Software.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/Data/Sonstiges.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/GUI/Dialogs.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/GUI/LoginGUI/LoginController.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/GUI/LoginGUI/LoginStyle.fxml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/GUI/LoginGUI/ProgramStart.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/GUI/StartGUI/StartController.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/GUI/StartGUI/StartStyle.fxml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/GUI/StartGUI/showStartWindow.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/GUI/ViewGUI/NewItemDialogs/AbstractDialog.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/GUI/ViewGUI/NewItemDialogs/AssetDialogs.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/GUI/ViewGUI/NewItemDialogs/FuhrparkDialog.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/GUI/ViewGUI/NewItemDialogs/SoftwareDialog.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/GUI/ViewGUI/ViewController$1.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/GUI/ViewGUI/ViewController$2.class" afterPath="" />
       <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/GUI/ViewGUI/ViewController$ButtonCell$1.class" afterPath="$PROJECT_DIR$/out/production/Inventarverwaltung/GUI/ViewGUI/ViewController$ButtonCell$1.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/GUI/ViewGUI/ViewController$ButtonCell.class" afterPath="$PROJECT_DIR$/out/production/Inventarverwaltung/GUI/ViewGUI/ViewController$ButtonCell.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/GUI/ViewGUI/ViewController$ButtonCell.class" afterPath="" />
       <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/GUI/ViewGUI/ViewController.class" afterPath="$PROJECT_DIR$/out/production/Inventarverwaltung/GUI/ViewGUI/ViewController.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/GUI/ViewGUI/ViewStyle.fxml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/GUI/dvzlogo.jpg" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/GUI/editbackground.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/GUI/editbackgroundHover.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/GUI/style.css" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/Main.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/TestKlassen/AssetContainerTest.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/TestKlassen/DialogsTest.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/TestKlassen/UserContainerTest.class" afterPath="" />
       <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/Verwaltung/AssetContainer.class" afterPath="$PROJECT_DIR$/out/production/Inventarverwaltung/Verwaltung/AssetContainer.class" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/ViewGUI/NewItemDialogs/AbstractDialog.java" afterPath="$PROJECT_DIR$/src/GUI/ViewGUI/NewItemDialogs/AbstractDialog.java" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/ViewGUI/NewItemDialogs/AssetDialogs.java" afterPath="$PROJECT_DIR$/src/GUI/ViewGUI/NewItemDialogs/AssetDialogs.java" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/ViewGUI/NewItemDialogs/FuhrparkDialog.java" afterPath="$PROJECT_DIR$/src/GUI/ViewGUI/NewItemDialogs/FuhrparkDialog.java" />
+      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/Verwaltung/OrganisationContainer.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/Inventarverwaltung/Verwaltung/UserContainer.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/Data/Abteilung.java" afterPath="$PROJECT_DIR$/src/Data/Abteilung.java" />
+      <change beforePath="$PROJECT_DIR$/src/Data/Asset.java" afterPath="$PROJECT_DIR$/src/Data/Asset.java" />
+      <change beforePath="$PROJECT_DIR$/src/Data/BodenUndGebaeude.java" afterPath="$PROJECT_DIR$/src/Data/BodenUndGebaeude.java" />
+      <change beforePath="$PROJECT_DIR$/src/Data/Fuhrpark.java" afterPath="$PROJECT_DIR$/src/Data/Fuhrpark.java" />
+      <change beforePath="$PROJECT_DIR$/src/Data/Hardware.java" afterPath="$PROJECT_DIR$/src/Data/Hardware.java" />
+      <change beforePath="$PROJECT_DIR$/src/Data/Mobiliar.java" afterPath="$PROJECT_DIR$/src/Data/Mobiliar.java" />
+      <change beforePath="$PROJECT_DIR$/src/Data/Person.java" afterPath="$PROJECT_DIR$/src/Data/Person.java" />
+      <change beforePath="$PROJECT_DIR$/src/Data/Sachgebiet.java" afterPath="$PROJECT_DIR$/src/Data/Sachgebiet.java" />
+      <change beforePath="$PROJECT_DIR$/src/Data/Software.java" afterPath="$PROJECT_DIR$/src/Data/Software.java" />
+      <change beforePath="$PROJECT_DIR$/src/Data/Sonstiges.java" afterPath="$PROJECT_DIR$/src/Data/Sonstiges.java" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/LoginGUI/LoginController.java" afterPath="$PROJECT_DIR$/src/GUI/LoginGUI/LoginController.java" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/LoginGUI/ProgramStart.java" afterPath="$PROJECT_DIR$/src/GUI/LoginGUI/ProgramStart.java" />
+      <change beforePath="$PROJECT_DIR$/src/GUI/StartGUI/StartController.java" afterPath="$PROJECT_DIR$/src/GUI/StartGUI/StartController.java" />
       <change beforePath="$PROJECT_DIR$/src/GUI/ViewGUI/ViewController.java" afterPath="$PROJECT_DIR$/src/GUI/ViewGUI/ViewController.java" />
-      <change beforePath="$PROJECT_DIR$/user.dat" afterPath="$PROJECT_DIR$/user.dat" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" afterPath="$PROJECT_DIR$/src/Main.java" />
+      <change beforePath="$PROJECT_DIR$/src/TestKlassen/AssetContainerTest.java" afterPath="$PROJECT_DIR$/src/TestKlassen/AssetContainerTest.java" />
+      <change beforePath="$PROJECT_DIR$/src/TestKlassen/DialogsTest.java" afterPath="$PROJECT_DIR$/src/TestKlassen/DialogsTest.java" />
+      <change beforePath="$PROJECT_DIR$/src/TestKlassen/UserContainerTest.java" afterPath="$PROJECT_DIR$/src/TestKlassen/UserContainerTest.java" />
+      <change beforePath="$PROJECT_DIR$/src/Verwaltung/AssetContainer.java" afterPath="$PROJECT_DIR$/src/Verwaltung/AssetContainer.java" />
+      <change beforePath="$PROJECT_DIR$/src/Verwaltung/OrganisationContainer.java" afterPath="$PROJECT_DIR$/src/Verwaltung/OrganisationContainer.java" />
+      <change beforePath="$PROJECT_DIR$/src/Verwaltung/UserContainer.java" afterPath="$PROJECT_DIR$/src/Verwaltung/UserContainer.java" />
+      <change beforePath="$PROJECT_DIR$/user.dat" afterPath="" />
     </list>
-    <ignored path="$PROJECT_DIR$/out/" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,12 +71,12 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file leaf-file-name="ViewController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GUI/ViewGUI/ViewController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="138">
-              <caret line="170" column="9" lean-forward="true" selection-start-line="170" selection-start-column="9" selection-end-line="170" selection-end-column="9" />
+            <state relative-caret-position="3243">
+              <caret line="174" column="9" lean-forward="false" selection-start-line="174" selection-start-column="9" selection-end-line="174" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -41,7 +86,7 @@
         <entry file="file://$PROJECT_DIR$/src/GUI/ViewGUI/NewItemDialogs/AbstractDialog.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="161">
-              <caret line="9" column="32" lean-forward="true" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
+              <caret line="9" column="22" lean-forward="false" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -50,8 +95,8 @@
       <file leaf-file-name="AssetDialogs.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GUI/ViewGUI/NewItemDialogs/AssetDialogs.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="529">
-              <caret line="40" column="20" lean-forward="false" selection-start-line="40" selection-start-column="20" selection-end-line="40" selection-end-column="20" />
+            <state relative-caret-position="828">
+              <caret line="41" column="20" lean-forward="false" selection-start-line="41" selection-start-column="20" selection-end-line="41" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -60,8 +105,8 @@
       <file leaf-file-name="FuhrparkDialog.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GUI/ViewGUI/NewItemDialogs/FuhrparkDialog.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3374">
-              <caret line="159" column="3" lean-forward="true" selection-start-line="21" selection-start-column="2" selection-end-line="159" selection-end-column="3" />
+            <state relative-caret-position="3427">
+              <caret line="159" column="3" lean-forward="false" selection-start-line="21" selection-start-column="2" selection-end-line="159" selection-end-column="3" />
               <folding />
             </state>
           </provider>
@@ -71,7 +116,7 @@
         <entry file="file://$PROJECT_DIR$/src/Data/Software.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="46">
-              <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+              <caret line="2" column="3" lean-forward="false" selection-start-line="2" selection-start-column="3" selection-end-line="2" selection-end-column="3" />
               <folding />
             </state>
           </provider>
@@ -80,8 +125,8 @@
       <file leaf-file-name="SoftwareDialog.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GUI/ViewGUI/NewItemDialogs/SoftwareDialog.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="10" column="26" lean-forward="true" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
+            <state relative-caret-position="46">
+              <caret line="10" column="26" lean-forward="false" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -89,67 +134,37 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AssetContainer.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="AssetContainer.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Verwaltung/AssetContainer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1863">
-              <caret line="84" column="32" lean-forward="true" selection-start-line="84" selection-start-column="32" selection-end-line="84" selection-end-column="32" />
-              <folding>
-                <element signature="e#1475#1476#0" expanded="true" />
-                <element signature="e#1512#1513#0" expanded="true" />
-                <element signature="e#2818#2819#0" expanded="true" />
-                <element signature="e#2859#2860#0" expanded="true" />
-                <element signature="e#3789#3790#0" expanded="true" />
-                <element signature="e#3816#3817#0" expanded="true" />
-                <element signature="e#3867#3868#0" expanded="true" />
-                <element signature="e#3894#3895#0" expanded="true" />
-                <element signature="e#3945#3946#0" expanded="true" />
-                <element signature="e#3972#3973#0" expanded="true" />
-                <element signature="e#4023#4024#0" expanded="true" />
-                <element signature="e#4050#4051#0" expanded="true" />
-                <element signature="e#4101#4102#0" expanded="true" />
-                <element signature="e#4128#4129#0" expanded="true" />
-                <element signature="e#4181#4182#0" expanded="true" />
-                <element signature="e#4208#4209#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="476">
+              <caret line="37" column="6" lean-forward="false" selection-start-line="37" selection-start-column="6" selection-end-line="37" selection-end-column="6" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="LoginController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/GUI/LoginGUI/LoginController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="161">
+              <caret line="46" column="6" lean-forward="false" selection-start-line="46" selection-start-column="6" selection-end-line="46" selection-end-column="6" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserContainer.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Verwaltung/UserContainer.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="519">
+              <caret line="97" column="30" lean-forward="false" selection-start-line="97" selection-start-column="30" selection-end-line="97" selection-end-column="30" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
-  </component>
-  <component name="FileTemplateManagerImpl">
-    <option name="RECENT_TEMPLATES">
-      <list>
-        <option value="Class" />
-      </list>
-    </option>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>edit</find>
-    </findStrings>
-  </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="GradleLocalSettings">
-    <option name="externalProjectsViewState">
-      <projects_view />
-    </option>
-  </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/src/TestKlassen/AssetContainerTest.java" />
-        <option value="$PROJECT_DIR$/src/Verwaltung/AssetContainer.java" />
-        <option value="$PROJECT_DIR$/src/GUI/ViewGUI/ViewController.java" />
-        <option value="$PROJECT_DIR$/src/GUI/ViewGUI/NewItemDialogs/AbstractDialog.java" />
-        <option value="$PROJECT_DIR$/src/GUI/ViewGUI/NewItemDialogs/FuhrparkDialog.java" />
-        <option value="$PROJECT_DIR$/src/GUI/ViewGUI/NewItemDialogs/AssetDialogs.java" />
-        <option value="$PROJECT_DIR$/src/GUI/ViewGUI/NewItemDialogs/SoftwareDialog.java" />
-      </list>
-    </option>
   </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
@@ -158,12 +173,6 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="213" />
-    <option name="y" value="-9" />
-    <option name="width" value="1612" />
-    <option name="height" value="876" />
-  </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
       <flattenPackages />
@@ -180,6 +189,9 @@
     </navigator>
     <panes>
       <pane id="Scope" />
+      <pane id="AndroidView" />
+      <pane id="Scratches" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -247,14 +259,7 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="PackagesPane" />
-      <pane id="AndroidView" />
     </panes>
-  </component>
-  <component name="PropertiesComponent">
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="aspect.path.notification.shown" value="true" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -268,46 +273,13 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager">
     <configuration default="true" type="Applet" factoryName="Applet">
       <option name="HTML_USED" value="false" />
       <option name="WIDTH" value="400" />
       <option name="HEIGHT" value="300" />
       <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
       <module />
-    </configuration>
-    <configuration name="AssetContainerTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="TestKlassen.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="MAIN_CLASS_NAME" value="TestKlassen.AssetContainerTest" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="Inventarverwaltung" />
-      <envs />
-    </configuration>
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" value="Main" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="Inventarverwaltung" />
-      <envs />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
@@ -383,86 +355,112 @@
       <option name="PROGRAM_PARAMETERS" />
       <predefined_log_file id="idea.log" enabled="true" />
     </configuration>
-    <list size="2">
-      <item index="0" class="java.lang.String" itemvalue="Application.Main" />
-      <item index="1" class="java.lang.String" itemvalue="Application.AssetContainerTest" />
-    </list>
-    <recent_temporary>
-      <list size="2">
-        <item index="0" class="java.lang.String" itemvalue="Application.Main" />
-        <item index="1" class="java.lang.String" itemvalue="Application.AssetContainerTest" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
   </component>
   <component name="TaskManager">
-    <task active="true" id="Default" summary="Default task">
-      <changelist id="489def6d-61e6-48f2-adb7-8b0c787ec216" name="Default" comment="" />
-      <created>1531221894691</created>
-      <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
-      <updated>1531221894691</updated>
-      <workItem from="1531221896443" duration="7765000" />
-    </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7765000" />
+    <option name="totallyTimeSpent" value="4000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32960895" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32960895" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25305623" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
-  </component>
-  <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="1" />
-  </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/TestKlassen/ItemContainerTest.java">
+    <entry file="file://$PROJECT_DIR$/src/GUI/ViewGUI/ViewController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        <state relative-caret-position="3243">
+          <caret line="170" column="9" lean-forward="false" selection-start-line="170" selection-start-column="9" selection-end-line="170" selection-end-column="9" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/ViewGUI/NewItemDialogs/AbstractDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="207">
+          <caret line="9" column="22" lean-forward="true" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/ViewGUI/NewItemDialogs/AssetDialogs.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="805">
+          <caret line="40" column="20" lean-forward="false" selection-start-line="40" selection-start-column="20" selection-end-line="40" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/ViewGUI/NewItemDialogs/FuhrparkDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3427">
+          <caret line="159" column="3" lean-forward="true" selection-start-line="21" selection-start-column="2" selection-end-line="159" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Data/Software.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46">
+          <caret line="2" column="3" lean-forward="true" selection-start-line="2" selection-start-column="3" selection-end-line="2" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/ViewGUI/NewItemDialogs/SoftwareDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46">
+          <caret line="10" column="26" lean-forward="true" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Verwaltung/AssetContainer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1863">
+          <caret line="84" column="32" lean-forward="true" selection-start-line="84" selection-start-column="32" selection-end-line="84" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/TestKlassen/ItemContainerTest.java" />
     <entry file="file://$PROJECT_DIR$/src/Data/Fuhrpark.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="299">
@@ -482,7 +480,7 @@
     <entry file="file://$PROJECT_DIR$/src/GUI/ViewGUI/NewItemDialogs/AbstractDialog.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="161">
-          <caret line="9" column="32" lean-forward="true" selection-start-line="9" selection-start-column="32" selection-end-line="9" selection-end-column="32" />
+          <caret line="9" column="22" lean-forward="false" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
           <folding />
         </state>
       </provider>
@@ -530,39 +528,39 @@
     <entry file="file://$PROJECT_DIR$/src/Data/Software.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="46">
-          <caret line="2" column="13" lean-forward="false" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <caret line="2" column="3" lean-forward="false" selection-start-line="2" selection-start-column="3" selection-end-line="2" selection-end-column="3" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI/ViewGUI/NewItemDialogs/FuhrparkDialog.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3374">
-          <caret line="159" column="3" lean-forward="true" selection-start-line="21" selection-start-column="2" selection-end-line="159" selection-end-column="3" />
+        <state relative-caret-position="3427">
+          <caret line="159" column="3" lean-forward="false" selection-start-line="21" selection-start-column="2" selection-end-line="159" selection-end-column="3" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI/ViewGUI/NewItemDialogs/AssetDialogs.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="529">
-          <caret line="40" column="20" lean-forward="false" selection-start-line="40" selection-start-column="20" selection-end-line="40" selection-end-column="20" />
+        <state relative-caret-position="828">
+          <caret line="41" column="20" lean-forward="false" selection-start-line="41" selection-start-column="20" selection-end-line="41" selection-end-column="20" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI/ViewGUI/ViewController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="170" column="9" lean-forward="true" selection-start-line="170" selection-start-column="9" selection-end-line="170" selection-end-column="9" />
+        <state relative-caret-position="3243">
+          <caret line="174" column="9" lean-forward="false" selection-start-line="174" selection-start-column="9" selection-end-line="174" selection-end-column="9" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI/ViewGUI/NewItemDialogs/SoftwareDialog.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="10" column="26" lean-forward="true" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
+        <state relative-caret-position="46">
+          <caret line="10" column="26" lean-forward="false" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -571,26 +569,33 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Verwaltung/AssetContainer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1863">
-          <caret line="84" column="32" lean-forward="true" selection-start-line="84" selection-start-column="32" selection-end-line="84" selection-end-column="32" />
-          <folding>
-            <element signature="e#1475#1476#0" expanded="true" />
-            <element signature="e#1512#1513#0" expanded="true" />
-            <element signature="e#2818#2819#0" expanded="true" />
-            <element signature="e#2859#2860#0" expanded="true" />
-            <element signature="e#3789#3790#0" expanded="true" />
-            <element signature="e#3816#3817#0" expanded="true" />
-            <element signature="e#3867#3868#0" expanded="true" />
-            <element signature="e#3894#3895#0" expanded="true" />
-            <element signature="e#3945#3946#0" expanded="true" />
-            <element signature="e#3972#3973#0" expanded="true" />
-            <element signature="e#4023#4024#0" expanded="true" />
-            <element signature="e#4050#4051#0" expanded="true" />
-            <element signature="e#4101#4102#0" expanded="true" />
-            <element signature="e#4128#4129#0" expanded="true" />
-            <element signature="e#4181#4182#0" expanded="true" />
-            <element signature="e#4208#4209#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="476">
+          <caret line="37" column="6" lean-forward="false" selection-start-line="37" selection-start-column="6" selection-end-line="37" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/LoginGUI/LoginController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="46" column="6" lean-forward="false" selection-start-line="46" selection-start-column="6" selection-end-line="46" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Verwaltung/UserContainer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="519">
+          <caret line="97" column="30" lean-forward="false" selection-start-line="97" selection-start-column="30" selection-end-line="97" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/user.dat">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

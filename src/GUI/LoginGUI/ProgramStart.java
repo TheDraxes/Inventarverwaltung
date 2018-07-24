@@ -11,9 +11,9 @@ import javax.swing.*;
 import java.io.*;
 
 /**
- * Klasse die als einstiegspunkt für die Application dient.
+ * Klasse, die als Einstiegspunkt für die Application dient.
  *
- * Sie baut das Initale Loginfenster auf
+ * Sie baut das Initiale Loginfenster auf
  *
  * @author Tim
  * @version 1.0

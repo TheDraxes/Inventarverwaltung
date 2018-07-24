@@ -89,7 +89,7 @@ public class StartController implements Initializable {
         } else {
             adminMenue.setVisible(false);
         }
-        System.out.println("**Start Fenster Initialisiert");
+        System.out.println("[GUI] Start Fenster Initialisiert");
 
         System.out.println(path);
     }
@@ -102,7 +102,7 @@ public class StartController implements Initializable {
             System.out.println(a.getPath());
             a.delete();
             anz--;
-            System.out.println("**" + "Inventar \"" + InventarBox.getValue() + "\" wurde gelöscht");
+            System.out.println("[INFO]" + "Inventar \"" + InventarBox.getValue() + "\" wurde gelöscht");
             initialize();
         }
     }
@@ -147,20 +147,14 @@ public class StartController implements Initializable {
         String input = Dialogs.inputDialog("Inventar","Eingabe", "Inventarnamen Eingeben!");
 
         if(input == null){
-            System.out.println("**Anlgen abgebrochen abgebrochen");
+            System.out.println("[INFO] Anlegen abgebrochen");
         } else {
             if (!input.equals("")) {
-                File newFile = new File(path + "\\" + input + ".Inv");
+                String path = this.path + "\\" + input + ".Inv";
                 AssetContainer newContainer = new AssetContainer();
-                try {
-                    FileOutputStream outputStream = new FileOutputStream(newFile);
-                    ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
-                    objectOutputStream.writeObject(newContainer);
-                    System.out.println("**Inventar \"" + newFile.getName() + "\"" +
-                            " erstellt");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+
+                newContainer.safeInventar(path);
+                System.out.println("[INFO] Inventar '" + input + ".Inv' erstellt");
                 initialize();
             } else {
                 Dialogs.warnDialog("Keinen Namen Eingegeben!", "Warnung");
@@ -172,7 +166,7 @@ public class StartController implements Initializable {
     //Versteckt das Aktuelle Fenster und öffnet das neue Fenster
     @FXML
     void confirmClicked(ActionEvent event) throws IOException {
-        System.out.println("**Speicherpfad: " + path);
+        System.out.println("[INFO] Speicherpfad: " + path);
         if(anz != 0) {
 
             Stage lastWindow = (Stage) ConfirmButton.getScene().getWindow();
@@ -220,20 +214,21 @@ public class StartController implements Initializable {
                     Person newUser = new Person(a[1],a[0],men,a[3], admin);
 
                     userContainer.insertUser(newUser);
+                    Dialogs.warnDialog("Neuen Benutzer erfolgreich angelegt!", "Warnung");
 
-                    System.out.println("**neuen Benutzer angelegt");
+                    System.out.println("[INFO] neuen Benutzer angelegt");
                     initialize();
                     break;
                 }
             }
         }
 
-        userContainer.printAllUser();
+        userContainer.display();
     }
     @FXML
     public void deleteUser(){
         String[] deletedUsers = buildDeleteUserWindow();
-        System.out.println("** User ausgewählt: " + Arrays.toString(deletedUsers));
+        System.out.println("[INFO] User ausgewählt: " + Arrays.toString(deletedUsers));
         if(deletedUsers != null){
             if(deletedUsers.length > 0) {
                 for (int i = 0; i < deletedUsers.length; i++) {
@@ -245,7 +240,7 @@ public class StartController implements Initializable {
                 }
             }
         } else {
-            System.out.println("**Vorgang abgebrochen!");
+            System.out.println("[INFO] Vorgang abgebrochen!");
         }
     }
 

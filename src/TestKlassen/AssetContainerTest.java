@@ -1,8 +1,17 @@
 package TestKlassen;
 
 import Data.Asset;
+import Data.BodenUndGebaeude;
 import Data.Fuhrpark;
+import Data.Software;
 import Verwaltung.AssetContainer;
+
+import java.util.ArrayList;
+
+/**
+ * AssetContainerTest dient für Tests des AssetContainers.
+ *
+ */
 
 public class AssetContainerTest {
     public static void main(String [] args){
@@ -26,25 +35,42 @@ public class AssetContainerTest {
         auto2.setAnzahl(5);
         auto2.setBezeichnung("Audi A3");
         auto2.setTnd(7);
-
+        BodenUndGebaeude haus1 = new BodenUndGebaeude();
+        haus1.setBezeichnung("DVZ HAUS G");
+        haus1.setBuchwert(20000000);
+        haus1.setAnzahl(1);
+        Software software1 = new Software();
+        haus1.setBezeichnung("Microsoft Office");
+        haus1.setBuchwert(200);
+        haus1.setAnzahl(200);
 
         AssetContainer myContainer = new AssetContainer();
 
         myContainer.insertAsset(auto1);
+        myContainer.insertAsset(haus1);
         myContainer.insertAsset(auto2);
-
+        myContainer.insertAsset(software1);
         myContainer.showAll();
 
-        Fuhrpark auto3 = auto1;
+        System.out.println("===============FILTER==================");
+        boolean[] filter = {true, false, false, false, true ,false};
+        ArrayList<Asset> filteredList = myContainer.getAssetsByFilter(filter);
+        for(int i = 0; i < filteredList.size(); i++) {
+            filteredList.get(i).display();
+            System.out.println("-------------------------------------");
+        }
 
-        auto3.setPs(155);
-        auto3.setAnzahl(100);
 
-        myContainer.editItemById(1, auto3);
+        String[] paramNames = {
+                "Postleitzahl",
+                "Ort",
+                "Strasse",
+                "Hausnummer",
+                "Flächengröße",
+                "Besitzer"
+        };
 
-        myContainer.showAll();
-
-
+        System.out.println(paramNames.length);
 
     }
 }

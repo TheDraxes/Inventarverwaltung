@@ -3,6 +3,11 @@ package TestKlassen;
 import Data.Person;
 import Verwaltung.UserContainer;
 
+/**
+ *
+ *
+ */
+
 public class UserContainerTest {
     public static void main(String[] args){
 
@@ -41,7 +46,7 @@ public class UserContainerTest {
 
         UserContainer c = new UserContainer().loadUserData();
 
-        c.printAllUser();
+        c.display();
 
         System.out.print("richtiges Login: ");
         System.out.println(c.checkLogin("Draxes", "123"));
@@ -52,23 +57,5 @@ public class UserContainerTest {
         System.out.print("falsches Login: ");
         System.out.println(c.checkLogin("marsl", "bockwurst007"));*/
 
-
-        // TEST FÜR BENUTZERNAMEN GENERIERUNG
-        b.deleteAllUser();
-        b.safeUserData();
-
-        b.printAllUser();
-
-        Person user1 = new Person("Mix", "Tim", true, "bockwurst123", true);
-        b.insertUser(user1);
-        Person user2 = new Person("Mix", "Tim", true, "bockwurst123", true);
-        b.insertUser(user2);
-        Person user3 = new Person("Mix", "Tim", true, "bockwurst123", true);
-        b.insertUser(user3);
-        Person user4 = new Person("Mix", "Tim", true, "bockwurst123", true);
-        b.insertUser(user4);
-        Person user5 = new Person("Mix", "Tim", true, "bockwurst123", true);
-        b.insertUser(user5);
-        b.printAllUser();
     }
 }
