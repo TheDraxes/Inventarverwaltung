@@ -2,15 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="489def6d-61e6-48f2-adb7-8b0c787ec216" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/src/GUI/Dialogs.java" afterPath="$PROJECT_DIR$/src/GUI/Dialogs.java" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/LoginGUI/LoginController.java" afterPath="$PROJECT_DIR$/src/GUI/LoginGUI/LoginController.java" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/LoginGUI/LoginStyle.fxml" afterPath="$PROJECT_DIR$/src/GUI/LoginGUI/LoginStyle.fxml" />
       <change beforePath="$PROJECT_DIR$/src/GUI/StartGUI/StartController.java" afterPath="$PROJECT_DIR$/src/GUI/StartGUI/StartController.java" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/StartGUI/StartStyle.fxml" afterPath="$PROJECT_DIR$/src/GUI/StartGUI/StartStyle.fxml" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/ViewGUI/NewItemDialogs/AssetDialogs.java" afterPath="$PROJECT_DIR$/src/GUI/ViewGUI/NewItemDialogs/AssetDialogs.java" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/ViewGUI/NewItemDialogs/FuhrparkDialog.java" afterPath="$PROJECT_DIR$/src/GUI/ViewGUI/NewItemDialogs/FuhrparkDialog.java" />
-      <change beforePath="$PROJECT_DIR$/src/GUI/ViewGUI/ViewController.java" afterPath="$PROJECT_DIR$/src/GUI/ViewGUI/ViewController.java" />
       <change beforePath="$PROJECT_DIR$/src/Verwaltung/UserContainer.java" afterPath="$PROJECT_DIR$/src/Verwaltung/UserContainer.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -23,31 +16,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="ViewController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GUI/ViewGUI/ViewController.java">
+      <file leaf-file-name="StartController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/GUI/StartGUI/StartController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1252">
-              <caret line="155" column="32" lean-forward="true" selection-start-line="155" selection-start-column="32" selection-end-line="155" selection-end-column="32" />
+            <state relative-caret-position="1955">
+              <caret line="263" column="29" lean-forward="true" selection-start-line="263" selection-start-column="29" selection-end-line="263" selection-end-column="29" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AssetDialogs.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GUI/ViewGUI/NewItemDialogs/AssetDialogs.java">
+      <file leaf-file-name="Dialogs.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/GUI/Dialogs.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="128">
-              <caret line="28" column="57" lean-forward="false" selection-start-line="28" selection-start-column="57" selection-end-line="28" selection-end-column="57" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="UserContainer.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Verwaltung/UserContainer.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2128">
-              <caret line="228" column="19" lean-forward="true" selection-start-line="228" selection-start-column="19" selection-end-line="228" selection-end-column="19" />
+            <state relative-caret-position="184">
+              <caret line="115" column="9" lean-forward="true" selection-start-line="115" selection-start-column="9" selection-end-line="115" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -56,58 +39,28 @@
       <file leaf-file-name="FuhrparkDialog.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/GUI/ViewGUI/NewItemDialogs/FuhrparkDialog.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-57">
-              <caret line="41" column="48" lean-forward="false" selection-start-line="41" selection-start-column="48" selection-end-line="41" selection-end-column="48" />
+            <state relative-caret-position="299">
+              <caret line="23" column="78" lean-forward="false" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="78" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Dialogs.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/GUI/Dialogs.java">
+      <file leaf-file-name="Person.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Data/Person.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="164">
-              <caret line="42" column="40" lean-forward="true" selection-start-line="42" selection-start-column="40" selection-end-line="42" selection-end-column="40" />
+            <state relative-caret-position="-1403">
+              <caret line="33" column="0" lean-forward="true" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LoginController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GUI/LoginGUI/LoginController.java">
+      <file leaf-file-name="UserContainer.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Verwaltung/UserContainer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="183">
-              <caret line="70" column="17" lean-forward="false" selection-start-line="70" selection-start-column="17" selection-end-line="70" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ProgramStart.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GUI/LoginGUI/ProgramStart.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="23">
-              <caret line="20" column="13" lean-forward="false" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Asset.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Data/Asset.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="207">
-              <caret line="19" column="26" lean-forward="true" selection-start-line="19" selection-start-column="26" selection-end-line="19" selection-end-column="26" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="StartController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/GUI/StartGUI/StartController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="183">
-              <caret line="364" column="20" lean-forward="false" selection-start-line="364" selection-start-column="20" selection-end-line="364" selection-end-column="20" />
+            <state relative-caret-position="246">
+              <caret line="67" column="51" lean-forward="false" selection-start-line="67" selection-start-column="51" selection-end-line="67" selection-end-column="51" />
               <folding />
             </state>
           </provider>
@@ -138,10 +91,10 @@
         <option value="$PROJECT_DIR$/src/GUI/ViewGUI/ViewController.java" />
         <option value="$PROJECT_DIR$/src/GUI/ViewGUI/NewItemDialogs/AssetDialogs.java" />
         <option value="$PROJECT_DIR$/src/GUI/ViewGUI/NewItemDialogs/FuhrparkDialog.java" />
-        <option value="$PROJECT_DIR$/src/GUI/Dialogs.java" />
         <option value="$PROJECT_DIR$/src/GUI/LoginGUI/ProgramStart.java" />
-        <option value="$PROJECT_DIR$/src/Verwaltung/UserContainer.java" />
         <option value="$PROJECT_DIR$/src/GUI/LoginGUI/LoginController.java" />
+        <option value="$PROJECT_DIR$/src/GUI/Dialogs.java" />
+        <option value="$PROJECT_DIR$/src/Verwaltung/UserContainer.java" />
         <option value="$PROJECT_DIR$/src/GUI/StartGUI/StartController.java" />
       </list>
     </option>
@@ -193,6 +146,12 @@
               <item name="Inventarverwaltung" type="b2602c69:ProjectViewProjectNode" />
               <item name="Inventarverwaltung" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Data" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Inventarverwaltung" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Inventarverwaltung" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="GUI" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -215,6 +174,14 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="GUI" type="462c0819:PsiDirectoryNode" />
               <item name="ViewGUI" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Inventarverwaltung" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Inventarverwaltung" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="GUI" type="462c0819:PsiDirectoryNode" />
+              <item name="ViewGUI" type="462c0819:PsiDirectoryNode" />
+              <item name="NewItemDialogs" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Inventarverwaltung" type="b2602c69:ProjectViewProjectNode" />
@@ -359,12 +326,12 @@
       <option name="presentableId" value="Default" />
       <updated>1532420256397</updated>
       <workItem from="1532420272328" duration="28000" />
-      <workItem from="1532431486210" duration="7718000" />
+      <workItem from="1532431486210" duration="10668000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9437000" />
+    <option name="totallyTimeSpent" value="12387000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
@@ -410,14 +377,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/GUI/ViewGUI/NewItemDialogs/AssetDialogs.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="828">
-          <caret line="41" column="20" lean-forward="false" selection-start-line="41" selection-start-column="20" selection-end-line="41" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI/ViewGUI/NewItemDialogs/FuhrparkDialog.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3427">
@@ -672,14 +631,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Data/Person.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="322">
-          <caret line="16" column="29" lean-forward="false" selection-start-line="16" selection-start-column="29" selection-end-line="16" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI/LoginGUI/LoginStyle.fxml">
       <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -718,14 +669,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/ViewGUI/NewItemDialogs/FuhrparkDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-57">
-          <caret line="41" column="48" lean-forward="false" selection-start-line="41" selection-start-column="48" selection-end-line="41" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI/ViewGUI/NewItemDialogs/SoftwareDialog.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="62">
@@ -746,22 +689,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="276">
           <caret line="15" column="13" lean-forward="false" selection-start-line="15" selection-start-column="13" selection-end-line="15" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Verwaltung/UserContainer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2128">
-          <caret line="228" column="19" lean-forward="true" selection-start-line="228" selection-start-column="19" selection-end-line="228" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/ViewGUI/NewItemDialogs/AssetDialogs.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="128">
-          <caret line="28" column="57" lean-forward="false" selection-start-line="28" selection-start-column="57" selection-end-line="28" selection-end-column="57" />
           <folding />
         </state>
       </provider>
@@ -790,10 +717,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/GUI/StartGUI/StartController.java">
+    <entry file="file://$PROJECT_DIR$/src/Data/Sonstiges.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="364" column="20" lean-forward="false" selection-start-line="364" selection-start-column="20" selection-end-line="364" selection-end-column="20" />
+        <state relative-caret-position="-201">
+          <caret line="11" column="32" lean-forward="true" selection-start-line="11" selection-start-column="32" selection-end-line="11" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/ViewGUI/NewItemDialogs/AssetDialogs.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="128">
+          <caret line="28" column="57" lean-forward="false" selection-start-line="28" selection-start-column="57" selection-end-line="28" selection-end-column="57" />
           <folding />
         </state>
       </provider>
@@ -806,10 +741,42 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/ViewGUI/NewItemDialogs/FuhrparkDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="23" column="78" lean-forward="false" selection-start-line="23" selection-start-column="32" selection-end-line="23" selection-end-column="78" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Data/Person.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1403">
+          <caret line="33" column="0" lean-forward="true" selection-start-line="33" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/GUI/Dialogs.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="164">
-          <caret line="42" column="40" lean-forward="true" selection-start-line="42" selection-start-column="40" selection-end-line="42" selection-end-column="40" />
+        <state relative-caret-position="184">
+          <caret line="115" column="9" lean-forward="true" selection-start-line="115" selection-start-column="9" selection-end-line="115" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Verwaltung/UserContainer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="246">
+          <caret line="67" column="51" lean-forward="false" selection-start-line="67" selection-start-column="51" selection-end-line="67" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/GUI/StartGUI/StartController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1955">
+          <caret line="263" column="29" lean-forward="true" selection-start-line="263" selection-start-column="29" selection-end-line="263" selection-end-column="29" />
           <folding />
         </state>
       </provider>

@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane onKeyPressed="#keyPressed" prefHeight="260.0" prefWidth="515.0" style="-fx-background-color: #b5edff;" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.LoginGUI.LoginController">
+<AnchorPane onKeyPressed="#keyBoardPressed" prefHeight="260.0" prefWidth="515.0" style="-fx-background-color: #b5edff;" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.LoginGUI.LoginController">
    <children>
       <GridPane layoutX="-1.0" layoutY="-2.0" prefHeight="262.0" prefWidth="480.0">
         <columnConstraints>

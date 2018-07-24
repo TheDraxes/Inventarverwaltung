@@ -61,6 +61,24 @@ public class UserContainer implements Serializable {
         }
     }
 
+    /**
+     *
+     * Änderung eines Nutzers
+     *
+     * @TODO: änderung eines Nutzers Implementieren
+     * @param editedPerson
+     * @return boolean ob änderung erfolgreich war
+     */
+
+    public boolean editUser(Person editedPerson){
+        if(true){
+            System.out.println("[INFO] User geändert!");
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 
     /**
      * safeUserData speichert die Nutzerdaten unter 'user.dat'

@@ -26,6 +26,7 @@ import javax.swing.*;
 import java.io.*;
 import java.net.URL;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -253,7 +254,10 @@ public class StartController implements Initializable {
 
     @FXML
     public void editUserClicked(){
+        Person choosen = chooseUserWindow();
+        Person edited = Dialogs.editUserWindow(choosen);
 
+        userContainer.editUser(edited);
     }
 
     @FXML
@@ -275,8 +279,50 @@ public class StartController implements Initializable {
         }
     }
 
-    public void chooseUserWindow() {
+    public Person chooseUserWindow() {
+        Dialog<Person> dialog = new Dialog<>();
+        dialog.setTitle("Passwort ändern");
 
+        String[] userNames = userContainer.getUserNames();
+
+        ObservableList user = FXCollections.observableArrayList(userNames);
+
+        ComboBox userComboBox= new ComboBox<>(user);
+        if(userNames[1].equals("")) {
+            userComboBox.setValue(userNames[0]);
+        } else {
+            userComboBox.setValue(userNames[1]);
+        }
+
+        ButtonType OK_Button = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
+        dialog.getDialogPane().getButtonTypes().addAll(OK_Button, ButtonType.CANCEL);
+
+        GridPane grid = new GridPane();
+        grid.setHgap(10);
+        grid.setVgap(10);
+        grid.setPadding(new Insets(20, 150, 10, 10));
+
+        grid.add(new Label("Nutzer: "),0,0);
+        grid.add(userComboBox,1,0);
+
+        dialog.getDialogPane().setContent(grid);
+
+        dialog.setResultConverter(dialogButton -> {
+            if(dialogButton == OK_Button) {
+                Person a = userContainer.getPersonByUsername((String) userComboBox.getValue());
+                return a;
+            } else {
+                return null;
+            }
+        });
+
+        Optional<Person> result = dialog.showAndWait();
+
+        if(result.isPresent()) {
+            return result.get();
+        } else {
+            return null;
+        }
     }
 
     @FXML

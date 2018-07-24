@@ -2,6 +2,9 @@ package GUI;
 
 import Data.Person;
 import Verwaltung.UserContainer;
+import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
@@ -110,6 +113,91 @@ public class Dialogs {
             return result.get();
         } else {
             return new Pair<>(null,"[WARNING] Etwas ist Schiefgelaufen");
+        }
+    }
+
+    public static Person editUserWindow(Person person){
+        Dialog<Person> dialog = new Dialog<>();
+        dialog.setTitle("Benutzer Editieren");
+        ButtonType addButton = new ButtonType("Bestätigen" ,ButtonBar.ButtonData.OK_DONE);
+        dialog.getDialogPane().getButtonTypes().addAll(addButton, ButtonType.CANCEL);
+
+        GridPane grid = new GridPane();
+        grid.setHgap(10);
+        grid.setVgap(10);
+        grid.setPadding(new Insets(20,150,10,10));
+
+        TextField firstName = new TextField();
+        firstName.setText(person.getName());
+        TextField secoundName = new TextField();
+        secoundName.setText(person.getSurname());
+
+        ObservableList<String> genderOptions =
+                FXCollections.observableArrayList(
+                        "Männlich",
+                        "Weiblich"
+                );
+        ComboBox gender = new ComboBox(genderOptions);
+        if(person.isMan()) {
+            gender.setValue("Männlich");
+        } else {
+            gender.setValue("Weiblich");
+        }
+
+        ObservableList<String> adminOptions =
+                FXCollections.observableArrayList(
+                        "Ja",
+                        "Nein"
+                );
+        ComboBox admin = new ComboBox(adminOptions);
+        if(person.isAdmin()) {
+            admin.setValue("Ja");
+        } else {
+            admin.setValue("Nein");
+        }
+
+        grid.add(new Label("Vorname: "), 0, 0);
+        grid.add(firstName,1,0);
+        grid.add(new Label("Nachname: "), 0, 1);
+        grid.add(secoundName,1,1);
+        grid.add(new Label("Geschlecht: "), 0, 2);
+        grid.add(gender,1,2);
+
+        grid.add(new Label("Admin: "), 0, 5);
+        grid.add(admin,1,5);
+
+        dialog.getDialogPane().setContent(grid);
+
+        Platform.runLater(() -> firstName.requestFocus());
+
+        dialog.setResultConverter(dialogButton -> {
+            if(dialogButton == addButton){
+                Person edited = new Person();
+                String[] array = new String[6];
+                edited.setName(firstName.getText());
+                edited.setSurname(secoundName.getText());
+                if(gender.getValue().equals("Männlich")){
+                    edited.setMan(true);
+                } else {
+                    edited.setMan(false);
+                }
+                if(admin.getValue().equals("Ja")){
+                    edited.setAdmin(true);
+                } else {
+                    edited.setAdmin(false);
+                }
+                return edited;
+            } else if(dialogButton == ButtonType.CANCEL){
+                return null;
+            }
+            return null;
+        });
+
+        Optional<Person> result = dialog.showAndWait();
+        if(result.isPresent()) {
+            return result.get();
+        } else {
+            return null;
         }
     }
 }
