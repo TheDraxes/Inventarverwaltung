@@ -12,6 +12,13 @@ import javafx.util.Pair;
 import java.util.Date;
 import java.util.Optional;
 
+/**
+ * Klasse die das Fuhrparkdialog aufbaut
+ *
+ * @auther Tim
+ * @version 1.0
+ */
+
 public class FuhrparkDialog extends AbstractDialog {
   private ComboBox kw_ps;
 

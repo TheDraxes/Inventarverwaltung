@@ -7,6 +7,16 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.util.Pair;
 
+/**
+ * Klasse zur Unterscheidung der einzelnen Asset arten
+ *
+ * Ruft die einzelnen Dialogklassen auf um die daten eingeben zu lassen
+ * und bildet das Fertige Asset
+ *
+ * @auther Tim
+ * @version 1.0
+ */
+
 public class AssetDialogs {
   private TextField[] TextFields = new TextField[0];
   private Label[] Labels = new Label[0];

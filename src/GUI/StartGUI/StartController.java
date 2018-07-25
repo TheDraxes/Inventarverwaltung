@@ -10,7 +10,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -26,61 +25,73 @@ import javax.swing.*;
 import java.io.*;
 import java.net.URL;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-/*
-    Controller Klasse für das Start Fenster
-
-    Hier werden Methoden geschrieben die durch Interaktion mit dem StartGUI getriggered werden
-
-    Der Style des Start Fenster ist in der FXML Datei "StartStyle" Implementiert (SceneBuilder Tool)
-*/
+/**
+ * Controller klasse für das Startfenster welches für die UI der Inventarverwaltung,
+ * Benutzerverwaltung (Adminseitig) und dem Ändern des Passwortes für Nutzer zuständig ist
+ *
+ * @author Tim
+ * @version 1.0
+ */
 public class StartController implements Initializable {
     //Dropdown Menue für die Auswahl des Inventars
     @FXML
     private ComboBox<String> InventarBox;
 
-    //Button zum bestätigen des Ausgewählten Inventars (Noch öffnet sich nur das ViewFenster mit Platzhaltereinträgen)
+    //Button für um das ausgewählte Inventar zu bestätigen
     @FXML
     private Button ConfirmButton;
 
+    //Label in dem der Username des eingeloggten benutzers angezeigt wird
     @FXML
     private Label userLabel;
 
+    //Spezielles Menue für Funktionen auf die nur der Admin zugriff hat
     @FXML
     private Menu adminMenue;
 
-    @FXML
-    private Tooltip Tooltip;
-
+    //Container für alle benutzerdaten
     private UserContainer userContainer;
 
-    private int anz = 0;
+    //Anzahl der zur verfügung stehen Inventare
+    private int inventoryCounter = 0;
 
+    //Der aktuelle speicherpfad in dem Inventare abgespeichert werden
     private String path = "";
 
+    //Array in dem alle Namen der Inventare abgespeichert werden
+    private String[] inventories;
+
+    //Benutzerobjekt von dem Momentan eingeloggten Nutzer
     private Person user;
 
-    //Funktion die die werte des AuswahlDropdowns festlegt
+    /**
+     * Initalisierungsmethode die Interaktive Elemente mit Inhalt füllen
+     * und Überpfüft ob das Adminmenue angezeigt werden muss
+     *
+     * @author Tim
+     * @version 1.0
+     */
     @FXML
     public void initialize(){
-
         ObservableList<String> _default = FXCollections.observableArrayList();
         File lookUp = new File(path);
 
         if (lookUp.exists()) {
             File[] fileArray = lookUp.listFiles();
-            anz = 0;
+            inventories = new String[fileArray.length];
+            inventoryCounter = 0;
             for (int i = 0; i < fileArray.length; i++) {
                 if (fileArray[i].getName().endsWith(".Inv")) {
                     _default.add(fileArray[i].getName().substring(0, fileArray[i].getName().length() - 4));
-                    anz++;
+                    inventories[i] = fileArray[i].getName().substring(0, fileArray[i].getName().length() - 4);
+                    inventoryCounter++;
                 }
             }
             InventarBox.setItems(_default);
-            if(anz != 0) {
+            if(inventoryCounter != 0) {
                 InventarBox.setValue(_default.get(0));
             } else {
                 InventarBox.setValue("Kein Eintrag gefunden!");
@@ -93,23 +104,35 @@ public class StartController implements Initializable {
             adminMenue.setVisible(false);
         }
         System.out.println("[GUI] Start Fenster Initialisiert");
-
         System.out.println("[INFO] Speicherpfad: " + path);
     }
 
+    /**
+     * Funktion die zur ausführung kommt sobald der Inventar löschen Button gedrückt wurde
+     *
+     * @param event ->  event das beim Klick ausgelöst wird. Scenebuilder verlangt nach diesem
+     *                  Übergabeparameter wird jedoch nich benötigt
+     * @auther Tim
+     * @version 1.0
+     */
     @FXML
     void deleteInventoryClicked(ActionEvent event) {
         File a = new File(path + "/" + InventarBox.getValue() + ".Inv");
         boolean confirmed = Dialogs.confirmDialog(InventarBox.getValue() + " wirklich Löschen?");
         if(confirmed && a.exists()){
             if(a.delete()) {
-                anz--;
+                inventoryCounter--;
                 System.out.println("[INFO]" + "Inventar \"" + InventarBox.getValue() + "\" wurde gelöscht");
             }
             initialize();
         }
     }
 
+    /**
+     * Setzt einen neuen Speicherort fest
+     *
+     * @param event
+     */
     @FXML
     void newSafeLocation(ActionEvent event) {
         setLookAndFeel();
@@ -135,6 +158,14 @@ public class StartController implements Initializable {
         initialize();
     }
 
+    /**
+     * Funktion zur Parameterübergabe der anderen Controller
+     *
+     *
+     * @param path -> Speicehrpfad
+     * @param userContainer -> Container für alle Benutzerdaten
+     * @param user -> aktuell eingeloggter user
+     */
     public void getParams(String path, UserContainer userContainer, Person user){
         this.userLabel.setText("Eingeloggt als: " + user.getUsername());
         this.path = path;
@@ -143,7 +174,13 @@ public class StartController implements Initializable {
         initialize();
     }
 
-    //Methode die aufgerufen wird wenn der newButton gedrückt wird
+    /**
+     *
+     * Funktion die ein neues Inventar anlegt
+     *
+     * @param event
+     * @auther Tim
+     */
     @FXML
     void newInventoryClicked(ActionEvent event) {
 
@@ -153,24 +190,43 @@ public class StartController implements Initializable {
             System.out.println("[INFO] Anlegen abgebrochen");
         } else {
             if (!input.equals("")) {
-                String path = this.path + "\\" + input + ".Inv";
-                AssetContainer newContainer = new AssetContainer();
+                boolean alreadyTaken = false;
+                for(int i = 0; i < inventories.length; i++ ){
+                    if(input.equals(inventories[i])){
+                        alreadyTaken = true;
+                    }
+                }
+                if(!alreadyTaken) {
+                    String path = this.path + "\\" + input + ".Inv";
+                    AssetContainer newContainer = new AssetContainer();
 
-                newContainer.safeInventar(path);
-                System.out.println("[INFO] Inventar '" + input + ".Inv' erstellt");
-                initialize();
+                    newContainer.safeInventar(path);
+                    Dialogs.warnDialog("Inventar \"" + input + "\" erfolgreich angelegt!", "Info");
+                    System.out.println("[INFO] Inventar '" + input + ".Inv' erstellt");
+                    initialize();
+                } else {
+                    Dialogs.warnDialog("Name bereits Vergeben!", "Warnung");
+                }
             } else {
                 Dialogs.warnDialog("Keinen Namen Eingegeben!", "Warnung");
             }
         }
     }
 
-    //Methode die aufgerufen wird wenn der ConfirmButton gedrückt wird
-    //Versteckt das Aktuelle Fenster und öffnet das neue Fenster
+    /**
+     * Bestätigungsevent für das ausgewählte Inventar
+     *
+     * das aktuelle fenster wird geschlossen
+     * und das neue aufgebaut mit übergabe bestimmter parameter
+     *
+     * @param event
+     * @throws IOException
+     * @auther Tim
+     */
     @FXML
     void confirmInventoryClicked(ActionEvent event) throws IOException {
         System.out.println("[INFO] Speicherpfad: " + path);
-        if(anz != 0) {
+        if(inventoryCounter != 0) {
 
             Stage lastWindow = (Stage) ConfirmButton.getScene().getWindow();
             lastWindow.hide();
@@ -193,6 +249,11 @@ public class StartController implements Initializable {
     }
 
 
+    /**
+     * Logik für das anlegen eines neuen Benutzers
+     * @param event
+     * @auther Tim
+     */
     @FXML
     void newUserClicked(ActionEvent event){
         while (true) {
@@ -232,6 +293,7 @@ public class StartController implements Initializable {
      * Aufgerufene Methode beim click auf den Passwort ändern Menüeintrag
      *
      * @TODO Sollte Funktionieren sobald die Methode im UserContainer Implementiert ist
+     * @auther Tim
      */
 
     @FXML
@@ -253,6 +315,11 @@ public class StartController implements Initializable {
         }
     }
 
+    /**
+     * Funktion um ausgewählte benutzer zu Bearbeiten
+     *
+     * @auther Tim
+     */
     @FXML
     public void editUserClicked(){
         Person choosen = chooseUserWindow();
@@ -264,25 +331,30 @@ public class StartController implements Initializable {
         }
     }
 
+    /**
+     * Funktion um mehrere ausgewählte nutzer zu löschen
+     */
     @FXML
     public void deleteUser(){
-        String[] deletedUsers = buildDeleteUserWindow();
-        System.out.println("[INFO] User ausgewählt: " + Arrays.toString(deletedUsers));
-        if(deletedUsers != null){
-            if(deletedUsers.length > 0) {
-                for (int i = 0; i < deletedUsers.length; i++) {
-                    if (!deletedUsers[i].equals("admin")) {
-                        userContainer.deleteUser(deletedUsers[i]);
-                    } else {
-                        Dialogs.warnDialog("Der Admin Account kann nicht gelöscht werden!", "Warnung");
-                    }
-                }
+        while (true) {
+            Person deleted = chooseUserWindow();
+            if (deleted != null) {
+                userContainer.deleteUser(deleted.getUsername());
+            } else {
+                System.out.println("[INFO] Vorgang abgebrochen!");
+                break;
             }
-        } else {
-            System.out.println("[INFO] Vorgang abgebrochen!");
         }
     }
 
+
+    /**
+     * Funktion die das Fenster zur auswahl eines Users aufbaut und ein
+     * Objekt vom typ Person zurückgibt
+     *
+     * @return Person -> ausgewählte person z.B zum editieren
+     * @auther Tim
+     */
     public Person chooseUserWindow() {
         Dialog<Person> dialog = new Dialog<>();
         dialog.setTitle("Passwort ändern");
@@ -329,6 +401,11 @@ public class StartController implements Initializable {
         }
     }
 
+    /**
+     * Funktion die aufgerufen wird wenn der Logout button gedrückt wurde
+     *
+     * @auther Tim
+     */
     @FXML
     public void logoutButtonClicked() {
         Stage lastWindow = (Stage) userLabel.getScene().getWindow();
@@ -354,64 +431,12 @@ public class StartController implements Initializable {
 
     }
 
-    public String[] buildDeleteUserWindow(){
-        int number = userContainer.getNumberOfUser();
-        CheckBox[] checkBoxes = new CheckBox[number];
-
-        String[] usernames = userContainer.getUserNames();
-
-        for (int i = 0; i < number; i++) {
-            checkBoxes[i] = new CheckBox(usernames[i]);
-        }
-
-        Dialog<String[]> dialog = new Dialog<>();
-        dialog.setTitle("Benutzer Löschen");
-
-        ButtonType OK_Button = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
-        dialog.getDialogPane().getButtonTypes().addAll(OK_Button, ButtonType.CANCEL);
-
-        GridPane grid = new GridPane();
-        grid.setHgap(10);
-        grid.setVgap(10);
-        grid.setPadding(new Insets(20, 150, 10, 10));
-        for (int i = 0; i < number; i++) {
-            grid.add(checkBoxes[i], 0, i);
-        }
-
-        dialog.getDialogPane().setContent(grid);
-
-        dialog.setResultConverter(dialogButton -> {
-            if(dialogButton == OK_Button){
-                int anz = 0;
-                for(int i = 0; i < number; i++){
-                    if(checkBoxes[i].isSelected()) {
-                        anz++;
-                    }
-                }
-                String[] array = new String[anz];
-                anz = 0;
-                for(int i = 0; i < number; i++){
-                    if(checkBoxes[i].isSelected()){
-                        array[anz] = checkBoxes[i].getText();
-                        anz++;
-                    }
-                }
-                return array;
-            } else if(dialogButton == ButtonType.CANCEL){
-                return null;
-            }
-            return null;
-        });
-
-        Optional<String[]> result = dialog.showAndWait();
-
-        if(result.isPresent()) {
-            return result.get();
-        } else {
-            return null;
-        }
-    }
-
+    /**
+     * Baut ein Fenster auf in dem die Daten für einen neuen Benutzer eingetragen werden
+     *
+     * @return
+     * @auther Tim
+     */
     public String[] buildNewUserWindow(){
         Dialog<String[]> dialog = new Dialog<>();
         dialog.setTitle("Neuer Benutzer");
@@ -491,6 +516,10 @@ public class StartController implements Initializable {
         }
     }
 
+    /**
+     * setzt das Look and Feel für Swing elemente
+     *      -> müsste noch durch Javafx ersetzt werden
+     */
     private void setLookAndFeel(){
         String laf = UIManager.getSystemLookAndFeelClassName();
         try {

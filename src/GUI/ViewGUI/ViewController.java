@@ -30,59 +30,86 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
-/*
-    Controller Klasse für das View Fenster
-
-    Hier werden Methoden geschrieben die durch Interaktion mit dem ViewGUI getriggered werden
-
-    Der Style des Start Fenster ist in der FXML Datei "ViewStyle" Implementiert (SceneBuilder Tool)
-*/
-
+/**
+ * Controller klasse für das Viewfenster welches für die UI der Assetverwaltung,
+ * zuständig ist.
+ *
+ * @author Tim
+ * @version 1.0
+ */
 public class ViewController implements Initializable {
 
     //ScrollPane für die Inventar einträge
     @FXML
     private ScrollPane ItemScrollPane;
 
+    //Label in dem der Username des eingeloggten benutzers angezeigt wird
     @FXML
     private Label nameLabel;
 
+    //Tabelle für die Asseteinträge
     @FXML
     private TableView<Asset> itemTable = new TableView<Asset>();
 
+    //Tabellenspalte für die Inventarnummer
     @FXML
     private TableColumn NRColumn;
 
+    //Tabellenspalte für die Bezeichnung
     @FXML
     private TableColumn bezColumn;
 
+    //Tabellenspalte für Bearbeiten Buttons
     @FXML
     private TableColumn ActionColumn;
 
+    //Tabellenspalte für den Anschaffungswert
     @FXML
     private TableColumn valueColumn;
 
+    //Tabellenspalte für das Datum
     @FXML
     private TableColumn dateColumn;
 
+    //Tabellenspalte für die Anzahl
     @FXML
     private TableColumn countColumn;
 
+    //Container für die Userdaten
     private UserContainer userContainer;
 
+    //Container für die asseteinträge
     private AssetContainer assetContainer = new AssetContainer();
+
+    //Container für die gefilterten Assets
     private AssetContainer filteredContainer = new AssetContainer();
 
+    //Boolean der bestimmt ob Filter aktiv sind
     boolean ActiveFilter = false;
 
+    //aktueller speicherpfad
     private String path;
 
+    //Name des Inventares
     private String invName;
 
+    //Speicherpfad + dateinamen des abgespeicherten Container
     private String completePath;
 
+    //momentan eingeloggter User
     private Person user;
 
+
+    /**
+     * Funktion die das View Initialisiert
+     * läd das Inventar aus der datei und ruft die Funktion
+     *
+     *      fillTable();
+     *
+     * auf  um die tablle zu füllen
+     *
+     * @auther Tim
+     */
     @FXML
     public void initialize(){
         completePath = path + "\\" + invName + ".Inv";
@@ -96,6 +123,13 @@ public class ViewController implements Initializable {
         fillTable();
 
     }
+
+    /**
+     * Füllt die Tabelle mit den daten aus dem Assetcontainer
+     * hier ist auch die Klasse für die Editbuttons inline geschrieben
+     *
+     * @auther Tim 
+     */
     public void fillTable(){
         ArrayList<Asset> arrayList;
         if(ActiveFilter){

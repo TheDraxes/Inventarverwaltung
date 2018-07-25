@@ -10,6 +10,13 @@ import javafx.util.Pair;
 import java.util.Date;
 import java.util.Optional;
 
+/**
+ * Klasse die das Softwaredialog aufbaut
+ *
+ * @auther Tim
+ * @version 1.0
+ */
+
 public class SoftwareDialog extends AbstractDialog{
   public SoftwareDialog(String[] labelNames, Label[] labels, TextField[] textFields, Asset actual) {
     super(labelNames, labels, textFields, actual);
