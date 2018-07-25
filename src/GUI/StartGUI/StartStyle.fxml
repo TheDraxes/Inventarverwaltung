@@ -63,13 +63,13 @@
               <MenuItem fx:id="deleteButton" mnemonicParsing="false" onAction="#deleteInventoryClicked" text="Inventar löschen" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
+          <Menu mnemonicParsing="false" text="Bearbeiten">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#newSafeLocation" text="Speicherort ändern" />
                   <MenuItem fx:id="editPasswordClicked" mnemonicParsing="false" onAction="#editPasswordClicked" text="Passwort ändern" />
             </items>
           </Menu>
-            <Menu fx:id="adminMenue" mnemonicParsing="false" text="admin">
+            <Menu fx:id="adminMenue" mnemonicParsing="false" text="Verwaltung">
               <items>
                 <MenuItem mnemonicParsing="false" onAction="#newUserClicked" text="Benutzer anlegen" />
                   <MenuItem mnemonicParsing="false" onAction="#deleteUser" text="Benutzer löschen" />
@@ -80,8 +80,8 @@
       </MenuBar>
       <GridPane GridPane.rowIndex="3">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="537.0" minWidth="10.0" prefWidth="523.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="295.0" minWidth="10.0" prefWidth="69.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="537.0" minWidth="10.0" prefWidth="489.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="295.0" minWidth="10.0" prefWidth="103.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -91,7 +91,7 @@
                <opaqueInsets>
                   <Insets right="10.0" />
                </opaqueInsets></Label>
-            <Button mnemonicParsing="false" onAction="#logoutButtonClicked" prefHeight="25.0" prefWidth="58.0" styleClass="logoutButton" stylesheets="@../style.css" text="Logout" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+            <Button mnemonicParsing="false" onAction="#logoutButtonClicked" prefHeight="27.0" prefWidth="90.0" styleClass="logoutButton" stylesheets="@../style.css" text="Abmelden" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
          </children>
       </GridPane>
       <GridPane GridPane.rowIndex="1">

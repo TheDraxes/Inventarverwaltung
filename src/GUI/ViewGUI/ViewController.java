@@ -71,6 +71,9 @@ public class ViewController implements Initializable {
     private UserContainer userContainer;
 
     private AssetContainer assetContainer = new AssetContainer();
+    private AssetContainer filteredContainer = new AssetContainer();
+
+    boolean ActiveFilter = false;
 
     private String path;
 
@@ -94,8 +97,12 @@ public class ViewController implements Initializable {
 
     }
     public void fillTable(){
-        ArrayList<Asset> arrayList = assetContainer.getAssetList();
-
+        ArrayList<Asset> arrayList;
+        if(ActiveFilter){
+            arrayList = filteredContainer.getAssetList();
+        } else {
+            arrayList = assetContainer.getAssetList();
+        }
 
         NRColumn.setCellValueFactory(new PropertyValueFactory<>("inventarnummer"));
         bezColumn.setCellValueFactory(new PropertyValueFactory<>("bezeichnung"));
@@ -191,6 +198,7 @@ public class ViewController implements Initializable {
             }
             fillTable();
         }
+        System.out.println("Test");
     }
 
     public void getParams(String inventoryName, String path, UserContainer userContainer, Person user){

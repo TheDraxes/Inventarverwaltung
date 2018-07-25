@@ -102,9 +102,10 @@ public class StartController implements Initializable {
         File a = new File(path + "/" + InventarBox.getValue() + ".Inv");
         boolean confirmed = Dialogs.confirmDialog(InventarBox.getValue() + " wirklich Löschen?");
         if(confirmed && a.exists()){
-            a.delete();
-            anz--;
-            System.out.println("[INFO]" + "Inventar \"" + InventarBox.getValue() + "\" wurde gelöscht");
+            if(a.delete()) {
+                anz--;
+                System.out.println("[INFO]" + "Inventar \"" + InventarBox.getValue() + "\" wurde gelöscht");
+            }
             initialize();
         }
     }
@@ -255,9 +256,12 @@ public class StartController implements Initializable {
     @FXML
     public void editUserClicked(){
         Person choosen = chooseUserWindow();
-        Person edited = Dialogs.editUserWindow(choosen);
-
-        userContainer.editUser(edited);
+        if(choosen != null) {
+            Person edited = Dialogs.editUserWindow(choosen);
+            userContainer.editUser(edited);
+        } else {
+            System.out.println("[INFO] Vorgang abgebrochen!");
+        }
     }
 
     @FXML

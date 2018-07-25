@@ -44,8 +44,10 @@ public class Dialogs {
         Optional<String> result = dialog.showAndWait();
         if (result.isPresent()){
             System.out.println("[INFO] Inventarname: " + result.get());
+            return result.get();
+        } else {
+            return null;
         }
-        return result.get();
     }
 
     public static String inputDialog(String title, String header){
