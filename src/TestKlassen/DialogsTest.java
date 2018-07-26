@@ -1,6 +1,8 @@
 package TestKlassen;
 
+import Data.Asset;
 import GUI.Dialogs;
+import GUI.ViewGUI.NewItemDialogs.AssetDialogs;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -17,14 +19,12 @@ public class DialogsTest extends Application{
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        boolean[] a = Dialogs.getFilter();
 
-        System.out.println("" + a[0]);
-        System.out.println("" + a[1]);
-        System.out.println("" + a[2]);
-        System.out.println("" + a[3]);
-        System.out.println("" + a[4]);
-        System.out.println("" + a[5]);
+        Asset b = null;
+        new AssetDialogs().getNewItem("Boden und Gebäude", b);
+
+
+        boolean[] a = Dialogs.getFilter();
 
         if(a[0]){
             System.out.println(0);

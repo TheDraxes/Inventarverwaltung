@@ -282,15 +282,6 @@ public class Dialogs {
                 if (!anyTrue) {
                     return null;
                 }
-
-                System.out.println("" + filter[0]);
-                System.out.println("" + filter[1]);
-                System.out.println("" + filter[2]);
-                System.out.println("" + filter[3]);
-                System.out.println("" + filter[4]);
-                System.out.println("" + filter[5]);
-                System.out.println();
-
                 return filter;
             } else {
                 return null;

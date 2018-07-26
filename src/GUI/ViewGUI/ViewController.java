@@ -75,6 +75,10 @@ public class ViewController implements Initializable {
     @FXML
     private TableColumn countColumn;
 
+    //Button zum zurücksetzen der Filter
+    @FXML
+    private Button resetButton;
+
     //Container für die Userdaten
     private UserContainer userContainer;
 
@@ -117,6 +121,7 @@ public class ViewController implements Initializable {
         File a = new File(completePath);
 
         assetContainer = assetContainer.loadInventar(a.getPath());
+        itemTable.setPlaceholder(new Label("Keine Anlage-gegenstände gefunden"));
 
         ArrayList<Asset> arrayList = assetContainer.getAssetList();
 
@@ -134,8 +139,10 @@ public class ViewController implements Initializable {
         ArrayList<Asset> arrayList;
         if(ActiveFilter){
             arrayList = filteredList;
+            resetButton.setVisible(true);
         } else {
             arrayList = assetContainer.getAssetList();
+            resetButton.setVisible(false);
         }
 
         NRColumn.setCellValueFactory(new PropertyValueFactory<>("inventarnummer"));
@@ -191,6 +198,7 @@ public class ViewController implements Initializable {
                     selectedAsset.display();
 
                     String assetClass = selectedAsset.getClass().toString().substring(11);
+                    System.out.println(assetClass);
 
                     Asset editedAsset = new AssetDialogs().getNewItem(assetClass, selectedAsset).getKey();
                     editedAsset.display();
@@ -215,6 +223,14 @@ public class ViewController implements Initializable {
             }
         }
     }
+    @FXML
+    void resetFilter(){
+        ActiveFilter=false;
+        filteredList = null;
+
+        fillTable();
+        System.out.println("[INFO] Filter zurückgesetzt!");
+    }
 
     /**
      * logik für das anlegen eines neuen Items
@@ -223,6 +239,10 @@ public class ViewController implements Initializable {
     @FXML
     private void addItemClicked(ActionEvent event) {
         String itemType = askForItemType();
+        System.out.println(itemType);
+        if(itemType.equals("Boden und Gebäude")){
+            itemType = "BodenUndGebaeude";
+        }
         if (itemType != "" && itemType != null) {
             while (true) {
                 Pair pair = new AssetDialogs().getNewItem(itemType, null);

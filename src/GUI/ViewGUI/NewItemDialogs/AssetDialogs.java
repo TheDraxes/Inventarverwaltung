@@ -31,10 +31,11 @@ public class AssetDialogs {
         setTextFields();
         pair = new FuhrparkDialog(labelNames, Labels, TextFields, actual).getFuhrpark();
         return pair;
-      case "Boden und Gebäude": //Boden und Gebäude
+      case "BodenUndGebaeude": //Boden und Gebäude
         this.labelNames = new BodenUndGebaeude().getParamNames();
         setTextFields();
-        break;
+        pair = new BodenUndGebäudeDialog(labelNames,Labels,TextFields,actual).getBodenUndGebäude();
+        return pair;
       case "Hardware":          //Hardware
         this.labelNames = new Hardware().getParamNames();
         setTextFields();

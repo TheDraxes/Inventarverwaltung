@@ -48,14 +48,28 @@
             </TableView>
          </content>
       </ScrollPane>
-      <Label fx:id="nameLabel" text="Label" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
-         <padding>
-            <Insets right="20.0" />
-         </padding>
-      </Label>
-      <Button mnemonicParsing="false" onAction="#backClicked" styleClass="confirmButton" stylesheets="@../style.css" text="Speichern &amp; Beenden" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
-         <font>
-            <Font size="13.0" />
-         </font></Button>
+      <GridPane GridPane.rowIndex="2">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Button fx:id="resetButton" alignment="TOP_CENTER" mnemonicParsing="false" onAction="#resetFilter" text="Zurücksetzen" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+            <Button mnemonicParsing="false" onAction="#backClicked" styleClass="confirmButton" stylesheets="@../style.css" text="Speichern &amp; Beenden" GridPane.halignment="LEFT" GridPane.valignment="CENTER">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Button>
+            <Label fx:id="nameLabel" text="Label" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="CENTER">
+               <padding>
+                  <Insets right="20.0" />
+               </padding>
+            </Label>
+         </children>
+      </GridPane>
    </children>
 </GridPane>
