@@ -2,8 +2,8 @@ package GUI.ViewGUI;
 
 
 import Data.Asset;
-import Data.Fuhrpark;
 import Data.Person;
+import GUI.Dialogs;
 import GUI.ViewGUI.NewItemDialogs.AssetDialogs;
 import Verwaltung.AssetContainer;
 import Verwaltung.UserContainer;
@@ -82,10 +82,10 @@ public class ViewController implements Initializable {
     private AssetContainer assetContainer = new AssetContainer();
 
     //Container für die gefilterten Assets
-    private AssetContainer filteredContainer = new AssetContainer();
+    private ArrayList filteredList = new ArrayList();
 
     //Boolean der bestimmt ob Filter aktiv sind
-    boolean ActiveFilter = false;
+    private boolean ActiveFilter = false;
 
     //aktueller speicherpfad
     private String path;
@@ -128,12 +128,12 @@ public class ViewController implements Initializable {
      * Füllt die Tabelle mit den daten aus dem Assetcontainer
      * hier ist auch die Klasse für die Editbuttons inline geschrieben
      *
-     * @auther Tim 
+     * @auther Tim
      */
-    public void fillTable(){
+    private void fillTable(){
         ArrayList<Asset> arrayList;
         if(ActiveFilter){
-            arrayList = filteredContainer.getAssetList();
+            arrayList = filteredList;
         } else {
             arrayList = assetContainer.getAssetList();
         }
@@ -167,7 +167,11 @@ public class ViewController implements Initializable {
         itemTable.setItems(list);
     }
 
-    //Define the button cell
+    /**
+     * Private Klassendefinition für den editbutton in der Tabelle
+     *
+     * @auther Tim
+     */
     private class ButtonCell extends TableCell<Asset, Boolean> {
         final Button cellButton = new Button("        ");
 
@@ -176,12 +180,12 @@ public class ViewController implements Initializable {
             cellButton.getStylesheets().add("/GUI/style.css");
             cellButton.getStyleClass().add("editButton");
 
-            //Action when the button is pressed
+            //Aktion die ausgeführt wird wenn der Button gedrückt wurde
             cellButton.setOnAction(new EventHandler<ActionEvent>(){
 
                 @Override
                 public void handle(ActionEvent t) {
-                    // Das ausgewählte Asset auswählen
+                    // Das ausgewählte Asset bekommen
                   try {
                     Asset selectedAsset = (Asset) ButtonCell.this.getTableView().getItems().get(ButtonCell.this.getIndex());
                     selectedAsset.display();
@@ -202,7 +206,7 @@ public class ViewController implements Initializable {
             });
         }
 
-        //Display button if the row is not empty
+        //Zeige den Button nur wenn die tabellenreihe nicht leer ist
         @Override
         protected void updateItem(Boolean t, boolean empty) {
             super.updateItem(t, empty);
@@ -212,10 +216,12 @@ public class ViewController implements Initializable {
         }
     }
 
-    //Methode die ausgeführt wird wenn der "Inventar anzeigen" Button in der Menueleiste Gedrückt wird
-    //Hier werden an das ScrollPane Beispielhaft Platzhalter angehängt
+    /**
+     * logik für das anlegen eines neuen Items
+     * @param event
+     */
     @FXML
-    void addItemClicked(ActionEvent event) {
+    private void addItemClicked(ActionEvent event) {
         String itemType = askForItemType();
         if (itemType != "" && itemType != null) {
             while (true) {
@@ -235,6 +241,14 @@ public class ViewController implements Initializable {
         System.out.println("Test");
     }
 
+    /**
+     * Methode zur parameterübergabe von Controller zu Controller
+     *
+     * @param inventoryName -> Name des Inventars
+     * @param path -> pfad der speicherung
+     * @param userContainer -> container der userdaten
+     * @param user -> momentan eingeloggter user
+     */
     public void getParams(String inventoryName, String path, UserContainer userContainer, Person user){
         nameLabel.setText("Eingeloggt als: " + user.getUsername());
         this.path = path;
@@ -249,6 +263,11 @@ public class ViewController implements Initializable {
 
     }
 
+    /**
+     * Methode die ein Fenster aufbaut welches nach dem anzulegenden Assettypfragt
+     *
+     * @return
+     */
     protected String askForItemType(){
         List<String> choices = new ArrayList<>();
         AssetContainer a = new AssetContainer();
@@ -270,6 +289,11 @@ public class ViewController implements Initializable {
         return null;
     }
 
+    /**
+     * Methode die aufgerufen wird wenn speichern und beenden gedrückt wird
+     *
+     * @param event
+     */
     @FXML
     void backClicked(ActionEvent event){
 
@@ -294,5 +318,17 @@ public class ViewController implements Initializable {
         stage.setTitle("Inventarverwaltung 1.0");
         stage.setScene(new Scene(root));
         stage.show();
+    }
+    @FXML
+    void filterClicked (){
+        boolean[] filter = Dialogs.getFilter();
+        if(filter != null){
+            ActiveFilter = true;
+            filteredList = assetContainer.getAssetsByFilter(filter);
+        } else {
+            ActiveFilter = false;
+            filteredList = null;
+        }
+        fillTable();
     }
 }

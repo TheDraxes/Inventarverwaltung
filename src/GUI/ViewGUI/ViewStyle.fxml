@@ -29,6 +29,7 @@
           <Menu mnemonicParsing="false" text="Inventar">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#addItemClicked" text="Item Hinzufügen" />
+                  <MenuItem fx:id="filterClicked" mnemonicParsing="false" onAction="#filterClicked" text="Filtern" />
             </items>
           </Menu>
         </menus>
