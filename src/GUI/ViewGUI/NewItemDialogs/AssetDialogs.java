@@ -39,11 +39,13 @@ public class AssetDialogs {
       case "Hardware":          //Hardware
         this.labelNames = new Hardware().getParamNames();
         setTextFields();
-        break;
+        pair = new HardwareDialog(labelNames,Labels,TextFields,actual).getHardware();
+        return pair;
       case "Mobiliar":          //Mobiliar
         this.labelNames = new Mobiliar().getParamNames();
         setTextFields();
-        break;
+        pair = new MobiliarDialog(labelNames,Labels,TextFields,actual).getMobiliar();
+        return pair;
       case "Software":          //Software
         this.labelNames = new Software().getParamNames();
         setTextFields();
@@ -52,7 +54,8 @@ public class AssetDialogs {
       case "Sonstiges":         //Sonstiges
         this.labelNames = new Sonstiges().getParamNames();
         setTextFields();
-        break;
+        pair = new SonstigesDialog(labelNames,Labels,TextFields,actual).getMobiliar();
+        return pair;
     }
     return new Pair<>(null, null);
   }

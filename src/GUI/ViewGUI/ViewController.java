@@ -240,7 +240,7 @@ public class ViewController implements Initializable {
     private void addItemClicked(ActionEvent event) {
         String itemType = askForItemType();
         System.out.println(itemType);
-        if(itemType.equals("Boden und Gebäude")){
+        if(itemType != null && itemType.equals("Boden und Gebäude")){
             itemType = "BodenUndGebaeude";
         }
         if (itemType != "" && itemType != null) {
@@ -295,7 +295,7 @@ public class ViewController implements Initializable {
             choices.add(a.getExistingAssetTypes()[i]);
         }
 
-        ChoiceDialog<String> dialog = new ChoiceDialog<>("Fuhrpark", choices);
+        ChoiceDialog<String> dialog = new ChoiceDialog<>("Boden und Gebäude", choices);
         dialog.setTitle("Item Anlegen");
         dialog.setHeaderText("Art des Gegenstandes wählen!");
         dialog.setContentText("Arten:");

@@ -12,7 +12,7 @@ public class Sonstiges extends Asset {
     private String beschreibung;
 
     private String[] paramNames = {
-            ""
+            "Beschreibung"
     };
     private int paramAnzahl = paramNames.length;
 
