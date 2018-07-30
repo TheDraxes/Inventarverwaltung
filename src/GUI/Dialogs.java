@@ -172,7 +172,7 @@ public class Dialogs {
 
         dialog.setResultConverter(dialogButton -> {
             if(dialogButton == addButton){
-                Person edited = new Person();
+                Person edited = person;
                 String[] array = new String[6];
                 edited.setName(firstName.getText());
                 edited.setSurname(secoundName.getText());

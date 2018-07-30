@@ -46,37 +46,46 @@ public class UserContainer implements Serializable {
      *
      * Änderung des Passwortes eines Nutzers
      *
-     * @TODO: änderung des Passwortes Implementieren
      * @param username
      * @param newPassword
      * @return boolean ob änderung erfolgreich war
      */
 
     public boolean changePassword(String username, String newPassword){
-        if(true){
-            System.out.println("[INFO] Passwort geändert!");
+        try {
+            Person p = getPersonByUsername(username);
+            p.setPassword(newPassword);
+            System.out.println("[INFO] Passwort des Benutzers " + username + " erfolgreich editiert!");
+            safeUserData();
             return true;
-        } else {
-            return false;
+        } catch(Exception e) {
+            System.out.println("[ERROR] Fehler beim editieren des Benutzers!");
+            e.printStackTrace();
         }
+        return false;
     }
 
     /**
      *
      * Änderung eines Nutzers
      *
-     * @TODO: änderung eines Nutzers Implementieren
      * @param editedPerson
      * @return boolean ob änderung erfolgreich war
      */
 
     public boolean editUser(Person editedPerson){
-        if(true){
-            System.out.println("[INFO] User geändert!");
+        try {
+            Person p = getPersonByUsername(editedPerson.getUsername());
+            editedPerson.updateUsername();
+            this.userData.set(userData.indexOf(p), editedPerson);
+            System.out.println("[INFO] Benutzer erfolgreich editiert!");
+            safeUserData();
             return true;
-        } else {
-            return false;
+        } catch(Exception e) {
+            System.out.println("[ERROR] Fehler beim editieren des Benutzers!");
+            e.printStackTrace();
         }
+        return false;
     }
 
 

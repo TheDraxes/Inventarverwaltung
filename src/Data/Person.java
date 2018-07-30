@@ -68,6 +68,20 @@ public class Person implements Serializable {
         return username.substring(name.length()) + "." + name.toLowerCase() + "@dvz-mv.de";
     }
 
+    public void updateUsername(){
+        String newusername = generateUsername();
+
+        if(!this.username.equals(newusername)) {
+            System.out.print("[EDIT] Username von " + this.username);
+            this.username = newusername;
+            System.out.println(" auf " + this.username + " geändert!");
+
+            System.out.print("[EDIT] E-Mail von " + this.email);
+            this.email = generateEmail();
+            System.out.println(" auf " + this.email + " geändert!");
+        }
+    }
+
     // Konsolenausgabe aller Parameter für Testzwecke
     public void display() {
         System.out.println("[INFO] DISPLAYMETHODE PERSON");
@@ -106,7 +120,6 @@ public class Person implements Serializable {
     }
     public void setSurname(String surname) {
         this.surname = surname;
-        System.out.println("[EDIT] Vorname geändert");
     }
     public boolean isMan() {
         return isMan;
