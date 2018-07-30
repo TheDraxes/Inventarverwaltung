@@ -118,8 +118,15 @@ public class StartController implements Initializable {
     @FXML
     void deleteInventoryClicked(ActionEvent event) {
         File a = new File(path + "/" + InventarBox.getValue() + ".Inv");
+         if(InventarBox.getValue().equals("Kein Eintrag gefunden!")){
+          Dialogs.warnDialog("Es wurde noch kein Inventar angelegt!", "Warnung");
+          return;
+        } else if(!a.exists()){
+           Dialogs.warnDialog("Inventar Existiert nicht!", "Warnung");
+           return;
+         }
         boolean confirmed = Dialogs.confirmDialog(InventarBox.getValue() + " wirklich Löschen?");
-        if(confirmed && a.exists()){
+        if(confirmed){
             if(a.delete()) {
                 inventoryCounter--;
                 System.out.println("[INFO]" + "Inventar \"" + InventarBox.getValue() + "\" wurde gelöscht");
@@ -278,7 +285,7 @@ public class StartController implements Initializable {
                     Person newUser = new Person(userData[1],userData[0],men,userData[3], admin);
 
                     userContainer.insertUser(newUser);
-                    Dialogs.warnDialog("Neuen Benutzer erfolgreich angelegt!", "Warnung");
+                    Dialogs.warnDialog("Neuen Benutzer erfolgreich angelegt!", "Info");
 
                     System.out.println("[INFO] neuen Benutzer angelegt");
                     initialize();
@@ -306,10 +313,12 @@ public class StartController implements Initializable {
                 if (errMessage.startsWith("[INFO]")) {
                     break;
                 }
+                System.out.println(errMessage);
             }
 
             if(pwPair.getKey() != null) {
                 userContainer.changePassword(user.getUsername(), (String) pwPair.getKey());
+                Dialogs.warnDialog("Passwort erfolgreich geändert!", "Info");
                 break;
             }
         }
@@ -325,7 +334,10 @@ public class StartController implements Initializable {
         Person choosen = chooseUserWindow();
         if(choosen != null) {
             Person edited = Dialogs.editUserWindow(choosen);
-            userContainer.editUser(edited);
+            if(edited != null) {
+              userContainer.editUser(edited);
+              System.out.println("[INFO] Vorgang abgebrochen!");
+            }
         } else {
             System.out.println("[INFO] Vorgang abgebrochen!");
         }
@@ -364,11 +376,9 @@ public class StartController implements Initializable {
         ObservableList user = FXCollections.observableArrayList(userNames);
 
         ComboBox userComboBox= new ComboBox<>(user);
-        if(userNames[1].equals("")) {
-            userComboBox.setValue(userNames[0]);
-        } else {
-            userComboBox.setValue(userNames[1]);
-        }
+
+        userComboBox.setValue(this.user.getUsername());
+
 
         ButtonType OK_Button = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
         dialog.getDialogPane().getButtonTypes().addAll(OK_Button, ButtonType.CANCEL);

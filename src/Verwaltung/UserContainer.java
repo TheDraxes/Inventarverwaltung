@@ -83,7 +83,6 @@ public class UserContainer implements Serializable {
             return true;
         } catch(Exception e) {
             System.out.println("[ERROR] Fehler beim editieren des Benutzers!");
-            e.printStackTrace();
         }
         return false;
     }
@@ -150,6 +149,9 @@ public class UserContainer implements Serializable {
                 UserContainer loaded = new UserContainer();
                 loaded.setUserData(list);
 
+                fileInputStream.close();
+                objectInputStream.close();
+
                 System.out.println("[INFO] Nutzerdaten erfolgreich eingelesen!");
                 return loaded;
             } else {
@@ -167,13 +169,6 @@ public class UserContainer implements Serializable {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-        } finally {
-            try {
-                fileInputStream.close();
-                objectInputStream.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
         System.out.println("[ERROR] Fehler beim Laden der Nutzerdaten!");
         return null;

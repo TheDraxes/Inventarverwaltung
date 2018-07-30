@@ -64,9 +64,9 @@ public class Dialogs {
 
     public static Pair changePw(Person user){
 
-        TextField oldPW = new TextField();
-        TextField newPW = new TextField();
-        TextField newConfirm = new TextField();
+        PasswordField oldPW = new PasswordField();
+        PasswordField newPW = new PasswordField();
+        PasswordField newConfirm = new PasswordField();
 
         Dialog<Pair<String,String>> dialog = new Dialog<>();
         dialog.setTitle("Passwort ändern");

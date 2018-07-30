@@ -148,9 +148,11 @@ public class ViewController implements Initializable {
         NRColumn.setCellValueFactory(new PropertyValueFactory<>("inventarnummer"));
         bezColumn.setCellValueFactory(new PropertyValueFactory<>("bezeichnung"));
         countColumn.setCellValueFactory(new PropertyValueFactory<>("anzahl"));
-        valueColumn.setCellValueFactory(new PropertyValueFactory<>("anschaffungswertString"));
+        valueColumn.setCellValueFactory(new PropertyValueFactory<Asset,Double>("anschaffungswert"));
+        valueColumn.setComparator(new AnschaffungswertComparator());
+        valueColumn.setCellFactory(new AnschaffungswertCellFactory());
+        
         dateColumn.setCellValueFactory(new PropertyValueFactory<>("inserierungsdatumString"));
-
         ActionColumn.setCellValueFactory(
                 new Callback<TableColumn.CellDataFeatures<Asset, Boolean>,
                         ObservableValue<Boolean>>() {
@@ -168,10 +170,17 @@ public class ViewController implements Initializable {
                     }
                 });
 
+        NRColumn.setStyle("-fx-alignment: CENTER-RIGHT;");
+        valueColumn.setStyle("-fx-alignment: CENTER-RIGHT;");
+        countColumn.setStyle("-fx-alignment: CENTER-LEFT;");
+        bezColumn.setStyle("-fx-alignment: CENTER-LEFT;");
+        dateColumn.setStyle("-fx-alignment: CENTER;");
 
         ObservableList<Asset> list = FXCollections.observableArrayList(arrayList);
 
         itemTable.setItems(list);
+
+
     }
 
     /**
