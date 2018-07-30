@@ -3,6 +3,7 @@ package GUI.StartGUI;
 import GUI.Dialogs;
 import Data.Person;
 import Verwaltung.AssetContainer;
+import Verwaltung.OrganisationContainer;
 import Verwaltung.UserContainer;
 import GUI.ViewGUI.ViewController;
 import javafx.application.Platform;
@@ -55,6 +56,9 @@ public class StartController implements Initializable {
     //Container für alle benutzerdaten
     private UserContainer userContainer;
 
+    //Container für Abteilungen und Sachgebiete
+    private OrganisationContainer orgContainer;
+
     //Anzahl der zur verfügung stehen Inventare
     private int inventoryCounter = 0;
 
@@ -103,6 +107,9 @@ public class StartController implements Initializable {
         } else {
             adminMenue.setVisible(false);
         }
+
+        orgContainer = new OrganisationContainer();
+
         System.out.println("[GUI] Start Fenster Initialisiert");
         System.out.println("[INFO] Speicherpfad: " + path);
     }
@@ -369,7 +376,7 @@ public class StartController implements Initializable {
      */
     public Person chooseUserWindow() {
         Dialog<Person> dialog = new Dialog<>();
-        dialog.setTitle("Passwort ändern");
+        dialog.setTitle("Benutzer wählen");
 
         String[] userNames = userContainer.getUserNames();
 

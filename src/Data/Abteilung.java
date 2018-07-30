@@ -4,20 +4,19 @@ package Data;
  *
  *
  * @author mixd
- *
  * @version 1.0
  */
 
-public class Abteilung {
-	private Person abteilungsleiter;
-
+public class Abteilung extends Organisation{
 	// Konstruktoren
 	public Abteilung() {
 		System.out.println("[KONSTRUKTOR] Abteilung ohne Parameter angelegt!");
 	}
-	public Abteilung(Person abteilungsleiter) {
+	public Abteilung(Person leiter, String name, String kürzel) {
 		System.out.println("[KONSTRUKTOR] Abteilung mit Parameter angelegt!");
-		this.abteilungsleiter = abteilungsleiter;
+		this.leiter = leiter;
+		this.name = name;
+		this.kürzel = kürzel;
 	}
 
 	// Konsolenausgabe aller Parameter für Testzwecke
@@ -25,15 +24,15 @@ public class Abteilung {
 		System.out.println("[INFO] DISPLAYMETHODE ABTEILUNG");
 		System.out.println("Abteilungsleiter");
 		System.out.println("----------------");
-		abteilungsleiter.display();
+		leiter.display();
 	}
 
 	// Getter und Setter
-	public Person getAbteilungsleiter() {
-		return abteilungsleiter;
+	public Person getLeiter() {
+		return leiter;
 	}
-	public void setAbteilungsleiter(Person abteilungsleiter) {
-		this.abteilungsleiter = abteilungsleiter;
+	public void setLeiter(Person leiter) {
+		this.leiter = leiter;
 		System.out.println("[EDIT] Abteilungsleiter geändert");
 	}
 }
