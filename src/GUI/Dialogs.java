@@ -44,8 +44,10 @@ public class Dialogs {
         Optional<String> result = dialog.showAndWait();
         if (result.isPresent()){
             System.out.println("[INFO] Inventarname: " + result.get());
+            return result.get();
+        } else {
+            return null;
         }
-        return result.get();
     }
 
     public static String inputDialog(String title, String header){
@@ -196,6 +198,105 @@ public class Dialogs {
         Optional<Person> result = dialog.showAndWait();
         if(result.isPresent()) {
             return result.get();
+        } else {
+            return null;
+        }
+    }
+
+    public static boolean[] getFilter(){
+        Dialog<Boolean[]> dialog = new Dialog<>();
+        dialog.setTitle("Wonach soll gefiltert werden?");
+        ButtonType addButton = new ButtonType("Bestätigen" ,ButtonBar.ButtonData.OK_DONE);
+        dialog.getDialogPane().getButtonTypes().addAll(addButton, ButtonType.CANCEL);
+
+        GridPane grid = new GridPane();
+        grid.setHgap(10);
+        grid.setVgap(10);
+        grid.setPadding(new Insets(20,150,10,10));
+
+        CheckBox BodenGebäude = new CheckBox("Boden und Gebäude");
+        CheckBox Fuhrpark = new CheckBox("Fuhrpark");
+        CheckBox Hardware = new CheckBox("Hardware");
+        CheckBox Mobiliar = new CheckBox("Mobiliar");
+        CheckBox Software = new CheckBox("Software");
+        CheckBox Sonstiges = new CheckBox("Sonstiges");
+
+        grid.add(BodenGebäude,0,0);
+        grid.add(Fuhrpark,0,1);
+        grid.add(Hardware,0,2);
+        grid.add(Mobiliar,0,3);
+        grid.add(Software,0,4);
+        grid.add(Sonstiges,0,5);
+
+
+        dialog.getDialogPane().setContent(grid);
+
+
+        dialog.setResultConverter(dialogButton -> {
+            if(dialogButton == addButton) {
+                boolean anyTrue = false;
+                Boolean[] filter = new Boolean[6];
+
+                if (BodenGebäude.isSelected()) {
+                    filter[0] = true;
+                } else {
+                    filter[0] = false;
+                }
+
+                if (Fuhrpark.isSelected()) {
+                    filter[1] = true;
+                } else {
+                    filter[1] = false;
+                }
+
+                if (Hardware.isSelected()) {
+                    filter[2] = true;
+                } else {
+                    filter[2] = false;
+                }
+
+                if (Mobiliar.isSelected()) {
+                    filter[3] = true;
+                } else {
+                    filter[3] = false;
+                }
+
+                if (Software.isSelected()) {
+                    filter[4] = true;
+                } else {
+                    filter[4] = false;
+                }
+
+                if (Sonstiges.isSelected()) {
+                    filter[5] = true;
+                } else {
+                    filter[5] = false;
+                }
+
+                for (int i = 0; i < filter.length; i++) {
+                    if (filter[i]) {
+                        anyTrue = true;
+                        break;
+                    }
+                }
+                if (!anyTrue) {
+                    return null;
+                }
+                return filter;
+            } else {
+                return null;
+            }
+        });
+
+        Optional<Boolean[]> result = dialog.showAndWait();
+
+        if(result.isPresent()){
+            boolean[] returnArray = new boolean[6];
+            Boolean[] resultArray = result.get();
+            for(int i = 0; i < resultArray.length; i++){
+                returnArray[i] = resultArray[i];
+            }
+            return returnArray;
         } else {
             return null;
         }

@@ -97,9 +97,11 @@ public class UserContainer implements Serializable {
      */
     public boolean safeUserData(){
         System.out.println("[INFO] Speichere Nutzerdaten...");
+        FileOutputStream fileOutputStream = null;
+        ObjectOutputStream outputStream = null;
         try {
-            FileOutputStream fileOutputStream = new FileOutputStream("user.dat");
-            ObjectOutputStream outputStream = new ObjectOutputStream(fileOutputStream);
+            fileOutputStream = new FileOutputStream("user.dat");
+            outputStream = new ObjectOutputStream(fileOutputStream);
             outputStream.writeObject(this.userData);
             System.out.println("[INFO] Nutzerdaten gespeichert unter '" + "user.dat" + "'!");
             return true;
@@ -107,6 +109,13 @@ public class UserContainer implements Serializable {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                fileOutputStream.close();
+                outputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         System.out.println("[ERROR] Fehler beim speichern der Nutzerdaten!");
         return false;
@@ -125,9 +134,9 @@ public class UserContainer implements Serializable {
      */
     public UserContainer loadUserData(){
         System.out.println("[INFO] Suche Nutzerdaten...");
-
+        FileInputStream fileInputStream = null;
+        ObjectInputStream objectInputStream = null;
         try {
-            FileInputStream fileInputStream = null;
             File userLogins = new File("user.dat");
 
             if(userLogins.exists()) {
@@ -135,7 +144,7 @@ public class UserContainer implements Serializable {
                 System.out.println("[INFO] Lese Nutzerdaten ein...");
 
                 fileInputStream = new FileInputStream(userLogins);
-                ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+                objectInputStream = new ObjectInputStream(fileInputStream);
                 ArrayList<Person> list = (ArrayList<Person>) objectInputStream.readObject();
 
                 UserContainer loaded = new UserContainer();
@@ -158,6 +167,13 @@ public class UserContainer implements Serializable {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                fileInputStream.close();
+                objectInputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         System.out.println("[ERROR] Fehler beim Laden der Nutzerdaten!");
         return null;

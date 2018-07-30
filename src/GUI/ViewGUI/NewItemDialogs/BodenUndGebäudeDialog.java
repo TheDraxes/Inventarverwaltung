@@ -1,6 +1,7 @@
 package GUI.ViewGUI.NewItemDialogs;
 
 import Data.Asset;
+import Data.BodenUndGebaeude;
 import Data.Fuhrpark;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -12,27 +13,15 @@ import javafx.util.Pair;
 import java.util.Date;
 import java.util.Optional;
 
-/**
- * Klasse die das Fuhrparkdialog aufbaut
- *
- * @auther Tim
- * @version 1.0
- */
+public class BodenUndGebäudeDialog extends AbstractDialog{
 
-public class FuhrparkDialog extends AbstractDialog {
-  private ComboBox kw_ps;
-
-  public FuhrparkDialog(String[] labelNames, Label[] labels, TextField[] textFields, Asset actual) {
+  public BodenUndGebäudeDialog(String[] labelNames, Label[] labels, TextField[] textFields, Asset actual) {
     super(labelNames, labels, textFields, actual);
   }
 
-  public Pair<Asset, String> getFuhrpark() {
+  public Pair<Asset, String> getBodenUndGebäude() {
 
-    ObservableList<String> os = FXCollections.observableArrayList("Kw", "Ps");
-    this.kw_ps = new ComboBox(os);
-    this.kw_ps.setValue("Kw");
-
-    Fuhrpark edit = (Fuhrpark) actual;
+    BodenUndGebaeude edit = (BodenUndGebaeude) actual;
 
     if (edit != null) {
       this.TextFields[0].setText(edit.getBezeichnung());
@@ -40,28 +29,34 @@ public class FuhrparkDialog extends AbstractDialog {
       this.TextFields[2].setText("" + edit.getTnd());
       this.TextFields[3].setText("" + edit.getAnzahl());
 
-      if (edit.getKennzeichen() == null || edit.getKennzeichen().equals("")) {
+      if (edit.getPlz() == 0) {
         TextFields[4].setPromptText("Keine Angaben");
       } else {
-        TextFields[4].setText(edit.getKennzeichen());
+        TextFields[4].setText("" + edit.getPlz());
       }
 
-      if ((edit.getFahrgestellnummer()) == 0L) {
+      if (edit.getOrt() == null || edit.getOrt().equals("") ) {
         TextFields[5].setPromptText("Keine Angaben");
       } else {
-        TextFields[5].setText("" + edit.getFahrgestellnummer());
+        TextFields[5].setText("" + edit.getOrt());
       }
 
-      if (edit.getKilometerstand() == 0.0) {
+      if (edit.getStrasse() == null || edit.getStrasse().equals("")) {
         TextFields[6].setPromptText("Keine Angaben");
       } else {
-        TextFields[6].setText("" + edit.getKilometerstand());
+        TextFields[6].setText("" + edit.getStrasse());
       }
 
-      if (edit.getKw() == 0) {
+      if (edit.getHausnummer() == null || edit.getHausnummer().equals("")) {
         TextFields[7].setPromptText("Keine Angaben");
       } else {
-        TextFields[7].setText("" + edit.getKw());
+        TextFields[7].setText("" + edit.getHausnummer());
+      }
+
+      if ((edit.getFlaeche()) == 0D) {
+        TextFields[8].setPromptText("Keine Angaben");
+      } else {
+        TextFields[8].setText("" + edit.getFlaeche());
       }
     }
 
@@ -71,11 +66,13 @@ public class FuhrparkDialog extends AbstractDialog {
 
     if(actual != null){
       buttonText = "Fertig";
+      dialog.setTitle("Item editieren");
     } else {
       buttonText = "Hinzufügen";
+      dialog.setTitle("Neues Item");
     }
 
-    dialog.setTitle("Neues Item");
+
     ButtonType addButton = new ButtonType(buttonText, ButtonBar.ButtonData.OK_DONE);
     dialog.getDialogPane().getButtonTypes().addAll(addButton, ButtonType.CANCEL);
     dialog.getDialogPane().setStyle("-fx-background-color:  #b5edff");
@@ -90,25 +87,22 @@ public class FuhrparkDialog extends AbstractDialog {
       grid.add(TextFields[i], 1, i);
     }
 
-    grid.add(Labels[Labels.length - 1], 0, Labels.length);
-    grid.add(TextFields[TextFields.length - 1], 1, TextFields.length);
-    grid.add(kw_ps, 2, TextFields.length);
-
     dialog.getDialogPane().setContent(grid);
 
     dialog.setResultConverter(dialogButton -> {
       if (dialogButton == addButton) {
-        Fuhrpark fuhrpark = new Fuhrpark();
+        BodenUndGebaeude bodenUndGebaeude = new BodenUndGebaeude();
 
         if(actual != null){
-          fuhrpark.setInventarnummer(actual.getInventarnummer());
+          bodenUndGebaeude.setInventarnummer(actual.getInventarnummer());
         }
 
         if (TextFields[0].getText().equals("")) {
           return new Pair<>(null, "Alle Felder mit einem * müssen ausgefüllt sein!");
         } else {
-          fuhrpark.setBezeichnung(TextFields[0].getText());
+          bodenUndGebaeude.setBezeichnung(TextFields[0].getText());
         }
+
 
         String wert = TextFields[1].getText();
         if (wert.equals("")) {
@@ -117,43 +111,44 @@ public class FuhrparkDialog extends AbstractDialog {
           if(wert.contains(",")){
             wert = wert.replace(",",".");
           }
-          fuhrpark.setAnschaffungswert(Double.parseDouble(wert));
+          bodenUndGebaeude.setAnschaffungswert(Double.parseDouble(wert));
         }
 
         if (TextFields[2].getText().equals("")) {
           return new Pair<>(null, "Alle Felder mit einem * müssen ausgefüllt sein!");
         } else {
-          fuhrpark.setTnd(Integer.parseInt(TextFields[2].getText()));
+          bodenUndGebaeude.setTnd(Integer.parseInt(TextFields[2].getText()));
         }
 
         if (TextFields[3].getText().equals("")) {
           return new Pair<>(null, "Alle Felder mit einem * müssen ausgefüllt sein!");
         } else {
-          fuhrpark.setAnzahl(Integer.parseInt(TextFields[3].getText()));
+          bodenUndGebaeude.setAnzahl(Integer.parseInt(TextFields[3].getText()));
         }
 
         if (!(TextFields[4].getText().equals(""))) {
-          fuhrpark.setKennzeichen(TextFields[4].getText());
+          bodenUndGebaeude.setPlz(Integer.parseInt(TextFields[4].getText()));
         }
 
         if (!(TextFields[5].getText().equals(""))) {
-          fuhrpark.setFahrgestellnummer(Long.parseLong(TextFields[5].getText()));
+          bodenUndGebaeude.setOrt(TextFields[5].getText());
         }
 
         if (!(TextFields[6].getText().equals(""))) {
-          fuhrpark.setKilometerstand(Integer.parseInt(TextFields[6].getText()));
+          bodenUndGebaeude.setStrasse(TextFields[6].getText());
         }
 
         if(!(TextFields[7].getText().equals(""))) {
-          if ((kw_ps.getValue()).equals("Kw")) {
-            fuhrpark.setKw(Integer.parseInt(TextFields[7].getText()));
-          } else {
-            fuhrpark.setPs(Integer.parseInt(TextFields[7].getText()));
-          }
+          bodenUndGebaeude.setHausnummer(TextFields[7].getText());
         }
-        fuhrpark.setInserierungsdatum(new Date());
 
-        return new Pair<>(fuhrpark, null);
+        if(!(TextFields[8].getText().equals(""))) {
+          bodenUndGebaeude.setFlaeche(Double.parseDouble(TextFields[8].getText()));
+        }
+
+        bodenUndGebaeude.setInserierungsdatum(new Date());
+
+        return new Pair<>(bodenUndGebaeude, null);
       } else if (dialogButton == ButtonType.CANCEL) {
         return new Pair<>(null, null);
       }

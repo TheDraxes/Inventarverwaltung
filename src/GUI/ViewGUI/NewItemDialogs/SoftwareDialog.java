@@ -10,6 +10,13 @@ import javafx.util.Pair;
 import java.util.Date;
 import java.util.Optional;
 
+/**
+ * Klasse die das Softwaredialog aufbaut
+ *
+ * @auther Tim
+ * @version 1.0
+ */
+
 public class SoftwareDialog extends AbstractDialog{
   public SoftwareDialog(String[] labelNames, Label[] labels, TextField[] textFields, Asset actual) {
     super(labelNames, labels, textFields, actual);
@@ -73,10 +80,14 @@ public class SoftwareDialog extends AbstractDialog{
             software.setBezeichnung(TextFields[0].getText());
           }
 
-          if (TextFields[1].getText().equals("")) {
+          String wert = TextFields[1].getText();
+          if (wert.equals("")) {
             return new Pair<>(null, "Alle Felder mit einem * müssen ausgefüllt sein!");
           } else {
-            software.setAnschaffungswert(Double.parseDouble(TextFields[1].getText()));
+            if(wert.contains(",")){
+              wert = wert.replace(",",".");
+            }
+            software.setAnschaffungswert(Double.parseDouble(wert));
           }
 
           if (TextFields[2].getText().equals("")) {

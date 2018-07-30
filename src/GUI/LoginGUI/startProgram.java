@@ -18,7 +18,7 @@ import java.io.*;
  * @author Tim
  * @version 1.0
  */
-public class ProgramStart extends Application {
+public class startProgram extends Application {
 
     public void ProgramStart() {
         launch();

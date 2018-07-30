@@ -1,8 +1,7 @@
 package GUI.LoginGUI;
 
 import GUI.Dialogs;
-import Data.Person;
-import GUI.StartGUI.showStartWindow;
+import GUI.StartGUI.initStartWindow;
 import Verwaltung.UserContainer;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -11,8 +10,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
-
-import java.io.*;
 
 /**
  * Kontrollerklasse für das Loginfenster.
@@ -38,8 +35,10 @@ public class LoginController {
     //Container Klasse für die userlogin Daten
     private UserContainer userContainer = new UserContainer();
 
+    //Anzahl Fehlgeschlagener Loginversuche
     int loginTries = 0;
 
+    //Username vom letzten anmeldeversuch
     private String lastUser = "";
 
     /**
@@ -80,7 +79,7 @@ public class LoginController {
      * Prüft die eingegebenen Angaben, vergleicht sie mit denen in dem Usercontainer,
      * versteckt das aktuelle Fenster und ruft das Inventarverwaltungsenster auf.
      *
-     * @see showStartWindow#showStartWindow(UserContainerAlt, String)
+     * @see initStartWindow#showStartWindow(UserContainerAlt, String)
      * @TODO sperrung nach 3 fehlgeschlagenen Loginversuchen
      * @author Tim
      * @version 1.0
@@ -94,7 +93,7 @@ public class LoginController {
         if(userContainer.checkLogin(username, password)){
             Stage lastWindow = (Stage) loginButton.getScene().getWindow();
             lastWindow.hide();
-            new showStartWindow(this.userContainer, userContainer.getPersonByUsername(username));
+            new initStartWindow(this.userContainer, userContainer.getPersonByUsername(username));
         } else {
             if(userContainer.userExisting(username) && loginTries == 0){
                 lastUser = username;

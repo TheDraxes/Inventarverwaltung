@@ -20,7 +20,7 @@ import java.io.*;
  * @author Tim
  * @version 1.0
  */
-public class showStartWindow {
+public class initStartWindow {
     /**
      * Konstruktor
      *
@@ -31,7 +31,7 @@ public class showStartWindow {
      * @param userContainer Container zur Userdaten verwaltung
      * @param user name des eingeloggten Users
      */
-    public showStartWindow(UserContainer userContainer, Person user) {
+    public initStartWindow(UserContainer userContainer, Person user) {
         String path;
         File startUp = new File("startUp.dat");
         if(startUp.exists()){
@@ -92,6 +92,14 @@ public class showStartWindow {
             return null;
         }
     }
+
+    /**
+     * Baut das Pfadauswahl fenster auf
+     * leider noch Swing
+     *
+     * @return
+     */
+
     public static String askForPath(){
 
         setLookAndFeel();
@@ -110,6 +118,10 @@ public class showStartWindow {
         }
     }
 
+    /**
+     * setzt das Look and Feel für Swing elemente
+     *      -> müsste noch durch Javafx ersetzt werden
+     */
     public static void setLookAndFeel(){
         String laf = UIManager.getSystemLookAndFeelClassName();
         try {

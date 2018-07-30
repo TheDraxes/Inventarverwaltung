@@ -7,6 +7,16 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.util.Pair;
 
+/**
+ * Klasse zur Unterscheidung der einzelnen Asset arten
+ *
+ * Ruft die einzelnen Dialogklassen auf um die daten eingeben zu lassen
+ * und bildet das Fertige Asset
+ *
+ * @auther Tim
+ * @version 1.0
+ */
+
 public class AssetDialogs {
   private TextField[] TextFields = new TextField[0];
   private Label[] Labels = new Label[0];
@@ -21,18 +31,21 @@ public class AssetDialogs {
         setTextFields();
         pair = new FuhrparkDialog(labelNames, Labels, TextFields, actual).getFuhrpark();
         return pair;
-      case "Boden und Gebäude": //Boden und Gebäude
+      case "BodenUndGebaeude": //Boden und Gebäude
         this.labelNames = new BodenUndGebaeude().getParamNames();
         setTextFields();
-        break;
+        pair = new BodenUndGebäudeDialog(labelNames,Labels,TextFields,actual).getBodenUndGebäude();
+        return pair;
       case "Hardware":          //Hardware
         this.labelNames = new Hardware().getParamNames();
         setTextFields();
-        break;
+        pair = new HardwareDialog(labelNames,Labels,TextFields,actual).getHardware();
+        return pair;
       case "Mobiliar":          //Mobiliar
         this.labelNames = new Mobiliar().getParamNames();
         setTextFields();
-        break;
+        pair = new MobiliarDialog(labelNames,Labels,TextFields,actual).getMobiliar();
+        return pair;
       case "Software":          //Software
         this.labelNames = new Software().getParamNames();
         setTextFields();
@@ -41,7 +54,8 @@ public class AssetDialogs {
       case "Sonstiges":         //Sonstiges
         this.labelNames = new Sonstiges().getParamNames();
         setTextFields();
-        break;
+        pair = new SonstigesDialog(labelNames,Labels,TextFields,actual).getMobiliar();
+        return pair;
     }
     return new Pair<>(null, null);
   }

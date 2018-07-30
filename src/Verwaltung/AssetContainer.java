@@ -116,9 +116,11 @@ public class AssetContainer implements Serializable {
      */
     public boolean safeInventar(String path){
         System.out.println("[INFO] Speichere Inventar...");
+        FileOutputStream fileOutputStream = null;
+        ObjectOutputStream outputStream = null;
         try {
-            FileOutputStream fileOutputStream = new FileOutputStream(new File(path));
-            ObjectOutputStream outputStream = new ObjectOutputStream(fileOutputStream);
+            fileOutputStream = new FileOutputStream(new File(path));
+            outputStream = new ObjectOutputStream(fileOutputStream);
 
             outputStream.writeLong(this.id);
             outputStream.writeObject(this.assetList);
@@ -129,6 +131,13 @@ public class AssetContainer implements Serializable {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                outputStream.close();
+                fileOutputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         System.out.println("[ERROR] Fehler beim speichern des Inventars!");
         return false;
@@ -142,9 +151,11 @@ public class AssetContainer implements Serializable {
      */
     public AssetContainer loadInventar(String path) {
         System.out.println("[INFO] Lade Inventar...");
+        ObjectInputStream objectInputStream = null;
+        FileInputStream fileInputStream = null;
         try {
-            FileInputStream fileInputStream = new FileInputStream(new File(path));
-            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+            fileInputStream = new FileInputStream(new File(path));
+            objectInputStream = new ObjectInputStream(fileInputStream);
 
             long id = (long) objectInputStream.readLong();
             ArrayList<Asset> list = (ArrayList<Asset>) objectInputStream.readObject();
@@ -161,6 +172,13 @@ public class AssetContainer implements Serializable {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                fileInputStream.close();
+                objectInputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
         System.out.println("[ERROR] Fehler beim laden des Inventars!");
         return null;
