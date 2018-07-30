@@ -103,10 +103,15 @@ public class BodenUndGebäudeDialog extends AbstractDialog{
           bodenUndGebaeude.setBezeichnung(TextFields[0].getText());
         }
 
-        if (TextFields[1].getText().equals("")) {
+
+        String wert = TextFields[1].getText();
+        if (wert.equals("")) {
           return new Pair<>(null, "Alle Felder mit einem * müssen ausgefüllt sein!");
         } else {
-          bodenUndGebaeude.setAnschaffungswert(Double.parseDouble(TextFields[1].getText()));
+          if(wert.contains(",")){
+            wert = wert.replace(",",".");
+          }
+          bodenUndGebaeude.setAnschaffungswert(Double.parseDouble(wert));
         }
 
         if (TextFields[2].getText().equals("")) {
