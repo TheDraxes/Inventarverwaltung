@@ -45,8 +45,10 @@ public class SoftwareDialog extends AbstractDialog{
 
       if (actual != null) {
         buttonText = "Fertig";
+        dialog.setTitle("Editieren: Software");
       } else {
         buttonText = "Hinzufügen";
+        dialog.setTitle("Software");
       }
 
       dialog.setTitle("Neues Item");

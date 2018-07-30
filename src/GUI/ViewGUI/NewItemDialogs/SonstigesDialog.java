@@ -39,8 +39,10 @@ public class SonstigesDialog extends AbstractDialog {
 
     if (actual != null) {
       buttonText = "Fertig";
+      dialog.setTitle("Editieren: Sonstiges");
     } else {
       buttonText = "Hinzufügen";
+      dialog.setTitle("Sonstiges");
     }
 
     dialog.setTitle("Neues Item");

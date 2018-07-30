@@ -18,7 +18,7 @@ public class AnschaffungswertCellFactory implements Callback<TableColumn<Asset, 
                   = new java.text.DecimalFormatSymbols( new java.util.Locale( "de", "DE" ));
           final java.text.DecimalFormat german
                   = new java.text.DecimalFormat( "##,###.00", germany );
-          setText(german.format(item) + "€"); // you can format your value here
+          setText(german.format(item) + "€");
         }
       }
     };

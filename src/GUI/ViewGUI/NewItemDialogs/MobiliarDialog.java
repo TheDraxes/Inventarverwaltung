@@ -40,8 +40,10 @@ public class MobiliarDialog extends AbstractDialog{
 
     if (actual != null) {
       buttonText = "Fertig";
+      dialog.setTitle("Editieren: Mobiliar");
     } else {
       buttonText = "Hinzufügen";
+      dialog.setTitle("Mobiliar");
     }
 
     dialog.setTitle("Neues Item");

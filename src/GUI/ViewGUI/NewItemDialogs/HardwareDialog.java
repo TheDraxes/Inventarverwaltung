@@ -34,16 +34,16 @@ public class HardwareDialog extends AbstractDialog{
       }
     }
     Dialog<Pair<Asset, String>> dialog = new Dialog<>();
-
     String buttonText = "";
 
     if (actual != null) {
       buttonText = "Fertig";
+      dialog.setTitle("Editieren: Hardware");
     } else {
       buttonText = "Hinzufügen";
+      dialog.setTitle("Hardware");
     }
 
-    dialog.setTitle("Neues Item");
     ButtonType addButton = new ButtonType(buttonText, ButtonBar.ButtonData.OK_DONE);
     dialog.getDialogPane().getButtonTypes().addAll(addButton, ButtonType.CANCEL);
     dialog.getDialogPane().setStyle("-fx-background-color:  #b5edff");

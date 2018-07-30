@@ -151,7 +151,7 @@ public class ViewController implements Initializable {
         valueColumn.setCellValueFactory(new PropertyValueFactory<Asset,Double>("anschaffungswert"));
         valueColumn.setComparator(new AnschaffungswertComparator());
         valueColumn.setCellFactory(new AnschaffungswertCellFactory());
-        
+
         dateColumn.setCellValueFactory(new PropertyValueFactory<>("inserierungsdatumString"));
         ActionColumn.setCellValueFactory(
                 new Callback<TableColumn.CellDataFeatures<Asset, Boolean>,
