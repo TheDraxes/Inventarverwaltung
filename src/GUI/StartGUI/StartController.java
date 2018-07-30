@@ -257,25 +257,25 @@ public class StartController implements Initializable {
     @FXML
     void newUserClicked(ActionEvent event){
         while (true) {
-            String[] a = buildNewUserWindow();
-            if (a == null) {
+            String[] userData = buildNewUserWindow();
+            if (userData == null) {
                 break;
             } else {
-               if (!a[3].equals(a[4])) {
+               if (!userData[3].equals(userData[4])) {
                     Dialogs.warnDialog("Passwörter stimmen nicht Überein!","Warnung");
-                } else if (a[0].equals("")|| a[1].equals("") || a[2].equals("") || a[3].equals("") || a[4].equals("") || a[5].equals("")){
+                } else if (userData[0].equals("")|| userData[1].equals("") || userData[2].equals("") || userData[3].equals("") || userData[4].equals("") || userData[5].equals("")){
                     Dialogs.warnDialog("Alle Felder müssen ausgefüllt werden!","Warnung");
                 } else {
                    boolean men = false;
-                   if(a[2].equals("Männlich")) {
+                   if(userData[2].equals("Männlich")) {
                        men = true;
                    }
                    boolean admin = false;
-                   if(a[5].equals("Ja")){
+                   if(userData[5].equals("Ja")){
                        admin = true;
                    }
 
-                    Person newUser = new Person(a[1],a[0],men,a[3], admin);
+                    Person newUser = new Person(userData[1],userData[0],men,userData[3], admin);
 
                     userContainer.insertUser(newUser);
                     Dialogs.warnDialog("Neuen Benutzer erfolgreich angelegt!", "Warnung");

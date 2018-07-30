@@ -112,7 +112,13 @@ public abstract class Asset implements Serializable {
     }
     public void setAnschaffungswert(double anschaffungswert) {
         this.anschaffungswert = anschaffungswert;
-        this.anschaffungswertString = round(anschaffungswert,2) + "€";
+        final java.text.DecimalFormatSymbols germany
+                = new java.text.DecimalFormatSymbols( new java.util.Locale( "de", "DE" ));
+        final java.text.DecimalFormat german
+                = new java.text.DecimalFormat( "##,###.00", germany );
+
+        this.anschaffungswertString = german.format(anschaffungswert) + "€";
+
         System.out.println("[EDIT] Anschaffungswert geändert");
     }
     public double getBuchwert() {
