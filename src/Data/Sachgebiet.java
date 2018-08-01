@@ -38,4 +38,6 @@ public class Sachgebiet extends Organisation{
 		this.leiter = sachgebietsleiter;
 		System.out.println("[EDIT] Sachgebietsleiter geändert");
 	}
+
+
 }

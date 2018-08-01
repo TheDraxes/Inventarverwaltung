@@ -12,5 +12,27 @@ public class Organisation {
   }
   public Organisation(){}
 
+  public Person getLeiter() {
+    return leiter;
+  }
 
+  public void setLeiter(Person leiter) {
+    this.leiter = leiter;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public String getKürzel() {
+    return kürzel;
+  }
+
+  public void setKürzel(String kürzel) {
+    this.kürzel = kürzel;
+  }
 }

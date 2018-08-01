@@ -179,8 +179,6 @@ public class ViewController implements Initializable {
         ObservableList<Asset> list = FXCollections.observableArrayList(arrayList);
 
         itemTable.setItems(list);
-
-
     }
 
     /**
@@ -246,7 +244,7 @@ public class ViewController implements Initializable {
      * @param event
      */
     @FXML
-    private void addItemClicked(ActionEvent event) {
+    private void addAssetClicked(ActionEvent event) {
         String itemType = askForItemType();
         System.out.println(itemType);
         if(itemType != null && itemType.equals("Boden und Gebäude")){

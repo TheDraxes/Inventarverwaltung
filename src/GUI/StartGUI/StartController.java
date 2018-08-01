@@ -198,8 +198,12 @@ public class StartController implements Initializable {
     @FXML
     void newInventoryClicked(ActionEvent event) {
 
-        String input = Dialogs.inputDialog("Inventar","Eingabe", "Inventarnamen Eingeben!");
+        if(orgContainer.getAnzahlSach() == 0){
+            Dialogs.warnDialog("Es müssen zunächst Sachgebiete angelegt werden!", "Info");
+            return;
+        }
 
+        String input = Dialogs.inventoryNameDialog(orgContainer ,"Eingabe", "Inventarnamen Eingeben!");
         if(input == null){
             System.out.println("[INFO] Anlegen abgebrochen");
         } else {

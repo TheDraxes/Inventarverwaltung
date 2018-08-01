@@ -1,6 +1,7 @@
 package GUI;
 
 import Data.Person;
+import Verwaltung.OrganisationContainer;
 import Verwaltung.UserContainer;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -36,16 +37,47 @@ public class Dialogs {
         }
     }
 
-    public static String inputDialog(String defaultValue, String title, String header){
-        TextInputDialog dialog = new TextInputDialog(defaultValue);
+    public static String inventoryNameDialog(OrganisationContainer orgs, String title, String header){
+        ObservableList<String> observableList =
+                FXCollections.observableArrayList(
+                        orgs.getSachgebietNames());
+        TextField name = new TextField();
+
+        ComboBox org = new ComboBox(observableList);
+        org.setValue(observableList.get(0));
+
+        Dialog<String> dialog  = new Dialog();
         dialog.setTitle(title);
         dialog.setHeaderText(header);
+
+        ButtonType OK_Button = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
+        dialog.getDialogPane().getButtonTypes().addAll(OK_Button, ButtonType.CANCEL);
+
+        GridPane grid = new GridPane();
+        grid.setHgap(10);
+        grid.setVgap(10);
+        grid.setPadding(new Insets(20, 150, 10, 10));
+
+        grid.add(new Label("Inventarname: "), 0, 0);
+        grid.add(org, 1, 0);
+        grid.add(name, 2, 0);
+
+        dialog.getDialogPane().setContent(grid);
+
+        dialog.setResultConverter(dialogButton -> {
+            if(dialogButton == OK_Button && !(name.getText().equals(""))){
+                return org.getValue() + " " + name.getText();
+            } else {
+                return null;
+            }
+        });
 
         Optional<String> result = dialog.showAndWait();
         if (result.isPresent()){
             System.out.println("[INFO] Inventarname: " + result.get());
             return result.get();
         } else {
+            warnDialog("Bitte einen Namen vergeben!", "Info");
             return null;
         }
     }
@@ -54,6 +86,7 @@ public class Dialogs {
         TextInputDialog dialog = new TextInputDialog();
         dialog.setTitle(title);
         dialog.setHeaderText(header);
+
 
         Optional<String> result = dialog.showAndWait();
         if (result.isPresent()){

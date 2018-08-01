@@ -12,13 +12,14 @@ import java.util.ArrayList;
  *
  *
  * @author mixd
- *
  * @version 1.0
  */
 
 public class OrganisationContainer implements Serializable {
     private ArrayList<Abteilung> AbteilungsList = new ArrayList<Abteilung>();
     private ArrayList<Sachgebiet> SachgebietsList = new ArrayList<>();
+    private int anzahlAbt = 2;
+    private int anzahlSach = 2;
 
 
     public OrganisationContainer(){
@@ -43,6 +44,7 @@ public class OrganisationContainer implements Serializable {
     public boolean insertAbteilung(Abteilung a) {
         if(true){
             System.out.println("[INFO] Organisation angelegt");
+            anzahlAbt++;
             return true;
         } else {
             System.out.println("[WARNING] Fehler");
@@ -53,6 +55,7 @@ public class OrganisationContainer implements Serializable {
     public boolean insertSachgebiet(Sachgebiet a) {
         if(true){
             System.out.println("[INFO] Organisation angelegt");
+            anzahlSach++;
             return true;
         } else {
             System.out.println("[WARNING] Fehler");
@@ -60,4 +63,45 @@ public class OrganisationContainer implements Serializable {
         }
     }
 
+    public String[] getSachgebietNames(){
+      String[] sachgebietNames = new String[SachgebietsList.size()];
+
+      for(int i = 0; i < SachgebietsList.size(); i++){
+        sachgebietNames[i] = SachgebietsList.get(i).getKürzel();
+      }
+
+      return sachgebietNames;
+    }
+
+  public ArrayList<Abteilung> getAbteilungsList() {
+    return AbteilungsList;
+  }
+
+  public void setAbteilungsList(ArrayList<Abteilung> abteilungsList) {
+    AbteilungsList = abteilungsList;
+  }
+
+  public ArrayList<Sachgebiet> getSachgebietsList() {
+    return SachgebietsList;
+  }
+
+  public void setSachgebietsList(ArrayList<Sachgebiet> sachgebietsList) {
+    SachgebietsList = sachgebietsList;
+  }
+
+  public int getAnzahlAbt() {
+    return anzahlAbt;
+  }
+
+  public void setAnzahlAbt(int anzahlAbt) {
+    this.anzahlAbt = anzahlAbt;
+  }
+
+  public int getAnzahlSach() {
+    return anzahlSach;
+  }
+
+  public void setAnzahlSach(int anzahlSach) {
+    this.anzahlSach = anzahlSach;
+  }
 }
