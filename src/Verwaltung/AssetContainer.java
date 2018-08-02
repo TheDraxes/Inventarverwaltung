@@ -65,10 +65,10 @@ public class AssetContainer implements Serializable {
     public boolean insertAsset(Asset a) {
         System.out.println("[INFO] Asset hinzufügen...");
         try {
-            id++;
             a.setInventarnummer(id);
             if(assetList.add(a)) {
                 System.out.println("[INFO] Asset erfolgreich hinzugefügt");
+                id++;
                 return true;
             } else
                 System.out.println("[ERROR] Fehler beim hinzufügen des Assets");
@@ -86,6 +86,7 @@ public class AssetContainer implements Serializable {
         try {
             if(assetList.contains(a)) {
                 assetList.remove(a);
+                id--;
                 System.out.println("[INFO] Asset erfolgreich gelöscht");
                 return true;
             } else

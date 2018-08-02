@@ -2,7 +2,7 @@ package TestKlassen;
 
 import Data.Asset;
 import GUI.Dialogs;
-import GUI.ViewGUI.NewItemDialogs.AssetDialogs;
+import GUI.ViewGUI.NewItemDialogs.AssetDialog;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -21,7 +21,7 @@ public class DialogsTest extends Application{
     public void start(Stage primaryStage) throws Exception {
 
         Asset b = null;
-        new AssetDialogs().getNewItem("Boden und Gebäude", b);
+        new AssetDialog().getNewAsset("Boden und Gebäude", b);
 
 
         boolean[] a = Dialogs.getFilter();

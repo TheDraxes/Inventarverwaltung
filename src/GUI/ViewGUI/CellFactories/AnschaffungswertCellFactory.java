@@ -1,4 +1,4 @@
-package GUI.ViewGUI;
+package GUI.ViewGUI.CellFactories;
 
 import Data.Asset;
 import javafx.scene.control.TableCell;

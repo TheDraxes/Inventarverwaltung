@@ -4,7 +4,10 @@ package GUI.ViewGUI;
 import Data.Asset;
 import Data.Person;
 import GUI.Dialogs;
-import GUI.ViewGUI.NewItemDialogs.AssetDialogs;
+import GUI.ViewGUI.CellFactories.AnschaffungswertCellFactory;
+import GUI.ViewGUI.CellFactories.InsDateCellFactory;
+import GUI.ViewGUI.Comparators.AnschaffungswertComparator;
+import GUI.ViewGUI.NewItemDialogs.AssetDialog;
 import Verwaltung.AssetContainer;
 import Verwaltung.UserContainer;
 import GUI.StartGUI.StartController;
@@ -152,7 +155,9 @@ public class ViewController implements Initializable {
         valueColumn.setComparator(new AnschaffungswertComparator());
         valueColumn.setCellFactory(new AnschaffungswertCellFactory());
 
-        dateColumn.setCellValueFactory(new PropertyValueFactory<>("inserierungsdatumString"));
+        dateColumn.setCellValueFactory(new PropertyValueFactory<Asset,Date>("inserierungsdatum"));
+        dateColumn.setCellFactory(new InsDateCellFactory());
+
         ActionColumn.setCellValueFactory(
                 new Callback<TableColumn.CellDataFeatures<Asset, Boolean>,
                         ObservableValue<Boolean>>() {
@@ -207,7 +212,7 @@ public class ViewController implements Initializable {
                     String assetClass = selectedAsset.getClass().toString().substring(11);
                     System.out.println(assetClass);
 
-                    Asset editedAsset = new AssetDialogs().getNewItem(assetClass, selectedAsset).getKey();
+                    Asset editedAsset = new AssetDialog().getNewAsset(assetClass, selectedAsset).getKey();
                     editedAsset.display();
 
                     assetContainer.editItemById(selectedAsset.getInventarnummer(), editedAsset);
@@ -240,19 +245,18 @@ public class ViewController implements Initializable {
     }
 
     /**
-     * logik für das anlegen eines neuen Items
+     * logik für das anlegen eines neuen Asset
      * @param event
      */
     @FXML
     private void addAssetClicked(ActionEvent event) {
-        String itemType = askForItemType();
-        System.out.println(itemType);
-        if(itemType != null && itemType.equals("Boden und Gebäude")){
-            itemType = "BodenUndGebaeude";
+        String assetType = askForAssetType();
+        if(assetType != null && assetType.equals("Boden und Gebäude")){
+            assetType = "BodenUndGebaeude";
         }
-        if (itemType != "" && itemType != null) {
+        if (assetType != "" && assetType != null) {
             while (true) {
-                Pair pair = new AssetDialogs().getNewItem(itemType, null);
+                Pair pair = new AssetDialog().getNewAsset(assetType, null);
                 if (pair.getValue() == null && pair.getKey() != null) {
                     Asset b = (Asset) pair.getKey();
                     assetContainer.insertAsset(b);
@@ -265,7 +269,6 @@ public class ViewController implements Initializable {
             }
             fillTable();
         }
-        System.out.println("Test");
     }
 
     /**
@@ -295,7 +298,7 @@ public class ViewController implements Initializable {
      *
      * @return
      */
-    protected String askForItemType(){
+    protected String askForAssetType(){
         List<String> choices = new ArrayList<>();
         AssetContainer a = new AssetContainer();
         for(int i = 0; i < a.getExistingAssetTypes().length; i++) {

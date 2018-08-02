@@ -17,13 +17,13 @@ import javafx.util.Pair;
  * @version 1.0
  */
 
-public class AssetDialogs {
+public class AssetDialog {
   private TextField[] TextFields = new TextField[0];
   private Label[] Labels = new Label[0];
   private String[] labelNames = new String[0];
 
 
-  public Pair<Asset, String> getNewItem(String itemType, Asset actual) {
+  public Pair<Asset, String> getNewAsset(String itemType, Asset actual) {
     Pair pair;
     switch (itemType) {
       case "Fuhrpark":          //Fuhrpark
