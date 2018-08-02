@@ -151,10 +151,15 @@ public class StartController implements Initializable {
     void newSafeLocation(ActionEvent event) {
         setLookAndFeel();
 
+        File lookUp = new File(path);
+        File[] fileArray = lookUp.listFiles();
+
         JFileChooser fc = new JFileChooser();
         fc.setDialogTitle("Speicherpfad für die Inventarverwaltung");
         fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+
         int returnVal = fc.showOpenDialog(null);
+
         File f;
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             f = fc.getSelectedFile();
@@ -168,6 +173,28 @@ public class StartController implements Initializable {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+        for(int i = 0; i < fileArray.length; i++) {
+            if (fileArray[i].getName().endsWith(".Inv")) {
+                try {
+                    File fSrc = new File("" + fileArray[i]); // Quelldatei
+                    File fDes = new File(path + "\\" + fileArray[i].getName()); // Zieldatei
+                    FileInputStream fis = new FileInputStream(fSrc); //Stream fuer Quelldatei
+                    FileOutputStream fos = new FileOutputStream(fDes); //Stream fuer Zieldatei
+
+                    byte buf[] = new byte[1024]; // Buffer für gelesene Daten
+                    while (fis.read(buf) != -1) { // solange lesen, bis EOF
+                        fos.write(buf); // Inhalt schreiben
+                    }
+                    fis.close();
+                    fos.flush();
+                    fos.close();
+
+                    fileArray[i].delete();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
         }
         initialize();
     }
@@ -191,14 +218,14 @@ public class StartController implements Initializable {
     /**
      *
      * Funktion die ein neues Inventar anlegt
-     *
+     * @TODO OrgContainer implementieren damit die bedingung genutzt werden kann
      * @param event
      * @auther Tim
      */
     @FXML
     void newInventoryClicked(ActionEvent event) {
 
-        if(orgContainer.getAnzahlSach() == 0){
+        if(false){
             Dialogs.warnDialog("Es müssen zunächst Sachgebiete angelegt werden!", "Info");
             return;
         }
@@ -310,7 +337,6 @@ public class StartController implements Initializable {
     /**
      * Aufgerufene Methode beim click auf den Passwort ändern Menüeintrag
      *
-     * @TODO Sollte Funktionieren sobald die Methode im UserContainer Implementiert ist
      * @auther Tim
      */
 

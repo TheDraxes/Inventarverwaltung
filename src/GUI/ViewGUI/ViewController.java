@@ -235,6 +235,12 @@ public class ViewController implements Initializable {
             }
         }
     }
+
+    /**
+     * Setzt alle Filter zurück
+     *
+     * @auther Tim
+     */
     @FXML
     void resetFilter(){
         ActiveFilter=false;
@@ -349,6 +355,17 @@ public class ViewController implements Initializable {
         stage.setScene(new Scene(root));
         stage.show();
     }
+
+    /**
+     * Fragt nach den Anzuwendenden Filter und übergibt sie an den AssetContainer
+     * Die antwort ist eine gefilterte Liste die ans das ViewController objekt über-
+     * geben wird.
+     *
+     * der boolean activefilter bestimmt ob beim aufruf von fillTable() die gefilterte Liste
+     * angezeigt wird oder nich
+     *
+     * @auther Tim
+     */
     @FXML
     void filterClicked (){
         boolean[] filter = Dialogs.getFilter();

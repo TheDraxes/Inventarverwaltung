@@ -13,6 +13,12 @@ import javafx.util.Pair;
 import java.util.Date;
 import java.util.Optional;
 
+/**
+ * Klasse die die eingabemaske für ein Boden und Gebäude Asset aufbaut
+ *
+ * @author Tim
+ */
+
 public class BodenUndGebäudeDialog extends AbstractDialog{
 
   public BodenUndGebäudeDialog(String[] labelNames, Label[] labels, TextField[] textFields, Asset actual) {

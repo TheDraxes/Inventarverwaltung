@@ -14,6 +14,9 @@ import javafx.util.Pair;
 import javax.xml.soap.Text;
 import java.util.Optional;
 
+/**
+ * Sammelklasse für alle möglichen Dialoge die nicht zur eingabe von Assetdaten dienen
+ */
 public class Dialogs {
     public static void warnDialog(String warning, String header){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -44,7 +47,7 @@ public class Dialogs {
         TextField name = new TextField();
 
         ComboBox org = new ComboBox(observableList);
-        org.setValue(observableList.get(0));
+        org.setValue("Test");
 
         Dialog<String> dialog  = new Dialog();
         dialog.setTitle(title);

@@ -11,6 +11,12 @@ import javafx.util.Pair;
 import java.util.Date;
 import java.util.Optional;
 
+/**
+ * Klasse die die Eingabemaske für ein Hardware Asset aufbaut
+ *
+ * @author Tim
+ */
+
 public class HardwareDialog extends AbstractDialog{
   public HardwareDialog(String[] labelNames, Label[] labels, TextField[] textFields, Asset actual) {
     super(labelNames, labels, textFields, actual);

@@ -5,6 +5,11 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.util.Callback;
 
+/**
+ * CellFactory für die Anschaffungswert spalte in der view Tabelle
+ *
+ * @author Tim
+ */
 public class AnschaffungswertCellFactory implements Callback<TableColumn<Asset, Double>, TableCell<Asset, Double>> {
 
   @Override

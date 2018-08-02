@@ -165,6 +165,9 @@ public class AssetContainer implements Serializable {
             loaded.setId(id);
             loaded.setAssetList(list);
 
+            fileInputStream.close();
+            objectInputStream.close();
+
             System.out.println("[INFO] Inventar geladen!");
             return loaded;
         } catch (FileNotFoundException e) {
@@ -173,14 +176,8 @@ public class AssetContainer implements Serializable {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-        } finally {
-            try {
-                fileInputStream.close();
-                objectInputStream.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
+
         System.out.println("[ERROR] Fehler beim laden des Inventars!");
         return null;
     }
