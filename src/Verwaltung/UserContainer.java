@@ -209,6 +209,19 @@ public class UserContainer implements Serializable {
         return usernames;
     }
 
+    public String[] getUserNamesWithoutAdmin() {
+        String[] usernames = new String[userData.size()-1];
+        int anz = 0;
+        for(int i = 0; i < userData.size(); i++){
+            if(!(userData.get(i).getUsername().equals("admin"))){
+                usernames[anz] = userData.get(i).getUsername();
+                anz++;
+            }
+        }
+        return usernames;
+    }
+
+
     /**
      * userExisting prüft, ob ein Nutzername bereits vorhanden ist
      *

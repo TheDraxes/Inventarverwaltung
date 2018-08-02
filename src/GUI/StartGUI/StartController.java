@@ -1,5 +1,7 @@
 package GUI.StartGUI;
 
+import Data.Abteilung;
+import Data.Sachgebiet;
 import GUI.Dialogs;
 import Data.Person;
 import Verwaltung.AssetContainer;
@@ -111,6 +113,7 @@ public class StartController implements Initializable {
 
         System.out.println("[GUI] Start Fenster Initialisiert");
         System.out.println("[INFO] Speicherpfad: " + path);
+        System.out.println(userContainer.getNumberOfUser());
     }
 
     /**
@@ -559,6 +562,40 @@ public class StartController implements Initializable {
             return result.get();
         } else {
             return null;
+        }
+    }
+    @FXML
+    public void addNewOrganisation(){
+        if(userContainer.getNumberOfUser() > 1) {
+            int choosen = Dialogs.chooseOrgDialog(orgContainer.anyAbteilungExisting());
+            if (choosen < 0) {
+                System.out.println("[INFO] Vorgang abgebrochen");
+            } else if (choosen == 0) {
+                //Abteilung
+                Pair<Abteilung,String> result = Dialogs.newAbteilungWindow(userContainer);
+                if(result == null){
+                    return;
+                }
+                if(result.getValue() != null){
+                    Dialogs.warnDialog(result.getValue(),"Warnung");
+                    return;
+                } else {
+                    orgContainer.insertAbteilung(result.getKey());
+                }
+            } else if (choosen == 1) {
+                Pair<Sachgebiet,String> result = Dialogs.newSachgebietWindow(orgContainer,userContainer);
+                if(result == null){
+                    return;
+                }
+                if(result.getValue() != null){
+                    Dialogs.warnDialog(result.getValue(),"Warnung");
+                    return;
+                } else {
+                    orgContainer.insertSachgebiet(result.getKey());
+                }
+            }
+        } else {
+            Dialogs.warnDialog("Sie müssen zunächst einen Benutzer anlegen der als Leiter der Organisation eingestellt werden kann", "INFO");
         }
     }
 

@@ -63,11 +63,21 @@ public class OrganisationContainer implements Serializable {
         }
     }
 
-    public String[] getSachgebietNames(){
-      String[] sachgebietNames = new String[0];
+    public String[] getSachgebietsNames(){
+      String[] sachgebietNames = {"GEW", "FAJ"};
 
 
       return sachgebietNames;
+    }
+
+    public String[] getAbteilungsNames(){
+      String[] abteilungsNames = {"GE", "FA"};
+
+      return abteilungsNames;
+    }
+
+    public boolean anyAbteilungExisting(){
+      return true;
     }
 
   public ArrayList<Abteilung> getAbteilungsList() {
