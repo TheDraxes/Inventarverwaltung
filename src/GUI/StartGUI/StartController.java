@@ -76,7 +76,6 @@ public class StartController implements Initializable {
      * und Überpfüft ob das Adminmenue angezeigt werden muss
      *
      * @author Tim
-     * @version 1.0
      */
     @FXML
     public void initialize(){
@@ -119,7 +118,7 @@ public class StartController implements Initializable {
      *
      * @param event ->  event das beim Klick ausgelöst wird. Scenebuilder verlangt nach diesem
      *                  Übergabeparameter wird jedoch nich benötigt
-     * @auther Tim
+     * @author Tim
      * @version 1.0
      */
     @FXML
@@ -174,11 +173,12 @@ public class StartController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        for(int i = 0; i < fileArray.length; i++) {
-            if (fileArray[i].getName().endsWith(".Inv")) {
+
+        for(File file : fileArray){
+            if(file.getName().endsWith(".Inv")){
                 try {
-                    File fSrc = new File("" + fileArray[i]); // Quelldatei
-                    File fDes = new File(path + "\\" + fileArray[i].getName()); // Zieldatei
+                    File fSrc = new File("" + file); // Quelldatei
+                    File fDes = new File(path + "\\" + file.getName()); // Zieldatei
                     FileInputStream fis = new FileInputStream(fSrc); //Stream fuer Quelldatei
                     FileOutputStream fos = new FileOutputStream(fDes); //Stream fuer Zieldatei
 
@@ -190,7 +190,7 @@ public class StartController implements Initializable {
                     fos.flush();
                     fos.close();
 
-                    fileArray[i].delete();
+                    file.delete();
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -218,9 +218,8 @@ public class StartController implements Initializable {
     /**
      *
      * Funktion die ein neues Inventar anlegt
-     * @TODO OrgContainer implementieren damit die bedingung genutzt werden kann
-     * @param event
-     * @auther Tim
+     * @param event ->
+     * @author Tim
      */
     @FXML
     void newInventoryClicked(ActionEvent event) {
@@ -236,8 +235,8 @@ public class StartController implements Initializable {
         } else {
             if (!input.equals("")) {
                 boolean alreadyTaken = false;
-                for(int i = 0; i < inventories.length; i++ ){
-                    if(input.equals(inventories[i])){
+                for(String inventory : inventories){
+                    if(input.equals(inventory)){
                         alreadyTaken = true;
                     }
                 }
@@ -266,7 +265,7 @@ public class StartController implements Initializable {
      *
      * @param event
      * @throws IOException
-     * @auther Tim
+     * @author Tim
      */
     @FXML
     void confirmInventoryClicked(ActionEvent event) throws IOException {
@@ -297,7 +296,7 @@ public class StartController implements Initializable {
     /**
      * Logik für das anlegen eines neuen Benutzers
      * @param event
-     * @auther Tim
+     * @author Tim
      */
     @FXML
     void newUserClicked(ActionEvent event){
@@ -337,7 +336,7 @@ public class StartController implements Initializable {
     /**
      * Aufgerufene Methode beim click auf den Passwort ändern Menüeintrag
      *
-     * @auther Tim
+     * @author Tim
      */
 
     @FXML
@@ -364,7 +363,7 @@ public class StartController implements Initializable {
     /**
      * Funktion um ausgewählte benutzer zu Bearbeiten
      *
-     * @auther Tim
+     * @author Tim
      */
     @FXML
     public void editUserClicked(){
@@ -402,7 +401,7 @@ public class StartController implements Initializable {
      * Objekt vom typ Person zurückgibt
      *
      * @return Person -> ausgewählte person z.B zum editieren
-     * @auther Tim
+     * @author Tim
      */
     public Person chooseUserWindow() {
         Dialog<Person> dialog = new Dialog<>();
@@ -451,7 +450,7 @@ public class StartController implements Initializable {
     /**
      * Funktion die aufgerufen wird wenn der Logout button gedrückt wurde
      *
-     * @auther Tim
+     * @author Tim
      */
     @FXML
     public void logoutButtonClicked() {
@@ -482,7 +481,7 @@ public class StartController implements Initializable {
      * Baut ein Fenster auf in dem die Daten für einen neuen Benutzer eingetragen werden
      *
      * @return
-     * @auther Tim
+     * @author Tim
      */
     public String[] buildNewUserWindow(){
         Dialog<String[]> dialog = new Dialog<>();

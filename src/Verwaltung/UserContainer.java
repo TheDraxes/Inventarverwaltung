@@ -46,8 +46,8 @@ public class UserContainer implements Serializable {
      *
      * Änderung des Passwortes eines Nutzers
      *
-     * @param username
-     * @param newPassword
+     * @param username -> Username von dem Benutzer dessen Passwort geändert werden soll
+     * @param newPassword -> Neues Passwort
      * @return boolean ob änderung erfolgreich war
      */
 
@@ -69,7 +69,7 @@ public class UserContainer implements Serializable {
      *
      * Änderung eines Nutzers
      *
-     * @param editedPerson
+     * @param editedPerson -> Ein Person Objekt in dem die geänderten Daten des Editierten benutzers stehen
      * @return boolean ob änderung erfolgreich war
      */
 
@@ -322,7 +322,7 @@ public class UserContainer implements Serializable {
         System.out.println("[INFO] Ausgabe aller Benutzernamen");
         Iterator<Person> it = userData.iterator();
         while (it.hasNext()) {
-            System.out.println("        -" + it.next().getUsername().toString());
+            System.out.println("        -" + it.next().getUsername());
         }
     }
 
@@ -330,7 +330,7 @@ public class UserContainer implements Serializable {
     public ArrayList<Person> getUserData() {
         return userData;
     }
-    public void setUserData(ArrayList<Person> userData) {
+    private void setUserData(ArrayList<Person> userData) {
         this.userData = userData;
     }
     public int getNumberOfUser() {

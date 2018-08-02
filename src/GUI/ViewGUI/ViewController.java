@@ -115,7 +115,7 @@ public class ViewController implements Initializable {
      *
      * auf  um die tablle zu füllen
      *
-     * @auther Tim
+     * @author Tim
      */
     @FXML
     public void initialize(){
@@ -136,7 +136,7 @@ public class ViewController implements Initializable {
      * Füllt die Tabelle mit den daten aus dem Assetcontainer
      * hier ist auch die Klasse für die Editbuttons inline geschrieben
      *
-     * @auther Tim
+     * @author Tim
      */
     private void fillTable(){
         ArrayList<Asset> arrayList;
@@ -189,7 +189,7 @@ public class ViewController implements Initializable {
     /**
      * Private Klassendefinition für den editbutton in der Tabelle
      *
-     * @auther Tim
+     * @author Tim
      */
     private class ButtonCell extends TableCell<Asset, Boolean> {
         final Button cellButton = new Button("        ");
@@ -239,7 +239,7 @@ public class ViewController implements Initializable {
     /**
      * Setzt alle Filter zurück
      *
-     * @auther Tim
+     * @author Tim
      */
     @FXML
     void resetFilter(){
@@ -304,7 +304,7 @@ public class ViewController implements Initializable {
      *
      * @return
      */
-    protected String askForAssetType(){
+    private String askForAssetType(){
         List<String> choices = new ArrayList<>();
         AssetContainer a = new AssetContainer();
         for(int i = 0; i < a.getExistingAssetTypes().length; i++) {
@@ -364,7 +364,7 @@ public class ViewController implements Initializable {
      * der boolean activefilter bestimmt ob beim aufruf von fillTable() die gefilterte Liste
      * angezeigt wird oder nich
      *
-     * @auther Tim
+     * @author Tim
      */
     @FXML
     void filterClicked (){

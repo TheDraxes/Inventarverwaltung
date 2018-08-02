@@ -13,7 +13,7 @@ import javafx.util.Pair;
  * Ruft die einzelnen Dialogklassen auf um die daten eingeben zu lassen
  * und bildet das Fertige Asset
  *
- * @auther Tim
+ * @author Tim
  * @version 1.0
  */
 
@@ -73,7 +73,7 @@ public class AssetDialog {
    * Beschriftet die Labels mit den Parameter namen und setzt den PromptText der Textfelder
    * auf die Parameter Namen
    *
-   * @auther Tim
+   * @author Tim
    */
   private void setTextFields() {
     System.out.println(labelNames.length);
