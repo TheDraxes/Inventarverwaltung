@@ -1,5 +1,7 @@
 package Data;
 
+import java.util.ArrayList;
+
 /**
  *
  *
@@ -8,6 +10,10 @@ package Data;
  */
 
 public class Abteilung extends Organisation{
+
+	private ArrayList<Sachgebiet> sachgebiete = new ArrayList<>();
+	private int anzahlSachgebiete = 0;
+
 	// Konstruktoren
 	public Abteilung() {
 		System.out.println("[KONSTRUKTOR] Abteilung ohne Parameter angelegt!");
@@ -17,6 +23,11 @@ public class Abteilung extends Organisation{
 		this.leiter = leiter;
 		this.name = name;
 		this.kürzel = kürzel;
+	}
+
+	public void addSachgebiet(Sachgebiet newSachgebiet){
+		sachgebiete.add(anzahlSachgebiete, newSachgebiet);
+		anzahlSachgebiete++;
 	}
 
 	// Konsolenausgabe aller Parameter für Testzwecke

@@ -9,8 +9,6 @@ package Data;
 
 public class Sachgebiet extends Organisation{
 
-	private Abteilung abteilung;
-
 	// Konstruktoren
 	public Sachgebiet() {
 		System.out.println("[KONSTRUKTOR] Sachgebiet ohne Parameter angelegt!");
@@ -18,7 +16,6 @@ public class Sachgebiet extends Organisation{
 	public Sachgebiet(Person sachgebietsleiter,String name,String kürzel, Abteilung abteilung) {
 		super(sachgebietsleiter,name,kürzel);
 		System.out.println("[KONSTRUKTOR] Sachgebiet mit Parameter angelegt!");
-		this.abteilung = abteilung;
 
 	}
 

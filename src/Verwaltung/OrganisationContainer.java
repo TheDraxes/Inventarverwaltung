@@ -17,9 +17,8 @@ import java.util.ArrayList;
 
 public class OrganisationContainer implements Serializable {
     private ArrayList<Abteilung> AbteilungsList = new ArrayList<Abteilung>();
-    private ArrayList<Sachgebiet> SachgebietsList = new ArrayList<>();
-    private int anzahlAbt = 2;
-    private int anzahlSach = 2;
+    private int anzahlAbt = 0;
+    private int anzahlSach = 0;
 
 
     public OrganisationContainer(){
@@ -33,14 +32,15 @@ public class OrganisationContainer implements Serializable {
         Sachgebiet testC = new Sachgebiet(testPerson, "E-Government Entwicklung", "GEW", testA);
         Sachgebiet testD = new Sachgebiet(testPerson, "Fachapplikationen Justiz", "FAJ", testB);
 
-        AbteilungsList.add(0, testA);
-        AbteilungsList.add(1, testB);
+        testA.addSachgebiet(testC);
+        testB.addSachgebiet(testD);
 
-        SachgebietsList.add(0,testC);
-        SachgebietsList.add(1,testD);
+        AbteilungsList.add(0, testA);
+        anzahlAbt++;
+        AbteilungsList.add(1, testB);
+        anzahlAbt++;
     }
 
-    // neues Asset einfügen, Inventarnummer wird automatisch generiert (hochgezählt)
     public boolean insertAbteilung(Abteilung a) {
         if(true){
             System.out.println("[INFO] Organisation angelegt");
@@ -64,11 +64,8 @@ public class OrganisationContainer implements Serializable {
     }
 
     public String[] getSachgebietNames(){
-      String[] sachgebietNames = new String[SachgebietsList.size()];
+      String[] sachgebietNames = new String[0];
 
-      for(int i = 0; i < SachgebietsList.size(); i++){
-        sachgebietNames[i] = SachgebietsList.get(i).getKürzel();
-      }
 
       return sachgebietNames;
     }
@@ -79,14 +76,6 @@ public class OrganisationContainer implements Serializable {
 
   public void setAbteilungsList(ArrayList<Abteilung> abteilungsList) {
     AbteilungsList = abteilungsList;
-  }
-
-  public ArrayList<Sachgebiet> getSachgebietsList() {
-    return SachgebietsList;
-  }
-
-  public void setSachgebietsList(ArrayList<Sachgebiet> sachgebietsList) {
-    SachgebietsList = sachgebietsList;
   }
 
   public int getAnzahlAbt() {
