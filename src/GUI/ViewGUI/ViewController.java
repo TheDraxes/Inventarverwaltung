@@ -135,7 +135,7 @@ public class ViewController implements Initializable {
 
         ArrayList<Asset> arrayList = assetContainer.getAssetList();
         fillTable();
-        for (int i = 0; i < orgContainer.getAnzahlAbt(); i++) {
+        for (int i = 0; i < orgContainer.getAnzahlAbteilungen(); i++) {
             MenuItem menuItem = new MenuItem();
             menuItem.setText(orgContainer.getAllAbteilungsKürzel()[i]);
             menuItem.setOnAction(new EventHandler<ActionEvent>() {
