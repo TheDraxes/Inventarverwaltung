@@ -79,7 +79,6 @@ public class LoginController {
      * Prüft die eingegebenen Angaben, vergleicht sie mit denen in dem Usercontainer,
      * versteckt das aktuelle Fenster und ruft das Inventarverwaltungsenster auf.
      *
-     * @see initStartWindow#showStartWindow(UserContainerAlt, String)
      * @TODO sperrung nach 3 fehlgeschlagenen Loginversuchen
      * @author Tim
      * @version 1.0
@@ -89,6 +88,11 @@ public class LoginController {
     protected void loginButtonClicked() {
         String username = usernameField.getText();
         String password = passwordField.getText();
+
+        if(userContainer.userExisting(username) && userContainer.isBlocked(username)){
+            Dialogs.warnDialog("Dieser Benutzer wurde geblockt und muss vom Admin entsperrt werden", "Warnung");
+            return;
+        }
 
         if(userContainer.checkLogin(username, password)){
             Stage lastWindow = (Stage) loginButton.getScene().getWindow();
@@ -109,6 +113,7 @@ public class LoginController {
                 Dialogs.warnDialog("Nutzername oder Passwort falsch!", "Passwort " + loginTries + " mal falsch eingegeben!");
             } else {
                 Dialogs.warnDialog("Nutzername oder Passwort falsch!", "Account Gesperrt!!");
+                userContainer.blockUser(username);
             }
         }
     }
