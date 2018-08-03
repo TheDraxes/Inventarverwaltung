@@ -21,7 +21,7 @@ public class OrganisationContainer implements Serializable {
     public OrganisationContainer(){
     }
 
-    public boolean safeUserData(){
+    public boolean safeOrganisationsData(){
         System.out.println("[INFO] Speichere Organisationsdaten...");
         FileOutputStream fileOutputStream = null;
         ObjectOutputStream outputStream = null;
@@ -47,18 +47,18 @@ public class OrganisationContainer implements Serializable {
         return false;
     }
 
-    public OrganisationContainer loadUserData(){
+    public OrganisationContainer loadOrganisationsData(){
         System.out.println("[INFO] Suche Organisationsdaten...");
         FileInputStream fileInputStream = null;
         ObjectInputStream objectInputStream = null;
         try {
-            File userLogins = new File("organisation.dat");
+            File filename = new File("organisation.dat");
 
-            if(userLogins.exists()) {
+            if(filename.exists()) {
                 System.out.println("[INFO] Organisationsdaten gefunden!");
                 System.out.println("[INFO] Lese Organisationsdaten ein...");
 
-                fileInputStream = new FileInputStream(userLogins);
+                fileInputStream = new FileInputStream(filename);
                 objectInputStream = new ObjectInputStream(fileInputStream);
                 ArrayList<Abteilung> abteilungsList = (ArrayList<Abteilung>) objectInputStream.readObject();
 
