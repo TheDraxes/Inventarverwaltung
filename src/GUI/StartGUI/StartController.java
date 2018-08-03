@@ -282,7 +282,7 @@ public class StartController implements Initializable {
             Parent root = loader.load();
 
             ViewController controller = loader.getController();
-            controller.getParams(InventarBox.getValue(), path, userContainer,user);
+            controller.getParams(InventarBox.getValue(), path, userContainer,user, orgContainer);
 
             Stage newWindow = new Stage();
             newWindow.setResizable(false);
@@ -292,7 +292,6 @@ public class StartController implements Initializable {
         } else {
             Dialogs.warnDialog("Keinen Eintrag ausgewählt!", "Warnung");
         }
-
     }
 
 
@@ -587,11 +586,11 @@ public class StartController implements Initializable {
                 if(result == null){
                     return;
                 }
-                if(result.getValue() != null){
+                if(result.getValue() != null && result.getKey() == null){
                     Dialogs.warnDialog(result.getValue(),"Warnung");
                     return;
                 } else {
-                    orgContainer.insertSachgebiet(result.getKey());
+                    orgContainer.insertSachgebiet(result.getKey(), result.getValue());
                 }
             }
         } else {

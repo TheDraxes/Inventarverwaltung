@@ -9,6 +9,7 @@ import GUI.ViewGUI.CellFactories.InsDateCellFactory;
 import GUI.ViewGUI.Comparators.AnschaffungswertComparator;
 import GUI.ViewGUI.NewItemDialogs.AssetDialog;
 import Verwaltung.AssetContainer;
+import Verwaltung.OrganisationContainer;
 import Verwaltung.UserContainer;
 import GUI.StartGUI.StartController;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -88,6 +89,9 @@ public class ViewController implements Initializable {
     //Container für die asseteinträge
     private AssetContainer assetContainer = new AssetContainer();
 
+    //Container für abteilungen und sachgebiete
+    private OrganisationContainer orgContainer = new OrganisationContainer();
+
     //Container für die gefilterten Assets
     private ArrayList filteredList = new ArrayList();
 
@@ -106,6 +110,10 @@ public class ViewController implements Initializable {
     //momentan eingeloggter User
     private Person user;
 
+    //Menu für die Summary Buttons
+    @FXML
+    private Menu summaryMenu;
+
 
     /**
      * Funktion die das View Initialisiert
@@ -118,17 +126,31 @@ public class ViewController implements Initializable {
      * @author Tim
      */
     @FXML
-    public void initialize(){
+    public void initialize() {
         completePath = path + "\\" + invName + ".Inv";
+        File inventoryFile = new File(completePath);
 
-        File a = new File(completePath);
-
-        assetContainer = assetContainer.loadInventar(a.getPath());
+        assetContainer = assetContainer.loadInventar(inventoryFile.getPath());
         itemTable.setPlaceholder(new Label("Keine Anlage-gegenstände gefunden"));
 
         ArrayList<Asset> arrayList = assetContainer.getAssetList();
-
         fillTable();
+        for (int i = 0; i < orgContainer.getAnzahlAbt(); i++) {
+            MenuItem menuItem = new MenuItem();
+            menuItem.setText(orgContainer.getAbteilungsKürzel()[i]);
+            menuItem.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    MenuItem menuItem = (MenuItem) event.getSource();
+                    summary(menuItem.getText());
+                }
+            });
+            summaryMenu.getItems().add(menuItem);
+        }
+    }
+
+
+    public void summary(String abteilung){
 
     }
 
@@ -285,12 +307,13 @@ public class ViewController implements Initializable {
      * @param userContainer -> container der userdaten
      * @param user -> momentan eingeloggter user
      */
-    public void getParams(String inventoryName, String path, UserContainer userContainer, Person user){
+    public void getParams(String inventoryName, String path, UserContainer userContainer, Person user, OrganisationContainer organisationContainer){
         nameLabel.setText("Eingeloggt als: " + user.getUsername());
         this.path = path;
         this.invName = inventoryName;
         this.userContainer = userContainer;
         this.user = user;
+        this.orgContainer = organisationContainer;
         initialize();
     }
 

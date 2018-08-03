@@ -32,6 +32,7 @@
                   <MenuItem fx:id="filterClicked" mnemonicParsing="false" onAction="#filterClicked" text="Filtern" />
             </items>
           </Menu>
+            <Menu fx:id="summaryMenu" mnemonicParsing="false" text="Zusammenfassung" />
         </menus>
       </MenuBar>
       <ScrollPane fx:id="ItemScrollPane" pannable="true" prefHeight="372.0" prefWidth="605.0" GridPane.rowIndex="1">

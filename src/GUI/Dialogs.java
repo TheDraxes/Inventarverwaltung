@@ -13,7 +13,6 @@ import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.util.Pair;
 
-import javax.xml.soap.Text;
 import java.util.Optional;
 
 /**
@@ -45,7 +44,7 @@ public class Dialogs {
     public static String inventoryNameDialog(OrganisationContainer orgs, String title, String header){
         ObservableList<String> observableList =
                 FXCollections.observableArrayList(
-                        orgs.getSachgebietsNames());
+                        orgs.getSachgebietsKürzel());
         TextField name = new TextField();
 
         ComboBox org = new ComboBox(observableList);
@@ -429,7 +428,7 @@ public class Dialogs {
   public static Pair<Sachgebiet,String> newSachgebietWindow(OrganisationContainer orgContainer, UserContainer userContainer){
     ObservableList<String> orgList =
             FXCollections.observableArrayList(
-                    orgContainer.getAbteilungsNames()
+                    orgContainer.getAbteilungsKürzel()
             );
 
     ObservableList<String> userList =
@@ -438,7 +437,7 @@ public class Dialogs {
             );
 
     ComboBox<String> abtBox = new ComboBox<>(orgList);
-    abtBox.setValue(orgContainer.getAbteilungsNames()[0]);
+    abtBox.setValue(orgContainer.getAbteilungsKürzel()[0]);
     ComboBox<String> userBox = new ComboBox<>(userList);
     userBox.setValue(userContainer.getUserNamesWithoutAdmin()[0]);
     TextField nameField = new TextField();
@@ -496,4 +495,5 @@ public class Dialogs {
       return null;
     }
   }
+
 }

@@ -52,7 +52,7 @@ public class OrganisationContainer implements Serializable {
         }
     }
 
-    public boolean insertSachgebiet(Sachgebiet a) {
+    public boolean insertSachgebiet(Sachgebiet a, String abteilungsKürzel) {
         if(true){
             System.out.println("[INFO] Organisation angelegt");
             anzahlSach++;
@@ -63,14 +63,18 @@ public class OrganisationContainer implements Serializable {
         }
     }
 
-    public String[] getSachgebietsNames(){
+    public String[] getSachgebietsKürzel(){
       String[] sachgebietNames = {"GEW", "FAJ"};
 
 
       return sachgebietNames;
     }
 
-    public String[] getAbteilungsNames(){
+    public Abteilung getAbteilungByKürzel(){
+      return new Abteilung();
+    }
+
+    public String[] getAbteilungsKürzel(){
       String[] abteilungsNames = {"GE", "FA"};
 
       return abteilungsNames;
