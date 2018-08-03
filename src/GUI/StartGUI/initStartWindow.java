@@ -31,7 +31,7 @@ public class initStartWindow {
      * @param userContainer Container zur Userdaten verwaltung
      * @param user name des eingeloggten Users
      */
-    protected initStartWindow(UserContainer userContainer, Person user) {
+    public initStartWindow(UserContainer userContainer, Person user) {
         String path;
         File startUp = new File("startUp.dat");
         if(startUp.exists()){
