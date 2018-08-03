@@ -4,7 +4,7 @@ import Data.Abteilung;
 import Data.Person;
 import Data.Sachgebiet;
 
-import java.io.Serializable;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -19,6 +19,70 @@ public class OrganisationContainer implements Serializable {
     private ArrayList<Abteilung> abteilungArrayList = new ArrayList<Abteilung>();
 
     public OrganisationContainer(){
+    }
+
+    public boolean safeUserData(){
+        System.out.println("[INFO] Speichere Organisationsdaten...");
+        FileOutputStream fileOutputStream = null;
+        ObjectOutputStream outputStream = null;
+        try {
+            fileOutputStream = new FileOutputStream("organisation.dat");
+            outputStream = new ObjectOutputStream(fileOutputStream);
+            outputStream.writeObject(this.abteilungArrayList);
+            System.out.println("[INFO] Organisationsdaten gespeichert unter '" + "organisation.dat" + "'!");
+            return true;
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                fileOutputStream.close();
+                outputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.println("[ERROR] Fehler beim speichern der Organisationsdaten!");
+        return false;
+    }
+
+    public OrganisationContainer loadUserData(){
+        System.out.println("[INFO] Suche Organisationsdaten...");
+        FileInputStream fileInputStream = null;
+        ObjectInputStream objectInputStream = null;
+        try {
+            File userLogins = new File("organisation.dat");
+
+            if(userLogins.exists()) {
+                System.out.println("[INFO] Organisationsdaten gefunden!");
+                System.out.println("[INFO] Lese Organisationsdaten ein...");
+
+                fileInputStream = new FileInputStream(userLogins);
+                objectInputStream = new ObjectInputStream(fileInputStream);
+                ArrayList<Abteilung> abteilungsList = (ArrayList<Abteilung>) objectInputStream.readObject();
+
+                OrganisationContainer loaded = new OrganisationContainer();
+                loaded.setAbteilungArrayList(abteilungsList);
+
+                fileInputStream.close();
+                objectInputStream.close();
+
+                System.out.println("[INFO] Organisationsdaten erfolgreich eingelesen!");
+                return loaded;
+            } else {
+                System.out.println("[INFO] Organisationsdaten konnten nicht gefunden werden!");
+                return null;
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        System.out.println("[ERROR] Fehler beim Laden der Organisationsdaten!");
+        return null;
     }
 
     public boolean insertAbteilung(Abteilung a) {
