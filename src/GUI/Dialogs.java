@@ -392,7 +392,7 @@ public class Dialogs {
         }
     }
 
-    public static Pair<Abteilung,String> newAbteilungWindow(UserContainer userContainer){
+    public static Pair<Abteilung,String> newAbteilungWindow(UserContainer userContainer, Abteilung actual){
         ObservableList<String> userList =
             FXCollections.observableArrayList(
             userContainer.getUserNamesWithoutAdmin()
@@ -416,6 +416,12 @@ public class Dialogs {
         grid.setVgap(10);
         grid.setPadding(new Insets(20,150,10,10));
 
+        if(actual != null){
+            userBox.setValue(actual.getLeiter().getUsername());
+            nameField.setText(actual.getName());
+            shortcutField.setText(actual.getKürzel());
+        }
+
         grid.add(userBox, 1,0);
         grid.add(new Label("Leiter"), 0, 0);
 
@@ -431,6 +437,9 @@ public class Dialogs {
         dialog.setResultConverter(dialogButton -> {
             if(dialogButton == addButton) {
                 Abteilung newAbt = new Abteilung();
+                if(actual != null){
+                    newAbt = actual;
+                }
                 if(nameField.getText().equals("") || shortcutField.getText().equals("")){
                     return new Pair<>(null,"Alle Felder müssen ausgefüllt werden");
                 }
@@ -524,5 +533,45 @@ public class Dialogs {
       return null;
     }
   }
+    public static String chooseOrg(OrganisationContainer orgs, String title, String header){
+        ObservableList<String> observableList =
+                FXCollections.observableArrayList(
+                        orgs.getAllSachgebietsKuerzel());
 
+        ComboBox org = new ComboBox(observableList);
+        Abteilung _default = orgs.getAbteilungArrayList().get(0);
+        org.setValue(_default.getKürzel());
+
+        Dialog<String> dialog  = new Dialog();
+        dialog.setTitle(title);
+        dialog.setHeaderText(header);
+
+        ButtonType OK_Button = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
+        dialog.getDialogPane().getButtonTypes().addAll(OK_Button, ButtonType.CANCEL);
+
+        GridPane grid = new GridPane();
+        grid.setHgap(10);
+        grid.setVgap(10);
+        grid.setPadding(new Insets(20, 150, 10, 10));
+
+        grid.add(new Label("Inventarname: "), 0, 0);
+        grid.add(org, 1, 0);
+
+        dialog.getDialogPane().setContent(grid);
+
+        dialog.setResultConverter(dialogButton -> {
+            if(dialogButton == OK_Button){
+                return (String) org.getValue();
+            } else {
+                return null;
+            }
+        });
+
+        Optional<String> result = dialog.showAndWait();
+        if (result.isPresent()){
+            return result.get();
+        } else {
+            return null;
+        }
+    }
 }

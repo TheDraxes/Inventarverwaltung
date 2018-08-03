@@ -174,4 +174,12 @@ public class OrganisationContainer implements Serializable {
         }
         return anzahl;
     }
+
+    public void editAbteilung(Abteilung edited){
+
+    }
+
+    public boolean anySachgebietExisting(){
+        return false;
+    }
 }

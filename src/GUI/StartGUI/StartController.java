@@ -73,6 +73,13 @@ public class StartController implements Initializable {
     //Benutzerobjekt von dem Momentan eingeloggten Nutzer
     private Person user;
 
+    //Button zum editieren von Organisationen
+    @FXML
+    private MenuItem editOrgButton;
+
+    @FXML
+    private MenuItem delOrgButton;
+
     /**
      * Initalisierungsmethode die Interaktive Elemente mit Inhalt füllen
      * und Überpfüft ob das Adminmenue angezeigt werden muss
@@ -81,6 +88,7 @@ public class StartController implements Initializable {
      */
     @FXML
     protected void initialize(){
+        //Aufsetzen der ComboBox für das StartFenster
         ObservableList<String> _default = FXCollections.observableArrayList();
         File lookUp = new File(path);
 
@@ -102,12 +110,14 @@ public class StartController implements Initializable {
                 InventarBox.setValue("Kein Eintrag gefunden!");
             }
         }
-
+        //Anzeigen des Admin menüs
         if(user.isAdmin()){
             adminMenue.setVisible(true);
         } else {
             adminMenue.setVisible(false);
         }
+
+        //laden des Organisazionscontainers
         try {
             orgContainer = orgContainer.loadOrganisationsData();
         } catch (NullPointerException e){
@@ -115,11 +125,13 @@ public class StartController implements Initializable {
             System.out.println("[FEHLER] Beim Laden des orgContainers");
         }
 
-
+        if(!orgContainer.anyAbteilungExisting()){
+            editOrgButton.setVisible(false);
+            delOrgButton.setVisible(false);
+        }
 
         System.out.println("[GUI] Start Fenster Initialisiert");
         System.out.println("[INFO] Speicherpfad: " + path);
-        System.out.println(userContainer.getNumberOfUser());
     }
 
     /**
@@ -577,7 +589,7 @@ public class StartController implements Initializable {
                 System.out.println("[INFO] Vorgang abgebrochen");
             } else if (choosen == 0) {
                 //Abteilung
-                Pair<Abteilung,String> result = Dialogs.newAbteilungWindow(userContainer);
+                Pair<Abteilung,String> result = Dialogs.newAbteilungWindow(userContainer, null);
                 if(result == null){
                     return;
                 }
@@ -604,7 +616,34 @@ public class StartController implements Initializable {
             Dialogs.warnDialog("Sie müssen zunächst einen Benutzer anlegen der als Leiter der Organisation eingestellt werden kann", "INFO");
         }
     }
+    @FXML
+    public void editOrganisattion() {
+        int choose = Dialogs.chooseOrgDialog(orgContainer.anyAbteilungExisting());
+        if (choose < 0) {
+            System.out.println("[INFO] Vorgang abgebrochen");
+        } else if (choose == 0) {
+            //Abteilung
+            String abt = Dialogs.chooseOrg(orgContainer, "Organisation auswählen", "Org Wählen");
+            if (abt == null) {
+                return;
+            } else {
+                Pair<Abteilung,String> result = Dialogs.newAbteilungWindow(userContainer,orgContainer.getAbteilungByKürzel(abt));
+                if(result.getValue() != null && result.getKey() == null){
+                    Dialogs.warnDialog(result.getValue(),"Warnung");
+                    return;
+                } else {
+                    orgContainer.editAbteilung(result.getKey());
+                }
+            }
+        } else if (choose == 1) {
+            //Sachgebiet
+            if(orgContainer.anySachgebietExisting()){
 
+            } else {
+                return;
+            }
+        }
+    }
     /**
      * setzt das Look and Feel für Swing elemente
      *      -> müsste noch durch Javafx ersetzt werden
