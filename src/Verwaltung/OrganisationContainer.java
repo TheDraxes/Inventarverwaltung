@@ -158,6 +158,7 @@ public class OrganisationContainer implements Serializable {
         return abteilungArrayList;
     }
 
+
     public void setAbteilungArrayList(ArrayList<Abteilung> abteilungArrayList) {
         this.abteilungArrayList = abteilungArrayList;
     }
@@ -180,6 +181,6 @@ public class OrganisationContainer implements Serializable {
     }
 
     public boolean anySachgebietExisting(){
-        return false;
+        return true;
     }
 }

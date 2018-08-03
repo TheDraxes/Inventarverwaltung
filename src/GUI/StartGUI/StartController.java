@@ -27,7 +27,6 @@ import javafx.util.Pair;
 import javax.swing.*;
 import java.io.*;
 import java.net.URL;
-import java.util.Arrays;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -59,7 +58,7 @@ public class StartController implements Initializable {
     private UserContainer userContainer;
 
     //Container für Abteilungen und Sachgebiete
-    private OrganisationContainer orgContainer;
+    private OrganisationContainer orgContainer = new OrganisationContainer();;
 
     //Anzahl der zur verfügung stehen Inventare
     private int inventoryCounter = 0;
@@ -121,13 +120,16 @@ public class StartController implements Initializable {
         try {
             orgContainer = orgContainer.loadOrganisationsData();
         } catch (NullPointerException e){
-            orgContainer = new OrganisationContainer();
             System.out.println("[FEHLER] Beim Laden des orgContainers");
         }
 
         if(!orgContainer.anyAbteilungExisting()){
             editOrgButton.setVisible(false);
             delOrgButton.setVisible(false);
+        }
+
+        for(String a : orgContainer.getAllAbteilungsKürzel()){
+            System.out.println(a);
         }
 
         System.out.println("[GUI] Start Fenster Initialisiert");
@@ -249,32 +251,35 @@ public class StartController implements Initializable {
             Dialogs.warnDialog("Es müssen zunächst Sachgebiete angelegt werden!", "Info");
             return;
         }
-
-        String input = Dialogs.inventoryNameDialog(orgContainer ,"Eingabe", "Inventarnamen Eingeben!");
-        if(input == null){
-            System.out.println("[INFO] Anlegen abgebrochen");
-        } else {
-            if (!input.equals("")) {
-                boolean alreadyTaken = false;
-                for(String inventory : inventories){
-                    if(input.equals(inventory)){
-                        alreadyTaken = true;
-                    }
-                }
-                if(!alreadyTaken) {
-                    String path = this.path + "\\" + input + ".Inv";
-                    AssetContainer newContainer = new AssetContainer();
-
-                    newContainer.safeInventar(path);
-                    Dialogs.warnDialog("Inventar \"" + input + "\" erfolgreich angelegt!", "Info");
-                    System.out.println("[INFO] Inventar '" + input + ".Inv' erstellt");
-                    initialize();
-                } else {
-                    Dialogs.warnDialog("Name bereits Vergeben!", "Warnung");
-                }
+        if(orgContainer.anySachgebietExisting()){
+            String input = Dialogs.inventoryNameDialog(orgContainer ,"Eingabe", "Inventarnamen Eingeben!");
+            if(input == null){
+                System.out.println("[INFO] Anlegen abgebrochen");
             } else {
-                Dialogs.warnDialog("Keinen Namen Eingegeben!", "Warnung");
+                if (!input.equals("")) {
+                    boolean alreadyTaken = false;
+                    for(String inventory : inventories){
+                        if(input.equals(inventory)){
+                            alreadyTaken = true;
+                        }
+                    }
+                    if(!alreadyTaken) {
+                        String path = this.path + "\\" + input + ".Inv";
+                        AssetContainer newContainer = new AssetContainer();
+
+                        newContainer.safeInventar(path);
+                        Dialogs.warnDialog("Inventar \"" + input + "\" erfolgreich angelegt!", "Info");
+                        System.out.println("[INFO] Inventar '" + input + ".Inv' erstellt");
+                        initialize();
+                    } else {
+                        Dialogs.warnDialog("Name bereits Vergeben!", "Warnung");
+                    }
+                } else {
+                    Dialogs.warnDialog("Keinen Namen Eingegeben!", "Warnung");
+                }
             }
+        } else {
+            Dialogs.warnDialog("Es wurde noch kein Sachgebiet angelegt!", "INFO");
         }
     }
 
@@ -612,6 +617,7 @@ public class StartController implements Initializable {
                 }
             }
             orgContainer.safeOrganisationsData();
+            initialize();
         } else {
             Dialogs.warnDialog("Sie müssen zunächst einen Benutzer anlegen der als Leiter der Organisation eingestellt werden kann", "INFO");
         }
@@ -623,7 +629,7 @@ public class StartController implements Initializable {
             System.out.println("[INFO] Vorgang abgebrochen");
         } else if (choose == 0) {
             //Abteilung
-            String abt = Dialogs.chooseOrg(orgContainer, "Organisation auswählen", "Org Wählen");
+            String abt = Dialogs.chooseAbt(orgContainer, "Organisation auswählen", "Org Wählen");
             if (abt == null) {
                 return;
             } else {
@@ -638,11 +644,13 @@ public class StartController implements Initializable {
         } else if (choose == 1) {
             //Sachgebiet
             if(orgContainer.anySachgebietExisting()){
-
+                String sach = Dialogs.chooseSach(orgContainer, "Organisation auswählen", "Org Wählen");
+                System.out.println(sach);
             } else {
                 return;
             }
         }
+        orgContainer.safeOrganisationsData();
     }
     /**
      * setzt das Look and Feel für Swing elemente

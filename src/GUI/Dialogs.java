@@ -45,11 +45,15 @@ public class Dialogs {
         ObservableList<String> observableList =
                 FXCollections.observableArrayList(
                         orgs.getAllSachgebietsKuerzel());
+
+        for(String a : orgs.getAllSachgebietsKuerzel()){
+            System.out.println(a);
+        }
+
         TextField name = new TextField();
 
         ComboBox org = new ComboBox(observableList);
-        Abteilung _default = orgs.getAbteilungArrayList().get(0);
-        org.setValue(_default.getKürzel());
+        org.setValue(orgs.getAllSachgebietsKuerzel()[0]);
 
         Dialog<String> dialog  = new Dialog();
         dialog.setTitle(title);
@@ -533,14 +537,56 @@ public class Dialogs {
       return null;
     }
   }
-    public static String chooseOrg(OrganisationContainer orgs, String title, String header){
+    public static String chooseAbt(OrganisationContainer orgs, String title, String header){
+        ObservableList<String> observableList =
+                FXCollections.observableArrayList(
+                        orgs.getAllAbteilungsKürzel()
+                        );
+
+        ComboBox org = new ComboBox(observableList);
+        Abteilung _default = orgs.getAbteilungArrayList().get(0);
+        org.setValue(_default.getKürzel());
+
+        Dialog<String> dialog  = new Dialog();
+        dialog.setTitle(title);
+        dialog.setHeaderText(header);
+
+        ButtonType OK_Button = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
+        dialog.getDialogPane().getButtonTypes().addAll(OK_Button, ButtonType.CANCEL);
+
+        GridPane grid = new GridPane();
+        grid.setHgap(10);
+        grid.setVgap(10);
+        grid.setPadding(new Insets(20, 150, 10, 10));
+
+        grid.add(new Label("Inventarname: "), 0, 0);
+        grid.add(org, 1, 0);
+
+        dialog.getDialogPane().setContent(grid);
+
+        dialog.setResultConverter(dialogButton -> {
+            if(dialogButton == OK_Button){
+                return (String) org.getValue();
+            } else {
+                return null;
+            }
+        });
+
+        Optional<String> result = dialog.showAndWait();
+        if (result.isPresent()){
+            return result.get();
+        } else {
+            return null;
+        }
+    }
+
+    public static String chooseSach(OrganisationContainer orgs, String title, String header){
         ObservableList<String> observableList =
                 FXCollections.observableArrayList(
                         orgs.getAllSachgebietsKuerzel());
 
         ComboBox org = new ComboBox(observableList);
-        Abteilung _default = orgs.getAbteilungArrayList().get(0);
-        org.setValue(_default.getKürzel());
+        org.setValue(orgs.getAllSachgebietsKuerzel()[0]);
 
         Dialog<String> dialog  = new Dialog();
         dialog.setTitle(title);
