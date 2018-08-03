@@ -371,7 +371,7 @@ public class StartController implements Initializable {
     protected void editUserClicked(){
         Person choosen = chooseUserWindow();
         if(choosen != null) {
-            Person edited = Dialogs.editUserWindow(choosen);
+            Person edited = Dialogs.editUserWindow(choosen, user);
             if(edited != null) {
               userContainer.editUser(edited);
               System.out.println("[INFO] Vorgang abgebrochen!");

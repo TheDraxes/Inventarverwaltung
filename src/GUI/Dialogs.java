@@ -155,7 +155,7 @@ public class Dialogs {
         }
     }
 
-    public static Person editUserWindow(Person person){
+    public static Person editUserWindow(Person person, Person logedPerson){
         Dialog<Person> dialog = new Dialog<>();
         dialog.setTitle("Benutzer Editieren");
         ButtonType addButton = new ButtonType("Bestätigen" ,ButtonBar.ButtonData.OK_DONE);
@@ -195,6 +195,22 @@ public class Dialogs {
             admin.setValue("Nein");
         }
 
+        ComboBox blockedBox = new ComboBox();
+
+        if(logedPerson.isAdmin()){
+            ObservableList<String> userblocked =
+                    FXCollections.observableArrayList(
+                            "Ja",
+                            "Nein"
+                    );
+            blockedBox = new ComboBox(userblocked);
+            if(person.isLocked()){
+                blockedBox.setValue("Ja");
+            } else {
+                blockedBox.setValue("Nein");
+            }
+        }
+
         grid.add(new Label("Vorname: "), 0, 0);
         grid.add(firstName,1,0);
         grid.add(new Label("Nachname: "), 0, 1);
@@ -205,10 +221,16 @@ public class Dialogs {
         grid.add(new Label("Admin: "), 0, 5);
         grid.add(admin,1,5);
 
+        if(logedPerson.isAdmin()){
+            grid.add(new Label("Blockiert: "), 0,6);
+            grid.add(blockedBox,1,6);
+        }
+
         dialog.getDialogPane().setContent(grid);
 
         Platform.runLater(() -> firstName.requestFocus());
 
+        ComboBox finalBlockedBox = blockedBox;
         dialog.setResultConverter(dialogButton -> {
             if(dialogButton == addButton){
                 Person edited = person;
@@ -224,6 +246,12 @@ public class Dialogs {
                     edited.setAdmin(true);
                 } else {
                     edited.setAdmin(false);
+                }
+                if(logedPerson.isAdmin() && finalBlockedBox.getValue().equals("Ja")) {
+                    System.out.println("Test");
+                    edited.setLocked(true);
+                } else {
+                    edited.setLocked(false);
                 }
                 return edited;
             } else if(dialogButton == ButtonType.CANCEL){
