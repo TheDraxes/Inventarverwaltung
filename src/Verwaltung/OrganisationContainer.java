@@ -21,7 +21,7 @@ public class OrganisationContainer implements Serializable {
     public OrganisationContainer(){
     }
 
-    public boolean safeUserData(){
+    public boolean safeOrganisationsData(){
         System.out.println("[INFO] Speichere Organisationsdaten...");
         FileOutputStream fileOutputStream = null;
         ObjectOutputStream outputStream = null;
@@ -47,7 +47,7 @@ public class OrganisationContainer implements Serializable {
         return false;
     }
 
-    public OrganisationContainer loadUserData(){
+    public OrganisationContainer loadOrganisationsData(){
         System.out.println("[INFO] Suche Organisationsdaten...");
         FileInputStream fileInputStream = null;
         ObjectInputStream objectInputStream = null;
