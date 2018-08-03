@@ -48,7 +48,8 @@ public class Dialogs {
         TextField name = new TextField();
 
         ComboBox org = new ComboBox(observableList);
-        org.setValue("Test");
+        Abteilung _default = orgs.getAbteilungArrayList().get(0);
+        org.setValue(_default.getKürzel());
 
         Dialog<String> dialog  = new Dialog();
         dialog.setTitle(title);
@@ -509,7 +510,7 @@ public class Dialogs {
         newSach.setKürzel(shortcutField.getText());
         newSach.setLeiter(userContainer.getPersonByUsername(userBox.getValue()));
 
-        return new Pair<>(newSach,null);
+        return new Pair<>(newSach,abtBox.getValue());
       } else {
         return null;
       }

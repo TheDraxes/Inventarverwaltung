@@ -227,7 +227,7 @@ public class StartController implements Initializable {
     @FXML
     protected void newInventoryClicked(ActionEvent event) {
 
-        if(false){
+        if(!orgContainer.anyAbteilungExisting()){
             Dialogs.warnDialog("Es müssen zunächst Sachgebiete angelegt werden!", "Info");
             return;
         }
