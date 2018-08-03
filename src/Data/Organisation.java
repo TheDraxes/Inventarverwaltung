@@ -31,7 +31,7 @@ public class Organisation implements Serializable{
   }
 
   public String getKürzel() {
-    return kürzel;
+    return this.kürzel;
   }
 
   public void setKürzel(String kürzel) {
