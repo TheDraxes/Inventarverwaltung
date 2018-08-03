@@ -296,12 +296,12 @@ public class UserContainer implements Serializable {
         return false;
     }
 
-
     public boolean isBlocked (String username){
         Person p = this.getPersonByUsername(username);
         p.display();
         return p.isLocked();
     }
+
     public void blockUser(String username){
         Person p = this.getPersonByUsername(username);
         p.setLocked(true);

@@ -69,16 +69,20 @@ public class Person implements Serializable {
     }
 
     public void updateUsername(){
-        String newusername = generateUsername();
+        UserContainer userData = new UserContainer().loadUserData();
+        Person p = userData.getPersonByUsername(this.username);
+        if(!p.getName().equals(this.name) || !p.getSurname().equals(this.surname)) {
+            String newusername = generateUsername();
 
-        if(!this.username.equals(newusername)) {
-            System.out.print("[EDIT] Username von " + this.username);
-            this.username = newusername;
-            System.out.println(" auf " + this.username + " geändert!");
+            if(!this.username.equals(newusername)) {
+                System.out.print("[EDIT] Username von " + this.username);
+                this.username = newusername;
+                System.out.println(" auf " + this.username + " geändert!");
 
-            System.out.print("[EDIT] E-Mail von " + this.email);
-            this.email = generateEmail();
-            System.out.println(" auf " + this.email + " geändert!");
+                System.out.print("[EDIT] E-Mail von " + this.email);
+                this.email = generateEmail();
+                System.out.println(" auf " + this.email + " geändert!");
+            }
         }
     }
 

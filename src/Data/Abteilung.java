@@ -30,6 +30,10 @@ public class Abteilung extends Organisation{
 		anzahlSachgebiete++;
 	}
 
+	public ArrayList<Sachgebiet> getSachgebiete() {
+		return sachgebiete;
+	}
+
 	// Konsolenausgabe aller Parameter für Testzwecke
 	public void display() {
 		System.out.println("[INFO] DISPLAYMETHODE ABTEILUNG");
