@@ -17,34 +17,13 @@ import java.util.Iterator;
 
 public class OrganisationContainer implements Serializable {
     private ArrayList<Abteilung> abteilungArrayList = new ArrayList<Abteilung>();
-    private int anzahlAbt = 0;
-    private int anzahlSach = 0;
-
 
     public OrganisationContainer(){
-        Person testPerson = new Person();
-        testPerson.setAdmin(true);
-        testPerson.setName("Tim");
-        testPerson.setSurname("Vinzing");
-        Abteilung testA = new Abteilung(testPerson, "E-Government", "GE");
-        Abteilung testB = new Abteilung(testPerson, "Fachapplikationen", "FA");
-
-        Sachgebiet testC = new Sachgebiet(testPerson, "E-Government Entwicklung", "GEW", testA);
-        Sachgebiet testD = new Sachgebiet(testPerson, "Fachapplikationen Justiz", "FAJ", testB);
-
-        testA.addSachgebiet(testC);
-        testB.addSachgebiet(testD);
-
-        abteilungArrayList.add(0, testA);
-        anzahlAbt++;
-        abteilungArrayList.add(1, testB);
-        anzahlAbt++;
     }
 
     public boolean insertAbteilung(Abteilung a) {
         if(this.abteilungArrayList.add(a)) {
-            anzahlAbt++;
-            System.out.println("[INFO] Abteilung hinzugefügt");
+            System.out.println("[INFO] Abteilung " + a.getKürzel() + " hinzugefügt");
             return true;
         } else {
             System.out.println("[ERROR] Fehler in insertAbteilung");
@@ -54,13 +33,11 @@ public class OrganisationContainer implements Serializable {
 
     public boolean insertSachgebiet(Sachgebiet a, String abteilungsKürzel) {
         Abteilung abteilung = getAbteilungByKürzel(abteilungsKürzel);
-
-        if(true){
-            System.out.println("[INFO] Organisation angelegt");
-            anzahlSach++;
+        if(abteilung.getSachgebiete().add(a)){
+            System.out.println("[INFO] Sachgebiet " + a.getKürzel() + "zur Abteilung " + abteilung.getKürzel() + " hinzugefügt!");
             return true;
         } else {
-            System.out.println("[WARNING] Fehler");
+            System.out.println("[ERROR] Fehler in insertSachgebiet");
             return false;
         }
     }
@@ -105,31 +82,32 @@ public class OrganisationContainer implements Serializable {
 
         return abteilungen;
     }
+
     public boolean anyAbteilungExisting(){
-      return true;
+        if(abteilungArrayList.size() != 0) {
+            return true;
+        }
+        return false;
     }
 
     public ArrayList<Abteilung> getAbteilungArrayList() {
-    return abteilungArrayList;
-  }
+        return abteilungArrayList;
+    }
 
     public void setAbteilungArrayList(ArrayList<Abteilung> abteilungArrayList) {
-    this.abteilungArrayList = abteilungArrayList;
-  }
+        this.abteilungArrayList = abteilungArrayList;
+    }
 
-    public int getAnzahlAbt() {
-    return anzahlAbt;
-  }
+    public int getAnzahlAbteilungen() {
+        return abteilungArrayList.size();
+    }
 
-    public void setAnzahlAbt(int anzahlAbt) {
-    this.anzahlAbt = anzahlAbt;
-  }
-
-    public int getAnzahlSach() {
-    return anzahlSach;
-  }
-
-    public void setAnzahlSach(int anzahlSach) {
-    this.anzahlSach = anzahlSach;
-  }
+    public int getAnzahlSachgebiete() {
+        int anzahl = 0;
+        Iterator<Abteilung> abteilungIterator = abteilungArrayList.iterator();
+        while(abteilungIterator.hasNext()) {
+            anzahl+=abteilungIterator.next().getSachgebiete().size();
+        }
+        return anzahl;
+    }
 }
