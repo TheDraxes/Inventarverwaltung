@@ -108,8 +108,14 @@ public class StartController implements Initializable {
         } else {
             adminMenue.setVisible(false);
         }
+        try {
+            orgContainer = orgContainer.loadOrganisationsData();
+        } catch (NullPointerException e){
+            orgContainer = new OrganisationContainer();
+            System.out.println("[FEHLER] Beim Laden des orgContainers");
+        }
 
-        orgContainer = new OrganisationContainer();
+
 
         System.out.println("[GUI] Start Fenster Initialisiert");
         System.out.println("[INFO] Speicherpfad: " + path);
@@ -593,6 +599,7 @@ public class StartController implements Initializable {
                     orgContainer.insertSachgebiet(result.getKey(), result.getValue());
                 }
             }
+            orgContainer.safeOrganisationsData();
         } else {
             Dialogs.warnDialog("Sie müssen zunächst einen Benutzer anlegen der als Leiter der Organisation eingestellt werden kann", "INFO");
         }
