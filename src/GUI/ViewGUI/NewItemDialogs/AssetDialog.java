@@ -13,19 +13,28 @@ import javafx.util.Pair;
  * Ruft die einzelnen Dialogklassen auf um die daten eingeben zu lassen
  * und bildet das Fertige Asset
  *
- * @auther Tim
+ * @author Tim
  * @version 1.0
  */
 
-public class AssetDialogs {
+public class AssetDialog {
   private TextField[] TextFields = new TextField[0];
   private Label[] Labels = new Label[0];
   private String[] labelNames = new String[0];
 
-
-  public Pair<Asset, String> getNewItem(String itemType, Asset actual) {
+  /**
+   * Nimmt die Unterscheidung der einzelnen Asset arten vor
+   *
+   * @param assetType -> art des assets
+   * @param actual -> zu editierendes Asset, null wenn ein neues Asset angelegt wird
+   * @return -> ein paar aus zwei werten. Asset,String
+   *
+   *      Asset -> das neu gebildete Asset
+   *      String -> Fehlermeldung wenn etwas schief geht
+   */
+  public Pair<Asset, String> getNewAsset(String assetType, Asset actual) {
     Pair pair;
-    switch (itemType) {
+    switch (assetType) {
       case "Fuhrpark":          //Fuhrpark
         this.labelNames = new Fuhrpark().getParamNames();
         setTextFields();
@@ -60,7 +69,13 @@ public class AssetDialogs {
     return new Pair<>(null, null);
   }
 
-  protected void setTextFields() {
+  /**
+   * Beschriftet die Labels mit den Parameter namen und setzt den PromptText der Textfelder
+   * auf die Parameter Namen
+   *
+   * @author Tim
+   */
+  private void setTextFields() {
     System.out.println(labelNames.length);
     Labels = new Label[labelNames.length];
     for (int i = 0; i < labelNames.length; i++) {

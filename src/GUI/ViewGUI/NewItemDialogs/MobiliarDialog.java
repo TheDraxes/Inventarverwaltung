@@ -10,7 +10,11 @@ import javafx.util.Pair;
 
 import java.util.Date;
 import java.util.Optional;
-
+/**
+ * Klasse die die eingabemaske für ein Mobiliar Asset aufbaut
+ *
+ * @author Tim
+ */
 public class MobiliarDialog extends AbstractDialog{
 
   public MobiliarDialog(String[] labelNames, Label[] labels, TextField[] textFields, Asset actual) {
@@ -40,8 +44,10 @@ public class MobiliarDialog extends AbstractDialog{
 
     if (actual != null) {
       buttonText = "Fertig";
+      dialog.setTitle("Editieren: Mobiliar");
     } else {
       buttonText = "Hinzufügen";
+      dialog.setTitle("Mobiliar");
     }
 
     dialog.setTitle("Neues Item");

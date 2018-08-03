@@ -17,7 +17,7 @@ import java.util.*;
 
 public class AssetContainer implements Serializable {
     private ArrayList<Asset> assetList = new ArrayList<Asset>();
-    private long id = 0;
+    private long id = 1;
     private String[] existingAssetTypes = {"Boden und Gebäude", "Fuhrpark", "Hardware", "Mobiliar", "Software", "Sonstiges"};
 
     // Eingabe der Inventarnummer id, Rückgabe des zugehörigen Assets
@@ -65,10 +65,10 @@ public class AssetContainer implements Serializable {
     public boolean insertAsset(Asset a) {
         System.out.println("[INFO] Asset hinzufügen...");
         try {
-            id++;
             a.setInventarnummer(id);
             if(assetList.add(a)) {
                 System.out.println("[INFO] Asset erfolgreich hinzugefügt");
+                id++;
                 return true;
             } else
                 System.out.println("[ERROR] Fehler beim hinzufügen des Assets");
@@ -86,6 +86,7 @@ public class AssetContainer implements Serializable {
         try {
             if(assetList.contains(a)) {
                 assetList.remove(a);
+                id--;
                 System.out.println("[INFO] Asset erfolgreich gelöscht");
                 return true;
             } else
@@ -164,6 +165,9 @@ public class AssetContainer implements Serializable {
             loaded.setId(id);
             loaded.setAssetList(list);
 
+            fileInputStream.close();
+            objectInputStream.close();
+
             System.out.println("[INFO] Inventar geladen!");
             return loaded;
         } catch (FileNotFoundException e) {
@@ -172,14 +176,8 @@ public class AssetContainer implements Serializable {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-        } finally {
-            try {
-                fileInputStream.close();
-                objectInputStream.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
+
         System.out.println("[ERROR] Fehler beim laden des Inventars!");
         return null;
     }

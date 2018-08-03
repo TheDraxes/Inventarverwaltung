@@ -46,8 +46,8 @@ public class UserContainer implements Serializable {
      *
      * Änderung des Passwortes eines Nutzers
      *
-     * @param username
-     * @param newPassword
+     * @param username -> Username von dem Benutzer dessen Passwort geändert werden soll
+     * @param newPassword -> Neues Passwort
      * @return boolean ob änderung erfolgreich war
      */
 
@@ -69,7 +69,7 @@ public class UserContainer implements Serializable {
      *
      * Änderung eines Nutzers
      *
-     * @param editedPerson
+     * @param editedPerson -> Ein Person Objekt in dem die geänderten Daten des Editierten benutzers stehen
      * @return boolean ob änderung erfolgreich war
      */
 
@@ -83,7 +83,6 @@ public class UserContainer implements Serializable {
             return true;
         } catch(Exception e) {
             System.out.println("[ERROR] Fehler beim editieren des Benutzers!");
-            e.printStackTrace();
         }
         return false;
     }
@@ -150,6 +149,9 @@ public class UserContainer implements Serializable {
                 UserContainer loaded = new UserContainer();
                 loaded.setUserData(list);
 
+                fileInputStream.close();
+                objectInputStream.close();
+
                 System.out.println("[INFO] Nutzerdaten erfolgreich eingelesen!");
                 return loaded;
             } else {
@@ -167,13 +169,6 @@ public class UserContainer implements Serializable {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-        } finally {
-            try {
-                fileInputStream.close();
-                objectInputStream.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
         System.out.println("[ERROR] Fehler beim Laden der Nutzerdaten!");
         return null;
@@ -213,6 +208,19 @@ public class UserContainer implements Serializable {
         }
         return usernames;
     }
+
+    public String[] getUserNamesWithoutAdmin() {
+        String[] usernames = new String[userData.size()-1];
+        int anz = 0;
+        for(int i = 0; i < userData.size(); i++){
+            if(!(userData.get(i).getUsername().equals("admin"))){
+                usernames[anz] = userData.get(i).getUsername();
+                anz++;
+            }
+        }
+        return usernames;
+    }
+
 
     /**
      * userExisting prüft, ob ein Nutzername bereits vorhanden ist
@@ -327,7 +335,7 @@ public class UserContainer implements Serializable {
         System.out.println("[INFO] Ausgabe aller Benutzernamen");
         Iterator<Person> it = userData.iterator();
         while (it.hasNext()) {
-            System.out.println("        -" + it.next().getUsername().toString());
+            System.out.println("        -" + it.next().getUsername());
         }
     }
 
@@ -335,7 +343,7 @@ public class UserContainer implements Serializable {
     public ArrayList<Person> getUserData() {
         return userData;
     }
-    public void setUserData(ArrayList<Person> userData) {
+    private void setUserData(ArrayList<Person> userData) {
         this.userData = userData;
     }
     public int getNumberOfUser() {

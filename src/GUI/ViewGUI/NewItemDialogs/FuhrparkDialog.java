@@ -15,7 +15,7 @@ import java.util.Optional;
 /**
  * Klasse die das Fuhrparkdialog aufbaut
  *
- * @auther Tim
+ * @author Tim
  * @version 1.0
  */
 
@@ -66,16 +66,16 @@ public class FuhrparkDialog extends AbstractDialog {
     }
 
     Dialog<Pair<Asset, String>> dialog = new Dialog<>();
-
     String buttonText = "";
 
     if(actual != null){
       buttonText = "Fertig";
+      dialog.setTitle("Editieren: Fuhrpark");
     } else {
       buttonText = "Hinzufügen";
+      dialog.setTitle("Fuhrpark");
     }
 
-    dialog.setTitle("Neues Item");
     ButtonType addButton = new ButtonType(buttonText, ButtonBar.ButtonData.OK_DONE);
     dialog.getDialogPane().getButtonTypes().addAll(addButton, ButtonType.CANCEL);
     dialog.getDialogPane().setStyle("-fx-background-color:  #b5edff");

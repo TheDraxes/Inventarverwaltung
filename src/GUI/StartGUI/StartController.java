@@ -1,8 +1,11 @@
 package GUI.StartGUI;
 
+import Data.Abteilung;
+import Data.Sachgebiet;
 import GUI.Dialogs;
 import Data.Person;
 import Verwaltung.AssetContainer;
+import Verwaltung.OrganisationContainer;
 import Verwaltung.UserContainer;
 import GUI.ViewGUI.ViewController;
 import javafx.application.Platform;
@@ -55,6 +58,9 @@ public class StartController implements Initializable {
     //Container für alle benutzerdaten
     private UserContainer userContainer;
 
+    //Container für Abteilungen und Sachgebiete
+    private OrganisationContainer orgContainer;
+
     //Anzahl der zur verfügung stehen Inventare
     private int inventoryCounter = 0;
 
@@ -72,10 +78,9 @@ public class StartController implements Initializable {
      * und Überpfüft ob das Adminmenue angezeigt werden muss
      *
      * @author Tim
-     * @version 1.0
      */
     @FXML
-    public void initialize(){
+    protected void initialize(){
         ObservableList<String> _default = FXCollections.observableArrayList();
         File lookUp = new File(path);
 
@@ -103,8 +108,12 @@ public class StartController implements Initializable {
         } else {
             adminMenue.setVisible(false);
         }
+
+        orgContainer = new OrganisationContainer();
+
         System.out.println("[GUI] Start Fenster Initialisiert");
         System.out.println("[INFO] Speicherpfad: " + path);
+        System.out.println(userContainer.getNumberOfUser());
     }
 
     /**
@@ -112,14 +121,21 @@ public class StartController implements Initializable {
      *
      * @param event ->  event das beim Klick ausgelöst wird. Scenebuilder verlangt nach diesem
      *                  Übergabeparameter wird jedoch nich benötigt
-     * @auther Tim
+     * @author Tim
      * @version 1.0
      */
     @FXML
-    void deleteInventoryClicked(ActionEvent event) {
+    protected void deleteInventoryClicked(ActionEvent event) {
         File a = new File(path + "/" + InventarBox.getValue() + ".Inv");
+         if(InventarBox.getValue().equals("Kein Eintrag gefunden!")){
+          Dialogs.warnDialog("Es wurde noch kein Inventar angelegt!", "Warnung");
+          return;
+        } else if(!a.exists()){
+           Dialogs.warnDialog("Inventar Existiert nicht!", "Warnung");
+           return;
+         }
         boolean confirmed = Dialogs.confirmDialog(InventarBox.getValue() + " wirklich Löschen?");
-        if(confirmed && a.exists()){
+        if(confirmed){
             if(a.delete()) {
                 inventoryCounter--;
                 System.out.println("[INFO]" + "Inventar \"" + InventarBox.getValue() + "\" wurde gelöscht");
@@ -134,13 +150,18 @@ public class StartController implements Initializable {
      * @param event
      */
     @FXML
-    void newSafeLocation(ActionEvent event) {
+    protected void newSafeLocation(ActionEvent event) {
         setLookAndFeel();
+
+        File lookUp = new File(path);
+        File[] fileArray = lookUp.listFiles();
 
         JFileChooser fc = new JFileChooser();
         fc.setDialogTitle("Speicherpfad für die Inventarverwaltung");
         fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+
         int returnVal = fc.showOpenDialog(null);
+
         File f;
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             f = fc.getSelectedFile();
@@ -154,6 +175,29 @@ public class StartController implements Initializable {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+
+        for(File file : fileArray){
+            if(file.getName().endsWith(".Inv")){
+                try {
+                    File fSrc = new File("" + file); // Quelldatei
+                    File fDes = new File(path + "\\" + file.getName()); // Zieldatei
+                    FileInputStream fis = new FileInputStream(fSrc); //Stream fuer Quelldatei
+                    FileOutputStream fos = new FileOutputStream(fDes); //Stream fuer Zieldatei
+
+                    byte buf[] = new byte[1024]; // Buffer für gelesene Daten
+                    while (fis.read(buf) != -1) { // solange lesen, bis EOF
+                        fos.write(buf); // Inhalt schreiben
+                    }
+                    fis.close();
+                    fos.flush();
+                    fos.close();
+
+                    file.delete();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
         }
         initialize();
     }
@@ -177,22 +221,25 @@ public class StartController implements Initializable {
     /**
      *
      * Funktion die ein neues Inventar anlegt
-     *
-     * @param event
-     * @auther Tim
+     * @param event ->
+     * @author Tim
      */
     @FXML
-    void newInventoryClicked(ActionEvent event) {
+    protected void newInventoryClicked(ActionEvent event) {
 
-        String input = Dialogs.inputDialog("Inventar","Eingabe", "Inventarnamen Eingeben!");
+        if(false){
+            Dialogs.warnDialog("Es müssen zunächst Sachgebiete angelegt werden!", "Info");
+            return;
+        }
 
+        String input = Dialogs.inventoryNameDialog(orgContainer ,"Eingabe", "Inventarnamen Eingeben!");
         if(input == null){
             System.out.println("[INFO] Anlegen abgebrochen");
         } else {
             if (!input.equals("")) {
                 boolean alreadyTaken = false;
-                for(int i = 0; i < inventories.length; i++ ){
-                    if(input.equals(inventories[i])){
+                for(String inventory : inventories){
+                    if(input.equals(inventory)){
                         alreadyTaken = true;
                     }
                 }
@@ -221,10 +268,10 @@ public class StartController implements Initializable {
      *
      * @param event
      * @throws IOException
-     * @auther Tim
+     * @author Tim
      */
     @FXML
-    void confirmInventoryClicked(ActionEvent event) throws IOException {
+    protected void confirmInventoryClicked(ActionEvent event) throws IOException {
         System.out.println("[INFO] Speicherpfad: " + path);
         if(inventoryCounter != 0) {
 
@@ -235,7 +282,7 @@ public class StartController implements Initializable {
             Parent root = loader.load();
 
             ViewController controller = loader.getController();
-            controller.getParams(InventarBox.getValue(), path, userContainer,user);
+            controller.getParams(InventarBox.getValue(), path, userContainer,user, orgContainer);
 
             Stage newWindow = new Stage();
             newWindow.setResizable(false);
@@ -245,17 +292,16 @@ public class StartController implements Initializable {
         } else {
             Dialogs.warnDialog("Keinen Eintrag ausgewählt!", "Warnung");
         }
-
     }
 
 
     /**
      * Logik für das anlegen eines neuen Benutzers
      * @param event
-     * @auther Tim
+     * @author Tim
      */
     @FXML
-    void newUserClicked(ActionEvent event){
+    protected  void newUserClicked(ActionEvent event){
         while (true) {
             String[] userData = buildNewUserWindow();
             if (userData == null) {
@@ -278,7 +324,7 @@ public class StartController implements Initializable {
                     Person newUser = new Person(userData[1],userData[0],men,userData[3], admin);
 
                     userContainer.insertUser(newUser);
-                    Dialogs.warnDialog("Neuen Benutzer erfolgreich angelegt!", "Warnung");
+                    Dialogs.warnDialog("Neuen Benutzer erfolgreich angelegt!", "Info");
 
                     System.out.println("[INFO] neuen Benutzer angelegt");
                     initialize();
@@ -292,12 +338,11 @@ public class StartController implements Initializable {
     /**
      * Aufgerufene Methode beim click auf den Passwort ändern Menüeintrag
      *
-     * @TODO Sollte Funktionieren sobald die Methode im UserContainer Implementiert ist
-     * @auther Tim
+     * @author Tim
      */
 
     @FXML
-    public void editPasswordClicked(){
+    protected void editPasswordClicked(){
         while (true) {
             Pair pwPair = Dialogs.changePw(user);
             String errMessage = (String) pwPair.getValue();
@@ -306,10 +351,12 @@ public class StartController implements Initializable {
                 if (errMessage.startsWith("[INFO]")) {
                     break;
                 }
+                System.out.println(errMessage);
             }
 
             if(pwPair.getKey() != null) {
                 userContainer.changePassword(user.getUsername(), (String) pwPair.getKey());
+                Dialogs.warnDialog("Passwort erfolgreich geändert!", "Info");
                 break;
             }
         }
@@ -318,14 +365,17 @@ public class StartController implements Initializable {
     /**
      * Funktion um ausgewählte benutzer zu Bearbeiten
      *
-     * @auther Tim
+     * @author Tim
      */
     @FXML
-    public void editUserClicked(){
+    protected void editUserClicked(){
         Person choosen = chooseUserWindow();
         if(choosen != null) {
             Person edited = Dialogs.editUserWindow(choosen);
-            userContainer.editUser(edited);
+            if(edited != null) {
+              userContainer.editUser(edited);
+              System.out.println("[INFO] Vorgang abgebrochen!");
+            }
         } else {
             System.out.println("[INFO] Vorgang abgebrochen!");
         }
@@ -335,7 +385,7 @@ public class StartController implements Initializable {
      * Funktion um mehrere ausgewählte nutzer zu löschen
      */
     @FXML
-    public void deleteUser(){
+    protected void deleteUser(){
         while (true) {
             Person deleted = chooseUserWindow();
             if (deleted != null) {
@@ -353,22 +403,20 @@ public class StartController implements Initializable {
      * Objekt vom typ Person zurückgibt
      *
      * @return Person -> ausgewählte person z.B zum editieren
-     * @auther Tim
+     * @author Tim
      */
-    public Person chooseUserWindow() {
+    private Person chooseUserWindow() {
         Dialog<Person> dialog = new Dialog<>();
-        dialog.setTitle("Passwort ändern");
+        dialog.setTitle("Benutzer wählen");
 
         String[] userNames = userContainer.getUserNames();
 
         ObservableList user = FXCollections.observableArrayList(userNames);
 
         ComboBox userComboBox= new ComboBox<>(user);
-        if(userNames[1].equals("")) {
-            userComboBox.setValue(userNames[0]);
-        } else {
-            userComboBox.setValue(userNames[1]);
-        }
+
+        userComboBox.setValue(this.user.getUsername());
+
 
         ButtonType OK_Button = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
         dialog.getDialogPane().getButtonTypes().addAll(OK_Button, ButtonType.CANCEL);
@@ -404,10 +452,10 @@ public class StartController implements Initializable {
     /**
      * Funktion die aufgerufen wird wenn der Logout button gedrückt wurde
      *
-     * @auther Tim
+     * @author Tim
      */
     @FXML
-    public void logoutButtonClicked() {
+    protected void logoutButtonClicked() {
         Stage lastWindow = (Stage) userLabel.getScene().getWindow();
         lastWindow.hide();
 
@@ -435,9 +483,9 @@ public class StartController implements Initializable {
      * Baut ein Fenster auf in dem die Daten für einen neuen Benutzer eingetragen werden
      *
      * @return
-     * @auther Tim
+     * @author Tim
      */
-    public String[] buildNewUserWindow(){
+    private String[] buildNewUserWindow(){
         Dialog<String[]> dialog = new Dialog<>();
         dialog.setTitle("Neuer Benutzer");
         ButtonType addButton = new ButtonType("Hinzufügen" ,ButtonBar.ButtonData.OK_DONE);
@@ -513,6 +561,40 @@ public class StartController implements Initializable {
             return result.get();
         } else {
             return null;
+        }
+    }
+    @FXML
+    protected void addNewOrganisation(){
+        if(userContainer.getNumberOfUser() > 1) {
+            int choosen = Dialogs.chooseOrgDialog(orgContainer.anyAbteilungExisting());
+            if (choosen < 0) {
+                System.out.println("[INFO] Vorgang abgebrochen");
+            } else if (choosen == 0) {
+                //Abteilung
+                Pair<Abteilung,String> result = Dialogs.newAbteilungWindow(userContainer);
+                if(result == null){
+                    return;
+                }
+                if(result.getValue() != null){
+                    Dialogs.warnDialog(result.getValue(),"Warnung");
+                    return;
+                } else {
+                    orgContainer.insertAbteilung(result.getKey());
+                }
+            } else if (choosen == 1) {
+                Pair<Sachgebiet,String> result = Dialogs.newSachgebietWindow(orgContainer,userContainer);
+                if(result == null){
+                    return;
+                }
+                if(result.getValue() != null && result.getKey() == null){
+                    Dialogs.warnDialog(result.getValue(),"Warnung");
+                    return;
+                } else {
+                    orgContainer.insertSachgebiet(result.getKey(), result.getValue());
+                }
+            }
+        } else {
+            Dialogs.warnDialog("Sie müssen zunächst einen Benutzer anlegen der als Leiter der Organisation eingestellt werden kann", "INFO");
         }
     }
 

@@ -11,6 +11,12 @@ import javafx.util.Pair;
 import java.util.Date;
 import java.util.Optional;
 
+/**
+ * Klasse die die Eingabemaske für ein Hardware Asset aufbaut
+ *
+ * @author Tim
+ */
+
 public class HardwareDialog extends AbstractDialog{
   public HardwareDialog(String[] labelNames, Label[] labels, TextField[] textFields, Asset actual) {
     super(labelNames, labels, textFields, actual);
@@ -34,16 +40,16 @@ public class HardwareDialog extends AbstractDialog{
       }
     }
     Dialog<Pair<Asset, String>> dialog = new Dialog<>();
-
     String buttonText = "";
 
     if (actual != null) {
       buttonText = "Fertig";
+      dialog.setTitle("Editieren: Hardware");
     } else {
       buttonText = "Hinzufügen";
+      dialog.setTitle("Hardware");
     }
 
-    dialog.setTitle("Neues Item");
     ButtonType addButton = new ButtonType(buttonText, ButtonBar.ButtonData.OK_DONE);
     dialog.getDialogPane().getButtonTypes().addAll(addButton, ButtonType.CANCEL);
     dialog.getDialogPane().setStyle("-fx-background-color:  #b5edff");

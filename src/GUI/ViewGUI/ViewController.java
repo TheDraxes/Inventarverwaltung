@@ -4,8 +4,12 @@ package GUI.ViewGUI;
 import Data.Asset;
 import Data.Person;
 import GUI.Dialogs;
-import GUI.ViewGUI.NewItemDialogs.AssetDialogs;
+import GUI.ViewGUI.CellFactories.AnschaffungswertCellFactory;
+import GUI.ViewGUI.CellFactories.InsDateCellFactory;
+import GUI.ViewGUI.Comparators.AnschaffungswertComparator;
+import GUI.ViewGUI.NewItemDialogs.AssetDialog;
 import Verwaltung.AssetContainer;
+import Verwaltung.OrganisationContainer;
 import Verwaltung.UserContainer;
 import GUI.StartGUI.StartController;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -85,6 +89,9 @@ public class ViewController implements Initializable {
     //Container für die asseteinträge
     private AssetContainer assetContainer = new AssetContainer();
 
+    //Container für abteilungen und sachgebiete
+    private OrganisationContainer orgContainer = new OrganisationContainer();
+
     //Container für die gefilterten Assets
     private ArrayList filteredList = new ArrayList();
 
@@ -103,6 +110,10 @@ public class ViewController implements Initializable {
     //momentan eingeloggter User
     private Person user;
 
+    //Menu für die Summary Buttons
+    @FXML
+    private Menu summaryMenu;
+
 
     /**
      * Funktion die das View Initialisiert
@@ -112,20 +123,34 @@ public class ViewController implements Initializable {
      *
      * auf  um die tablle zu füllen
      *
-     * @auther Tim
+     * @author Tim
      */
     @FXML
-    public void initialize(){
+    protected void initialize() {
         completePath = path + "\\" + invName + ".Inv";
+        File inventoryFile = new File(completePath);
 
-        File a = new File(completePath);
-
-        assetContainer = assetContainer.loadInventar(a.getPath());
+        assetContainer = assetContainer.loadInventar(inventoryFile.getPath());
         itemTable.setPlaceholder(new Label("Keine Anlage-gegenstände gefunden"));
 
         ArrayList<Asset> arrayList = assetContainer.getAssetList();
-
         fillTable();
+        for (int i = 0; i < orgContainer.getAnzahlAbt(); i++) {
+            MenuItem menuItem = new MenuItem();
+            menuItem.setText(orgContainer.getAbteilungsKürzel()[i]);
+            menuItem.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    MenuItem menuItem = (MenuItem) event.getSource();
+                    summary(menuItem.getText());
+                }
+            });
+            summaryMenu.getItems().add(menuItem);
+        }
+    }
+
+
+    private void summary(String abteilung){
 
     }
 
@@ -133,7 +158,7 @@ public class ViewController implements Initializable {
      * Füllt die Tabelle mit den daten aus dem Assetcontainer
      * hier ist auch die Klasse für die Editbuttons inline geschrieben
      *
-     * @auther Tim
+     * @author Tim
      */
     private void fillTable(){
         ArrayList<Asset> arrayList;
@@ -148,8 +173,11 @@ public class ViewController implements Initializable {
         NRColumn.setCellValueFactory(new PropertyValueFactory<>("inventarnummer"));
         bezColumn.setCellValueFactory(new PropertyValueFactory<>("bezeichnung"));
         countColumn.setCellValueFactory(new PropertyValueFactory<>("anzahl"));
-        valueColumn.setCellValueFactory(new PropertyValueFactory<>("anschaffungswertString"));
-        dateColumn.setCellValueFactory(new PropertyValueFactory<>("inserierungsdatumString"));
+        valueColumn.setCellValueFactory(new PropertyValueFactory<Asset,Double>("anschaffungswert"));
+        valueColumn.setComparator(new AnschaffungswertComparator());
+        valueColumn.setCellFactory(new AnschaffungswertCellFactory());
+        dateColumn.setCellValueFactory(new PropertyValueFactory<Asset,Date>("inserierungsdatum"));
+        dateColumn.setCellFactory(new InsDateCellFactory());
 
         ActionColumn.setCellValueFactory(
                 new Callback<TableColumn.CellDataFeatures<Asset, Boolean>,
@@ -168,6 +196,11 @@ public class ViewController implements Initializable {
                     }
                 });
 
+        NRColumn.setStyle("-fx-alignment: CENTER-RIGHT;");
+        valueColumn.setStyle("-fx-alignment: CENTER-RIGHT;");
+        countColumn.setStyle("-fx-alignment: CENTER-LEFT;");
+        bezColumn.setStyle("-fx-alignment: CENTER-LEFT;");
+        dateColumn.setStyle("-fx-alignment: CENTER;");
 
         ObservableList<Asset> list = FXCollections.observableArrayList(arrayList);
 
@@ -177,7 +210,7 @@ public class ViewController implements Initializable {
     /**
      * Private Klassendefinition für den editbutton in der Tabelle
      *
-     * @auther Tim
+     * @author Tim
      */
     private class ButtonCell extends TableCell<Asset, Boolean> {
         final Button cellButton = new Button("        ");
@@ -200,7 +233,7 @@ public class ViewController implements Initializable {
                     String assetClass = selectedAsset.getClass().toString().substring(11);
                     System.out.println(assetClass);
 
-                    Asset editedAsset = new AssetDialogs().getNewItem(assetClass, selectedAsset).getKey();
+                    Asset editedAsset = new AssetDialog().getNewAsset(assetClass, selectedAsset).getKey();
                     editedAsset.display();
 
                     assetContainer.editItemById(selectedAsset.getInventarnummer(), editedAsset);
@@ -223,8 +256,14 @@ public class ViewController implements Initializable {
             }
         }
     }
+
+    /**
+     * Setzt alle Filter zurück
+     *
+     * @author Tim
+     */
     @FXML
-    void resetFilter(){
+    protected void resetFilter(){
         ActiveFilter=false;
         filteredList = null;
 
@@ -233,19 +272,18 @@ public class ViewController implements Initializable {
     }
 
     /**
-     * logik für das anlegen eines neuen Items
+     * logik für das anlegen eines neuen Asset
      * @param event
      */
     @FXML
-    private void addItemClicked(ActionEvent event) {
-        String itemType = askForItemType();
-        System.out.println(itemType);
-        if(itemType != null && itemType.equals("Boden und Gebäude")){
-            itemType = "BodenUndGebaeude";
+    protected void addAssetClicked(ActionEvent event) {
+        String assetType = askForAssetType();
+        if(assetType != null && assetType.equals("Boden und Gebäude")){
+            assetType = "BodenUndGebaeude";
         }
-        if (itemType != "" && itemType != null) {
+        if (assetType != "" && assetType != null) {
             while (true) {
-                Pair pair = new AssetDialogs().getNewItem(itemType, null);
+                Pair pair = new AssetDialog().getNewAsset(assetType, null);
                 if (pair.getValue() == null && pair.getKey() != null) {
                     Asset b = (Asset) pair.getKey();
                     assetContainer.insertAsset(b);
@@ -258,7 +296,6 @@ public class ViewController implements Initializable {
             }
             fillTable();
         }
-        System.out.println("Test");
     }
 
     /**
@@ -269,12 +306,13 @@ public class ViewController implements Initializable {
      * @param userContainer -> container der userdaten
      * @param user -> momentan eingeloggter user
      */
-    public void getParams(String inventoryName, String path, UserContainer userContainer, Person user){
+    public void getParams(String inventoryName, String path, UserContainer userContainer, Person user, OrganisationContainer organisationContainer){
         nameLabel.setText("Eingeloggt als: " + user.getUsername());
         this.path = path;
         this.invName = inventoryName;
         this.userContainer = userContainer;
         this.user = user;
+        this.orgContainer = organisationContainer;
         initialize();
     }
 
@@ -288,7 +326,7 @@ public class ViewController implements Initializable {
      *
      * @return
      */
-    protected String askForItemType(){
+    private String askForAssetType(){
         List<String> choices = new ArrayList<>();
         AssetContainer a = new AssetContainer();
         for(int i = 0; i < a.getExistingAssetTypes().length; i++) {
@@ -315,7 +353,7 @@ public class ViewController implements Initializable {
      * @param event
      */
     @FXML
-    void backClicked(ActionEvent event){
+    protected void backClicked(ActionEvent event){
 
         assetContainer.safeInventar(completePath);
 
@@ -339,8 +377,19 @@ public class ViewController implements Initializable {
         stage.setScene(new Scene(root));
         stage.show();
     }
+
+    /**
+     * Fragt nach den Anzuwendenden Filter und übergibt sie an den AssetContainer
+     * Die antwort ist eine gefilterte Liste die ans das ViewController objekt über-
+     * geben wird.
+     *
+     * der boolean activefilter bestimmt ob beim aufruf von fillTable() die gefilterte Liste
+     * angezeigt wird oder nich
+     *
+     * @author Tim
+     */
     @FXML
-    void filterClicked (){
+    protected void filterClicked (){
         boolean[] filter = Dialogs.getFilter();
         if(filter != null){
             ActiveFilter = true;

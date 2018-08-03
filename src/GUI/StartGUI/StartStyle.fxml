@@ -76,6 +76,13 @@
                   <MenuItem mnemonicParsing="false" onAction="#editUserClicked" text="Benutzer ändern" />
               </items>
             </Menu>
+            <Menu mnemonicParsing="false" text="Organistation">
+              <items>
+                <MenuItem mnemonicParsing="false" onAction="#addNewOrganisation" text="Anlegen" />
+                  <MenuItem mnemonicParsing="false" text="Bearbeiten" />
+                  <MenuItem mnemonicParsing="false" text="Löschen" />
+              </items>
+            </Menu>
         </menus>
       </MenuBar>
       <GridPane GridPane.rowIndex="3">

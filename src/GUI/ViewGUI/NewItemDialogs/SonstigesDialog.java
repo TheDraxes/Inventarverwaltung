@@ -10,7 +10,11 @@ import javafx.util.Pair;
 
 import java.util.Date;
 import java.util.Optional;
-
+/**
+ * Klasse die die eingabemaske für ein Sonstiges Asset aufbaut
+ *
+ * @author Tim
+ */
 public class SonstigesDialog extends AbstractDialog {
   public SonstigesDialog(String[] labelNames, Label[] labels, TextField[] textFields, Asset actual) {
     super(labelNames, labels, textFields, actual);
@@ -39,8 +43,10 @@ public class SonstigesDialog extends AbstractDialog {
 
     if (actual != null) {
       buttonText = "Fertig";
+      dialog.setTitle("Editieren: Sonstiges");
     } else {
       buttonText = "Hinzufügen";
+      dialog.setTitle("Sonstiges");
     }
 
     dialog.setTitle("Neues Item");
