@@ -17,7 +17,7 @@ import java.util.*;
 
 public class AssetContainer implements Serializable {
     private ArrayList<Asset> assetList = new ArrayList<Asset>();
-    private long id = 0;
+    private long id = 1;
     private String[] existingAssetTypes = {"Boden und Gebäude", "Fuhrpark", "Hardware", "Mobiliar", "Software", "Sonstiges"};
 
     // Eingabe der Inventarnummer id, Rückgabe des zugehörigen Assets

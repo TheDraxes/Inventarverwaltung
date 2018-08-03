@@ -16,7 +16,7 @@ public abstract class AbstractDialog {
   protected Asset actual;
 
   //Konstruktor
-  public AbstractDialog(String[] labelNames, Label[] labels, TextField[] textFields, Asset actual) {
+  protected AbstractDialog(String[] labelNames, Label[] labels, TextField[] textFields, Asset actual) {
     this.labelNames = labelNames;
     this.Labels = labels;
     this.TextFields = textFields;

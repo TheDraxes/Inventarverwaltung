@@ -1,6 +1,10 @@
 package TestKlassen;
 
+import Data.Asset;
 import Data.Fuhrpark;
+import Data.Software;
+
+import java.util.ArrayList;
 
 public class AllgemeineTests {
   public static void main(String[]args){
@@ -23,6 +27,45 @@ public class AllgemeineTests {
     Double test = Double.parseDouble(a);
 
     System.out.println(test);
+
+    Fuhrpark fuhrpark1 = new Fuhrpark();
+    fuhrpark1.setBezeichnung("test");
+
+    Fuhrpark fuhrpark2 = new Fuhrpark();
+    fuhrpark2.setBezeichnung("test");
+
+    Fuhrpark fuhrpark3 = new Fuhrpark();
+    fuhrpark3.setBezeichnung("test");
+
+    Software software1 = new Software();
+    software1.setBezeichnung("testSoftware");
+
+    Software software2 = new Software();
+    software2.setBezeichnung("testSoftware");
+
+    Software software3 = new Software();
+    software3.setBezeichnung("testSoftware");
+
+
+
+    ArrayList<Asset> list1 = new ArrayList<>();
+    list1.add(fuhrpark1);
+    list1.add(fuhrpark2);
+    list1.add(fuhrpark3);
+
+    ArrayList<Asset> list2 = new ArrayList<>();
+    list2.add(software1);
+    list2.add(software2);
+    list2.add(software3);
+
+
+    list1.addAll(list2);
+
+    for(Asset asset : list1){
+      asset.display();
+    }
+
+
   }
 
   public static String resetFormat(String formatted){

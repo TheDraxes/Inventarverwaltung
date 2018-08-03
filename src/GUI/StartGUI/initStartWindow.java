@@ -31,7 +31,7 @@ public class initStartWindow {
      * @param userContainer Container zur Userdaten verwaltung
      * @param user name des eingeloggten Users
      */
-    public initStartWindow(UserContainer userContainer, Person user) {
+    protected initStartWindow(UserContainer userContainer, Person user) {
         String path;
         File startUp = new File("startUp.dat");
         if(startUp.exists()){
@@ -76,7 +76,7 @@ public class initStartWindow {
      * @param safe  File Objekt welches den Pfad zu der startUp.dat enthält
      * @return String
      */
-    public static String readPath(File safe){
+    private static String readPath(File safe){
         try {
             FileInputStream inStream = new FileInputStream(safe);
             ObjectInputStream obStream = new ObjectInputStream(inStream);
@@ -100,7 +100,7 @@ public class initStartWindow {
      * @return
      */
 
-    public static String askForPath(){
+    private static String askForPath(){
 
         setLookAndFeel();
         JOptionPane.showMessageDialog(null,"Pfad zur Inventarverwaltung nicht gefunden! Bitte wähle einen Pfad aus!");
@@ -122,7 +122,7 @@ public class initStartWindow {
      * setzt das Look and Feel für Swing elemente
      *      -> müsste noch durch Javafx ersetzt werden
      */
-    public static void setLookAndFeel(){
+    private static void setLookAndFeel(){
         String laf = UIManager.getSystemLookAndFeelClassName();
         try {
             UIManager.setLookAndFeel(laf);

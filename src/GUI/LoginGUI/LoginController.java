@@ -36,7 +36,7 @@ public class LoginController {
     private UserContainer userContainer = new UserContainer();
 
     //Anzahl Fehlgeschlagener Loginversuche
-    int loginTries = 0;
+    private int loginTries = 0;
 
     //Username vom letzten anmeldeversuch
     private String lastUser = "";
@@ -49,7 +49,7 @@ public class LoginController {
      */
 
     @FXML
-    public void initialize(){
+    protected void initialize(){
         this.userContainer = userContainer.loadUserData();
         this.userContainer.displayAllUserName();
         System.out.println("[GUI] Login Fenster Initialisiert");
@@ -67,7 +67,7 @@ public class LoginController {
      */
 
     @FXML
-    void keyBoardPressed(KeyEvent event){
+    protected void keyBoardPressed(KeyEvent event){
         if(event.getCode().equals(KeyCode.ENTER)){
             loginButtonClicked();
         }
@@ -86,7 +86,7 @@ public class LoginController {
      */
 
     @FXML
-    void loginButtonClicked() {
+    protected void loginButtonClicked() {
         String username = usernameField.getText();
         String password = passwordField.getText();
 

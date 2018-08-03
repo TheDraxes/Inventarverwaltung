@@ -80,7 +80,7 @@ public class StartController implements Initializable {
      * @author Tim
      */
     @FXML
-    public void initialize(){
+    protected void initialize(){
         ObservableList<String> _default = FXCollections.observableArrayList();
         File lookUp = new File(path);
 
@@ -125,7 +125,7 @@ public class StartController implements Initializable {
      * @version 1.0
      */
     @FXML
-    void deleteInventoryClicked(ActionEvent event) {
+    protected void deleteInventoryClicked(ActionEvent event) {
         File a = new File(path + "/" + InventarBox.getValue() + ".Inv");
          if(InventarBox.getValue().equals("Kein Eintrag gefunden!")){
           Dialogs.warnDialog("Es wurde noch kein Inventar angelegt!", "Warnung");
@@ -150,7 +150,7 @@ public class StartController implements Initializable {
      * @param event
      */
     @FXML
-    void newSafeLocation(ActionEvent event) {
+    protected void newSafeLocation(ActionEvent event) {
         setLookAndFeel();
 
         File lookUp = new File(path);
@@ -225,7 +225,7 @@ public class StartController implements Initializable {
      * @author Tim
      */
     @FXML
-    void newInventoryClicked(ActionEvent event) {
+    protected void newInventoryClicked(ActionEvent event) {
 
         if(false){
             Dialogs.warnDialog("Es müssen zunächst Sachgebiete angelegt werden!", "Info");
@@ -271,7 +271,7 @@ public class StartController implements Initializable {
      * @author Tim
      */
     @FXML
-    void confirmInventoryClicked(ActionEvent event) throws IOException {
+    protected void confirmInventoryClicked(ActionEvent event) throws IOException {
         System.out.println("[INFO] Speicherpfad: " + path);
         if(inventoryCounter != 0) {
 
@@ -301,7 +301,7 @@ public class StartController implements Initializable {
      * @author Tim
      */
     @FXML
-    void newUserClicked(ActionEvent event){
+    protected  void newUserClicked(ActionEvent event){
         while (true) {
             String[] userData = buildNewUserWindow();
             if (userData == null) {
@@ -342,7 +342,7 @@ public class StartController implements Initializable {
      */
 
     @FXML
-    public void editPasswordClicked(){
+    protected void editPasswordClicked(){
         while (true) {
             Pair pwPair = Dialogs.changePw(user);
             String errMessage = (String) pwPair.getValue();
@@ -368,7 +368,7 @@ public class StartController implements Initializable {
      * @author Tim
      */
     @FXML
-    public void editUserClicked(){
+    protected void editUserClicked(){
         Person choosen = chooseUserWindow();
         if(choosen != null) {
             Person edited = Dialogs.editUserWindow(choosen);
@@ -385,7 +385,7 @@ public class StartController implements Initializable {
      * Funktion um mehrere ausgewählte nutzer zu löschen
      */
     @FXML
-    public void deleteUser(){
+    protected void deleteUser(){
         while (true) {
             Person deleted = chooseUserWindow();
             if (deleted != null) {
@@ -405,7 +405,7 @@ public class StartController implements Initializable {
      * @return Person -> ausgewählte person z.B zum editieren
      * @author Tim
      */
-    public Person chooseUserWindow() {
+    private Person chooseUserWindow() {
         Dialog<Person> dialog = new Dialog<>();
         dialog.setTitle("Benutzer wählen");
 
@@ -455,7 +455,7 @@ public class StartController implements Initializable {
      * @author Tim
      */
     @FXML
-    public void logoutButtonClicked() {
+    protected void logoutButtonClicked() {
         Stage lastWindow = (Stage) userLabel.getScene().getWindow();
         lastWindow.hide();
 
@@ -485,7 +485,7 @@ public class StartController implements Initializable {
      * @return
      * @author Tim
      */
-    public String[] buildNewUserWindow(){
+    private String[] buildNewUserWindow(){
         Dialog<String[]> dialog = new Dialog<>();
         dialog.setTitle("Neuer Benutzer");
         ButtonType addButton = new ButtonType("Hinzufügen" ,ButtonBar.ButtonData.OK_DONE);
@@ -564,7 +564,7 @@ public class StartController implements Initializable {
         }
     }
     @FXML
-    public void addNewOrganisation(){
+    protected void addNewOrganisation(){
         if(userContainer.getNumberOfUser() > 1) {
             int choosen = Dialogs.chooseOrgDialog(orgContainer.anyAbteilungExisting());
             if (choosen < 0) {

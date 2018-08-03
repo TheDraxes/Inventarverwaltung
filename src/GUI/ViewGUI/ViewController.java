@@ -126,7 +126,7 @@ public class ViewController implements Initializable {
      * @author Tim
      */
     @FXML
-    public void initialize() {
+    protected void initialize() {
         completePath = path + "\\" + invName + ".Inv";
         File inventoryFile = new File(completePath);
 
@@ -150,7 +150,7 @@ public class ViewController implements Initializable {
     }
 
 
-    public void summary(String abteilung){
+    private void summary(String abteilung){
 
     }
 
@@ -176,7 +176,6 @@ public class ViewController implements Initializable {
         valueColumn.setCellValueFactory(new PropertyValueFactory<Asset,Double>("anschaffungswert"));
         valueColumn.setComparator(new AnschaffungswertComparator());
         valueColumn.setCellFactory(new AnschaffungswertCellFactory());
-
         dateColumn.setCellValueFactory(new PropertyValueFactory<Asset,Date>("inserierungsdatum"));
         dateColumn.setCellFactory(new InsDateCellFactory());
 
@@ -264,7 +263,7 @@ public class ViewController implements Initializable {
      * @author Tim
      */
     @FXML
-    void resetFilter(){
+    protected void resetFilter(){
         ActiveFilter=false;
         filteredList = null;
 
@@ -277,7 +276,7 @@ public class ViewController implements Initializable {
      * @param event
      */
     @FXML
-    private void addAssetClicked(ActionEvent event) {
+    protected void addAssetClicked(ActionEvent event) {
         String assetType = askForAssetType();
         if(assetType != null && assetType.equals("Boden und Gebäude")){
             assetType = "BodenUndGebaeude";
@@ -354,7 +353,7 @@ public class ViewController implements Initializable {
      * @param event
      */
     @FXML
-    void backClicked(ActionEvent event){
+    protected void backClicked(ActionEvent event){
 
         assetContainer.safeInventar(completePath);
 
@@ -390,7 +389,7 @@ public class ViewController implements Initializable {
      * @author Tim
      */
     @FXML
-    void filterClicked (){
+    protected void filterClicked (){
         boolean[] filter = Dialogs.getFilter();
         if(filter != null){
             ActiveFilter = true;
