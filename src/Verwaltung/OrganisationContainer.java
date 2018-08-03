@@ -1,12 +1,12 @@
 package Verwaltung;
 
 import Data.Abteilung;
-import Data.Asset;
 import Data.Person;
 import Data.Sachgebiet;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  *
@@ -16,7 +16,7 @@ import java.util.ArrayList;
  */
 
 public class OrganisationContainer implements Serializable {
-    private ArrayList<Abteilung> AbteilungsList = new ArrayList<Abteilung>();
+    private ArrayList<Abteilung> abteilungArrayList = new ArrayList<Abteilung>();
     private int anzahlAbt = 0;
     private int anzahlSach = 0;
 
@@ -35,24 +35,26 @@ public class OrganisationContainer implements Serializable {
         testA.addSachgebiet(testC);
         testB.addSachgebiet(testD);
 
-        AbteilungsList.add(0, testA);
+        abteilungArrayList.add(0, testA);
         anzahlAbt++;
-        AbteilungsList.add(1, testB);
+        abteilungArrayList.add(1, testB);
         anzahlAbt++;
     }
 
     public boolean insertAbteilung(Abteilung a) {
-        if(true){
-            System.out.println("[INFO] Organisation angelegt");
+        if(this.abteilungArrayList.add(a)) {
             anzahlAbt++;
+            System.out.println("[INFO] Abteilung hinzugefügt");
             return true;
         } else {
-            System.out.println("[WARNING] Fehler");
+            System.out.println("[ERROR] Fehler in insertAbteilung");
             return false;
         }
     }
 
     public boolean insertSachgebiet(Sachgebiet a, String abteilungsKürzel) {
+        Abteilung abteilung = getAbteilungByKürzel(abteilungsKürzel);
+
         if(true){
             System.out.println("[INFO] Organisation angelegt");
             anzahlSach++;
@@ -63,48 +65,71 @@ public class OrganisationContainer implements Serializable {
         }
     }
 
-    public String[] getSachgebietsKürzel(){
-      String[] sachgebietNames = {"GEW", "FAJ"};
-
-
-      return sachgebietNames;
+    public String[] getAllSachgebietsKuerzel() {
+        ArrayList<String> sachgebietNames = new ArrayList<String>();
+        Iterator<Abteilung> abteilungInterator = abteilungArrayList.iterator();
+        while(abteilungInterator.hasNext()) {
+            ArrayList<Sachgebiet> sachgebiete = abteilungInterator.next().getSachgebiete();
+            Iterator<Sachgebiet> sachgebietIterator = sachgebiete.iterator();
+            for(int i = 0; i < sachgebiete.size(); i++) {
+                sachgebietNames.add(sachgebietIterator.next().getKürzel());
+            }
+        }
+        String[] kuerzel = new String[sachgebietNames.size()];
+        int i = 0;
+        for (String s:sachgebietNames) {
+            kuerzel[i] = s;
+            i++;
+        }
+        return kuerzel;
     }
 
-    public Abteilung getAbteilungByKürzel(){
-      return new Abteilung();
+    public Abteilung getAbteilungByKürzel(String k){
+        Iterator<Abteilung> abteilungIterator = abteilungArrayList.iterator();
+        while(abteilungIterator.hasNext()) {
+            Abteilung abteilung = abteilungIterator.next();
+            if(abteilung.getKürzel().equals(k)) {
+                return abteilung;
+            }
+        }
+        System.out.println("[WARNING] Abteilung mit dem Kürzel " + k + "existiert nicht!");
+        return null;
     }
 
-    public String[] getAbteilungsKürzel(){
-      String[] abteilungsNames = {"GE", "FA"};
+    public String[] getAllAbteilungsKürzel(){
+        String[] abteilungen = new String[abteilungArrayList.size()];
+        Iterator<Abteilung> abteilungInterator = abteilungArrayList.iterator();
+        for(int i = 0; i < abteilungArrayList.size(); i++) {
+            abteilungen[i] = abteilungInterator.next().getKürzel();
+        }
 
-      return abteilungsNames;
+        return abteilungen;
     }
-
     public boolean anyAbteilungExisting(){
       return true;
     }
 
-  public ArrayList<Abteilung> getAbteilungsList() {
-    return AbteilungsList;
+    public ArrayList<Abteilung> getAbteilungArrayList() {
+    return abteilungArrayList;
   }
 
-  public void setAbteilungsList(ArrayList<Abteilung> abteilungsList) {
-    AbteilungsList = abteilungsList;
+    public void setAbteilungArrayList(ArrayList<Abteilung> abteilungArrayList) {
+    this.abteilungArrayList = abteilungArrayList;
   }
 
-  public int getAnzahlAbt() {
+    public int getAnzahlAbt() {
     return anzahlAbt;
   }
 
-  public void setAnzahlAbt(int anzahlAbt) {
+    public void setAnzahlAbt(int anzahlAbt) {
     this.anzahlAbt = anzahlAbt;
   }
 
-  public int getAnzahlSach() {
+    public int getAnzahlSach() {
     return anzahlSach;
   }
 
-  public void setAnzahlSach(int anzahlSach) {
+    public void setAnzahlSach(int anzahlSach) {
     this.anzahlSach = anzahlSach;
   }
 }

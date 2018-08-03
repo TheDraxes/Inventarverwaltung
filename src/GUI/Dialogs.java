@@ -44,7 +44,7 @@ public class Dialogs {
     public static String inventoryNameDialog(OrganisationContainer orgs, String title, String header){
         ObservableList<String> observableList =
                 FXCollections.observableArrayList(
-                        orgs.getSachgebietsKürzel());
+                        orgs.getAllSachgebietsKuerzel());
         TextField name = new TextField();
 
         ComboBox org = new ComboBox(observableList);
@@ -428,7 +428,7 @@ public class Dialogs {
   public static Pair<Sachgebiet,String> newSachgebietWindow(OrganisationContainer orgContainer, UserContainer userContainer){
     ObservableList<String> orgList =
             FXCollections.observableArrayList(
-                    orgContainer.getAbteilungsKürzel()
+                    orgContainer.getAllAbteilungsKürzel()
             );
 
     ObservableList<String> userList =
@@ -437,7 +437,7 @@ public class Dialogs {
             );
 
     ComboBox<String> abtBox = new ComboBox<>(orgList);
-    abtBox.setValue(orgContainer.getAbteilungsKürzel()[0]);
+    abtBox.setValue(orgContainer.getAllAbteilungsKürzel()[0]);
     ComboBox<String> userBox = new ComboBox<>(userList);
     userBox.setValue(userContainer.getUserNamesWithoutAdmin()[0]);
     TextField nameField = new TextField();

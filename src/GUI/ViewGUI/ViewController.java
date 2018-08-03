@@ -137,7 +137,7 @@ public class ViewController implements Initializable {
         fillTable();
         for (int i = 0; i < orgContainer.getAnzahlAbt(); i++) {
             MenuItem menuItem = new MenuItem();
-            menuItem.setText(orgContainer.getAbteilungsKürzel()[i]);
+            menuItem.setText(orgContainer.getAllAbteilungsKürzel()[i]);
             menuItem.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
