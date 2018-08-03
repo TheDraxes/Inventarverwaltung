@@ -19,21 +19,6 @@ public class OrganisationContainer implements Serializable {
     private ArrayList<Abteilung> abteilungArrayList = new ArrayList<Abteilung>();
 
     public OrganisationContainer(){
-        Person testPerson = new Person();
-        testPerson.setAdmin(true);
-        testPerson.setName("Tim");
-        testPerson.setSurname("Vinzing");
-        Abteilung testA = new Abteilung(testPerson, "E-Government", "GE");
-        Abteilung testB = new Abteilung(testPerson, "Fachapplikationen", "FA");
-
-        Sachgebiet testC = new Sachgebiet(testPerson, "E-Government Entwicklung", "GEW", testA);
-        Sachgebiet testD = new Sachgebiet(testPerson, "Fachapplikationen Justiz", "FAJ", testB);
-
-        testA.addSachgebiet(testC);
-        testB.addSachgebiet(testD);
-
-        abteilungArrayList.add(0, testA);
-        abteilungArrayList.add(1, testB);
     }
 
     public boolean insertAbteilung(Abteilung a) {
