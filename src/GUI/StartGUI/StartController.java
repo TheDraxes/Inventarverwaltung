@@ -59,7 +59,7 @@ public class StartController implements Initializable {
     private UserContainer userContainer;
 
     //Container für Abteilungen und Sachgebiete
-    private OrganisationContainer orgContainer;
+    private OrganisationContainer orgContainer = new OrganisationContainer();
 
     //Anzahl der zur verfügung stehen Inventare
     private int inventoryCounter = 0;
@@ -118,24 +118,24 @@ public class StartController implements Initializable {
         }
 
         //laden des Organisazionscontainers
-        if(orgContainer == null) {
-            try {
-                orgContainer = orgContainer.loadOrganisationsData();
 
-                if (!orgContainer.anyAbteilungExisting()) {
-                    editOrgButton.setVisible(false);
-                    delOrgButton.setVisible(false);
-                }
+        try {
+            orgContainer = orgContainer.loadOrganisationsData();
 
-                for (String a : orgContainer.getAllAbteilungsKürzel()) {
-                    System.out.println(a);
-                }
-
-            } catch (NullPointerException e) {
-                System.out.println("[FEHLER] Beim Laden des orgContainers");
+            if (!orgContainer.anyAbteilungExisting()) {
                 editOrgButton.setVisible(false);
                 delOrgButton.setVisible(false);
             }
+
+            for (String a : orgContainer.getAllAbteilungsKürzel()) {
+                System.out.println(a);
+            }
+
+        } catch (NullPointerException e) {
+            System.out.println("[FEHLER] Beim Laden des orgContainers");
+            editOrgButton.setVisible(false);
+            delOrgButton.setVisible(false);
+            e.printStackTrace();
         }
 
         System.out.println("[GUI] Start Fenster Initialisiert");
