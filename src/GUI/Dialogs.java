@@ -253,7 +253,6 @@ public class Dialogs {
                     edited.setAdmin(false);
                 }
                 if(logedPerson.isAdmin() && finalBlockedBox.getValue().equals("Ja")) {
-                    System.out.println("Test");
                     edited.setLocked(true);
                 } else {
                     edited.setLocked(false);
@@ -402,8 +401,6 @@ public class Dialogs {
             userContainer.getUserNamesWithoutAdmin()
         );
 
-        System.out.println(userContainer.getUserNamesWithoutAdmin());
-
         ComboBox<String> userBox = new ComboBox<>(userList);
         TextField nameField = new TextField();
         TextField shortcutField = new TextField();
@@ -421,7 +418,6 @@ public class Dialogs {
         grid.setPadding(new Insets(20,150,10,10));
 
         if(actual != null){
-            userBox.setValue(actual.getLeiter().getUsername());
             nameField.setText(actual.getName());
             shortcutField.setText(actual.getKürzel());
         }
