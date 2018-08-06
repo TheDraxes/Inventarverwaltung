@@ -148,7 +148,7 @@ public class OrganisationContainer implements Serializable {
     }
 
     public boolean anyAbteilungExisting(){
-        if(abteilungArrayList.size() != 0) {
+        if(abteilungArrayList.size() > 0) {
             return true;
         }
         return false;
