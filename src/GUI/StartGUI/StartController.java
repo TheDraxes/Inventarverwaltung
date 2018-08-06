@@ -88,7 +88,6 @@ public class StartController implements Initializable {
      */
     @FXML
     protected void initialize(){
-        orgContainer = new DVZ_Organisation().get();
         //Aufsetzen der ComboBox für das StartFenster
         ObservableList<String> _default = FXCollections.observableArrayList();
         File lookUp = new File(path);
@@ -137,8 +136,6 @@ public class StartController implements Initializable {
                 editOrgButton.setVisible(false);
                 delOrgButton.setVisible(false);
             }
-        } else {
-
         }
 
         System.out.println("[GUI] Start Fenster Initialisiert");
@@ -599,6 +596,7 @@ public class StartController implements Initializable {
             return null;
         }
     }
+
     @FXML
     protected void addNewOrganisation(){
         if(orgContainer == null){
@@ -630,12 +628,14 @@ public class StartController implements Initializable {
             } else if (choosen == 1) {
                 Pair<Sachgebiet,String> result = Dialogs.newSachgebietWindow(orgContainer, userContainer, null);
                 if(result == null){
+                    System.out.println("Result ist null!");
                     return;
                 }
                 if(result.getValue() != null && result.getKey() == null){
                     Dialogs.warnDialog(result.getValue(),"Warnung");
                     return;
                 } else {
+                    System.out.println(result.getKey().getName());
                     orgContainer.insertSachgebiet(result.getKey(), result.getValue());
                 }
             }
@@ -644,8 +644,8 @@ public class StartController implements Initializable {
         } else {
             Dialogs.warnDialog("Sie müssen zunächst einen Benutzer anlegen der als Leiter der Organisation eingestellt werden kann", "INFO");
         }
-        orgContainer.displayAllOrgs();
     }
+
     @FXML
     public void editOrganisattion() {
         int choose = 0;
@@ -659,6 +659,7 @@ public class StartController implements Initializable {
         } else if (choose == 0) {
             //Abteilung
             String abt = Dialogs.chooseAbt(orgContainer, "Organisation auswählen", "Org Wählen");
+            Abteilung oldAbt = orgContainer.getAbteilungByKuerzel(abt);
             if (abt == null) {
                 return;
             } else {
@@ -668,14 +669,14 @@ public class StartController implements Initializable {
                     Dialogs.warnDialog(result.getValue(),"Warnung");
                     return;
                 } else {
-                    //orgContainer.editAbteilung(result.getKey());
+                    orgContainer.editAbteilung(oldAbt, result.getKey());
                 }
             }
         } else if (choose == 1) {
             //Sachgebiet
             if(orgContainer.anySachgebietExisting()) {
                 String sach = Dialogs.chooseSach(orgContainer, "Organisation auswählen", "Org Wählen");
-                System.out.println(sach);
+                Sachgebiet oldSach = orgContainer.getSachgebietByKuerzel(sach);
                 if (sach == null) {
                     return;
                 } else {
@@ -685,9 +686,11 @@ public class StartController implements Initializable {
                         Dialogs.warnDialog(result.getValue(), "Warnung");
                         return;
                     } else {
-                        //orgContainer.editSachgebiet(result.getKey());
+                        orgContainer.editSachgebiet(oldSach, result.getKey());
                     }
                 }
+            } else {
+                System.out.println("Kein Sachgebiet gefunden");
             }
         }
         orgContainer.safeOrganisationsData();
@@ -706,11 +709,10 @@ public class StartController implements Initializable {
         } else if (choose == 0) {
             //Abteilung
             String abt = Dialogs.chooseAbt(orgContainer, "Organisation auswählen", "Org Wählen");
-            System.out.println(abt);
+
         } else if (choose == 1) {
             //Sachgebiet
             String sach = Dialogs.chooseSach(orgContainer, "Organisation auswählen", "Org Wählen");
-            System.out.println(sach);
         }
     }
     /**

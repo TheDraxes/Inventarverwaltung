@@ -2,6 +2,7 @@ package TestKlassen;
 
 import Data.Abteilung;
 import Data.Person;
+import Data.Sachgebiet;
 import Verwaltung.OrganisationContainer;
 
 public class DVZ_Organisation {
@@ -10,7 +11,10 @@ public class DVZ_Organisation {
   public DVZ_Organisation(){
     Person leiter = new Person("Leiter", "Test", false, "123", true);
 
-
+    Sachgebiet GEW = new Sachgebiet();
+    GEW.setName("WEbanwendung betireb");
+    GEW.setKürzel("GEW");
+    GEW.setLeiter(leiter);
 
     Abteilung GE = new Abteilung();
     GE.setName("E-Government");
@@ -48,6 +52,8 @@ public class DVZ_Organisation {
     org.insertAbteilung(SC);
     org.insertAbteilung(SD);
     org.insertAbteilung(US);
+
+    org.insertSachgebiet(GEW,"GE");
   }
 
   public OrganisationContainer get(){
