@@ -58,7 +58,7 @@ public class StartController implements Initializable {
     private UserContainer userContainer;
 
     //Container für Abteilungen und Sachgebiete
-    private OrganisationContainer orgContainer = new OrganisationContainer();;
+    private OrganisationContainer orgContainer;
 
     //Anzahl der zur verfügung stehen Inventare
     private int inventoryCounter = 0;
@@ -87,6 +87,7 @@ public class StartController implements Initializable {
      */
     @FXML
     protected void initialize(){
+        orgContainer = new OrganisationContainer();;
         //Aufsetzen der ComboBox für das StartFenster
         ObservableList<String> _default = FXCollections.observableArrayList();
         File lookUp = new File(path);
@@ -119,17 +120,20 @@ public class StartController implements Initializable {
         //laden des Organisazionscontainers
         try {
             orgContainer = orgContainer.loadOrganisationsData();
+
+            if(!orgContainer.anyAbteilungExisting()){
+                editOrgButton.setVisible(false);
+                delOrgButton.setVisible(false);
+            }
+
+            for(String a : orgContainer.getAllAbteilungsKürzel()){
+                System.out.println(a);
+            }
+
         } catch (NullPointerException e){
             System.out.println("[FEHLER] Beim Laden des orgContainers");
-        }
-
-        if(!orgContainer.anyAbteilungExisting()){
             editOrgButton.setVisible(false);
             delOrgButton.setVisible(false);
-        }
-
-        for(String a : orgContainer.getAllAbteilungsKürzel()){
-            System.out.println(a);
         }
 
         System.out.println("[GUI] Start Fenster Initialisiert");
@@ -589,7 +593,12 @@ public class StartController implements Initializable {
     @FXML
     protected void addNewOrganisation(){
         if(userContainer.getNumberOfUser() > 1) {
-            int choosen = Dialogs.chooseOrgDialog(orgContainer.anyAbteilungExisting());
+            int choosen = 0;
+            if(orgContainer != null) {
+                choosen = Dialogs.chooseOrgDialog(orgContainer.anyAbteilungExisting());
+            } else {
+                choosen = Dialogs.chooseOrgDialog(false);
+            }
             if (choosen < 0) {
                 System.out.println("[INFO] Vorgang abgebrochen");
             } else if (choosen == 0) {
@@ -624,7 +633,12 @@ public class StartController implements Initializable {
     }
     @FXML
     public void editOrganisattion() {
-        int choose = Dialogs.chooseOrgDialog(orgContainer.anyAbteilungExisting());
+        int choose = 0;
+        if(orgContainer != null) {
+            choose = Dialogs.chooseOrgDialog(orgContainer.anyAbteilungExisting());
+        } else {
+            choose = Dialogs.chooseOrgDialog(false);
+        }
         if (choose < 0) {
             System.out.println("[INFO] Vorgang abgebrochen");
         } else if (choose == 0) {
@@ -634,6 +648,7 @@ public class StartController implements Initializable {
                 return;
             } else {
                 Pair<Abteilung,String> result = Dialogs.newAbteilungWindow(userContainer,orgContainer.getAbteilungByKürzel(abt));
+                if(result == null) return;
                 if(result.getValue() != null && result.getKey() == null){
                     Dialogs.warnDialog(result.getValue(),"Warnung");
                     return;

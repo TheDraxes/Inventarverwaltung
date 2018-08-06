@@ -1,10 +1,14 @@
 package TestKlassen;
 
+import Data.Abteilung;
 import Data.Asset;
+import Data.Person;
 import GUI.Dialogs;
 import GUI.ViewGUI.NewItemDialogs.AssetDialog;
+import Verwaltung.UserContainer;
 import javafx.application.Application;
 import javafx.stage.Stage;
+import javafx.util.Pair;
 
 /**
  *
@@ -20,34 +24,18 @@ public class DialogsTest extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        Asset b = null;
-        new AssetDialog().getNewAsset("Boden und Gebäude", b);
+        Person person = new Person("Tim", "Vinzing", true, "123", true);
+        Person person1 = new Person();
+        person1.initAdmin();
 
+        UserContainer a = new UserContainer();
+        a.insertUser(person1);
+        a.insertUser(person);
 
-        boolean[] a = Dialogs.getFilter();
+        /*
+        Pair c = Dialogs.newAbteilungWindow(a, null);
 
-        if(a[0]){
-            System.out.println(0);
-        }
-
-        if(a[1]){
-            System.out.println(1);
-        }
-
-        if(a[2]){
-            System.out.println(2);
-        }
-
-        if(a[3]){
-            System.out.println(3);
-        }
-
-        if(a[4]){
-            System.out.println(4);
-        }
-
-        if(a[5]){
-            System.out.println(5);
-        }
+        System.out.println(c.getValue());
+           */
     }
 }
