@@ -617,10 +617,10 @@ public class StartController implements Initializable {
                 if(result.getValue() != null){
                     Dialogs.warnDialog(result.getValue(),"Warnung");
                     return;
-                } else if(result.getKey() != null){
-                    orgContainer.insertAbteilung(result.getKey());
                 } else {
-                    System.out.println("Miese Nummer!");
+                    orgContainer.insertAbteilung(result.getKey());
+                    editOrgButton.setVisible(true);
+                    delOrgButton.setVisible(true);
                 }
             } else if (choosen == 1) {
                 Pair<Sachgebiet,String> result = Dialogs.newSachgebietWindow(orgContainer, userContainer, null);
@@ -639,6 +639,7 @@ public class StartController implements Initializable {
         } else {
             Dialogs.warnDialog("Sie müssen zunächst einen Benutzer anlegen der als Leiter der Organisation eingestellt werden kann", "INFO");
         }
+        orgContainer.displayAllOrgs();
     }
     @FXML
     public void editOrganisattion() {
@@ -656,7 +657,7 @@ public class StartController implements Initializable {
             if (abt == null) {
                 return;
             } else {
-                Pair<Abteilung,String> result = Dialogs.newAbteilungWindow(userContainer,orgContainer.getAbteilungByKürzel(abt));
+                Pair<Abteilung,String> result = Dialogs.newAbteilungWindow(userContainer,orgContainer.getAbteilungByKuerzel(abt));
                 if(result == null) return;
                 if(result.getValue() != null && result.getKey() == null){
                     Dialogs.warnDialog(result.getValue(),"Warnung");

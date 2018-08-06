@@ -1,7 +1,6 @@
 package Verwaltung;
 
 import Data.Abteilung;
-import Data.Person;
 import Data.Sachgebiet;
 
 import java.io.*;
@@ -96,7 +95,7 @@ public class OrganisationContainer implements Serializable {
     }
 
     public boolean insertSachgebiet(Sachgebiet a, String abteilungsKürzel) {
-        Abteilung abteilung = getAbteilungByKürzel(abteilungsKürzel);
+        Abteilung abteilung = getAbteilungByKuerzel(abteilungsKürzel);
         if(abteilung.getSachgebiete().add(a)){
             System.out.println("[INFO] Sachgebiet " + a.getKürzel() + "zur Abteilung " + abteilung.getKürzel() + " hinzugefügt!");
             return true;
@@ -125,7 +124,7 @@ public class OrganisationContainer implements Serializable {
         return kuerzel;
     }
 
-    public Abteilung getAbteilungByKürzel(String k){
+    public Abteilung getAbteilungByKuerzel(String k){
         Iterator<Abteilung> abteilungIterator = abteilungArrayList.iterator();
         while(abteilungIterator.hasNext()) {
             Abteilung abteilung = abteilungIterator.next();
@@ -177,6 +176,12 @@ public class OrganisationContainer implements Serializable {
 
     public void editAbteilung(Abteilung alt, Abteilung neu){
         this.abteilungArrayList.set(abteilungArrayList.indexOf(alt), neu);
+    }
+
+    public void displayAllOrgs(){
+        for(Abteilung abteilung : abteilungArrayList){
+            abteilung.display();
+        }
     }
 
     /**

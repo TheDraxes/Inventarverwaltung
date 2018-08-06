@@ -3,8 +3,10 @@ package TestKlassen;
 import Data.Abteilung;
 import Data.Asset;
 import Data.Person;
+import Data.Sachgebiet;
 import GUI.Dialogs;
 import GUI.ViewGUI.NewItemDialogs.AssetDialog;
+import Verwaltung.OrganisationContainer;
 import Verwaltung.UserContainer;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -32,12 +34,27 @@ public class DialogsTest extends Application{
         a.insertUser(person1);
         a.insertUser(person);
 
-        Pair c = Dialogs.newAbteilungWindow(a, null);
+        a.display();
+
+        Abteilung abteilung = new Abteilung();
+        abteilung.setName("Fachapp");
+        abteilung.setKürzel("FA");
+
+        OrganisationContainer container = new OrganisationContainer();
+        container.insertAbteilung(abteilung);
+
+        Sachgebiet sachgebiet = new Sachgebiet();
+        sachgebiet.setName("JAHF");
+        sachgebiet.setKürzel("FAJ");
+        sachgebiet.setSachgebietsleiter(person);
+
+        Pair c = Dialogs.newSachgebietWindow(container, a, sachgebiet);
         System.out.println(c.getValue());
 
-        Abteilung abteilung = (Abteilung) c.getKey();
+        Sachgebiet abteilung1 = (Sachgebiet) c.getKey();
+        System.out.println(abteilung1.getLeiter().getUsername());
 
-        System.out.println(abteilung.getName());
+
 
     }
 }
