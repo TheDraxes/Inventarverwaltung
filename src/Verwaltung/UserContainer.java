@@ -298,14 +298,22 @@ public class UserContainer implements Serializable {
 
     public boolean isBlocked (String username){
         Person p = this.getPersonByUsername(username);
-        p.display();
-        return p.isLocked();
+        if(p == null) {
+            System.out.println("Nutzername existiert nicht!");
+        } else {
+            return p.isLocked();
+        }
+        return false;
     }
 
     public void blockUser(String username){
         Person p = this.getPersonByUsername(username);
-        p.setLocked(true);
-        this.editUser(p);
+        if(p == null) {
+            System.out.println("Nutzername existiert nicht! Nutzer konnte nicht gesperrt werden!");
+        } else {
+            p.setLocked(true);
+            this.editUser(p);
+        }
     }
 
     /**
