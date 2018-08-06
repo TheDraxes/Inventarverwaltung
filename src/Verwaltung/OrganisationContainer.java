@@ -158,7 +158,6 @@ public class OrganisationContainer implements Serializable {
         return abteilungArrayList;
     }
 
-
     public void setAbteilungArrayList(ArrayList<Abteilung> abteilungArrayList) {
         this.abteilungArrayList = abteilungArrayList;
     }
@@ -176,8 +175,8 @@ public class OrganisationContainer implements Serializable {
         return anzahl;
     }
 
-    public void editAbteilung(Abteilung edited){
-
+    public void editAbteilung(Abteilung alt, Abteilung neu){
+        this.abteilungArrayList.set(abteilungArrayList.indexOf(alt), neu);
     }
 
     public boolean anySachgebietExisting(){
