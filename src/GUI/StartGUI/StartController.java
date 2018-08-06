@@ -251,7 +251,11 @@ public class StartController implements Initializable {
     @FXML
     protected void newInventoryClicked(ActionEvent event) {
 
-        if(!orgContainer.anyAbteilungExisting()){
+        if(orgContainer == null){
+            orgContainer =  new OrganisationContainer();
+        }
+
+        if(!orgContainer.anySachgebietExisting()){
             Dialogs.warnDialog("Es müssen zunächst Sachgebiete angelegt werden!", "Info");
             return;
         }
@@ -592,6 +596,9 @@ public class StartController implements Initializable {
     }
     @FXML
     protected void addNewOrganisation(){
+        if(orgContainer == null){
+            orgContainer = new OrganisationContainer();
+        }
         if(userContainer.getNumberOfUser() > 1) {
             int choosen = 0;
             if(orgContainer != null) {
@@ -610,11 +617,13 @@ public class StartController implements Initializable {
                 if(result.getValue() != null){
                     Dialogs.warnDialog(result.getValue(),"Warnung");
                     return;
-                } else {
+                } else if(result.getKey() != null){
                     orgContainer.insertAbteilung(result.getKey());
+                } else {
+                    System.out.println("Miese Nummer!");
                 }
             } else if (choosen == 1) {
-                Pair<Sachgebiet,String> result = Dialogs.newSachgebietWindow(orgContainer,userContainer);
+                Pair<Sachgebiet,String> result = Dialogs.newSachgebietWindow(orgContainer, userContainer, null);
                 if(result == null){
                     return;
                 }
@@ -653,16 +662,26 @@ public class StartController implements Initializable {
                     Dialogs.warnDialog(result.getValue(),"Warnung");
                     return;
                 } else {
-                    orgContainer.editAbteilung(result.getKey());
+                    //orgContainer.editAbteilung(result.getKey());
                 }
             }
         } else if (choose == 1) {
             //Sachgebiet
-            if(orgContainer.anySachgebietExisting()){
+            if(orgContainer.anySachgebietExisting()) {
                 String sach = Dialogs.chooseSach(orgContainer, "Organisation auswählen", "Org Wählen");
                 System.out.println(sach);
-            } else {
-                return;
+                if (sach == null) {
+                    return;
+                } else {
+                    Pair<Sachgebiet, String> result = Dialogs.newSachgebietWindow(orgContainer, userContainer, orgContainer.getSachgebietByKuerzel(sach));
+                    if (result == null) return;
+                    if (result.getValue() != null && result.getKey() == null) {
+                        Dialogs.warnDialog(result.getValue(), "Warnung");
+                        return;
+                    } else {
+                        //orgContainer.editSachgebiet(result.getKey());
+                    }
+                }
             }
         }
         orgContainer.safeOrganisationsData();

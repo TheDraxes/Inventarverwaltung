@@ -467,7 +467,7 @@ public class Dialogs {
         }
     }
 
-  public static Pair<Sachgebiet,String> newSachgebietWindow(OrganisationContainer orgContainer, UserContainer userContainer){
+  public static Pair<Sachgebiet,String> newSachgebietWindow(OrganisationContainer orgContainer, UserContainer userContainer, Sachgebiet actual){
     ObservableList<String> orgList =
             FXCollections.observableArrayList(
                     orgContainer.getAllAbteilungsKürzel()
@@ -484,6 +484,13 @@ public class Dialogs {
     userBox.setValue(userContainer.getUserNamesWithoutAdmin()[0]);
     TextField nameField = new TextField();
     TextField shortcutField = new TextField();
+
+    if(actual != null){
+        abtBox.setValue("Test");
+        userBox.setValue(actual.getLeiter().getUsername());
+        nameField.setText(actual.getName());
+        shortcutField.setText(actual.getKürzel());
+    }
 
     userBox.setValue(userList.get(0));
 
@@ -559,7 +566,7 @@ public class Dialogs {
         grid.setVgap(10);
         grid.setPadding(new Insets(20, 150, 10, 10));
 
-        grid.add(new Label("Inventarname: "), 0, 0);
+        grid.add(new Label("Abteilung: "), 0, 0);
         grid.add(org, 1, 0);
 
         dialog.getDialogPane().setContent(grid);
@@ -600,7 +607,7 @@ public class Dialogs {
         grid.setVgap(10);
         grid.setPadding(new Insets(20, 150, 10, 10));
 
-        grid.add(new Label("Inventarname: "), 0, 0);
+        grid.add(new Label("Sachgebiet: "), 0, 0);
         grid.add(org, 1, 0);
 
         dialog.getDialogPane().setContent(grid);

@@ -36,5 +36,8 @@ public class Sachgebiet extends Organisation{
 		System.out.println("[EDIT] Sachgebietsleiter geändert");
 	}
 
+	public void getAbtKuerzel(){
+
+	}
 
 }

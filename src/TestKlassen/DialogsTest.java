@@ -24,7 +24,7 @@ public class DialogsTest extends Application{
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        Person person = new Person("Tim", "Vinzing", true, "123", true);
+        Person person = new Person("Vinzing", "Tim", true, "123", true);
         Person person1 = new Person();
         person1.initAdmin();
 
@@ -32,10 +32,12 @@ public class DialogsTest extends Application{
         a.insertUser(person1);
         a.insertUser(person);
 
-        /*
         Pair c = Dialogs.newAbteilungWindow(a, null);
-
         System.out.println(c.getValue());
-           */
+
+        Abteilung abteilung = (Abteilung) c.getKey();
+
+        System.out.println(abteilung.getName());
+
     }
 }

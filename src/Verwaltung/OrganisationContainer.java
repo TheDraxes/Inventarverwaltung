@@ -182,4 +182,8 @@ public class OrganisationContainer implements Serializable {
     public boolean anySachgebietExisting(){
         return true;
     }
+
+    public Sachgebiet getSachgebietByKuerzel(String sachgebietKuerzel){
+        return new Sachgebiet();
+    }
 }
