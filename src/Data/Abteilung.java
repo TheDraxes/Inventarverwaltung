@@ -12,7 +12,6 @@ import java.util.ArrayList;
 public class Abteilung extends Organisation{
 
 	private ArrayList<Sachgebiet> sachgebiete = new ArrayList<>();
-	private int anzahlSachgebiete = 0;
 
 	// Konstruktoren
 	public Abteilung() {
@@ -25,13 +24,15 @@ public class Abteilung extends Organisation{
 		this.kürzel = kürzel;
 	}
 
-	public void addSachgebiet(Sachgebiet newSachgebiet){
-		sachgebiete.add(anzahlSachgebiete, newSachgebiet);
-		anzahlSachgebiete++;
-	}
-
 	public ArrayList<Sachgebiet> getSachgebiete() {
 		return sachgebiete;
+	}
+
+	public boolean sachgebietExisting(){
+		if(sachgebiete.size() != 0) {
+			return true;
+		}
+		return false;
 	}
 
 	// Konsolenausgabe aller Parameter für Testzwecke
