@@ -179,11 +179,28 @@ public class OrganisationContainer implements Serializable {
         this.abteilungArrayList.set(abteilungArrayList.indexOf(alt), neu);
     }
 
+    /**
+     * @TODO Für Darius
+     * @return
+     */
+
     public boolean anySachgebietExisting(){
         return true;
     }
 
+    /**
+     * @TODO Für Darius
+     * @return
+     */
     public Sachgebiet getSachgebietByKuerzel(String sachgebietKuerzel){
         return new Sachgebiet();
+    }
+
+    /**
+     * @TODO Für Darius
+     * @return
+     */
+    public void editSachgebiet(Sachgebiet sachgebiet){
+
     }
 }
