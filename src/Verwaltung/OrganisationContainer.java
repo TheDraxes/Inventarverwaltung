@@ -1,6 +1,7 @@
 package Verwaltung;
 
 import Data.Abteilung;
+import Data.Organisation;
 import Data.Sachgebiet;
 
 import java.io.*;
@@ -206,6 +207,15 @@ public class OrganisationContainer implements Serializable {
      * @return
      */
     public void editSachgebiet(Sachgebiet sachgebiet){
+
+    }
+
+    /**
+     * --> sollte sachgebiet oder Abteilung sein können. bei Abteilung werden auch alle sachgebiete gelöscht
+     * @TODO Für Darius
+     * @return
+     */
+    public void deleteOrg(Organisation a){
 
     }
 }

@@ -4,6 +4,7 @@ import Data.Abteilung;
 import Data.Sachgebiet;
 import GUI.Dialogs;
 import Data.Person;
+import TestKlassen.DVZ_Organisation;
 import Verwaltung.AssetContainer;
 import Verwaltung.OrganisationContainer;
 import Verwaltung.UserContainer;
@@ -87,7 +88,7 @@ public class StartController implements Initializable {
      */
     @FXML
     protected void initialize(){
-        orgContainer = new OrganisationContainer();;
+        orgContainer = new DVZ_Organisation().get();
         //Aufsetzen der ComboBox für das StartFenster
         ObservableList<String> _default = FXCollections.observableArrayList();
         File lookUp = new File(path);
@@ -118,22 +119,26 @@ public class StartController implements Initializable {
         }
 
         //laden des Organisazionscontainers
-        try {
-            orgContainer = orgContainer.loadOrganisationsData();
+        if(orgContainer == null) {
+            try {
+                orgContainer = orgContainer.loadOrganisationsData();
 
-            if(!orgContainer.anyAbteilungExisting()){
+                if (!orgContainer.anyAbteilungExisting()) {
+                    editOrgButton.setVisible(false);
+                    delOrgButton.setVisible(false);
+                }
+
+                for (String a : orgContainer.getAllAbteilungsKürzel()) {
+                    System.out.println(a);
+                }
+
+            } catch (NullPointerException e) {
+                System.out.println("[FEHLER] Beim Laden des orgContainers");
                 editOrgButton.setVisible(false);
                 delOrgButton.setVisible(false);
             }
+        } else {
 
-            for(String a : orgContainer.getAllAbteilungsKürzel()){
-                System.out.println(a);
-            }
-
-        } catch (NullPointerException e){
-            System.out.println("[FEHLER] Beim Laden des orgContainers");
-            editOrgButton.setVisible(false);
-            delOrgButton.setVisible(false);
         }
 
         System.out.println("[GUI] Start Fenster Initialisiert");
@@ -686,6 +691,27 @@ public class StartController implements Initializable {
             }
         }
         orgContainer.safeOrganisationsData();
+    }
+    @FXML
+    public void deleteOrgClicked(){
+        int choose = 0;
+        if(orgContainer != null) {
+            choose = Dialogs.chooseOrgDialog(orgContainer.anyAbteilungExisting());
+        } else {
+            choose = Dialogs.chooseOrgDialog(false);
+        }
+
+        if (choose < 0) {
+            System.out.println("[INFO] Vorgang abgebrochen");
+        } else if (choose == 0) {
+            //Abteilung
+            String abt = Dialogs.chooseAbt(orgContainer, "Organisation auswählen", "Org Wählen");
+            System.out.println(abt);
+        } else if (choose == 1) {
+            //Sachgebiet
+            String sach = Dialogs.chooseSach(orgContainer, "Organisation auswählen", "Org Wählen");
+            System.out.println(sach);
+        }
     }
     /**
      * setzt das Look and Feel für Swing elemente

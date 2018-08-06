@@ -80,7 +80,7 @@
               <items>
                 <MenuItem mnemonicParsing="false" onAction="#addNewOrganisation" text="Anlegen" />
                   <MenuItem fx:id="editOrgButton" mnemonicParsing="false" onAction="#editOrganisattion" text="Bearbeiten" />
-                  <MenuItem fx:id="delOrgButton" mnemonicParsing="false" text="Löschen" />
+                  <MenuItem fx:id="delOrgButton" mnemonicParsing="false" onAction="#deleteOrgClicked" text="Löschen" />
               </items>
             </Menu>
         </menus>
