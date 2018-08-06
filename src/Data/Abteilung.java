@@ -29,7 +29,7 @@ public class Abteilung extends Organisation{
 	}
 
 	public boolean sachgebietExisting(){
-		if(sachgebiete.size() != 0) {
+		if(sachgebiete.size() > 0) {
 			return true;
 		}
 		return false;
@@ -40,7 +40,9 @@ public class Abteilung extends Organisation{
 		System.out.println("[INFO] DISPLAYMETHODE ABTEILUNG");
 		System.out.println("Abteilungsleiter");
 		System.out.println("----------------");
-		leiter.display();
+		System.out.println("Leiter: " + leiter.getUsername());
+		System.out.println("Name:   " + name);
+		System.out.println("Kürzel: " + kürzel);
 	}
 
 	// Getter und Setter
