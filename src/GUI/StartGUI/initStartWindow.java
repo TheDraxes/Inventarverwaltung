@@ -97,7 +97,7 @@ public class initStartWindow {
      * Baut das Pfadauswahl fenster auf
      * leider noch Swing
      *
-     * @return
+     * @return der pfad der vom benutzer beim ersten starten eingegeben wird
      */
 
     private static String askForPath(){
@@ -120,7 +120,7 @@ public class initStartWindow {
 
     /**
      * setzt das Look and Feel für Swing elemente
-     *      -> müsste noch durch Javafx ersetzt werden
+     * müsste noch durch Javafx ersetzt werden
      */
     private static void setLookAndFeel(){
         String laf = UIManager.getSystemLookAndFeelClassName();

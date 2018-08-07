@@ -48,14 +48,14 @@ public class DialogsTest extends Application{
 
         Abteilung abteilung = new Abteilung();
         abteilung.setName("Fachapp");
-        abteilung.setKürzel("FA");
+        abteilung.setKuerzel("FA");
 
         OrganisationContainer container = new OrganisationContainer();
         container.insertAbteilung(abteilung);
 
         Sachgebiet sachgebiet = new Sachgebiet();
         sachgebiet.setName("JAHF");
-        sachgebiet.setKürzel("FAJ");
+        sachgebiet.setKuerzel("FAJ");
         sachgebiet.setSachgebietsleiter(person);
 
         Pair c = Dialogs.newSachgebietWindow(container, a, sachgebiet);

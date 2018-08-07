@@ -13,8 +13,8 @@ public class Sachgebiet extends Organisation{
 	public Sachgebiet() {
 		System.out.println("[KONSTRUKTOR] Sachgebiet ohne Parameter angelegt!");
 	}
-	public Sachgebiet(Person sachgebietsleiter,String name,String kürzel, Abteilung abteilung) {
-		super(sachgebietsleiter,name,kürzel);
+	public Sachgebiet(Person sachgebietsleiter,String name,String kuerzel, Abteilung abteilung) {
+		super(sachgebietsleiter,name,kuerzel);
 		System.out.println("[KONSTRUKTOR] Sachgebiet mit Parameter angelegt!");
 
 	}

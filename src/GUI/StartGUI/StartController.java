@@ -4,7 +4,6 @@ import Data.Abteilung;
 import Data.Sachgebiet;
 import GUI.Dialogs;
 import Data.Person;
-import TestKlassen.DVZ_Organisation;
 import Verwaltung.AssetContainer;
 import Verwaltung.OrganisationContainer;
 import Verwaltung.UserContainer;
@@ -85,6 +84,7 @@ public class StartController implements Initializable {
      * und Überpfüft ob das Adminmenue angezeigt werden muss
      *
      * @author Tim
+     * @see OrganisationContainer#loadOrganisationsData()
      */
     @FXML
     protected void initialize(){
@@ -127,7 +127,7 @@ public class StartController implements Initializable {
                 delOrgButton.setVisible(false);
             }
 
-            for (String a : orgContainer.getAllAbteilungsKürzel()) {
+            for (String a : orgContainer.getAllAbteilungsKuerzel()) {
                 System.out.println(a);
             }
 
@@ -135,7 +135,6 @@ public class StartController implements Initializable {
             System.out.println("[FEHLER] Beim Laden des orgContainers");
             editOrgButton.setVisible(false);
             delOrgButton.setVisible(false);
-            e.printStackTrace();
         }
         System.out.println("[GUI] Start Fenster Initialisiert");
         System.out.println("[INFO] Speicherpfad: " + path);
@@ -144,12 +143,11 @@ public class StartController implements Initializable {
     /**
      * Funktion die zur ausführung kommt sobald der Inventar löschen Button gedrückt wurde
      *
-     * @param event ->  event das beim Klick ausgelöst wird. Scenebuilder verlangt nach diesem
-     *                  Übergabeparameter wird jedoch nich benötigt
      * @author Tim
+     * @see Dialogs#warnDialog(String, String)
      */
     @FXML
-    protected void deleteInventoryClicked(ActionEvent event) {
+    protected void deleteInventoryClicked() {
         File a = new File(path + "/" + InventarBox.getValue() + ".Inv");
          if(InventarBox.getValue().equals("Kein Eintrag gefunden!")){
           Dialogs.warnDialog("Es wurde noch kein Inventar angelegt!", "Warnung");
@@ -170,7 +168,8 @@ public class StartController implements Initializable {
 
     /**
      * Setzt einen neuen Speicherort fest
-     *
+     * @author Tim
+     * @see JFileChooser
      */
     @FXML
     protected void newSafeLocation() {
@@ -229,9 +228,10 @@ public class StartController implements Initializable {
      * Funktion zur Parameterübergabe der anderen Controller
      *
      *
-     * @param path -> Speicehrpfad
-     * @param userContainer -> Container für alle Benutzerdaten
-     * @param user -> aktuell eingeloggter user
+     * @param path Speicehrpfad
+     * @param userContainer Container für alle Benutzerdaten
+     * @param user aktuell eingeloggter user
+     * @see #initialize()
      */
     public void getParams(String path, UserContainer userContainer, Person user){
         this.userLabel.setText("Eingeloggt als: " + user.getUsername());
@@ -245,6 +245,8 @@ public class StartController implements Initializable {
      *
      * Funktion die ein neues Inventar anlegt
      * @author Tim
+     * @see AssetContainer
+     * @see Dialogs#inventoryNameDialog(OrganisationContainer, String, String)
      */
     @FXML
     protected void newInventoryClicked() {
@@ -333,7 +335,7 @@ public class StartController implements Initializable {
      * @author Tim
      */
     @FXML
-    protected  void newUserClicked(){
+    protected void newUserClicked(){
         while (true) {
             String[] userData = buildNewUserWindow();
             if (userData == null) {
@@ -378,14 +380,12 @@ public class StartController implements Initializable {
         while (true) {
             Pair pwPair = Dialogs.changePw(user);
             String errMessage = (String) pwPair.getValue();
-
             if (pwPair.getValue() != null) {
                 if (errMessage.startsWith("[INFO]")) {
                     break;
                 }
                 System.out.println(errMessage);
             }
-
             if(pwPair.getKey() != null) {
                 userContainer.changePassword(user.getUsername(), (String) pwPair.getKey());
                 Dialogs.warnDialog("Passwort erfolgreich geändert!", "Info");
@@ -434,7 +434,7 @@ public class StartController implements Initializable {
      * Funktion die das Fenster zur auswahl eines Users aufbaut und ein
      * Objekt vom typ Person zurückgibt
      *
-     * @return Person -> ausgewählte person z.B zum editieren
+     * @return Person ausgewählte person z.B zum editieren
      * @author Tim
      */
     private Person chooseUserWindow() {
@@ -448,7 +448,6 @@ public class StartController implements Initializable {
         ComboBox userComboBox= new ComboBox<>(user);
 
         userComboBox.setValue(this.user.getUsername());
-
 
         ButtonType OK_Button = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
         dialog.getDialogPane().getButtonTypes().addAll(OK_Button, ButtonType.CANCEL);
@@ -465,8 +464,7 @@ public class StartController implements Initializable {
 
         dialog.setResultConverter(dialogButton -> {
             if(dialogButton == OK_Button) {
-                Person a = userContainer.getPersonByUsername((String) userComboBox.getValue());
-                return a;
+              return userContainer.getPersonByUsername((String) userComboBox.getValue());
             } else {
                 return null;
             }
@@ -514,7 +512,7 @@ public class StartController implements Initializable {
     /**
      * Baut ein Fenster auf in dem die Daten für einen neuen Benutzer eingetragen werden
      *
-     * @return -> array in dem die Daten des neuen Benutzers gespeichert werden
+     * @return array in dem die Daten des neuen Benutzers gespeichert werden
      * @author Tim
      */
     private String[] buildNewUserWindow(){
@@ -737,19 +735,13 @@ public class StartController implements Initializable {
     }
     /**
      * setzt das Look and Feel für Swing elemente
-     *      -> müsste noch durch Javafx ersetzt werden
+     * müsste noch durch Javafx ersetzt werden
      */
     private void setLookAndFeel(){
         String laf = UIManager.getSystemLookAndFeelClassName();
         try {
             UIManager.setLookAndFeel(laf);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (UnsupportedLookAndFeelException e) {
+        } catch (ClassNotFoundException|InstantiationException|UnsupportedLookAndFeelException|IllegalAccessException e) {
             e.printStackTrace();
         }
     }

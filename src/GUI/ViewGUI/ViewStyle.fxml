@@ -37,7 +37,7 @@
       </MenuBar>
       <ScrollPane fx:id="ItemScrollPane" pannable="true" prefHeight="372.0" prefWidth="605.0" GridPane.rowIndex="1">
          <content>
-            <TableView fx:id="itemTable" minHeight="-Infinity" minWidth="-Infinity" prefHeight="370.0" prefWidth="603.0" styleClass="notFocusable" stylesheets="@../style.css">
+            <TableView fx:id="itemTable" minHeight="-Infinity" minWidth="-Infinity" prefHeight="373.0" prefWidth="602.0" styleClass="notFocusable" stylesheets="@../style.css">
               <columns>
                 <TableColumn fx:id="NRColumn" prefWidth="46.0" text="NR." />
                 <TableColumn fx:id="bezColumn" prefWidth="190.0" text="Bezeichnung" />

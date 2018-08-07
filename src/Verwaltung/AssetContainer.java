@@ -113,7 +113,8 @@ public class AssetContainer implements Serializable {
      * safeInventar speichert ein Inventar unter 'inventarname.inv'
      *
      * @author mixd
-     * @version 1.1
+     * @param path pfad in an dem der Container abgespeichert werden soll
+     * @return boolean ob das speichern erfolgreich war oder nicht
      */
     public boolean safeInventar(String path){
         System.out.println("[INFO] Speichere Inventar...");
@@ -148,7 +149,8 @@ public class AssetContainer implements Serializable {
      * loadInventar liest ein Inventar aus 'inventarname.Inv' aus.
      *
      * @author mixd
-     * @version 1.1
+     * @return geladener AssetContainer
+     * @param path pfad an dem der assetcontainer liegt
      */
     public AssetContainer loadInventar(String path) {
         System.out.println("[INFO] Lade Inventar...");

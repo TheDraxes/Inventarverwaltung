@@ -45,7 +45,6 @@ public class LoginController {
      * Methode die das Login Fenster Initalisiert und die Nutzerdaten eingelesen.
      *
      * @author Tim
-     * @version 1.0
      */
 
     @FXML
@@ -61,9 +60,8 @@ public class LoginController {
      * falls die Entertaste gedrückt wurde.
      *
      * @see #loginButtonClicked()
-     * @param event
+     * @param event event das beim tastendruck gefeuert wird
      * @author Tim
-     * @version 1.0
      */
 
     @FXML
