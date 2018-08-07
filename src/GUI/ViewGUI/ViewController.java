@@ -133,8 +133,8 @@ public class ViewController implements Initializable {
         assetContainer = assetContainer.loadInventar(inventoryFile.getPath());
         itemTable.setPlaceholder(new Label("Keine Anlage-gegenstände gefunden"));
 
-        ArrayList<Asset> arrayList = assetContainer.getAssetList();
         fillTable();
+
         for (int i = 0; i < orgContainer.getAnzahlAbteilungen(); i++) {
             MenuItem menuItem = new MenuItem();
             menuItem.setText(orgContainer.getAllAbteilungsKürzel()[i]);
@@ -149,7 +149,11 @@ public class ViewController implements Initializable {
         }
     }
 
-
+    /**
+     *
+     * @TODO Zusammenfassung der Abteilungen
+     * @param abteilung
+     */
     private void summary(String abteilung){
 
     }

@@ -216,10 +216,6 @@ public class OrganisationContainer implements Serializable {
         return null;
     }
 
-    /**
-     * @TODO Für Darius
-     * @return
-     */
     public void editSachgebiet(Sachgebiet alt, Sachgebiet neu){
         for (int i = 0; i < abteilungArrayList.size(); i++) {
             ArrayList<Sachgebiet> sachgebiete = abteilungArrayList.get(i).getSachgebiete();
@@ -238,6 +234,6 @@ public class OrganisationContainer implements Serializable {
      * @return
      */
     public void deleteOrg(Organisation a){
-        
+
     }
 }
