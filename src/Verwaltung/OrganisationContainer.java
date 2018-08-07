@@ -216,24 +216,39 @@ public class OrganisationContainer implements Serializable {
         return null;
     }
 
-    public void editSachgebiet(Sachgebiet alt, Sachgebiet neu){
+    public boolean editSachgebiet(Sachgebiet alt, Sachgebiet neu){
         for (int i = 0; i < abteilungArrayList.size(); i++) {
             ArrayList<Sachgebiet> sachgebiete = abteilungArrayList.get(i).getSachgebiete();
 
             for (int j = 0; j < sachgebiete.size(); j++) {
                 if(sachgebiete.get(j).equals(alt)) {
                     this.abteilungArrayList.get(i).getSachgebiete().set(j, neu);
+                    return true;
                 }
             }
         }
+        return false;
     }
 
-    /**
-     * --> sollte sachgebiet oder Abteilung sein können. bei Abteilung werden auch alle sachgebiete gelöscht
-     * @TODO Für Darius
-     * @return
-     */
-    public void deleteOrg(Organisation a){
-
+    public boolean deleteOrg(Organisation a){
+        if (a.getClass() == Abteilung.class) {
+            System.out.println("[INFO] Lösche Abteilung " + a.getKürzel() + " ...");
+            if(this.abteilungArrayList.contains(a)) {
+                this.abteilungArrayList.remove(a);
+                System.out.println("[INFO] Abteilung erfolgreich gelöscht!");
+                return true;
+            }
+        } else if (a.getClass() == Sachgebiet.class) {
+            System.out.println("[INFO] Lösche Sachgebiet " + a.getKürzel() + " ...");
+            for (int i = 0; i < abteilungArrayList.size(); i++) {
+                if(this.abteilungArrayList.get(i).getSachgebiete().contains(a)) {
+                    this.abteilungArrayList.get(i).getSachgebiete().remove(a);
+                    System.out.println("[INFO] Sachgebiet erfolgreich gelöscht!");
+                    return true;
+                }
+            }
+        }
+        System.out.println("[WARNING] Abteilung/Sachgebiet konnte nicht gelöscht werden!");
+        return false;
     }
 }
