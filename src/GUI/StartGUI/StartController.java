@@ -137,7 +137,6 @@ public class StartController implements Initializable {
             delOrgButton.setVisible(false);
             e.printStackTrace();
         }
-
         System.out.println("[GUI] Start Fenster Initialisiert");
         System.out.println("[INFO] Speicherpfad: " + path);
     }
@@ -148,7 +147,6 @@ public class StartController implements Initializable {
      * @param event ->  event das beim Klick ausgelöst wird. Scenebuilder verlangt nach diesem
      *                  Übergabeparameter wird jedoch nich benötigt
      * @author Tim
-     * @version 1.0
      */
     @FXML
     protected void deleteInventoryClicked(ActionEvent event) {
@@ -173,10 +171,9 @@ public class StartController implements Initializable {
     /**
      * Setzt einen neuen Speicherort fest
      *
-     * @param event
      */
     @FXML
-    protected void newSafeLocation(ActionEvent event) {
+    protected void newSafeLocation() {
         setLookAndFeel();
 
         File lookUp = new File(path);
@@ -247,11 +244,10 @@ public class StartController implements Initializable {
     /**
      *
      * Funktion die ein neues Inventar anlegt
-     * @param event ->
      * @author Tim
      */
     @FXML
-    protected void newInventoryClicked(ActionEvent event) {
+    protected void newInventoryClicked() {
 
         if(orgContainer == null){
             orgContainer =  new OrganisationContainer();
@@ -299,12 +295,10 @@ public class StartController implements Initializable {
      * das aktuelle fenster wird geschlossen
      * und das neue aufgebaut mit übergabe bestimmter parameter
      *
-     * @param event
-     * @throws IOException
      * @author Tim
      */
     @FXML
-    protected void confirmInventoryClicked(ActionEvent event) throws IOException {
+    protected void confirmInventoryClicked(){
         System.out.println("[INFO] Speicherpfad: " + path);
         if(inventoryCounter != 0) {
 
@@ -312,7 +306,13 @@ public class StartController implements Initializable {
             lastWindow.hide();
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/ViewGUI/ViewStyle.fxml"));
-            Parent root = loader.load();
+            Parent root = null;
+            try {
+                root = loader.load();
+            } catch (IOException e) {
+                System.out.println("[FEHLER] beim laden der FXML datei");
+                e.printStackTrace();
+            }
 
             ViewController controller = loader.getController();
             controller.getParams(InventarBox.getValue(), path, userContainer,user, orgContainer);
@@ -330,11 +330,10 @@ public class StartController implements Initializable {
 
     /**
      * Logik für das anlegen eines neuen Benutzers
-     * @param event
      * @author Tim
      */
     @FXML
-    protected  void newUserClicked(ActionEvent event){
+    protected  void newUserClicked(){
         while (true) {
             String[] userData = buildNewUserWindow();
             if (userData == null) {
@@ -515,7 +514,7 @@ public class StartController implements Initializable {
     /**
      * Baut ein Fenster auf in dem die Daten für einen neuen Benutzer eingetragen werden
      *
-     * @return
+     * @return -> array in dem die Daten des neuen Benutzers gespeichert werden
      * @author Tim
      */
     private String[] buildNewUserWindow(){
@@ -597,6 +596,11 @@ public class StartController implements Initializable {
         }
     }
 
+    /**
+     * Logik für das anlegen einer Neuen Organisation
+     *
+     * @author Tim
+     */
     @FXML
     protected void addNewOrganisation(){
         if(orgContainer == null){
@@ -646,6 +650,11 @@ public class StartController implements Initializable {
         }
     }
 
+    /**
+     * Logik um eine Organisation zu editieren
+     *
+     * @author Tim
+     */
     @FXML
     public void editOrganisattion() {
         int choose = 0;
@@ -695,6 +704,12 @@ public class StartController implements Initializable {
         }
         orgContainer.safeOrganisationsData();
     }
+
+    /**
+     * Löscht eine vorhandene Organisation
+     *
+     * @author Tim
+     */
     @FXML
     public void deleteOrgClicked(){
         int choose = 0;
@@ -708,11 +723,16 @@ public class StartController implements Initializable {
             System.out.println("[INFO] Vorgang abgebrochen");
         } else if (choose == 0) {
             //Abteilung
-            String abt = Dialogs.chooseAbt(orgContainer, "Organisation auswählen", "Org Wählen");
-
+            if(orgContainer.anyAbteilungExisting()) {
+                String abt = Dialogs.chooseAbt(orgContainer, "Organisation auswählen", "Org Wählen");
+                orgContainer.deleteOrg(orgContainer.getAbteilungByKuerzel(abt));
+            }
         } else if (choose == 1) {
             //Sachgebiet
-            String sach = Dialogs.chooseSach(orgContainer, "Organisation auswählen", "Org Wählen");
+            if(orgContainer.anySachgebietExisting()) {
+                String sach = Dialogs.chooseSach(orgContainer, "Organisation auswählen", "Org Wählen");
+                orgContainer.deleteOrg(orgContainer.getSachgebietByKuerzel(sach));
+            }
         }
     }
     /**

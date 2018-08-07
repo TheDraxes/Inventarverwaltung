@@ -216,9 +216,6 @@ public class OrganisationContainer implements Serializable {
         return null;
     }
 
-    /**
-     * @return
-     */
     public boolean editSachgebiet(Sachgebiet alt, Sachgebiet neu){
         for (int i = 0; i < abteilungArrayList.size(); i++) {
             ArrayList<Sachgebiet> sachgebiete = abteilungArrayList.get(i).getSachgebiete();
@@ -233,10 +230,6 @@ public class OrganisationContainer implements Serializable {
         return false;
     }
 
-    /**
-     * --> sollte sachgebiet oder Abteilung sein können. bei Abteilung werden auch alle sachgebiete gelöscht
-     * @return
-     */
     public boolean deleteOrg(Organisation a){
         if (a.getClass() == Abteilung.class) {
             System.out.println("[INFO] Lösche Abteilung " + a.getKürzel() + " ...");
@@ -257,7 +250,5 @@ public class OrganisationContainer implements Serializable {
         }
         System.out.println("[WARNING] Abteilung/Sachgebiet konnte nicht gelöscht werden!");
         return false;
-
-
     }
 }

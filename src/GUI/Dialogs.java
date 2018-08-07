@@ -491,7 +491,7 @@ public class Dialogs {
     userBox.setValue(userList.get(0));
 
     Dialog<Pair<Sachgebiet,String>> dialog = new Dialog<>();
-    dialog.setTitle("Neue Abteilung anlegen!");
+    dialog.setTitle("Neues Sachgebiet anlegen!");
     ButtonType addButton = new ButtonType("Bestätigen" ,ButtonBar.ButtonData.OK_DONE);
     dialog.getDialogPane().getButtonTypes().addAll(addButton, ButtonType.CANCEL);
 

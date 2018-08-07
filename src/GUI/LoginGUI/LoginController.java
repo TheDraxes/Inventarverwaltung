@@ -79,7 +79,6 @@ public class LoginController {
      * Prüft die eingegebenen Angaben, vergleicht sie mit denen in dem Usercontainer,
      * versteckt das aktuelle Fenster und ruft das Inventarverwaltungsenster auf.
      *
-     * @TODO sperrung nach 3 fehlgeschlagenen Loginversuchen
      * @author Tim
      * @version 1.0
      */
