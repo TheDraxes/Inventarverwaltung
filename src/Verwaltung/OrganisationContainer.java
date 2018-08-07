@@ -49,8 +49,8 @@ public class OrganisationContainer implements Serializable {
 
     public OrganisationContainer loadOrganisationsData(){
         System.out.println("[INFO] Suche Organisationsdaten...");
-        FileInputStream fileInputStream = null;
-        ObjectInputStream objectInputStream = null;
+        FileInputStream fileInputStream;
+        ObjectInputStream objectInputStream;
         try {
             File filename = new File("organisation.dat");
 
@@ -95,8 +95,8 @@ public class OrganisationContainer implements Serializable {
         }
     }
 
-    public boolean insertSachgebiet(Sachgebiet a, String abteilungsKürzel) {
-        Abteilung abteilung = getAbteilungByKuerzel(abteilungsKürzel);
+    public boolean insertSachgebiet(Sachgebiet a, String abteilungsKuerzel) {
+        Abteilung abteilung = getAbteilungByKuerzel(abteilungsKuerzel);
         if(abteilung.getSachgebiete().add(a)){
             System.out.println("[INFO] Sachgebiet " + a.getKürzel() + "zur Abteilung " + abteilung.getKürzel() + " hinzugefügt!");
             return true;
@@ -187,7 +187,7 @@ public class OrganisationContainer implements Serializable {
 
     /**
      *
-     * @return
+     * @return -> boolean ob ein Sachgebiet exestiert
      */
     public boolean anySachgebietExisting(){
         for (Abteilung abteilung: abteilungArrayList) {

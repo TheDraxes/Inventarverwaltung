@@ -285,7 +285,7 @@ public class StartController implements Initializable {
                 }
             }
         } else {
-            Dialogs.warnDialog("Es wurde noch kein Sachgebiet angelegt!", "INFO");
+            Dialogs.warnDialog("Es wurde noch kein Sachgebiet angelegt!", "Info");
         }
     }
 
@@ -646,7 +646,7 @@ public class StartController implements Initializable {
             orgContainer.safeOrganisationsData();
             initialize();
         } else {
-            Dialogs.warnDialog("Sie müssen zunächst einen Benutzer anlegen der als Leiter der Organisation eingestellt werden kann", "INFO");
+            Dialogs.warnDialog("Sie müssen zunächst einen Benutzer anlegen der als Leiter der Organisation eingestellt werden kann", "Info");
         }
     }
 
