@@ -285,7 +285,7 @@ public class ViewController implements Initializable {
         if(assetType != null && assetType.equals("Boden und Gebäude")){
             assetType = "BodenUndGebaeude";
         }
-        if (assetType.equals("") && assetType != null) {
+        if (!assetType.equals("") && assetType != null) {
             while (true) {
                 Pair pair = new AssetDialog().getNewAsset(assetType, null);
                 if (pair.getValue() == null && pair.getKey() != null) {
