@@ -78,7 +78,6 @@ public class LoginController {
      * versteckt das aktuelle Fenster und ruft das Inventarverwaltungsenster auf.
      *
      * @author Tim
-     * @version 1.0
      */
 
     @FXML

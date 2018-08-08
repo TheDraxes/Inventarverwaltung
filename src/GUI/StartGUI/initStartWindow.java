@@ -81,13 +81,7 @@ public class initStartWindow {
             FileInputStream inStream = new FileInputStream(safe);
             ObjectInputStream obStream = new ObjectInputStream(inStream);
             return (String) obStream.readObject();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            return null;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        } catch (ClassNotFoundException e) {
+        } catch (IOException|ClassNotFoundException e) {
             e.printStackTrace();
             return null;
         }

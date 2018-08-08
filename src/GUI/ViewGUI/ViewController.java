@@ -278,6 +278,7 @@ public class ViewController implements Initializable {
 
     /**
      * logik für das anlegen eines neuen Asset
+     * @author Tim
      */
     @FXML
     protected void addAssetClicked() {
