@@ -623,6 +623,10 @@ public class StartController implements Initializable {
                     Dialogs.warnDialog(result.getValue(),"Warnung");
                     return;
                 } else {
+                    if(orgContainer.existingAbteilung(result.getKey().getName())){
+                        Dialogs.warnDialog("Abteilung bereits vorhanden", "Warnung");
+                        return;
+                    }
                     orgContainer.insertAbteilung(result.getKey());
                     editOrgButton.setVisible(true);
                     delOrgButton.setVisible(true);
