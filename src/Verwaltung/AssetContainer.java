@@ -127,20 +127,15 @@ public class AssetContainer implements Serializable {
             outputStream.writeLong(this.id);
             outputStream.writeObject(this.assetList);
 
+            outputStream.close();
+            fileOutputStream.close();
+
             System.out.println("[INFO] Inventar gespeichert unter '" + path + "'!");
             return true;
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            try {
-                outputStream.close();
-                fileOutputStream.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
+
         System.out.println("[ERROR] Fehler beim speichern des Inventars!");
         return false;
     }
@@ -325,6 +320,54 @@ public class AssetContainer implements Serializable {
         System.out.println("[INFO] Fehler bei der Filterung nach Sonstiges!");
         return null;
     }
+
+    public ArrayList<Asset> getSummaryOf(String abteilung, String path, OrganisationContainer orgContainer){
+        File filespath = new File(path);
+        File[] files = filespath.listFiles();
+        ArrayList summaryList = new ArrayList();
+
+        for(File file : files){
+            if(checkExtension(file) && checkSachgebiet(file, orgContainer, abteilung)){
+                summaryList.addAll(loadForSummary(file));
+            }
+        }
+
+        return summaryList;
+    }
+
+    private boolean checkExtension(File file){
+        return file.getName().endsWith(".Inv");
+    }
+
+    public boolean checkSachgebiet(File file, OrganisationContainer orgContainer, String Abteilung){
+        Abteilung abt = orgContainer.getAbteilungByKuerzel(Abteilung);
+        ArrayList<Sachgebiet> sachForAbt = abt.getSachgebiete();
+
+        int firstSpace = file.getName().indexOf(" ");
+
+        for(Sachgebiet sach : sachForAbt){
+            if(sach.getKuerzel().equals(file.getName().substring(0, firstSpace))){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private ArrayList loadForSummary(File file){
+        ArrayList list = new ArrayList();
+        try {
+            FileInputStream fop = new FileInputStream(file);
+            ObjectInputStream ois = new ObjectInputStream(fop);
+
+            long id = ois.readLong();
+            list = (ArrayList) ois.readObject();
+        } catch (IOException|ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return list;
+    }
+
 
     // Getter und Setter
     public ArrayList<Asset> getAssetList() {

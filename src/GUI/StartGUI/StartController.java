@@ -149,12 +149,12 @@ public class StartController implements Initializable {
     @FXML
     protected void deleteInventoryClicked() {
         File a = new File(path + "/" + InventarBox.getValue() + ".Inv");
-         if(InventarBox.getValue().equals("Kein Eintrag gefunden!")){
-          Dialogs.warnDialog("Es wurde noch kein Inventar angelegt!", "Warnung");
-          return;
+        if(InventarBox.getValue().equals("Kein Eintrag gefunden!")){
+              Dialogs.warnDialog("Es wurde noch kein Inventar angelegt!", "Warnung");
+              return;
         } else if(!a.exists()){
-           Dialogs.warnDialog("Inventar Existiert nicht!", "Warnung");
-           return;
+               Dialogs.warnDialog("Inventar Existiert nicht!", "Warnung");
+               return;
          }
         boolean confirmed = Dialogs.confirmDialog(InventarBox.getValue() + " wirklich Löschen?");
         if(confirmed){

@@ -95,8 +95,14 @@ public class ViewController implements Initializable {
     //Container für die gefilterten Assets
     private ArrayList filteredList = new ArrayList();
 
+    //Liste für eine Zusammengefasste ausgabe
+    private ArrayList summarizedList = new ArrayList();
+
     //Boolean der bestimmt ob Filter aktiv sind
     private boolean ActiveFilter = false;
+
+    //Boolean der bestimmt ob eine Zusammenfassung angefordert wurde
+    private boolean ActiveSummary = false;
 
     //aktueller speicherpfad
     private String path;
@@ -156,7 +162,10 @@ public class ViewController implements Initializable {
      * @param abteilung abteilung für die eine zusammenfassung erstellt werden soll
      */
     private void summary(String abteilung){
-
+        System.out.println(abteilung);
+        ActiveSummary = true;
+        summarizedList = assetContainer.getSummaryOf(abteilung, path, orgContainer);
+        fillTable();
     }
 
     /**
@@ -169,6 +178,9 @@ public class ViewController implements Initializable {
         ArrayList<Asset> arrayList;
         if(ActiveFilter){
             arrayList = filteredList;
+            resetButton.setVisible(true);
+        } if(ActiveSummary){
+            arrayList = summarizedList;
             resetButton.setVisible(true);
         } else {
             arrayList = assetContainer.getAssetList();
@@ -270,7 +282,9 @@ public class ViewController implements Initializable {
     @FXML
     protected void resetFilter(){
         ActiveFilter=false;
+        ActiveSummary=false;
         filteredList = null;
+        summarizedList = null;
 
         fillTable();
         System.out.println("[INFO] Filter zurückgesetzt!");
@@ -299,6 +313,7 @@ public class ViewController implements Initializable {
                     System.out.println(pair.getValue());
                 }
             }
+            assetContainer.safeInventar(completePath);
             fillTable();
         }
     }
@@ -340,7 +355,7 @@ public class ViewController implements Initializable {
         }
 
         ChoiceDialog<String> dialog = new ChoiceDialog<>("Boden und Gebäude", choices);
-        dialog.setTitle("Item Anlegen");
+        dialog.setTitle("Asset Anlegen");
         dialog.setHeaderText("Art des Gegenstandes wählen!");
         dialog.setContentText("Arten:");
         dialog.getDialogPane().setStyle("-fx-background-color:  #e6f9ff");

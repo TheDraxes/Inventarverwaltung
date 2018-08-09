@@ -30,19 +30,13 @@ public class OrganisationContainer implements Serializable {
             outputStream = new ObjectOutputStream(fileOutputStream);
             outputStream.writeObject(this.abteilungArrayList);
             System.out.println("[INFO] Organisationsdaten gespeichert unter '" + "organisation.dat" + "'!");
+            fileOutputStream.close();
+            outputStream.close();
             return true;
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            try {
-                fileOutputStream.close();
-                outputStream.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
+
         System.out.println("[ERROR] Fehler beim speichern der Organisationsdaten!");
         return false;
     }

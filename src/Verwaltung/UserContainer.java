@@ -104,19 +104,13 @@ public class UserContainer implements Serializable {
             outputStream = new ObjectOutputStream(fileOutputStream);
             outputStream.writeObject(this.userData);
             System.out.println("[INFO] Nutzerdaten gespeichert unter '" + "user.dat" + "'!");
+            fileOutputStream.close();
+            outputStream.close();
             return true;
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            try {
-                fileOutputStream.close();
-                outputStream.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
+
         System.out.println("[ERROR] Fehler beim speichern der Nutzerdaten!");
         return false;
     }

@@ -1,11 +1,10 @@
 package TestKlassen;
 
-import Data.Asset;
-import Data.BodenUndGebaeude;
-import Data.Fuhrpark;
-import Data.Software;
+import Data.*;
 import Verwaltung.AssetContainer;
+import Verwaltung.OrganisationContainer;
 
+import java.io.File;
 import java.util.ArrayList;
 
 /**
@@ -21,7 +20,7 @@ public class AssetContainerTest {
         String[] b = new Fuhrpark().getParamNames();
         System.out.println(b[12]);*/
 
-
+        /*
         Fuhrpark auto1 = new Fuhrpark();
         auto1.setFahrgestellnummer(28741982);
         auto1.setKw(188);
@@ -59,18 +58,21 @@ public class AssetContainerTest {
             filteredList.get(i).display();
             System.out.println("-------------------------------------");
         }
+        */
 
+        OrganisationContainer container = new OrganisationContainer();
+        Abteilung FA = new Abteilung();
+        FA.setKuerzel("FA");
+        container.insertAbteilung(FA);
+        Sachgebiet FAJ = new Sachgebiet();
+        FAJ.setKuerzel("FAJ");
+        container.insertSachgebiet(FAJ, "FA");
 
-        String[] paramNames = {
-                "Postleitzahl",
-                "Ort",
-                "Strasse",
-                "Hausnummer",
-                "Flächengröße",
-                "Besitzer"
-        };
+        AssetContainer c = new AssetContainer();
+        System.out.println("Test 1234".indexOf(" "));
 
-        System.out.println(paramNames.length);
+        boolean test = c.checkSachgebiet(new File("FAJ Test123"),container,"FA");
 
+        System.out.println(test);
     }
 }
