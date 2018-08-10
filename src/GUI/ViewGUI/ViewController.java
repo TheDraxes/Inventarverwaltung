@@ -8,6 +8,7 @@ import GUI.ViewGUI.CellFactories.AnschaffungswertCellFactory;
 import GUI.ViewGUI.CellFactories.InsDateCellFactory;
 import GUI.ViewGUI.Comparators.AnschaffungswertComparator;
 import GUI.ViewGUI.NewItemDialogs.AssetDialog;
+import GUI.ViewGUI.Summary.SummaryController;
 import Verwaltung.AssetContainer;
 import Verwaltung.OrganisationContainer;
 import Verwaltung.UserContainer;
@@ -419,5 +420,26 @@ public class ViewController implements Initializable {
             filteredList = null;
         }
         fillTable();
+    }
+
+    @FXML
+    protected void kapitalSummaryClicked(){
+      FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/ViewGUI/Summary/SummaryStyle.fxml"));
+      Parent root = null;
+      try {
+        root = loader.load();
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+      root.setStyle("-fx-background-color: #b5edff");
+
+      SummaryController controller = new SummaryController();
+      controller.getParams(path);
+
+      Stage stage = new Stage();
+      stage.setTitle("Inventarverwaltung 1.0");
+      stage.setResizable(false);
+      stage.setScene(new Scene(root));
+      stage.show();
     }
 }
