@@ -5,12 +5,12 @@ import java.io.Serializable;
 public class Organisation implements Serializable{
   protected Person leiter;
   protected String name;
-  protected String kürzel;
+  protected String kuerzel;
 
-  public Organisation(Person leiter, String name, String kürzel){
+  public Organisation(Person leiter, String name, String kuerzel){
     this.leiter = leiter;
     this.name = name;
-    this.kürzel = kürzel;
+    this.kuerzel = kuerzel;
   }
   public Organisation(){}
 
@@ -30,11 +30,11 @@ public class Organisation implements Serializable{
     this.name = name;
   }
 
-  public String getKürzel() {
-    return this.kürzel;
+  public String getKuerzel() {
+    return this.kuerzel;
   }
 
-  public void setKürzel(String kürzel) {
-    this.kürzel = kürzel;
+  public void setKuerzel(String kuerzel) {
+    this.kuerzel = kuerzel;
   }
 }

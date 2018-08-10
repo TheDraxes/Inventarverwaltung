@@ -35,11 +35,13 @@ public class DialogsTest extends Application{
     nameSach.setPrefWidth(125);
     nameSach.setCellValueFactory(new PropertyValueFactory<>("name"));
 
+
     TableColumn kuerzelSach = new TableColumn("Kürzel");
     kuerzelSach.setPrefWidth(125);
 
-    sachgebietTable.getColumns().addAll(nameSach,kuerzelSach);
 
+    sachgebietTable.getColumns().addAll(nameSach,kuerzelSach);
+    
 
     TableView<Abteilung> abteilungTable = new TableView();
 

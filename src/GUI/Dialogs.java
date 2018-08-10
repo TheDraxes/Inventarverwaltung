@@ -283,14 +283,14 @@ public class Dialogs {
         grid.setVgap(10);
         grid.setPadding(new Insets(20,150,10,10));
 
-        CheckBox BodenGebäude = new CheckBox("Boden und Gebäude");
+        CheckBox BodenGebaeude = new CheckBox("Boden und Gebäude");
         CheckBox Fuhrpark = new CheckBox("Fuhrpark");
         CheckBox Hardware = new CheckBox("Hardware");
         CheckBox Mobiliar = new CheckBox("Mobiliar");
         CheckBox Software = new CheckBox("Software");
         CheckBox Sonstiges = new CheckBox("Sonstiges");
 
-        grid.add(BodenGebäude,0,0);
+        grid.add(BodenGebaeude,0,0);
         grid.add(Fuhrpark,0,1);
         grid.add(Hardware,0,2);
         grid.add(Mobiliar,0,3);
@@ -306,7 +306,7 @@ public class Dialogs {
                 boolean anyTrue = false;
                 Boolean[] filter = new Boolean[6];
 
-                if (BodenGebäude.isSelected()) {
+                if (BodenGebaeude.isSelected()) {
                     filter[0] = true;
                 } else {
                     filter[0] = false;
@@ -419,7 +419,7 @@ public class Dialogs {
 
         if(actual != null){
             nameField.setText(actual.getName());
-            shortcutField.setText(actual.getKürzel());
+            shortcutField.setText(actual.getKuerzel());
         }
 
         grid.add(userBox, 1,0);
@@ -445,7 +445,7 @@ public class Dialogs {
                 }
 
                 newAbt.setName(nameField.getText());
-                newAbt.setKürzel(shortcutField.getText());
+                newAbt.setKuerzel(shortcutField.getText());
                 newAbt.setLeiter(userContainer.getPersonByUsername(userBox.getValue()));
 
                 return new Pair<>(newAbt,null);
@@ -466,7 +466,7 @@ public class Dialogs {
   public static Pair<Sachgebiet,String> newSachgebietWindow(OrganisationContainer orgContainer, UserContainer userContainer, Sachgebiet actual){
     ObservableList<String> orgList =
             FXCollections.observableArrayList(
-                    orgContainer.getAllAbteilungsKürzel()
+                    orgContainer.getAllAbteilungsKuerzel()
             );
 
     ObservableList<String> userList =
@@ -475,7 +475,7 @@ public class Dialogs {
             );
 
     ComboBox<String> abtBox = new ComboBox<>(orgList);
-    abtBox.setValue(orgContainer.getAllAbteilungsKürzel()[0]);
+    abtBox.setValue(orgContainer.getAllAbteilungsKuerzel()[0]);
     ComboBox<String> userBox = new ComboBox<>(userList);
     userBox.setValue(userContainer.getUserNamesWithoutAdmin()[0]);
     TextField nameField = new TextField();
@@ -485,13 +485,13 @@ public class Dialogs {
         abtBox.setValue("Test");
         userBox.setValue(actual.getLeiter().getUsername());
         nameField.setText(actual.getName());
-        shortcutField.setText(actual.getKürzel());
+        shortcutField.setText(actual.getKuerzel());
     }
 
     userBox.setValue(userList.get(0));
 
     Dialog<Pair<Sachgebiet,String>> dialog = new Dialog<>();
-    dialog.setTitle("Neue Abteilung anlegen!");
+    dialog.setTitle("Neues Sachgebiet anlegen!");
     ButtonType addButton = new ButtonType("Bestätigen" ,ButtonBar.ButtonData.OK_DONE);
     dialog.getDialogPane().getButtonTypes().addAll(addButton, ButtonType.CANCEL);
 
@@ -523,7 +523,7 @@ public class Dialogs {
         }
 
         newSach.setName(nameField.getText());
-        newSach.setKürzel(shortcutField.getText());
+        newSach.setKuerzel(shortcutField.getText());
         newSach.setLeiter(userContainer.getPersonByUsername(userBox.getValue()));
 
         return new Pair<>(newSach,abtBox.getValue());
@@ -543,12 +543,12 @@ public class Dialogs {
     public static String chooseAbt(OrganisationContainer orgs, String title, String header){
         ObservableList<String> observableList =
                 FXCollections.observableArrayList(
-                        orgs.getAllAbteilungsKürzel()
+                        orgs.getAllAbteilungsKuerzel()
                         );
 
         ComboBox org = new ComboBox(observableList);
         Abteilung _default = orgs.getAbteilungArrayList().get(0);
-        org.setValue(_default.getKürzel());
+        org.setValue(_default.getKuerzel());
 
         Dialog<String> dialog  = new Dialog();
         dialog.setTitle(title);

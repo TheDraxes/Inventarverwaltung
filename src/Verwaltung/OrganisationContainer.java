@@ -30,27 +30,21 @@ public class OrganisationContainer implements Serializable {
             outputStream = new ObjectOutputStream(fileOutputStream);
             outputStream.writeObject(this.abteilungArrayList);
             System.out.println("[INFO] Organisationsdaten gespeichert unter '" + "organisation.dat" + "'!");
+            fileOutputStream.close();
+            outputStream.close();
             return true;
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            try {
-                fileOutputStream.close();
-                outputStream.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
+
         System.out.println("[ERROR] Fehler beim speichern der Organisationsdaten!");
         return false;
     }
 
     public OrganisationContainer loadOrganisationsData(){
         System.out.println("[INFO] Suche Organisationsdaten...");
-        FileInputStream fileInputStream = null;
-        ObjectInputStream objectInputStream = null;
+        FileInputStream fileInputStream;
+        ObjectInputStream objectInputStream;
         try {
             File filename = new File("organisation.dat");
 
@@ -87,7 +81,7 @@ public class OrganisationContainer implements Serializable {
 
     public boolean insertAbteilung(Abteilung a) {
         if(this.abteilungArrayList.add(a)) {
-            System.out.println("[INFO] Abteilung " + a.getKürzel() + " hinzugefügt");
+            System.out.println("[INFO] Abteilung " + a.getKuerzel() + " hinzugefügt");
             return true;
         } else {
             System.out.println("[ERROR] Fehler in insertAbteilung");
@@ -95,15 +89,24 @@ public class OrganisationContainer implements Serializable {
         }
     }
 
-    public boolean insertSachgebiet(Sachgebiet a, String abteilungsKürzel) {
-        Abteilung abteilung = getAbteilungByKuerzel(abteilungsKürzel);
+    public boolean insertSachgebiet(Sachgebiet a, String abteilungsKuerzel) {
+        Abteilung abteilung = getAbteilungByKuerzel(abteilungsKuerzel);
         if(abteilung.getSachgebiete().add(a)){
-            System.out.println("[INFO] Sachgebiet " + a.getKürzel() + "zur Abteilung " + abteilung.getKürzel() + " hinzugefügt!");
+            System.out.println("[INFO] Sachgebiet " + a.getKuerzel() + "zur Abteilung " + abteilung.getKuerzel() + " hinzugefügt!");
             return true;
         } else {
             System.out.println("[ERROR] Fehler in insertSachgebiet");
             return false;
         }
+    }
+
+    public boolean existingAbteilung(String abteilung){
+      for(Abteilung abt : abteilungArrayList){
+        if(abt.getName().equals(abteilung)){
+          return true;
+        }
+      }
+      return false;
     }
 
     public String[] getAllSachgebietsKuerzel() {
@@ -113,7 +116,7 @@ public class OrganisationContainer implements Serializable {
             ArrayList<Sachgebiet> sachgebiete = abteilungInterator.next().getSachgebiete();
             Iterator<Sachgebiet> sachgebietIterator = sachgebiete.iterator();
             for(int i = 0; i < sachgebiete.size(); i++) {
-                sachgebietNames.add(sachgebietIterator.next().getKürzel());
+                sachgebietNames.add(sachgebietIterator.next().getKuerzel());
             }
         }
         String[] kuerzel = new String[sachgebietNames.size()];
@@ -129,7 +132,7 @@ public class OrganisationContainer implements Serializable {
         Iterator<Abteilung> abteilungIterator = abteilungArrayList.iterator();
         while(abteilungIterator.hasNext()) {
             Abteilung abteilung = abteilungIterator.next();
-            if(abteilung.getKürzel().equals(abteilungsKuerzel)) {
+            if(abteilung.getKuerzel().equals(abteilungsKuerzel)) {
                 return abteilung;
             }
         }
@@ -137,18 +140,18 @@ public class OrganisationContainer implements Serializable {
         return null;
     }
 
-    public String[] getAllAbteilungsKürzel(){
+    public String[] getAllAbteilungsKuerzel(){
         String[] abteilungen = new String[abteilungArrayList.size()];
         Iterator<Abteilung> abteilungInterator = abteilungArrayList.iterator();
         for(int i = 0; i < abteilungArrayList.size(); i++) {
-            abteilungen[i] = abteilungInterator.next().getKürzel();
+            abteilungen[i] = abteilungInterator.next().getKuerzel();
         }
 
         return abteilungen;
     }
 
     public boolean anyAbteilungExisting(){
-        if(abteilungArrayList.size() != 0) {
+        if(abteilungArrayList.size() > 0) {
             return true;
         }
         return false;
@@ -187,7 +190,7 @@ public class OrganisationContainer implements Serializable {
 
     /**
      *
-     * @return
+     * @return boolean ob ein Sachgebiet exestiert
      */
     public boolean anySachgebietExisting(){
         for (Abteilung abteilung: abteilungArrayList) {
@@ -199,7 +202,8 @@ public class OrganisationContainer implements Serializable {
 
     /**
      *
-     * @return
+     * @return gibt das sachgebiet nach dem angegebenen Sachgebietskürzel zurück
+     * @param sachgebietKuerzel Kürzel nach dem gesucht wird
      */
     public Sachgebiet getSachgebietByKuerzel(String sachgebietKuerzel){
         for (Abteilung abteilung: abteilungArrayList) {
@@ -207,7 +211,7 @@ public class OrganisationContainer implements Serializable {
             Iterator<Sachgebiet> sachgebietIterator = sachgebiete.iterator();
             while(sachgebietIterator.hasNext()) {
                 Sachgebiet sachgebiet = sachgebietIterator.next();
-                if(sachgebiet.getKürzel().equals(sachgebietKuerzel)) {
+                if(sachgebiet.getKuerzel().equals(sachgebietKuerzel)) {
                     return sachgebiet;
                 }
             }
@@ -216,28 +220,39 @@ public class OrganisationContainer implements Serializable {
         return null;
     }
 
-    /**
-     * @TODO Für Darius
-     * @return
-     */
-    public void editSachgebiet(Sachgebiet alt, Sachgebiet neu){
+    public boolean editSachgebiet(Sachgebiet alt, Sachgebiet neu){
         for (int i = 0; i < abteilungArrayList.size(); i++) {
             ArrayList<Sachgebiet> sachgebiete = abteilungArrayList.get(i).getSachgebiete();
 
             for (int j = 0; j < sachgebiete.size(); j++) {
                 if(sachgebiete.get(j).equals(alt)) {
                     this.abteilungArrayList.get(i).getSachgebiete().set(j, neu);
+                    return true;
                 }
             }
         }
+        return false;
     }
 
-    /**
-     * --> sollte sachgebiet oder Abteilung sein können. bei Abteilung werden auch alle sachgebiete gelöscht
-     * @TODO Für Darius
-     * @return
-     */
-    public void deleteOrg(Organisation a){
-        
+    public boolean deleteOrg(Organisation a){
+        if (a.getClass() == Abteilung.class) {
+            System.out.println("[INFO] Lösche Abteilung " + a.getKuerzel() + " ...");
+            if(this.abteilungArrayList.contains(a)) {
+                this.abteilungArrayList.remove(a);
+                System.out.println("[INFO] Abteilung erfolgreich gelöscht!");
+                return true;
+            }
+        } else if (a.getClass() == Sachgebiet.class) {
+            System.out.println("[INFO] Lösche Sachgebiet " + a.getKuerzel() + " ...");
+            for (int i = 0; i < abteilungArrayList.size(); i++) {
+                if(this.abteilungArrayList.get(i).getSachgebiete().contains(a)) {
+                    this.abteilungArrayList.get(i).getSachgebiete().remove(a);
+                    System.out.println("[INFO] Sachgebiet erfolgreich gelöscht!");
+                    return true;
+                }
+            }
+        }
+        System.out.println("[WARNING] Abteilung/Sachgebiet konnte nicht gelöscht werden!");
+        return false;
     }
 }

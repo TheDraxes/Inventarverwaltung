@@ -1,10 +1,8 @@
 package GUI.ViewGUI.NewItemDialogs;
 
 import Data.*;
-import javafx.application.Application;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 import javafx.util.Pair;
 
 /**
@@ -25,12 +23,12 @@ public class AssetDialog {
   /**
    * Nimmt die Unterscheidung der einzelnen Asset arten vor
    *
-   * @param assetType -> art des assets
-   * @param actual -> zu editierendes Asset, null wenn ein neues Asset angelegt wird
-   * @return -> ein paar aus zwei werten. Asset,String
+   * @param assetType art des assets
+   * @param actual zu editierendes Asset, null wenn ein neues Asset angelegt wird
+   * @return ein paar aus zwei werten. Asset,String
    *
-   *      Asset -> das neu gebildete Asset
-   *      String -> Fehlermeldung wenn etwas schief geht
+   *      Asset = das neu gebildete Asset
+   *      String = Fehlermeldung wenn etwas schief geht
    */
   public Pair<Asset, String> getNewAsset(String assetType, Asset actual) {
     Pair pair;
@@ -43,7 +41,7 @@ public class AssetDialog {
       case "BodenUndGebaeude": //Boden und Gebäude
         this.labelNames = new BodenUndGebaeude().getParamNames();
         setTextFields();
-        pair = new BodenUndGebäudeDialog(labelNames,Labels,TextFields,actual).getBodenUndGebäude();
+        pair = new BodenUndGebaeudeDialog(labelNames,Labels,TextFields,actual).getBodenUndGebaeude();
         return pair;
       case "Hardware":          //Hardware
         this.labelNames = new Hardware().getParamNames();

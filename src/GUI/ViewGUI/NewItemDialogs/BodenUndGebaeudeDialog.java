@@ -19,13 +19,13 @@ import java.util.Optional;
  * @author Tim
  */
 
-public class BodenUndGebäudeDialog extends AbstractDialog{
+public class BodenUndGebaeudeDialog extends AbstractDialog{
 
-  public BodenUndGebäudeDialog(String[] labelNames, Label[] labels, TextField[] textFields, Asset actual) {
+  public BodenUndGebaeudeDialog(String[] labelNames, Label[] labels, TextField[] textFields, Asset actual) {
     super(labelNames, labels, textFields, actual);
   }
 
-  public Pair<Asset, String> getBodenUndGebäude() {
+  public Pair<Asset, String> getBodenUndGebaeude() {
 
     BodenUndGebaeude edit = (BodenUndGebaeude) actual;
 

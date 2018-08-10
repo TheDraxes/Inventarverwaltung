@@ -95,8 +95,14 @@ public class ViewController implements Initializable {
     //Container für die gefilterten Assets
     private ArrayList filteredList = new ArrayList();
 
+    //Liste für eine Zusammengefasste ausgabe
+    private ArrayList summarizedList = new ArrayList();
+
     //Boolean der bestimmt ob Filter aktiv sind
     private boolean ActiveFilter = false;
+
+    //Boolean der bestimmt ob eine Zusammenfassung angefordert wurde
+    private boolean ActiveSummary = false;
 
     //aktueller speicherpfad
     private String path;
@@ -133,25 +139,33 @@ public class ViewController implements Initializable {
         assetContainer = assetContainer.loadInventar(inventoryFile.getPath());
         itemTable.setPlaceholder(new Label("Keine Anlage-gegenstände gefunden"));
 
-        ArrayList<Asset> arrayList = assetContainer.getAssetList();
         fillTable();
-        for (int i = 0; i < orgContainer.getAnzahlAbteilungen(); i++) {
-            MenuItem menuItem = new MenuItem();
-            menuItem.setText(orgContainer.getAllAbteilungsKürzel()[i]);
-            menuItem.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    MenuItem menuItem = (MenuItem) event.getSource();
-                    summary(menuItem.getText());
-                }
-            });
-            summaryMenu.getItems().add(menuItem);
+        if(orgContainer != null) {
+            for (int i = 0; i < orgContainer.getAnzahlAbteilungen(); i++) {
+                MenuItem menuItem = new MenuItem();
+                menuItem.setText(orgContainer.getAllAbteilungsKuerzel()[i]);
+                menuItem.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        MenuItem menuItem = (MenuItem) event.getSource();
+                        summary(menuItem.getText());
+                    }
+                });
+                summaryMenu.getItems().add(menuItem);
+            }
         }
     }
 
-
+    //TODO Zusammenfassung der Abteilungen
+    /**
+     *
+     * @param abteilung abteilung für die eine zusammenfassung erstellt werden soll
+     */
     private void summary(String abteilung){
-
+        System.out.println(abteilung);
+        ActiveSummary = true;
+        summarizedList = assetContainer.getSummaryOf(abteilung, path, orgContainer);
+        fillTable();
     }
 
     /**
@@ -164,6 +178,9 @@ public class ViewController implements Initializable {
         ArrayList<Asset> arrayList;
         if(ActiveFilter){
             arrayList = filteredList;
+            resetButton.setVisible(true);
+        } if(ActiveSummary){
+            arrayList = summarizedList;
             resetButton.setVisible(true);
         } else {
             arrayList = assetContainer.getAssetList();
@@ -265,7 +282,9 @@ public class ViewController implements Initializable {
     @FXML
     protected void resetFilter(){
         ActiveFilter=false;
+        ActiveSummary=false;
         filteredList = null;
+        summarizedList = null;
 
         fillTable();
         System.out.println("[INFO] Filter zurückgesetzt!");
@@ -273,15 +292,15 @@ public class ViewController implements Initializable {
 
     /**
      * logik für das anlegen eines neuen Asset
-     * @param event
+     * @author Tim
      */
     @FXML
-    protected void addAssetClicked(ActionEvent event) {
+    protected void addAssetClicked() {
         String assetType = askForAssetType();
         if(assetType != null && assetType.equals("Boden und Gebäude")){
             assetType = "BodenUndGebaeude";
         }
-        if (assetType != "" && assetType != null) {
+        if (!assetType.equals("") && assetType != null) {
             while (true) {
                 Pair pair = new AssetDialog().getNewAsset(assetType, null);
                 if (pair.getValue() == null && pair.getKey() != null) {
@@ -294,6 +313,7 @@ public class ViewController implements Initializable {
                     System.out.println(pair.getValue());
                 }
             }
+            assetContainer.safeInventar(completePath);
             fillTable();
         }
     }
@@ -301,10 +321,11 @@ public class ViewController implements Initializable {
     /**
      * Methode zur parameterübergabe von Controller zu Controller
      *
-     * @param inventoryName -> Name des Inventars
-     * @param path -> pfad der speicherung
-     * @param userContainer -> container der userdaten
-     * @param user -> momentan eingeloggter user
+     * @param inventoryName Name des Inventars
+     * @param path pfad der speicherung
+     * @param userContainer container der userdaten
+     * @param user momentan eingeloggter user
+     * @param organisationContainer container in dem alle angelegten Organisationen gespeichert sind
      */
     public void getParams(String inventoryName, String path, UserContainer userContainer, Person user, OrganisationContainer organisationContainer){
         nameLabel.setText("Eingeloggt als: " + user.getUsername());
@@ -324,7 +345,7 @@ public class ViewController implements Initializable {
     /**
      * Methode die ein Fenster aufbaut welches nach dem anzulegenden Assettypfragt
      *
-     * @return
+     * @return name des Assettypes
      */
     private String askForAssetType(){
         List<String> choices = new ArrayList<>();
@@ -334,7 +355,7 @@ public class ViewController implements Initializable {
         }
 
         ChoiceDialog<String> dialog = new ChoiceDialog<>("Boden und Gebäude", choices);
-        dialog.setTitle("Item Anlegen");
+        dialog.setTitle("Asset Anlegen");
         dialog.setHeaderText("Art des Gegenstandes wählen!");
         dialog.setContentText("Arten:");
         dialog.getDialogPane().setStyle("-fx-background-color:  #e6f9ff");
@@ -350,10 +371,9 @@ public class ViewController implements Initializable {
     /**
      * Methode die aufgerufen wird wenn speichern und beenden gedrückt wird
      *
-     * @param event
      */
     @FXML
-    protected void backClicked(ActionEvent event){
+    protected void backClicked(){
 
         assetContainer.safeInventar(completePath);
 

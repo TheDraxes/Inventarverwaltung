@@ -13,36 +13,36 @@ public class DVZ_Organisation {
 
     Sachgebiet GEW = new Sachgebiet();
     GEW.setName("WEbanwendung betireb");
-    GEW.setKürzel("GEW");
+    GEW.setKuerzel("GEW");
     GEW.setLeiter(leiter);
 
     Abteilung GE = new Abteilung();
     GE.setName("E-Government");
-    GE.setKürzel("GE");
+    GE.setKuerzel("GE");
     GE.setLeiter(leiter);
     Abteilung FA = new Abteilung();
     FA.setName("Fachapplikation");
-    FA.setKürzel("FA");
+    FA.setKuerzel("FA");
     FA.setLeiter(leiter);
     Abteilung SC = new Abteilung();
     SC.setName("Service-Center-IT");
-    SC.setKürzel("SC");
+    SC.setKuerzel("SC");
     SC.setLeiter(leiter);
     Abteilung KB = new Abteilung();
     KB.setName("Kunden- und Beschaffungsmanagement");
-    KB.setKürzel("KB");
+    KB.setKuerzel("KB");
     KB.setLeiter(leiter);
     Abteilung MB = new Abteilung();
     MB.setName("Managementberatung");
-    MB.setKürzel("MB");
+    MB.setKuerzel("MB");
     MB.setLeiter(leiter);
     Abteilung SD = new Abteilung();
     SD.setName("Service Delivery");
-    SD.setKürzel("SD");
+    SD.setKuerzel("SD");
     SD.setLeiter(leiter);
     Abteilung US = new Abteilung();
     US.setName("Unternehmenssteuerung");
-    US.setKürzel("US");
+    US.setKuerzel("US");
     US.setLeiter(leiter);
 
     org.insertAbteilung(KB);

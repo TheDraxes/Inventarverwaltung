@@ -17,11 +17,11 @@ public class Abteilung extends Organisation{
 	public Abteilung() {
 		System.out.println("[KONSTRUKTOR] Abteilung ohne Parameter angelegt!");
 	}
-	public Abteilung(Person leiter, String name, String kürzel) {
+	public Abteilung(Person leiter, String name, String kuerzel) {
 		System.out.println("[KONSTRUKTOR] Abteilung mit Parameter angelegt!");
 		this.leiter = leiter;
 		this.name = name;
-		this.kürzel = kürzel;
+		this.kuerzel = kuerzel;
 	}
 
 	public ArrayList<Sachgebiet> getSachgebiete() {
@@ -29,7 +29,7 @@ public class Abteilung extends Organisation{
 	}
 
 	public boolean sachgebietExisting(){
-		if(sachgebiete.size() != 0) {
+		if(sachgebiete.size() > 0) {
 			return true;
 		}
 		return false;
@@ -40,7 +40,9 @@ public class Abteilung extends Organisation{
 		System.out.println("[INFO] DISPLAYMETHODE ABTEILUNG");
 		System.out.println("Abteilungsleiter");
 		System.out.println("----------------");
-		leiter.display();
+		System.out.println("Leiter: " + leiter.getUsername());
+		System.out.println("Name:   " + name);
+		System.out.println("Kürzel: " + kuerzel);
 	}
 
 	// Getter und Setter
