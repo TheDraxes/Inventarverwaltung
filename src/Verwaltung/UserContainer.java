@@ -159,13 +159,10 @@ public class UserContainer implements Serializable {
                 System.out.println("[INFO] Neue Nutzerdaten mit Standardadmin erstellt");
                 return newUserdata;
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (IOException|ClassNotFoundException e) {
             e.printStackTrace();
         }
+
         System.out.println("[ERROR] Fehler beim Laden der Nutzerdaten!");
         return null;
     }
@@ -254,9 +251,9 @@ public class UserContainer implements Serializable {
             } else {
                 System.out.println("[INFO] Vorgang abgebrochen");
             }
-        } else
+        } else {
             System.out.println("[WARNING] Benutzername existiert nicht!");
-
+        }
         safeUserData();
     }
 
