@@ -1,6 +1,7 @@
 package Verwaltung;
 
 import Data.Person;
+import GUI.Dialogs;
 
 import javax.swing.*;
 import java.io.*;
@@ -240,19 +241,19 @@ public class UserContainer implements Serializable {
      */
     public void deleteUser(String username){
 
-        setLookAndFeel();
 
         Person p = getPersonByUsername(username);
 
         if(p != null) {
-            int result = JOptionPane.showConfirmDialog(null,"Benutzer " + username + " wirklich löschen?");
-
-            if(result == JOptionPane.OK_OPTION) {
-                userData.remove(p);
-            } else if(result == JOptionPane.CANCEL_OPTION || result == JOptionPane.NO_OPTION){
-                System.out.println("[INFO] Vorgang abgebrochen!");
+            if(p.getUsername().equals("admin")){
+                Dialogs.warnDialog("Der Admin Account kann nicht gelöscht werden!","Warnung");
+                return;
             }
-
+            if(Dialogs.confirmDialog("Benutzer " + p.getUsername() + " wirklich löschen?")){
+                userData.remove(p);
+            } else {
+                System.out.println("[INFO] Vorgang abgebrochen");
+            }
         } else
             System.out.println("[WARNING] Benutzername existiert nicht!");
 
@@ -311,27 +312,6 @@ public class UserContainer implements Serializable {
         } else {
             p.setLocked(true);
             this.editUser(p);
-        }
-    }
-
-    /**
-     * setLookAndFeel
-     *
-     * @author Tim
-     * @version 1.0
-     */
-    private void setLookAndFeel(){
-        String laf = UIManager.getSystemLookAndFeelClassName();
-        try {
-            UIManager.setLookAndFeel(laf);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (UnsupportedLookAndFeelException e) {
-            e.printStackTrace();
         }
     }
 

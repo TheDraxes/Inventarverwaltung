@@ -48,7 +48,7 @@
 
 }
 .loginBackground{
-    -fx-background-image: url('/res/dvzlogo.jpg');
+    -fx-background-image: url('res/dvzlogo.jpg');
     -fx-background-size: cover;
 }
 .table-view:focused{
