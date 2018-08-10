@@ -1,9 +1,11 @@
 package GUI.StartGUI;
 
 import Data.Abteilung;
+import Data.Organisation;
 import Data.Sachgebiet;
 import GUI.Dialogs;
 import Data.Person;
+import TestKlassen.DVZ_Organisation;
 import Verwaltung.AssetContainer;
 import Verwaltung.OrganisationContainer;
 import Verwaltung.UserContainer;
@@ -20,7 +22,9 @@ import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Pair;
 
@@ -650,6 +654,63 @@ public class StartController implements Initializable {
         } else {
             Dialogs.warnDialog("Sie müssen zunächst einen Benutzer anlegen der als Leiter der Organisation eingestellt werden kann", "Info");
         }
+    }
+    @FXML
+    public void orgSummaryClicked(){
+      ObservableList<Organisation> list = FXCollections.observableArrayList(orgContainer.getAbteilungArrayList());
+      ObservableList<Organisation> sachList = FXCollections.observableArrayList(orgContainer.getAllSachgebiete());
+
+      TableView<Organisation> sachgebietTable = new TableView();
+
+      TableColumn nameSach = new TableColumn("Sachgebiet");
+      nameSach.setPrefWidth(188);
+      nameSach.setCellValueFactory(new PropertyValueFactory<>("name"));
+
+
+      TableColumn kuerzelSach = new TableColumn("Kürzel");
+      kuerzelSach.setPrefWidth(100);
+      kuerzelSach.setCellValueFactory(new PropertyValueFactory<>("kuerzel"));
+
+
+      sachgebietTable.getColumns().addAll(nameSach,kuerzelSach);
+      sachgebietTable.setItems(sachList);
+
+
+      TableView<Organisation> abteilungTable = new TableView();
+
+      TableColumn nameAbt = new TableColumn("Abteilung");
+      nameAbt.setPrefWidth(188);
+      nameAbt.setCellValueFactory(new PropertyValueFactory<>("name"));
+
+      TableColumn kuerzelAbt = new TableColumn("Kürzel");
+      kuerzelAbt.setPrefWidth(100);
+      kuerzelAbt.setCellValueFactory(new PropertyValueFactory<>("kuerzel"));
+
+      abteilungTable.getColumns().addAll(nameAbt,kuerzelAbt);
+      abteilungTable.setItems(list);
+
+
+      GridPane grid = new GridPane();
+      grid.setVgap(20);
+      grid.setPadding(new Insets(0, 0, 0, 0));
+      grid.setPrefWidth(600);
+      grid.add(sachgebietTable,0,0);
+      Pane a = new Pane();
+      a.setPrefWidth(20);
+      grid.addColumn(1,a);
+      grid.add(abteilungTable,2,0);
+
+
+      Scene secondScene = new Scene(grid);
+
+      // New window (Stage)
+      Stage newWindow = new Stage();
+      newWindow.setTitle("Second Stage");
+      newWindow.setScene(secondScene);
+
+      // Set position of second window, related to primary window.
+
+      newWindow.show();
     }
 
     /**

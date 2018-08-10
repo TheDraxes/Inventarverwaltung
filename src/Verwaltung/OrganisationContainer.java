@@ -255,4 +255,14 @@ public class OrganisationContainer implements Serializable {
         System.out.println("[WARNING] Abteilung/Sachgebiet konnte nicht gelöscht werden!");
         return false;
     }
+
+    public ArrayList<Organisation> getAllSachgebiete(){
+      ArrayList<Organisation> sachgebiete = new ArrayList<>();
+
+      for(Abteilung abteilung : abteilungArrayList){
+        sachgebiete.addAll(abteilung.getSachgebiete());
+      }
+
+      return sachgebiete;
+    }
 }

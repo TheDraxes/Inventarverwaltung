@@ -12,7 +12,7 @@ public class DVZ_Organisation {
     Person leiter = new Person("Leiter", "Test", false, "123", true);
 
     Sachgebiet GEW = new Sachgebiet();
-    GEW.setName("WEbanwendung betireb");
+    GEW.setName("Webanwendung betireb");
     GEW.setKuerzel("GEW");
     GEW.setLeiter(leiter);
 

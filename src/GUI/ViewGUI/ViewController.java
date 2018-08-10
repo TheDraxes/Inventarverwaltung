@@ -67,6 +67,10 @@ public class ViewController implements Initializable {
     @FXML
     private TableColumn ActionColumn;
 
+    //Tabellenspalte für das Löschen von assets
+    @FXML
+    private TableColumn deleteColumn;
+
     //Tabellenspalte für den Anschaffungswert
     @FXML
     private TableColumn valueColumn;
@@ -179,7 +183,7 @@ public class ViewController implements Initializable {
         if(ActiveFilter){
             arrayList = filteredList;
             resetButton.setVisible(true);
-        } if(ActiveSummary){
+        } else if(ActiveSummary){
             arrayList = summarizedList;
             resetButton.setVisible(true);
         } else {
@@ -189,6 +193,13 @@ public class ViewController implements Initializable {
 
         NRColumn.setCellValueFactory(new PropertyValueFactory<>("inventarnummer"));
         bezColumn.setCellValueFactory(new PropertyValueFactory<>("bezeichnung"));
+        if(ActiveSummary){
+            NRColumn.setVisible(false);
+            bezColumn.setPrefWidth(236);
+        } else {
+            NRColumn.setVisible(true);
+            bezColumn.setPrefWidth(190);
+        }
         countColumn.setCellValueFactory(new PropertyValueFactory<>("anzahl"));
         valueColumn.setCellValueFactory(new PropertyValueFactory<Asset,Double>("anschaffungswert"));
         valueColumn.setComparator(new AnschaffungswertComparator());
@@ -197,21 +208,39 @@ public class ViewController implements Initializable {
         dateColumn.setCellFactory(new InsDateCellFactory());
 
         ActionColumn.setCellValueFactory(
-                new Callback<TableColumn.CellDataFeatures<Asset, Boolean>,
-                        ObservableValue<Boolean>>() {
+              new Callback<TableColumn.CellDataFeatures<Asset, Boolean>,
+                      ObservableValue<Boolean>>() {
 
-                    @Override
-                    public ObservableValue<Boolean> call(TableColumn.CellDataFeatures<Asset, Boolean> p) {
-                        return new SimpleBooleanProperty(p.getValue() != null);
-                    }
-                });
+                  @Override
+                  public ObservableValue<Boolean> call(TableColumn.CellDataFeatures<Asset, Boolean> p) {
+                      return new SimpleBooleanProperty(p.getValue() != null);
+                  }
+              });
         ActionColumn.setCellFactory(
-                new Callback<TableColumn<Asset, Boolean>, TableCell<Asset, Boolean>>() {
-                    @Override
-                    public TableCell<Asset, Boolean> call(TableColumn<Asset, Boolean> p) {
-                        return new ButtonCell();
-                    }
-                });
+              new Callback<TableColumn<Asset, Boolean>, TableCell<Asset, Boolean>>() {
+                  @Override
+                  public TableCell<Asset, Boolean> call(TableColumn<Asset, Boolean> p) {
+                      return new editButtonCell();
+                  }
+              });
+
+        deleteColumn.setCellValueFactory(
+              new Callback<TableColumn.CellDataFeatures<Asset, Boolean>,
+                ObservableValue<Boolean>>() {
+
+              @Override
+              public ObservableValue<Boolean> call(TableColumn.CellDataFeatures<Asset, Boolean> p) {
+                return new SimpleBooleanProperty(p.getValue() != null);
+              }
+          });
+
+        deleteColumn.setCellFactory(new Callback<TableColumn<Asset, Boolean>, TableCell<Asset, Boolean>>() {
+            @Override
+            public TableCell<Asset, Boolean> call(TableColumn<Asset, Boolean> p) {
+              return new deleteButtonCell();
+            }
+        });
+
 
         NRColumn.setStyle("-fx-alignment: CENTER-RIGHT;");
         valueColumn.setStyle("-fx-alignment: CENTER-RIGHT;");
@@ -224,15 +253,54 @@ public class ViewController implements Initializable {
         itemTable.setItems(list);
     }
 
+  private class deleteButtonCell extends TableCell<Asset, Boolean> {
+    final Button cellButton = new Button("        ");
+
+    deleteButtonCell(){
+
+      cellButton.getStylesheets().add("/GUI/style.css");
+      cellButton.getStyleClass().add("deleteButton");
+
+      //Aktion die ausgeführt wird wenn der Button gedrückt wurde
+      cellButton.setOnAction(new EventHandler<ActionEvent>(){
+
+        @Override
+        public void handle(ActionEvent t) {
+          // Das ausgewählte Asset bekommen
+          try {
+            Asset selectedAsset = (Asset) deleteButtonCell.this.getTableView().getItems().get(deleteButtonCell.this.getIndex());
+            selectedAsset.display();
+
+            assetContainer.deleteAsset(selectedAsset);
+
+            fillTable();
+          } catch (Exception e){
+            System.out.println("[INFO] Cancel Button Clicked");
+          }
+        }
+      });
+    }
+
+    //Zeige den Button nur wenn die tabellenreihe nicht leer ist
+    @Override
+    protected void updateItem(Boolean t, boolean empty) {
+      super.updateItem(t, empty);
+      if(!empty){
+        setGraphic(cellButton);
+      }
+    }
+  }
+
+
     /**
      * Private Klassendefinition für den editbutton in der Tabelle
      *
      * @author Tim
      */
-    private class ButtonCell extends TableCell<Asset, Boolean> {
+    private class editButtonCell extends TableCell<Asset, Boolean> {
         final Button cellButton = new Button("        ");
 
-        ButtonCell(){
+        editButtonCell(){
 
             cellButton.getStylesheets().add("/GUI/style.css");
             cellButton.getStyleClass().add("editButton");
@@ -244,7 +312,7 @@ public class ViewController implements Initializable {
                 public void handle(ActionEvent t) {
                     // Das ausgewählte Asset bekommen
                   try {
-                    Asset selectedAsset = (Asset) ButtonCell.this.getTableView().getItems().get(ButtonCell.this.getIndex());
+                    Asset selectedAsset = (Asset) editButtonCell.this.getTableView().getItems().get(editButtonCell.this.getIndex());
                     selectedAsset.display();
 
                     String assetClass = selectedAsset.getClass().toString().substring(11);
@@ -296,11 +364,16 @@ public class ViewController implements Initializable {
      */
     @FXML
     protected void addAssetClicked() {
+        if(ActiveSummary){
+            Dialogs.warnDialog("Dieses Asset wird im Inventar " + invName + " abgespeichert. Wirklich fortfahren?", "Info");
+            ActiveSummary = false;
+            summarizedList = null;
+        }
         String assetType = askForAssetType();
         if(assetType != null && assetType.equals("Boden und Gebäude")){
             assetType = "BodenUndGebaeude";
         }
-        if (!assetType.equals("") && assetType != null) {
+        if (assetType != null && !assetType.equals("")) {
             while (true) {
                 Pair pair = new AssetDialog().getNewAsset(assetType, null);
                 if (pair.getValue() == null && pair.getKey() != null) {
