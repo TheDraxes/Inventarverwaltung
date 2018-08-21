@@ -164,6 +164,7 @@ public class StartController implements Initializable {
         if(confirmed){
             if(a.delete()) {
                 inventoryCounter--;
+                Dialogs.warnDialog("Das ausgewählte Inventar wurde erfolgreich gelöscht!", "[Info]");
                 System.out.println("[INFO]" + "Inventar \"" + InventarBox.getValue() + "\" wurde gelöscht");
             }
             initialize();
