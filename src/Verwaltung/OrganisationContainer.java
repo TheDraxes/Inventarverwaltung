@@ -100,13 +100,22 @@ public class OrganisationContainer implements Serializable {
         }
     }
 
-    public boolean existingAbteilung(String abteilung){
-      for(Abteilung abt : abteilungArrayList){
-        if(abt.getName().equals(abteilung)){
-          return true;
+    public boolean existingAbteilungName(String abteilung){
+          for(Abteilung abt : abteilungArrayList){
+                if(abt.getName().equals(abteilung)){
+                  return true;
+              }
+          }
+          return false;
+    }
+
+    public boolean existingAbteilungKuerzel(String abteilung){
+        for(Abteilung abt : abteilungArrayList){
+            if(abt.getKuerzel().equals(abteilung)){
+                return true;
+            }
         }
-      }
-      return false;
+        return false;
     }
 
     public String[] getAllSachgebietsKuerzel() {

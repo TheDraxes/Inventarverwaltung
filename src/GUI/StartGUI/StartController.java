@@ -628,7 +628,7 @@ public class StartController implements Initializable {
                     Dialogs.warnDialog(result.getValue(),"Warnung");
                     return;
                 } else {
-                    if(orgContainer.existingAbteilung(result.getKey().getName())){
+                    if(orgContainer.existingAbteilungName(result.getKey().getName())){
                         Dialogs.warnDialog("Abteilung bereits vorhanden", "Warnung");
                         return;
                     }
