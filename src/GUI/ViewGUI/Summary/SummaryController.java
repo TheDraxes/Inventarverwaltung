@@ -110,7 +110,11 @@ public class SummaryController implements Initializable{
 
         for (Asset asset : list) {
             if (asset.getClass().equals(_class)) {
-              countForClass++;
+                if(asset.getAnzahl() <= 1) {
+                    countForClass ++;
+                } else {
+                    countForClass += asset.getAnzahl();
+                }
             }
         }
         return countForClass;
@@ -124,7 +128,11 @@ public class SummaryController implements Initializable{
 
         for (Asset asset : list) {
             if (asset.getClass().equals(_class)) {
-                valueForClass += asset.getAnschaffungswert();
+                if(asset.getAnzahl() <= 1) {
+                    valueForClass += asset.getAnschaffungswert();
+                } else {
+                    valueForClass += asset.getAnschaffungswert() * asset.getAnzahl();
+                }
             }
         }
         if(valueForClass != 0) {
@@ -139,7 +147,11 @@ public class SummaryController implements Initializable{
         ArrayList<Asset> list = container.getSummaryOf(abteilung, path, orgContainer);
         double value = 0;
         for(Asset asset : list){
-            value+= asset.getAnschaffungswert();
+            if(asset.getAnzahl() <= 1){
+                value += asset.getAnschaffungswert();
+            } else {
+                value += asset.getAnschaffungswert() * asset.getAnzahl();
+            }
         }
         if(value != 0) {
             return german.format(value) + "€";
@@ -153,7 +165,11 @@ public class SummaryController implements Initializable{
         ArrayList<Asset> list = container.getSummary(path);
         double value = 0;
         for(Asset asset : list){
-            value+= asset.getAnschaffungswert();
+            if(asset.getAnzahl() <= 1){
+                value += asset.getAnschaffungswert();
+            } else {
+                value += asset.getAnschaffungswert() * asset.getAnzahl();
+            }
         }
         if(value != 0) {
             return german.format(value) + "€";

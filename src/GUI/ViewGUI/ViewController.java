@@ -167,7 +167,6 @@ public class ViewController implements Initializable {
      * @param abteilung abteilung für die eine zusammenfassung erstellt werden soll
      */
     private void summary(String abteilung){
-        System.out.println(abteilung);
         ActiveSummary = true;
         summarizedList = assetContainer.getSummaryOf(abteilung, path, orgContainer);
         fillTable();
@@ -320,13 +319,13 @@ public class ViewController implements Initializable {
                     selectedAsset.display();
 
                     String assetClass = selectedAsset.getClass().toString().substring(11);
-                    System.out.println(assetClass);
 
                     Asset editedAsset = new AssetDialog().getNewAsset(assetClass, selectedAsset).getKey();
                     editedAsset.display();
 
                     assetContainer.editItemById(selectedAsset.getInventarnummer(), editedAsset);
                     assetContainer.showAll();
+                    assetContainer.safeInventar(completePath);
 
                     fillTable();
                   } catch (Exception e){

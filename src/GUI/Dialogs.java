@@ -482,7 +482,7 @@ public class Dialogs {
     TextField shortcutField = new TextField();
 
     if(actual != null){
-        abtBox.setValue("Test");
+        abtBox.setValue(actual.getAbtKuerzel());
         userBox.setValue(actual.getLeiter().getUsername());
         nameField.setText(actual.getName());
         shortcutField.setText(actual.getKuerzel());
@@ -521,7 +521,7 @@ public class Dialogs {
         if(nameField.getText().equals("") || shortcutField.getText().equals("")){
           return new Pair<>(null,"Alle Felder müssen ausgefüllt werden");
         }
-
+        newSach.setAbtKuerzel(abtBox.getValue());
         newSach.setName(nameField.getText());
         newSach.setKuerzel(shortcutField.getText());
         newSach.setLeiter(userContainer.getPersonByUsername(userBox.getValue()));
