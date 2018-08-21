@@ -433,7 +433,7 @@ public class ViewController implements Initializable {
       }
       root.setStyle("-fx-background-color: #b5edff");
 
-      SummaryController controller = new SummaryController();
+      SummaryController controller = loader.getController();
       controller.getParams(path);
 
       Stage stage = new Stage();

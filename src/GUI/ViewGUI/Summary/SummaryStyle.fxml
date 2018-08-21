@@ -10,7 +10,7 @@
 
 <AnchorPane prefHeight="376.0" prefWidth="368.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.ViewGUI.Summary.SummaryController">
    <children>
-      <Label layoutX="99.0" layoutY="72.0" text="Fachapplikationen">
+      <Label fx:id="abtName" layoutX="99.0" layoutY="72.0" text="Fachapplikationen">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
@@ -36,15 +36,15 @@
             <Label text="Hardware:" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
             <Label text="Sonstiges" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
             <Label fx:id="countFuhrpark" alignment="CENTER" text="0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" />
-            <Label fx:id="valueFuhrpark" text="1254,99€" GridPane.columnIndex="2" GridPane.halignment="RIGHT" />
-            <Label fx:id="countBoden" alignment="CENTER" text="Label" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
-            <Label fx:id="valueBoden" text="Label" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
-            <Label fx:id="countSoftware" alignment="CENTER" text="Label" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
-            <Label fx:id="countHardware" alignment="CENTER" text="Label" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
-            <Label fx:id="valueSoftware" text="Label" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
-            <Label fx:id="valueHardware" text="Label" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
-            <Label fx:id="countSonstiges" alignment="CENTER" text="Label" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
-            <Label fx:id="valueSonstiges" text="Label" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
+            <Label fx:id="valueFuhrpark" text="0,00€" GridPane.columnIndex="2" GridPane.halignment="RIGHT" />
+            <Label fx:id="countBoden" alignment="CENTER" text="0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+            <Label fx:id="valueBoden" text="0,00€" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+            <Label fx:id="countSoftware" alignment="CENTER" text="0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+            <Label fx:id="countHardware" alignment="CENTER" text="0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+            <Label fx:id="valueSoftware" text="0,00€" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="2" />
+            <Label fx:id="valueHardware" text="0,00€" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="3" />
+            <Label fx:id="countSonstiges" alignment="CENTER" text="0" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
+            <Label fx:id="valueSonstiges" text="0,00€" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.rowIndex="4" />
          </children>
       </GridPane>
       <Label layoutX="99.0" layoutY="277.0" text="Gesamt:">
@@ -52,12 +52,12 @@
             <Font size="14.0" />
          </font>
       </Label>
-      <Label layoutX="180.0" layoutY="279.0" text="Gesamtbetrag" />
+      <Label fx:id="abtSum" layoutX="180.0" layoutY="279.0" text="0,00€" />
       <Label layoutX="14.0" layoutY="329.0" text="Unternehmensweiter Anlagewert:">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <Label fx:id="valueHoleFirm" layoutX="237.0" layoutY="331.0" text="GesamtUnternehmen" />
+      <Label fx:id="firmSum" layoutX="237.0" layoutY="331.0" text="0,00€" />
    </children>
 </AnchorPane>

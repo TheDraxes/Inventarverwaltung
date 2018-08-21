@@ -321,6 +321,21 @@ public class AssetContainer implements Serializable {
         return null;
     }
 
+    public ArrayList<Asset> getSummary(String path){
+        File filespath = new File(path);
+        File[] files = filespath.listFiles();
+        ArrayList summaryList = new ArrayList();
+
+        for(File file : files){
+            if(checkExtension(file)){
+                summaryList.addAll(loadForSummary(file));
+            }
+        }
+
+        return summaryList;
+    }
+
+
     public ArrayList<Asset> getSummaryOf(String abteilung, String path, OrganisationContainer orgContainer){
         File filespath = new File(path);
         File[] files = filespath.listFiles();

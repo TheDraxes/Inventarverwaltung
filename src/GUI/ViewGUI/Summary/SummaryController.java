@@ -1,10 +1,7 @@
 package GUI.ViewGUI.Summary;
 
 
-import Data.Abteilung;
-import Data.Asset;
-import Data.Fuhrpark;
-import Data.Sachgebiet;
+import Data.*;
 import Verwaltung.AssetContainer;
 import Verwaltung.OrganisationContainer;
 import javafx.collections.FXCollections;
@@ -45,10 +42,16 @@ public class SummaryController implements Initializable{
     private Label valueSonstiges;
 
     @FXML
-    private Label valueHoleFirm;
+    private Label firmSum;
+
+    @FXML
+    private Label abtSum;
 
     @FXML
     private ComboBox<String> abteilungComboBox;
+
+    @FXML
+    private Label abtName;
 
     private AssetContainer assetContainer;
 
@@ -56,49 +59,111 @@ public class SummaryController implements Initializable{
 
     private String path;
 
+    final java.text.DecimalFormatSymbols germany
+            = new java.text.DecimalFormatSymbols( new java.util.Locale( "de", "DE" ));
+    final java.text.DecimalFormat german
+            = new java.text.DecimalFormat( "##,###.00", germany );
+
 
     @FXML
     public void initialize(){
-        System.out.println("TEST!$   " + path);
-        System.out.println(orgContainer.getAllAbteilungsKuerzel()[0]);
+        orgContainer = new OrganisationContainer().loadOrganisationsData();
 
         abteilungComboBox.setValue("- kein Eintrag gewählt -");
         abteilungComboBox.setItems(FXCollections.observableArrayList(orgContainer.getAllAbteilungsKuerzel()));
-        //getSummaryOf();
+
+        firmSum.setText(getFirmSum());
+        getSummaryOf();
     }
 
     @FXML
     protected void getSummaryOf(){
-        System.out.println(Fuhrpark.class);
-        System.out.println(abteilungComboBox.getValue());
-        countFuhrpark.setText("" + getCountOfClass(Fuhrpark.class, abteilungComboBox.getValue()));
-        //countFuhrpark.setText("20");
+        String choosen = abteilungComboBox.getValue();
+        Abteilung choosenAbt = orgContainer.getAbteilungByKuerzel(choosen);
+
+        if(orgContainer.existingAbteilungKuerzel(choosen)) {
+            abtName.setText(choosenAbt.getName());
+            abtSum.setText(getAbtSum(choosen));
+
+            countFuhrpark.setText("" + getCountOfClass(Fuhrpark.class, choosen));
+            valueFuhrpark.setText(getValueOfClass(Fuhrpark.class, choosen));
+
+            countBoden.setText("" + getCountOfClass(BodenUndGebaeude.class, choosen));
+            valueBoden.setText(getValueOfClass(BodenUndGebaeude.class, choosen));
+
+            countHardware.setText("" + getCountOfClass(Hardware.class, choosen));
+            valueHardware.setText(getValueOfClass(Hardware.class, choosen));
+
+            countSoftware.setText("" + getCountOfClass(Software.class, choosen));
+            valueSoftware.setText(getValueOfClass(Software.class, choosen));
+
+            countSonstiges.setText("" + getCountOfClass(Sonstiges.class, choosen));
+            valueSonstiges.setText(getValueOfClass(Sonstiges.class, choosen));
+        }
     }
 
     private int getCountOfClass(Class _class, String abteilung){
-        Abteilung abt = orgContainer.getAbteilungByKuerzel(abteilung);
         AssetContainer container = new AssetContainer();
+        int countForClass = 0;
 
-        int countForClass = 20;
+        ArrayList<Asset> list = container.getSummaryOf(abteilung, path, orgContainer);
 
-        System.out.println(path);
-
-        /*
-        ArrayList<Asset> list = container.getSummaryOf(abteilung,path,orgContainer);
-
-
-        for(Asset asset : list){
-            if(asset.getClass().equals(_class)){
-                countForClass++;
+        for (Asset asset : list) {
+            if (asset.getClass().equals(_class)) {
+              countForClass++;
             }
         }
-        */
         return countForClass;
+    }
+
+    private String getValueOfClass(Class _class, String abteilung){
+        AssetContainer container = new AssetContainer();
+        double valueForClass = 0;
+
+        ArrayList<Asset> list = container.getSummaryOf(abteilung, path, orgContainer);
+
+        for (Asset asset : list) {
+            if (asset.getClass().equals(_class)) {
+                valueForClass += asset.getAnschaffungswert();
+            }
+        }
+        if(valueForClass != 0) {
+            return german.format(valueForClass) + "€";
+        } else {
+            return "0,00€";
+        }
+    }
+
+    private String getAbtSum(String abteilung){
+        AssetContainer container = new AssetContainer();
+        ArrayList<Asset> list = container.getSummaryOf(abteilung, path, orgContainer);
+        double value = 0;
+        for(Asset asset : list){
+            value+= asset.getAnschaffungswert();
+        }
+        if(value != 0) {
+            return german.format(value) + "€";
+        } else {
+            return "0,00€";
+        }
+    }
+
+    private String getFirmSum(){
+        AssetContainer container = new AssetContainer();
+        ArrayList<Asset> list = container.getSummary(path);
+        double value = 0;
+        for(Asset asset : list){
+            value+= asset.getAnschaffungswert();
+        }
+        if(value != 0) {
+            return german.format(value) + "€";
+        } else {
+            return "0,00€";
+        }
     }
 
     public void getParams(String path){
         this.path = path;
-        orgContainer = new OrganisationContainer().loadOrganisationsData();
         initialize();
     }
 
