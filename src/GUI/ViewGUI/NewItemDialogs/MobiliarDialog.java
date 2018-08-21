@@ -88,7 +88,11 @@ public class MobiliarDialog extends AbstractDialog{
           if(wert.contains(",")){
             wert = wert.replace(",",".");
           }
-          mobi.setAnschaffungswert(Double.parseDouble(wert));
+          try {
+            mobi.setAnschaffungswert(Double.parseDouble(wert));
+          } catch (Exception e){
+            return new Pair<>(null, "Etwas Stimmt nicht mit dem Anschaffungswert! Er darf nur aus Zahlen und einem \",\" oder \".\" bestehen!");
+          }
         }
 
         if (TextFields[2].getText().equals("")) {

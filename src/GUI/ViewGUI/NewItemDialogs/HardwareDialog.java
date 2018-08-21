@@ -87,7 +87,11 @@ public class HardwareDialog extends AbstractDialog{
           if(wert.contains(",")){
             wert = wert.replace(",",".");
           }
-          hardware.setAnschaffungswert(Double.parseDouble(wert));
+          try {
+            hardware.setAnschaffungswert(Double.parseDouble(wert));
+          } catch (Exception e){
+            return new Pair<>(null, "Etwas Stimmt nicht mit dem Anschaffungswert! Er darf nur aus Zahlen und einem \",\" oder \".\" bestehen!");
+          }
         }
 
         if (TextFields[2].getText().equals("")) {

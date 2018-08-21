@@ -117,19 +117,31 @@ public class FuhrparkDialog extends AbstractDialog {
           if(wert.contains(",")){
             wert = wert.replace(",",".");
           }
-          fuhrpark.setAnschaffungswert(Double.parseDouble(wert));
+          try {
+            fuhrpark.setAnschaffungswert(Double.parseDouble(wert));
+          } catch (Exception e){
+            return new Pair<>(null, "Etwas Stimmt nicht mit dem Anschaffungswert! Er darf nur aus Zahlen und einem \",\" oder \".\" bestehen!");
+          }
         }
 
         if (TextFields[2].getText().equals("")) {
           return new Pair<>(null, "Alle Felder mit einem * müssen ausgefüllt sein!");
         } else {
-          fuhrpark.setTnd(Integer.parseInt(TextFields[2].getText()));
+          try {
+            fuhrpark.setTnd(Integer.parseInt(TextFields[2].getText()));
+          } catch (Exception e){
+            return new Pair<>(null, "Etwas Stimmt nicht mit der Technischen Nutzungsdauer! Es dürfen nur Zahlen verwendet werden!");
+          }
         }
 
         if (TextFields[3].getText().equals("")) {
           return new Pair<>(null, "Alle Felder mit einem * müssen ausgefüllt sein!");
         } else {
-          fuhrpark.setAnzahl(Integer.parseInt(TextFields[3].getText()));
+          try {
+            fuhrpark.setAnzahl(Integer.parseInt(TextFields[3].getText()));
+          } catch (Exception e){
+            return new Pair<>(null, "Etwas Stimmt nicht mit der Anzahl! Es dürfen nur Zahlen verwendet werden!");
+          }
         }
 
         if (!(TextFields[4].getText().equals(""))) {
@@ -141,14 +153,22 @@ public class FuhrparkDialog extends AbstractDialog {
         }
 
         if (!(TextFields[6].getText().equals(""))) {
-          fuhrpark.setKilometerstand(Integer.parseInt(TextFields[6].getText()));
+          try {
+            fuhrpark.setKilometerstand(Integer.parseInt(TextFields[6].getText()));
+          }catch (Exception e){
+            return new Pair<>(null, "Etwas Stimmt nicht mit der Anzahl! Es dürfen nur Zahlen verwendet werden!");
+          }
         }
 
         if(!(TextFields[7].getText().equals(""))) {
-          if ((kw_ps.getValue()).equals("Kw")) {
-            fuhrpark.setKw(Integer.parseInt(TextFields[7].getText()));
-          } else {
-            fuhrpark.setPs(Integer.parseInt(TextFields[7].getText()));
+          try {
+            if ((kw_ps.getValue()).equals("Kw")) {
+              fuhrpark.setKw(Integer.parseInt(TextFields[7].getText()));
+            } else {
+              fuhrpark.setPs(Integer.parseInt(TextFields[7].getText()));
+            }
+          } catch (Exception e){
+            return new Pair<>(null, "Etwas Stimmt nicht mit der Leistung! Es dürfen nur Zahlen verwendet werden!");
           }
         }
         fuhrpark.setInserierungsdatum(new Date());

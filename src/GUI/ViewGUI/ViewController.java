@@ -196,9 +196,11 @@ public class ViewController implements Initializable {
         bezColumn.setCellValueFactory(new PropertyValueFactory<>("bezeichnung"));
         if(ActiveSummary){
             NRColumn.setVisible(false);
+            deleteColumn.setVisible(false);
             bezColumn.setPrefWidth(236);
         } else {
             NRColumn.setVisible(true);
+            deleteColumn.setVisible(true);
             bezColumn.setPrefWidth(190);
         }
         countColumn.setCellValueFactory(new PropertyValueFactory<>("anzahl"));
@@ -272,9 +274,10 @@ public class ViewController implements Initializable {
             Asset selectedAsset = (Asset) deleteButtonCell.this.getTableView().getItems().get(deleteButtonCell.this.getIndex());
             selectedAsset.display();
 
-            assetContainer.deleteAsset(selectedAsset);
-
-            fillTable();
+            if(Dialogs.confirmDialog("Soll " + selectedAsset.getBezeichnung() + " wirklich gelöscht werden?")){
+              assetContainer.deleteAsset(selectedAsset);
+              fillTable();
+            }
           } catch (Exception e){
             System.out.println("[INFO] Cancel Button Clicked");
           }
@@ -384,7 +387,7 @@ public class ViewController implements Initializable {
                 } else if (pair.getKey() == null && pair.getValue() == null) {
                     break;
                 } else {
-                    System.out.println(pair.getValue());
+                    Dialogs.warnDialog((String)pair.getValue(),"Warning");
                 }
             }
             assetContainer.safeInventar(completePath);
@@ -510,7 +513,7 @@ public class ViewController implements Initializable {
       controller.getParams(path);
 
       Stage stage = new Stage();
-      stage.setTitle("Inventarverwaltung 1.0");
+      stage.setTitle("Kapitalzusammenfassung");
       stage.setResizable(false);
       stage.setScene(new Scene(root));
       stage.show();

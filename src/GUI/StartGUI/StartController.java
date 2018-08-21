@@ -411,6 +411,7 @@ public class StartController implements Initializable {
             Person edited = Dialogs.editUserWindow(choosen, user);
             if(edited != null) {
               userContainer.editUser(edited);
+              Dialogs.warnDialog("Benutzer erfolgreich editiert!", "Info");
               System.out.println("[INFO] Vorgang abgebrochen!");
             }
         } else {
@@ -427,6 +428,7 @@ public class StartController implements Initializable {
             Person deleted = chooseUserWindow();
             if (deleted != null) {
                 userContainer.deleteUser(deleted.getUsername());
+                Dialogs.warnDialog("Benutzer erfolgreich gelöscht!", "Info");
             } else {
                 System.out.println("[INFO] Vorgang abgebrochen!");
                 break;
@@ -628,8 +630,10 @@ public class StartController implements Initializable {
                     Dialogs.warnDialog(result.getValue(),"Warnung");
                     return;
                 } else {
-                    if(orgContainer.existingAbteilungName(result.getKey().getName())){
-                        Dialogs.warnDialog("Abteilung bereits vorhanden", "Warnung");
+                    if(orgContainer.existingAbteilungName(result.getKey().getName())
+                            || orgContainer.existingAbteilungKuerzel(result.getKey().getKuerzel()))
+                    {
+                        Dialogs.warnDialog("Abteilungsname oder Kuerzel bereits vorhanden", "Warnung");
                         return;
                     }
                     orgContainer.insertAbteilung(result.getKey());
@@ -721,6 +725,10 @@ public class StartController implements Initializable {
      */
     @FXML
     public void editOrganisattion() {
+        if(!orgContainer.anyAbteilungExisting()){
+          Dialogs.warnDialog("Es existieren keine Organisationen!", "Warnung");
+          return;
+        }
         int choose = 0;
         if(orgContainer != null) {
             choose = Dialogs.chooseOrgDialog(orgContainer.anyAbteilungExisting());
@@ -777,6 +785,12 @@ public class StartController implements Initializable {
     @FXML
     public void deleteOrgClicked(){
         int choose = 0;
+
+        if(!orgContainer.anyAbteilungExisting()){
+            Dialogs.warnDialog("Es existieren keine Organisationen!", "Warnung");
+            return;
+        }
+
         if(orgContainer != null) {
             choose = Dialogs.chooseOrgDialog(orgContainer.anyAbteilungExisting());
         } else {
@@ -789,12 +803,18 @@ public class StartController implements Initializable {
             //Abteilung
             if(orgContainer.anyAbteilungExisting()) {
                 String abt = Dialogs.chooseAbt(orgContainer, "Organisation auswählen", "Org Wählen");
+                if(abt == null){
+                  return;
+                }
                 orgContainer.deleteOrg(orgContainer.getAbteilungByKuerzel(abt));
             }
         } else if (choose == 1) {
             //Sachgebiet
             if(orgContainer.anySachgebietExisting()) {
                 String sach = Dialogs.chooseSach(orgContainer, "Organisation auswählen", "Org Wählen");
+                if(sach == null){
+                  return;
+                }
                 orgContainer.deleteOrg(orgContainer.getSachgebietByKuerzel(sach));
             }
         }
