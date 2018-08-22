@@ -24,20 +24,14 @@ public class Sachgebiet extends Organisation{
 	// Konsolenausgabe aller Parameter für Testzwecke
 	public void display() {
 		System.out.println("[INFO] DISPLAYMETHODE SACHGEBIET");
-		System.out.println("Sachgebietsleiter");
+		/*System.out.println("Sachgebietsleiter");
 		System.out.println("-----------------");
-		this.leiter.display();
+		this.leiter.display();*/
+		System.out.println("Abteilung: " + this.abteilung);
+		System.out.println("Kürzel   : " + this.kuerzel);
 	}
 
 	// Getter und Setter
-	public Person getSachgebietsleiter() {
-		return leiter;
-	}
-	public void setSachgebietsleiter(Person sachgebietsleiter) {
-		this.leiter = sachgebietsleiter;
-		System.out.println("[EDIT] Sachgebietsleiter geändert");
-	}
-
 	public String getAbtKuerzel(){
       return this.abteilung;
 	}

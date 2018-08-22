@@ -246,18 +246,20 @@ public class OrganisationContainer implements Serializable {
             for (int j = 0; j < sachgebiete.size(); j++) {
                 if(sachgebiete.get(j).equals(alt)) {
                     this.abteilungArrayList.get(i).getSachgebiete().set(j, neu);
-                    return true;
-                }
-            }
-        }
+                    if(!(alt.getAbtKuerzel().equals(neu.getAbtKuerzel()))) {
+                        ArrayList<Sachgebiet> sachgebieteAlt = abtAlt.getSachgebiete();
+                        ArrayList<Sachgebiet> sachgebieteNeu = abtNeu.getSachgebiete();
 
-        if(!abtAlt.equals(abtNeu)) {
-            ArrayList<Sachgebiet> sachgebieteAlt = abtAlt.getSachgebiete();
-            ArrayList<Sachgebiet> sachgebieteNeu = abtNeu.getSachgebiete();
-            for(int i = 0; i < sachgebieteAlt.size(); i++) {
-                if(sachgebieteAlt.get(i).getKuerzel().equals(alt.getAbtKuerzel())) {
-                    sachgebieteAlt.remove(i);
-                    sachgebieteNeu.add(neu);
+                        for(int k = 0; k < sachgebieteAlt.size(); k++) {
+                            if(sachgebieteAlt.get(k).getKuerzel().equals(neu.getKuerzel())) {
+                                sachgebieteAlt.remove(k);
+                                sachgebieteNeu.add(neu);
+                                System.out.println("[EDIT] Zugehörigkeit vom Sachgebiet zur Abteilung geändert!");
+                            }
+                        }
+                    }
+
+                    return true;
                 }
             }
         }

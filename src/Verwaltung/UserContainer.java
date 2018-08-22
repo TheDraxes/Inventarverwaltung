@@ -23,9 +23,9 @@ public class UserContainer implements Serializable {
     /**
      * insertUser fügt einen neuen Benutzer hinzu
      *
-     * @author mixd
      * @param p User der in den Container eingefügt werden soll
      * @return true wenn der insert erfolgreich war
+     * @author mixd
      */
     public boolean insertUser(Person p) {
         try {
@@ -45,14 +45,13 @@ public class UserContainer implements Serializable {
     }
 
     /**
-     *
-     * Änderung des Passwortes eines Nutzers
+     * changePasswort ändert des Passwortes eines Nutzers
      *
      * @param username Username von dem Benutzer dessen Passwort geändert werden soll
      * @param newPassword Neues Passwort
      * @return true wenn die änderung erfolgreich war
+     * @author mixd
      */
-
     public boolean changePassword(String username, String newPassword){
         try {
             Person p = getPersonByUsername(username);
@@ -68,13 +67,12 @@ public class UserContainer implements Serializable {
     }
 
     /**
-     *
-     * Änderung eines Nutzers
+     * editUser ändert einen Nutzer
      *
      * @param editedPerson Ein Person Objekt in dem die geänderten Daten des Editierten benutzers stehen
-     * @return true wenn die änderung erfolgreich war
+     * @return true wenn die Änderung erfolgreich war
+     * @author mixd
      */
-
     public boolean editUser(Person editedPerson){
         try {
             Person p = getPersonByUsername(editedPerson.getUsername());
@@ -93,8 +91,8 @@ public class UserContainer implements Serializable {
     /**
      * safeUserData speichert die Nutzerdaten unter 'user.dat'
      *
-     * @author mixd
      * @return true wenn die speicherung erfolgreich war
+     * @author mixd
      */
     public boolean safeUserData(){
         System.out.println("[INFO] Speichere Nutzerdaten...");
@@ -124,8 +122,8 @@ public class UserContainer implements Serializable {
      * Falls die Datei user.dat nicht existiert, wird die Datei mit dem
      * Standardadmin neu angelegt!
      *
-     * @author mixd
      * @return geladener UserContainer
+     * @author mixd
      */
     public UserContainer loadUserData(){
         System.out.println("[INFO] Suche Nutzerdaten...");
@@ -170,9 +168,9 @@ public class UserContainer implements Serializable {
     /**
      * getPersonByUsername gibt ein Objekt Person mit dem Nutzernamen username zurück
      *
-     * @author mixd
-     * @return User der zum parameter username gehört
      * @param username username des gesuchten users
+     * @return User der zum parameter username gehört
+     * @author mixd
      */
     public Person getPersonByUsername(String username) {
         Iterator<Person> it = userData.iterator();
@@ -188,8 +186,8 @@ public class UserContainer implements Serializable {
     /**
      * getUserNames gibt alle Nutzernamen zurück
      *
-     * @author mixd
      * @return Array mit allen Usernamen
+     * @author mixd
      */
     public String[] getUserNames() {
         String[] usernames = new String[userData.size()];
@@ -203,6 +201,12 @@ public class UserContainer implements Serializable {
         return usernames;
     }
 
+    /**
+     * getUserNamesWithoutAdmin gibt alle Nutzernamen außer den Standardadmin zurück
+     *
+     * @return Array mit allen Usernamen außer dem Admin
+     * @author mixd
+     */
     public String[] getUserNamesWithoutAdmin() {
         String[] usernames = new String[userData.size()-1];
         int anz = 0;
@@ -219,9 +223,9 @@ public class UserContainer implements Serializable {
     /**
      * userExisting prüft, ob ein Nutzername bereits vorhanden ist
      *
-     * @author mixd
-     * @return true wenn der User mit diesem Usernamen existiert
      * @param username des gesuchten Users
+     * @return true wenn der User mit diesem Usernamen existiert
+     * @author mixd
      */
     public boolean userExisting(String username) {
         if(getPersonByUsername(username) != null) {
@@ -233,8 +237,8 @@ public class UserContainer implements Serializable {
     /**
      * deleteUser löscht einen Nutzer mithilfe des Nutzernames
      *
-     * @author Tim
      * @param username Username des zu löschenden Users
+     * @author Tim
      */
     public void deleteUser(String username){
 
