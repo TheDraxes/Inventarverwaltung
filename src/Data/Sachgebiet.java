@@ -18,7 +18,6 @@ public class Sachgebiet extends Organisation{
 	public Sachgebiet(Person sachgebietsleiter,String name,String kuerzel, Abteilung abteilung) {
 		super(sachgebietsleiter,name,kuerzel);
 		System.out.println("[KONSTRUKTOR] Sachgebiet mit Parameter angelegt!");
-
 	}
 
 	// Konsolenausgabe aller Parameter für Testzwecke
@@ -27,15 +26,6 @@ public class Sachgebiet extends Organisation{
 		System.out.println("Sachgebietsleiter");
 		System.out.println("-----------------");
 		this.leiter.display();
-	}
-
-	// Getter und Setter
-	public Person getSachgebietsleiter() {
-		return leiter;
-	}
-	public void setSachgebietsleiter(Person sachgebietsleiter) {
-		this.leiter = sachgebietsleiter;
-		System.out.println("[EDIT] Sachgebietsleiter geändert");
 	}
 
 	public String getAbtKuerzel(){
