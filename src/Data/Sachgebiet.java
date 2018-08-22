@@ -23,11 +23,13 @@ public class Sachgebiet extends Organisation{
 	// Konsolenausgabe aller Parameter für Testzwecke
 	public void display() {
 		System.out.println("[INFO] DISPLAYMETHODE SACHGEBIET");
-		System.out.println("Sachgebietsleiter");
+		/*System.out.println("Sachgebietsleiter");
 		System.out.println("-----------------");
-		this.leiter.display();
+		this.leiter.display();*/
+		System.out.println("Abteilung: " + this.abteilung);
+		System.out.println("Kürzel   : " + this.kuerzel);
 	}
-
+	
 	public String getAbtKuerzel(){
       return this.abteilung;
 	}

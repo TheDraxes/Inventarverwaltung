@@ -1,54 +1,37 @@
 package TestKlassen;
 
 import Data.Abteilung;
+import Data.Organisation;
 import Data.Person;
 import Data.Sachgebiet;
 import Verwaltung.OrganisationContainer;
 
+import java.util.ArrayList;
+
 public class OrganisationsContainerTest {
     OrganisationContainer container = new OrganisationContainer();
     public static void main(String[] args) {
-        Abteilung a = new Abteilung();
-        Abteilung a2 = new Abteilung();
-        Person p = new Person("Mix", "Darius", true, "12345", true);
-        a.setLeiter(p); a.setKuerzel("FA");
-        a2.setLeiter(p); a2.setKuerzel("GE");
-
-        a.setName("Fachapplikationen");
-        Sachgebiet s = new Sachgebiet();
-        s.setKuerzel("FAJ"); s.setName("Fachapplikation Justiz");
-        Sachgebiet s2 = new Sachgebiet();
-        s2.setKuerzel("FAT"); s2.setName("Fachapplikation Toast");
-
         OrganisationContainer container = new OrganisationContainer();
-        container.insertAbteilung(a);
-        container.insertAbteilung(a2);
-        container.insertSachgebiet(s, "FA");
-        container.insertSachgebiet(s2, "FA");
-
-
-        String[] abteilungen = container.getAllAbteilungsKuerzel();
-        for(int i = 0; i < abteilungen.length; i++) {
-            System.out.println(abteilungen[i]);
-        }
-
-        String[] sachgebiete = container.getAllSachgebietsKuerzel();
-        for(int i = 0; i < sachgebiete.length; i++) {
-            System.out.println(sachgebiete[i]);
-        }
-
         container.safeOrganisationsData();
-        OrganisationContainer loaded = new OrganisationContainer();
-        loaded = loaded.loadOrganisationsData();
 
+        Person p = new Person("Mix", "Darius", true, "12345", true);
+        Abteilung ge = new Abteilung(); ge.setLeiter(p); ge.setName("Entwicklung"); ge.setKuerzel("GE");
+        Abteilung fa = new Abteilung(); fa.setLeiter(p); fa.setName("Fachapplikation"); fa.setKuerzel("FA");
+        Abteilung mb = new Abteilung(); mb.setLeiter(p); mb.setName("Management"); mb.setKuerzel("MB");
+        Sachgebiet faj = new Sachgebiet(); faj.setAbtKuerzel("FA"); faj.setName("Justiz"); faj.setLeiter(p); faj.setKuerzel("FAJ");
 
-        abteilungen = loaded.getAllAbteilungsKuerzel();
-        for(int i = 0; i < abteilungen.length; i++) {
-            System.out.println(abteilungen[i]);
-        }
-        sachgebiete = loaded.getAllSachgebietsKuerzel();
-        for(int i = 0; i < sachgebiete.length; i++) {
-            System.out.println(sachgebiete[i]);
-        }
+        container.insertAbteilung(ge); container.insertAbteilung(fa); container.insertAbteilung(mb);
+        container.insertSachgebiet(faj, faj.getAbtKuerzel());
+
+        container.displayAllOrgs();
+        container.safeOrganisationsData();
+
+        Sachgebiet gej = new Sachgebiet();
+        gej.setKuerzel("GEJ"); gej.setLeiter(faj.getLeiter()); gej.setAbtKuerzel("GE"); gej.setName(faj.getName());
+
+        container.editSachgebiet(faj, gej);
+
+        System.out.println("............................................................................");
+        container.displayAllOrgs();
     }
 }

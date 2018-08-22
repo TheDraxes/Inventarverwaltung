@@ -38,11 +38,20 @@ public class Abteilung extends Organisation{
 	// Konsolenausgabe aller Parameter für Testzwecke
 	public void display() {
 		System.out.println("[INFO] DISPLAYMETHODE ABTEILUNG");
-		System.out.println("Abteilungsleiter");
-		System.out.println("----------------");
+		/*System.out.println("Abteilungsleiter");
+		System.out.println("----------------");*/
 		System.out.println("Leiter: " + leiter.getUsername());
 		System.out.println("Name:   " + name);
 		System.out.println("Kürzel: " + kuerzel);
+		System.out.println("[INFO] SACHGEBIETE IN DER ABTEILUNG");
+		System.out.println("===================================");
+		if(sachgebiete.size() > 0) {
+			for (Sachgebiet s: sachgebiete) {
+				s.display();
+			}
+		} else
+			System.out.println("Keine Sachgebiete eingetragen!");
+		System.out.println("-----------------------------------------------------------------------------");
 	}
 
 	// Getter und Setter
