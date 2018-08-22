@@ -10,7 +10,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 
-import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -59,9 +58,9 @@ public class SummaryController implements Initializable{
 
     private String path;
 
-    final java.text.DecimalFormatSymbols germany
+    private final java.text.DecimalFormatSymbols germany
             = new java.text.DecimalFormatSymbols( new java.util.Locale( "de", "DE" ));
-    final java.text.DecimalFormat german
+    private final java.text.DecimalFormat german
             = new java.text.DecimalFormat( "##,###.00", germany );
 
 
