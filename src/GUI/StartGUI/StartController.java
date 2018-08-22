@@ -427,6 +427,10 @@ public class StartController implements Initializable {
         while (true) {
             Person deleted = chooseUserWindow();
             if (deleted != null) {
+                if(deleted.getUsername().equals(user.getUsername())){
+                    Dialogs.warnDialog("Der aktuell eingeloggte Nutzer darf nicht gelöscht werden", "Info");
+                    continue;
+                }
                 userContainer.deleteUser(deleted.getUsername());
                 Dialogs.warnDialog("Benutzer erfolgreich gelöscht!", "Info");
             } else {
@@ -806,7 +810,9 @@ public class StartController implements Initializable {
                 if(abt == null){
                   return;
                 }
-                orgContainer.deleteOrg(orgContainer.getAbteilungByKuerzel(abt));
+                if(Dialogs.confirmDialog("Abteilung " + abt + " wirklich löschen?")) {
+                    orgContainer.deleteOrg(orgContainer.getAbteilungByKuerzel(abt));
+                }
             }
         } else if (choose == 1) {
             //Sachgebiet
@@ -815,7 +821,9 @@ public class StartController implements Initializable {
                 if(sach == null){
                   return;
                 }
-                orgContainer.deleteOrg(orgContainer.getSachgebietByKuerzel(sach));
+                if(Dialogs.confirmDialog("Abteilung " + sach + " wirklich löschen?")) {
+                    orgContainer.deleteOrg(orgContainer.getSachgebietByKuerzel(sach));
+                }
             }
         }
     }

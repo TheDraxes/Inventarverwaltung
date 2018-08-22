@@ -379,7 +379,7 @@ public class Dialogs {
 
         ButtonType buttonTypeOne = new ButtonType("Abteilung");
         ButtonType buttonTypeTwo = new ButtonType("Sachgebiet");
-        ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+        ButtonType buttonTypeCancel = new ButtonType("Abbrechen", ButtonBar.ButtonData.CANCEL_CLOSE);
         if(abtExisting) {
           alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo, buttonTypeCancel);
         } else {

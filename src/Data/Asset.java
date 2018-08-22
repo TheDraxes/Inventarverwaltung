@@ -28,7 +28,7 @@ public abstract class Asset implements Serializable {
 	private String[] paramNames = {
             "Bezeichnung",
             "Anschaffungswert",
-            "Tnd",
+            "Nutzungsdauer",
             "Anzahl"
 	};
     private int paramAnzahl = paramNames.length;
