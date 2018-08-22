@@ -31,7 +31,8 @@ public class Sachgebiet extends Organisation{
 	public String getAbtKuerzel(){
       return this.abteilung;
 	}
-  public void setAbtKuerzel(String abteilung){
+
+	public void setAbtKuerzel(String abteilung){
 	  this.abteilung = abteilung;
 	}
 }
