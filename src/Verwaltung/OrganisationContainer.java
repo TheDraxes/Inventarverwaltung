@@ -189,6 +189,13 @@ public class OrganisationContainer implements Serializable {
 
     public void editAbteilung(Abteilung alt, Abteilung neu){
         this.abteilungArrayList.set(abteilungArrayList.indexOf(alt), neu);
+        if(!alt.getKuerzel().equals(neu.getKuerzel())) {
+            ArrayList<Sachgebiet> sachgebiete = alt.getSachgebiete();
+            for (Sachgebiet s: sachgebiete) {
+                s.setAbtKuerzel(neu.getKuerzel());
+            }
+
+        }
     }
 
     public void displayAllOrgs(){
@@ -230,6 +237,9 @@ public class OrganisationContainer implements Serializable {
     }
 
     public boolean editSachgebiet(Sachgebiet alt, Sachgebiet neu){
+        Abteilung abtAlt = getAbteilungByKuerzel(alt.getAbtKuerzel());
+        Abteilung abtNeu = getAbteilungByKuerzel(neu.getAbtKuerzel());
+
         for (int i = 0; i < abteilungArrayList.size(); i++) {
             ArrayList<Sachgebiet> sachgebiete = abteilungArrayList.get(i).getSachgebiete();
 
@@ -237,6 +247,17 @@ public class OrganisationContainer implements Serializable {
                 if(sachgebiete.get(j).equals(alt)) {
                     this.abteilungArrayList.get(i).getSachgebiete().set(j, neu);
                     return true;
+                }
+            }
+        }
+
+        if(!abtAlt.equals(abtNeu)) {
+            ArrayList<Sachgebiet> sachgebieteAlt = abtAlt.getSachgebiete();
+            ArrayList<Sachgebiet> sachgebieteNeu = abtNeu.getSachgebiete();
+            for(int i = 0; i < sachgebieteAlt.size(); i++) {
+                if(sachgebieteAlt.get(i).getKuerzel().equals(alt.getAbtKuerzel())) {
+                    sachgebieteAlt.remove(i);
+                    sachgebieteNeu.add(neu);
                 }
             }
         }
