@@ -8,6 +8,7 @@ import GUI.ViewGUI.CellFactories.AnschaffungswertCellFactory;
 import GUI.ViewGUI.CellFactories.InsDateCellFactory;
 import GUI.ViewGUI.Comparators.AnschaffungswertComparator;
 import GUI.ViewGUI.NewItemDialogs.AssetDialog;
+import GUI.ViewGUI.Summary.SummaryController;
 import Verwaltung.AssetContainer;
 import Verwaltung.OrganisationContainer;
 import Verwaltung.UserContainer;
@@ -67,6 +68,10 @@ public class ViewController implements Initializable {
     @FXML
     private TableColumn ActionColumn;
 
+    //Tabellenspalte für das Löschen von assets
+    @FXML
+    private TableColumn deleteColumn;
+
     //Tabellenspalte für den Anschaffungswert
     @FXML
     private TableColumn valueColumn;
@@ -95,8 +100,14 @@ public class ViewController implements Initializable {
     //Container für die gefilterten Assets
     private ArrayList filteredList = new ArrayList();
 
+    //Liste für eine Zusammengefasste ausgabe
+    private ArrayList summarizedList = new ArrayList();
+
     //Boolean der bestimmt ob Filter aktiv sind
     private boolean ActiveFilter = false;
+
+    //Boolean der bestimmt ob eine Zusammenfassung angefordert wurde
+    private boolean ActiveSummary = false;
 
     //aktueller speicherpfad
     private String path;
@@ -134,28 +145,31 @@ public class ViewController implements Initializable {
         itemTable.setPlaceholder(new Label("Keine Anlage-gegenstände gefunden"));
 
         fillTable();
-
-        for (int i = 0; i < orgContainer.getAnzahlAbteilungen(); i++) {
-            MenuItem menuItem = new MenuItem();
-            menuItem.setText(orgContainer.getAllAbteilungsKürzel()[i]);
-            menuItem.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    MenuItem menuItem = (MenuItem) event.getSource();
-                    summary(menuItem.getText());
-                }
-            });
-            summaryMenu.getItems().add(menuItem);
+        if(orgContainer != null) {
+            for (int i = 0; i < orgContainer.getAnzahlAbteilungen(); i++) {
+                MenuItem menuItem = new MenuItem();
+                menuItem.setText(orgContainer.getAllAbteilungsKuerzel()[i]);
+                menuItem.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        MenuItem menuItem = (MenuItem) event.getSource();
+                        summary(menuItem.getText());
+                    }
+                });
+                summaryMenu.getItems().add(menuItem);
+            }
         }
     }
 
+    //TODO Zusammenfassung der Abteilungen
     /**
      *
-     * @TODO Zusammenfassung der Abteilungen
-     * @param abteilung
+     * @param abteilung abteilung für die eine zusammenfassung erstellt werden soll
      */
     private void summary(String abteilung){
-
+        ActiveSummary = true;
+        summarizedList = assetContainer.getSummaryOf(abteilung, path, orgContainer);
+        fillTable();
     }
 
     /**
@@ -169,6 +183,9 @@ public class ViewController implements Initializable {
         if(ActiveFilter){
             arrayList = filteredList;
             resetButton.setVisible(true);
+        } else if(ActiveSummary){
+            arrayList = summarizedList;
+            resetButton.setVisible(true);
         } else {
             arrayList = assetContainer.getAssetList();
             resetButton.setVisible(false);
@@ -176,6 +193,15 @@ public class ViewController implements Initializable {
 
         NRColumn.setCellValueFactory(new PropertyValueFactory<>("inventarnummer"));
         bezColumn.setCellValueFactory(new PropertyValueFactory<>("bezeichnung"));
+        if(ActiveSummary){
+            NRColumn.setVisible(false);
+            deleteColumn.setVisible(false);
+            bezColumn.setPrefWidth(236);
+        } else {
+            NRColumn.setVisible(true);
+            deleteColumn.setVisible(true);
+            bezColumn.setPrefWidth(190);
+        }
         countColumn.setCellValueFactory(new PropertyValueFactory<>("anzahl"));
         valueColumn.setCellValueFactory(new PropertyValueFactory<Asset,Double>("anschaffungswert"));
         valueColumn.setComparator(new AnschaffungswertComparator());
@@ -184,21 +210,39 @@ public class ViewController implements Initializable {
         dateColumn.setCellFactory(new InsDateCellFactory());
 
         ActionColumn.setCellValueFactory(
-                new Callback<TableColumn.CellDataFeatures<Asset, Boolean>,
-                        ObservableValue<Boolean>>() {
+              new Callback<TableColumn.CellDataFeatures<Asset, Boolean>,
+                      ObservableValue<Boolean>>() {
 
-                    @Override
-                    public ObservableValue<Boolean> call(TableColumn.CellDataFeatures<Asset, Boolean> p) {
-                        return new SimpleBooleanProperty(p.getValue() != null);
-                    }
-                });
+                  @Override
+                  public ObservableValue<Boolean> call(TableColumn.CellDataFeatures<Asset, Boolean> p) {
+                      return new SimpleBooleanProperty(p.getValue() != null);
+                  }
+              });
         ActionColumn.setCellFactory(
-                new Callback<TableColumn<Asset, Boolean>, TableCell<Asset, Boolean>>() {
-                    @Override
-                    public TableCell<Asset, Boolean> call(TableColumn<Asset, Boolean> p) {
-                        return new ButtonCell();
-                    }
-                });
+              new Callback<TableColumn<Asset, Boolean>, TableCell<Asset, Boolean>>() {
+                  @Override
+                  public TableCell<Asset, Boolean> call(TableColumn<Asset, Boolean> p) {
+                      return new editButtonCell();
+                  }
+              });
+
+        deleteColumn.setCellValueFactory(
+              new Callback<TableColumn.CellDataFeatures<Asset, Boolean>,
+                ObservableValue<Boolean>>() {
+
+              @Override
+              public ObservableValue<Boolean> call(TableColumn.CellDataFeatures<Asset, Boolean> p) {
+                return new SimpleBooleanProperty(p.getValue() != null);
+              }
+          });
+
+        deleteColumn.setCellFactory(new Callback<TableColumn<Asset, Boolean>, TableCell<Asset, Boolean>>() {
+            @Override
+            public TableCell<Asset, Boolean> call(TableColumn<Asset, Boolean> p) {
+              return new deleteButtonCell();
+            }
+        });
+
 
         NRColumn.setStyle("-fx-alignment: CENTER-RIGHT;");
         valueColumn.setStyle("-fx-alignment: CENTER-RIGHT;");
@@ -211,15 +255,55 @@ public class ViewController implements Initializable {
         itemTable.setItems(list);
     }
 
+  private class deleteButtonCell extends TableCell<Asset, Boolean> {
+    final Button cellButton = new Button("        ");
+
+    deleteButtonCell(){
+
+      cellButton.getStylesheets().add("/GUI/style.css");
+      cellButton.getStyleClass().add("deleteButton");
+
+      //Aktion die ausgeführt wird wenn der Button gedrückt wurde
+      cellButton.setOnAction(new EventHandler<ActionEvent>(){
+
+        @Override
+        public void handle(ActionEvent t) {
+          // Das ausgewählte Asset bekommen
+          try {
+            Asset selectedAsset = (Asset) deleteButtonCell.this.getTableView().getItems().get(deleteButtonCell.this.getIndex());
+            selectedAsset.display();
+
+            if(Dialogs.confirmDialog("Soll " + selectedAsset.getBezeichnung() + " wirklich gelöscht werden?")){
+              assetContainer.deleteAsset(selectedAsset);
+              fillTable();
+            }
+          } catch (Exception e){
+            System.out.println("[INFO] Cancel Button Clicked");
+          }
+        }
+      });
+    }
+
+    //Zeige den Button nur wenn die tabellenreihe nicht leer ist
+    @Override
+    protected void updateItem(Boolean t, boolean empty) {
+      super.updateItem(t, empty);
+      if(!empty){
+        setGraphic(cellButton);
+      }
+    }
+  }
+
+
     /**
      * Private Klassendefinition für den editbutton in der Tabelle
      *
      * @author Tim
      */
-    private class ButtonCell extends TableCell<Asset, Boolean> {
+    private class editButtonCell extends TableCell<Asset, Boolean> {
         final Button cellButton = new Button("        ");
 
-        ButtonCell(){
+        editButtonCell(){
 
             cellButton.getStylesheets().add("/GUI/style.css");
             cellButton.getStyleClass().add("editButton");
@@ -231,17 +315,17 @@ public class ViewController implements Initializable {
                 public void handle(ActionEvent t) {
                     // Das ausgewählte Asset bekommen
                   try {
-                    Asset selectedAsset = (Asset) ButtonCell.this.getTableView().getItems().get(ButtonCell.this.getIndex());
+                    Asset selectedAsset = (Asset) editButtonCell.this.getTableView().getItems().get(editButtonCell.this.getIndex());
                     selectedAsset.display();
 
                     String assetClass = selectedAsset.getClass().toString().substring(11);
-                    System.out.println(assetClass);
 
                     Asset editedAsset = new AssetDialog().getNewAsset(assetClass, selectedAsset).getKey();
                     editedAsset.display();
 
                     assetContainer.editItemById(selectedAsset.getInventarnummer(), editedAsset);
                     assetContainer.showAll();
+                    assetContainer.safeInventar(completePath);
 
                     fillTable();
                   } catch (Exception e){
@@ -269,7 +353,9 @@ public class ViewController implements Initializable {
     @FXML
     protected void resetFilter(){
         ActiveFilter=false;
+        ActiveSummary=false;
         filteredList = null;
+        summarizedList = null;
 
         fillTable();
         System.out.println("[INFO] Filter zurückgesetzt!");
@@ -277,15 +363,20 @@ public class ViewController implements Initializable {
 
     /**
      * logik für das anlegen eines neuen Asset
-     * @param event
+     * @author Tim
      */
     @FXML
-    protected void addAssetClicked(ActionEvent event) {
+    protected void addAssetClicked() {
+        if(ActiveSummary){
+            Dialogs.warnDialog("Dieses Asset wird im Inventar " + invName + " abgespeichert. Wirklich fortfahren?", "Info");
+            ActiveSummary = false;
+            summarizedList = null;
+        }
         String assetType = askForAssetType();
         if(assetType != null && assetType.equals("Boden und Gebäude")){
             assetType = "BodenUndGebaeude";
         }
-        if (assetType != "" && assetType != null) {
+        if (assetType != null && !assetType.equals("")) {
             while (true) {
                 Pair pair = new AssetDialog().getNewAsset(assetType, null);
                 if (pair.getValue() == null && pair.getKey() != null) {
@@ -295,9 +386,10 @@ public class ViewController implements Initializable {
                 } else if (pair.getKey() == null && pair.getValue() == null) {
                     break;
                 } else {
-                    System.out.println(pair.getValue());
+                    Dialogs.warnDialog((String)pair.getValue(),"Warning");
                 }
             }
+            assetContainer.safeInventar(completePath);
             fillTable();
         }
     }
@@ -305,10 +397,11 @@ public class ViewController implements Initializable {
     /**
      * Methode zur parameterübergabe von Controller zu Controller
      *
-     * @param inventoryName -> Name des Inventars
-     * @param path -> pfad der speicherung
-     * @param userContainer -> container der userdaten
-     * @param user -> momentan eingeloggter user
+     * @param inventoryName Name des Inventars
+     * @param path pfad der speicherung
+     * @param userContainer container der userdaten
+     * @param user momentan eingeloggter user
+     * @param organisationContainer container in dem alle angelegten Organisationen gespeichert sind
      */
     public void getParams(String inventoryName, String path, UserContainer userContainer, Person user, OrganisationContainer organisationContainer){
         nameLabel.setText("Eingeloggt als: " + user.getUsername());
@@ -328,7 +421,7 @@ public class ViewController implements Initializable {
     /**
      * Methode die ein Fenster aufbaut welches nach dem anzulegenden Assettypfragt
      *
-     * @return
+     * @return name des Assettypes
      */
     private String askForAssetType(){
         List<String> choices = new ArrayList<>();
@@ -338,7 +431,7 @@ public class ViewController implements Initializable {
         }
 
         ChoiceDialog<String> dialog = new ChoiceDialog<>("Boden und Gebäude", choices);
-        dialog.setTitle("Item Anlegen");
+        dialog.setTitle("Asset Anlegen");
         dialog.setHeaderText("Art des Gegenstandes wählen!");
         dialog.setContentText("Arten:");
         dialog.getDialogPane().setStyle("-fx-background-color:  #e6f9ff");
@@ -354,10 +447,9 @@ public class ViewController implements Initializable {
     /**
      * Methode die aufgerufen wird wenn speichern und beenden gedrückt wird
      *
-     * @param event
      */
     @FXML
-    protected void backClicked(ActionEvent event){
+    protected void backClicked(){
 
         assetContainer.safeInventar(completePath);
 
@@ -403,5 +495,26 @@ public class ViewController implements Initializable {
             filteredList = null;
         }
         fillTable();
+    }
+
+    @FXML
+    protected void kapitalSummaryClicked(){
+      FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/ViewGUI/Summary/SummaryStyle.fxml"));
+      Parent root = null;
+      try {
+        root = loader.load();
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+      root.setStyle("-fx-background-color: #b5edff");
+
+      SummaryController controller = loader.getController();
+      controller.getParams(path);
+
+      Stage stage = new Stage();
+      stage.setTitle("Kapitalzusammenfassung");
+      stage.setResizable(false);
+      stage.setScene(new Scene(root));
+      stage.show();
     }
 }

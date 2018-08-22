@@ -1,6 +1,7 @@
 package Verwaltung;
 
 import Data.Person;
+import GUI.Dialogs;
 
 import javax.swing.*;
 import java.io.*;
@@ -23,7 +24,8 @@ public class UserContainer implements Serializable {
      * insertUser fügt einen neuen Benutzer hinzu
      *
      * @author mixd
-     * @version 1.0
+     * @param p User der in den Container eingefügt werden soll
+     * @return true wenn der insert erfolgreich war
      */
     public boolean insertUser(Person p) {
         try {
@@ -46,9 +48,9 @@ public class UserContainer implements Serializable {
      *
      * Änderung des Passwortes eines Nutzers
      *
-     * @param username -> Username von dem Benutzer dessen Passwort geändert werden soll
-     * @param newPassword -> Neues Passwort
-     * @return boolean ob änderung erfolgreich war
+     * @param username Username von dem Benutzer dessen Passwort geändert werden soll
+     * @param newPassword Neues Passwort
+     * @return true wenn die änderung erfolgreich war
      */
 
     public boolean changePassword(String username, String newPassword){
@@ -69,8 +71,8 @@ public class UserContainer implements Serializable {
      *
      * Änderung eines Nutzers
      *
-     * @param editedPerson -> Ein Person Objekt in dem die geänderten Daten des Editierten benutzers stehen
-     * @return boolean ob änderung erfolgreich war
+     * @param editedPerson Ein Person Objekt in dem die geänderten Daten des Editierten benutzers stehen
+     * @return true wenn die änderung erfolgreich war
      */
 
     public boolean editUser(Person editedPerson){
@@ -92,7 +94,7 @@ public class UserContainer implements Serializable {
      * safeUserData speichert die Nutzerdaten unter 'user.dat'
      *
      * @author mixd
-     * @version 1.1
+     * @return true wenn die speicherung erfolgreich war
      */
     public boolean safeUserData(){
         System.out.println("[INFO] Speichere Nutzerdaten...");
@@ -103,19 +105,13 @@ public class UserContainer implements Serializable {
             outputStream = new ObjectOutputStream(fileOutputStream);
             outputStream.writeObject(this.userData);
             System.out.println("[INFO] Nutzerdaten gespeichert unter '" + "user.dat" + "'!");
+            fileOutputStream.close();
+            outputStream.close();
             return true;
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        } finally {
-            try {
-                fileOutputStream.close();
-                outputStream.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
+
         System.out.println("[ERROR] Fehler beim speichern der Nutzerdaten!");
         return false;
     }
@@ -129,7 +125,7 @@ public class UserContainer implements Serializable {
      * Standardadmin neu angelegt!
      *
      * @author mixd
-     * @version 1.1
+     * @return geladener UserContainer
      */
     public UserContainer loadUserData(){
         System.out.println("[INFO] Suche Nutzerdaten...");
@@ -163,13 +159,10 @@ public class UserContainer implements Serializable {
                 System.out.println("[INFO] Neue Nutzerdaten mit Standardadmin erstellt");
                 return newUserdata;
             }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (IOException|ClassNotFoundException e) {
             e.printStackTrace();
         }
+
         System.out.println("[ERROR] Fehler beim Laden der Nutzerdaten!");
         return null;
     }
@@ -178,7 +171,8 @@ public class UserContainer implements Serializable {
      * getPersonByUsername gibt ein Objekt Person mit dem Nutzernamen username zurück
      *
      * @author mixd
-     * @version 1.0
+     * @return User der zum parameter username gehört
+     * @param username username des gesuchten users
      */
     public Person getPersonByUsername(String username) {
         Iterator<Person> it = userData.iterator();
@@ -195,7 +189,7 @@ public class UserContainer implements Serializable {
      * getUserNames gibt alle Nutzernamen zurück
      *
      * @author mixd
-     * @version 1.0
+     * @return Array mit allen Usernamen
      */
     public String[] getUserNames() {
         String[] usernames = new String[userData.size()];
@@ -226,7 +220,8 @@ public class UserContainer implements Serializable {
      * userExisting prüft, ob ein Nutzername bereits vorhanden ist
      *
      * @author mixd
-     * @version 1.0
+     * @return true wenn der User mit diesem Usernamen existiert
+     * @param username des gesuchten Users
      */
     public boolean userExisting(String username) {
         if(getPersonByUsername(username) != null) {
@@ -239,26 +234,26 @@ public class UserContainer implements Serializable {
      * deleteUser löscht einen Nutzer mithilfe des Nutzernames
      *
      * @author Tim
-     * @version 1.0
+     * @param username Username des zu löschenden Users
      */
     public void deleteUser(String username){
 
-        setLookAndFeel();
 
         Person p = getPersonByUsername(username);
 
         if(p != null) {
-            int result = JOptionPane.showConfirmDialog(null,"Benutzer " + username + " wirklich löschen?");
-
-            if(result == JOptionPane.OK_OPTION) {
-                userData.remove(p);
-            } else if(result == JOptionPane.CANCEL_OPTION || result == JOptionPane.NO_OPTION){
-                System.out.println("[INFO] Vorgang abgebrochen!");
+            if(p.getUsername().equals("admin")){
+                Dialogs.warnDialog("Der Admin Account kann nicht gelöscht werden!","Warnung");
+                return;
             }
-
-        } else
+            if(Dialogs.confirmDialog("Benutzer " + p.getUsername() + " wirklich löschen?")){
+                userData.remove(p);
+            } else {
+                System.out.println("[INFO] Vorgang abgebrochen");
+            }
+        } else {
             System.out.println("[WARNING] Benutzername existiert nicht!");
-
+        }
         safeUserData();
     }
 
@@ -266,7 +261,6 @@ public class UserContainer implements Serializable {
      * deleteAllUser löscht alle vorhandenen Benutzer.
      *
      * @author mixd
-     * @version 1.0
      */
     public void deleteAllUser() {
         System.out.println("[INFO] Lösche alle Benutzer");
@@ -278,7 +272,9 @@ public class UserContainer implements Serializable {
      * Passwort übereinstimmen.
      *
      * @author mixd
-     * @version 1.0
+     * @param username username des Users
+     * @param pw Passwort des users
+     * @return true wenn die kombination aus username und passwort vorhanden ist
      */
     public boolean checkLogin(String username, String pw){
         Person p = getPersonByUsername(username);
@@ -313,27 +309,6 @@ public class UserContainer implements Serializable {
         } else {
             p.setLocked(true);
             this.editUser(p);
-        }
-    }
-
-    /**
-     * setLookAndFeel
-     *
-     * @author Tim
-     * @version 1.0
-     */
-    private void setLookAndFeel(){
-        String laf = UIManager.getSystemLookAndFeelClassName();
-        try {
-            UIManager.setLookAndFeel(laf);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (InstantiationException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (UnsupportedLookAndFeelException e) {
-            e.printStackTrace();
         }
     }
 

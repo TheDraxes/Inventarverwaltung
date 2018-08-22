@@ -9,12 +9,14 @@ package Data;
 
 public class Sachgebiet extends Organisation{
 
+  private String abteilung;
+
 	// Konstruktoren
 	public Sachgebiet() {
 		System.out.println("[KONSTRUKTOR] Sachgebiet ohne Parameter angelegt!");
 	}
-	public Sachgebiet(Person sachgebietsleiter,String name,String kürzel, Abteilung abteilung) {
-		super(sachgebietsleiter,name,kürzel);
+	public Sachgebiet(Person sachgebietsleiter,String name,String kuerzel, Abteilung abteilung) {
+		super(sachgebietsleiter,name,kuerzel);
 		System.out.println("[KONSTRUKTOR] Sachgebiet mit Parameter angelegt!");
 
 	}
@@ -36,8 +38,10 @@ public class Sachgebiet extends Organisation{
 		System.out.println("[EDIT] Sachgebietsleiter geändert");
 	}
 
-	public void getAbtKuerzel(){
-
+	public String getAbtKuerzel(){
+      return this.abteilung;
 	}
-
+  public void setAbtKuerzel(String abteilung){
+	  this.abteilung = abteilung;
+	}
 }

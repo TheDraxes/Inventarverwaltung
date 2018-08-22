@@ -13,7 +13,7 @@ import java.util.Date;
  * @version 1.0
  */
 public abstract class Asset implements Serializable {
-    private long inventarnummer;
+  private long inventarnummer;
 	private String bezeichnung;
 	private double anschaffungswert;
 	private String anschaffungswertString;
@@ -61,7 +61,7 @@ public abstract class Asset implements Serializable {
     }
 
     // Methode zum Runden auf x Stellen
-    public static double round(double value, int x) {
+    protected static double round(double value, int x) {
         System.out.println("[INFO] round aufgerufen");
         if (x < 0) throw new IllegalArgumentException();
 

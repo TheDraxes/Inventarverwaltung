@@ -19,13 +19,13 @@ import java.util.Optional;
  * @author Tim
  */
 
-public class BodenUndGebäudeDialog extends AbstractDialog{
+public class BodenUndGebaeudeDialog extends AbstractDialog{
 
-  public BodenUndGebäudeDialog(String[] labelNames, Label[] labels, TextField[] textFields, Asset actual) {
+  public BodenUndGebaeudeDialog(String[] labelNames, Label[] labels, TextField[] textFields, Asset actual) {
     super(labelNames, labels, textFields, actual);
   }
 
-  public Pair<Asset, String> getBodenUndGebäude() {
+  public Pair<Asset, String> getBodenUndGebaeude() {
 
     BodenUndGebaeude edit = (BodenUndGebaeude) actual;
 
@@ -116,23 +116,39 @@ public class BodenUndGebäudeDialog extends AbstractDialog{
           if(wert.contains(",")){
             wert = wert.replace(",",".");
           }
-          bodenUndGebaeude.setAnschaffungswert(Double.parseDouble(wert));
+          try {
+            bodenUndGebaeude.setAnschaffungswert(Double.parseDouble(wert));
+          }catch (Exception e){
+            return new Pair<>(null, "Etwas Stimmt nicht mit dem Anschaffungswert! Er darf nur aus Zahlen und einem \",\" oder \".\" bestehen!");
+          }
         }
 
         if (TextFields[2].getText().equals("")) {
           return new Pair<>(null, "Alle Felder mit einem * müssen ausgefüllt sein!");
         } else {
-          bodenUndGebaeude.setTnd(Integer.parseInt(TextFields[2].getText()));
+          try {
+            bodenUndGebaeude.setTnd(Integer.parseInt(TextFields[2].getText()));
+          }catch (Exception e){
+            return new Pair<>(null, "Etwas Stimmt nicht mit der Technischen Nutzungsdauer! Es dürfen nur Zahlen verwendet werden!");
+          }
         }
 
         if (TextFields[3].getText().equals("")) {
           return new Pair<>(null, "Alle Felder mit einem * müssen ausgefüllt sein!");
         } else {
-          bodenUndGebaeude.setAnzahl(Integer.parseInt(TextFields[3].getText()));
+          try {
+            bodenUndGebaeude.setAnzahl(Integer.parseInt(TextFields[3].getText()));
+          } catch (Exception e){
+            return new Pair<>(null, "Etwas Stimmt nicht mit der Anzahl! Es dürfen nur Zahlen verwendet werden!");
+          }
         }
 
         if (!(TextFields[4].getText().equals(""))) {
-          bodenUndGebaeude.setPlz(Integer.parseInt(TextFields[4].getText()));
+          try {
+            bodenUndGebaeude.setPlz(Integer.parseInt(TextFields[4].getText()));
+          }catch (Exception e){
+            return new Pair<>(null, "Etwas Stimmt nicht mit der Postleitzahl! Es dürfen nur Zahlen verwendet werden!");
+          }
         }
 
         if (!(TextFields[5].getText().equals(""))) {
@@ -147,8 +163,16 @@ public class BodenUndGebäudeDialog extends AbstractDialog{
           bodenUndGebaeude.setHausnummer(TextFields[7].getText());
         }
 
-        if(!(TextFields[8].getText().equals(""))) {
-          bodenUndGebaeude.setFlaeche(Double.parseDouble(TextFields[8].getText()));
+        wert = TextFields[8].getText();
+        if(!(wert.equals(""))) {
+          if(wert.contains(",")){
+            wert = wert.replace(",",".");
+          }
+          try {
+            bodenUndGebaeude.setFlaeche(Double.parseDouble(wert));
+          }catch (Exception e){
+            return new Pair<>(null, "Etwas Stimmt nicht mit der Fläche! Sie darf nur aus Zahlen und einem \",\" oder \".\" bestehen!");
+          }
         }
 
         bodenUndGebaeude.setInserierungsdatum(new Date());

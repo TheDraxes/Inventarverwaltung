@@ -89,7 +89,11 @@ public class SoftwareDialog extends AbstractDialog{
             if(wert.contains(",")){
               wert = wert.replace(",",".");
             }
-            software.setAnschaffungswert(Double.parseDouble(wert));
+            try {
+              software.setAnschaffungswert(Double.parseDouble(wert));
+            } catch (Exception e){
+              return new Pair<>(null, "Etwas Stimmt nicht mit dem Anschaffungswert! Er darf nur aus Zahlen und einem \",\" oder \".\" bestehen!");
+            }
           }
 
           if (TextFields[2].getText().equals("")) {

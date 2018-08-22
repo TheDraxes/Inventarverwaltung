@@ -20,12 +20,23 @@
 .editButton{
     -fx-border-style: none;
     -fx-background-color: transparent;
-    -fx-background-image: url('/GUI/editbackground.png');
+    -fx-background-image: url('res/editbackground.png');
     -fx-background-size: cover;
     -fx-focus-color:blue;
 }
 .editButton:hover{
-    -fx-background-image: url('/GUI/editbackgroundHover.png');
+    -fx-background-image: url('res/editbackgroundHover.png');
+}
+
+.deleteButton{
+    -fx-border-style: none;
+    -fx-background-color: transparent;
+    -fx-background-image: url('res/deletebg.png');
+    -fx-background-size: cover;
+    -fx-focus-color:blue;
+}
+.deleteButton:hover{
+    -fx-background-image: url('res/deletebghover.png');
 }
 .logoutButton{
     -fx-background-color: #ff413a;
@@ -37,7 +48,7 @@
 
 }
 .loginBackground{
-    -fx-background-image: url('/GUI/dvzlogo.jpg');
+    -fx-background-image: url('res/dvzlogo.jpg');
     -fx-background-size: cover;
 }
 .table-view:focused{

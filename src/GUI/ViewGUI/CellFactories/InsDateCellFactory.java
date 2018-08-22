@@ -19,7 +19,7 @@ public class InsDateCellFactory implements Callback<TableColumn<Asset, Date>, Ta
       @Override
       public void updateItem(final Date item, boolean empty) {
         if (item != null) {
-          SimpleDateFormat df = new SimpleDateFormat( "dd-MM-yyyy" );
+          SimpleDateFormat df = new SimpleDateFormat( "dd.MM.yyyy" );
           setText(df.format(item));
         }
       }
