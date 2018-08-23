@@ -240,23 +240,8 @@ public class UserContainer implements Serializable {
      * @author Tim
      */
     public void deleteUser(String username){
-
-
         Person p = getPersonByUsername(username);
-
-        if(p != null) {
-            if(p.getUsername().equals("admin")){
-                Dialogs.warnDialog("Der Admin Account kann nicht gelöscht werden!","Warnung");
-                return;
-            }
-            if(Dialogs.confirmDialog("Benutzer " + p.getUsername() + " wirklich löschen?")){
-                userData.remove(p);
-            } else {
-                System.out.println("[INFO] Vorgang abgebrochen");
-            }
-        } else {
-            System.out.println("[WARNING] Benutzername existiert nicht!");
-        }
+        userData.remove(p);
         safeUserData();
     }
 

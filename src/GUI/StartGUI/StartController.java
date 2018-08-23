@@ -441,8 +441,15 @@ public class StartController implements Initializable {
                     Dialogs.warnDialog("Der aktuell eingeloggte Nutzer darf nicht gelöscht werden", "Info");
                     continue;
                 }
-                userContainer.deleteUser(deleted.getUsername());
-                Dialogs.warnDialog("Benutzer erfolgreich gelöscht!", "Info");
+                if(deleted.getUsername().equals("admin")){
+                  Dialogs.warnDialog("Der Admin Account kann nicht gelöscht werden!","Warnung");
+                  return;
+                }
+                if(Dialogs.confirmDialog("Benutzer " + deleted.getUsername() + " wirklich löschen?")) {
+                  userContainer.deleteUser(deleted.getUsername());
+                  Dialogs.warnDialog("Benutzer erfolgreich gelöscht!", "Info");
+                  return;
+                }
             } else {
                 System.out.println("[INFO] Vorgang abgebrochen!");
                 break;
