@@ -35,7 +35,7 @@ public class OrganisationsContainerTest {
         System.out.println("............................................................................");
         container.displayAllOrgs();*/
         String path = new String("C:" + "\\" + "Inventarverwaltungspeicher");
-        AssetContainer container = new AssetContainer();
+        OrganisationContainer container = new OrganisationContainer();
         String alt = "FAJ";
         String neu = "GEI";
         container.renameInventare(path, alt, neu);

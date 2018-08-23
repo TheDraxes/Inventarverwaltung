@@ -47,6 +47,30 @@ public class OrganisationContainer implements Serializable {
     }
 
     /**
+     * renameInventare ändert alle Inventarnamen nachdem ein Sachgebiet umbenannt wurde
+     *
+     * @param path Speicherpfad der Inventare
+     * @param sachgebietsKuerzelAlt alter Kürzel des Sachgebiets
+     * @param sachgebietsKuerzelNeu neuer Kürzel des Sachgebiets
+     * @author mixd
+     */
+    public void renameInventare(String path, String sachgebietsKuerzelAlt, String sachgebietsKuerzelNeu) {
+        File filespath = new File(path);
+        File[] files = filespath.listFiles();
+
+        for (File f: files) {
+            if(f.getName().substring(0, sachgebietsKuerzelAlt.length()).equals(sachgebietsKuerzelAlt)) {
+                System.out.println("Alt:" + f.getName());
+                System.out.println("Alt:" + f.getPath());
+                System.out.println("Neu:" + sachgebietsKuerzelNeu + f.getName().substring(sachgebietsKuerzelAlt.length()));
+                System.out.println("Neu:" + path + "\\" + sachgebietsKuerzelNeu + f.getName().substring(sachgebietsKuerzelAlt.length()));
+                f.renameTo(new File(path + "\\" + sachgebietsKuerzelNeu + f.getName().substring(sachgebietsKuerzelAlt.length())));
+            }
+        }
+    }
+
+
+    /**
      * loadOrganisationsData liest die Organisationsdaten ein
      *
      * @return geladenene Organisationsdaten, wenn vorhanden
