@@ -46,11 +46,23 @@ public class BodenUndGebaeude extends Asset {
     }
     public String[] getParamNames(){
         String[] superiorParams = super.getParamNames();
-        String[] allParams = new String[getParamAnzahl()];
+
+        int anz = 0;
+        String[] temp = new String[superiorParams.length-1];
+
+        for(int i = 0; i <superiorParams.length; i++){
+            if(superiorParams[i].equals("Anzahl"))continue;
+            temp[anz] = superiorParams[i];
+            anz++;
+        }
+        superiorParams = temp;
+
+        String[] allParams = new String[getParamAnzahl()-1];
         for(int i = 0; i < superiorParams.length; i++){
             allParams[i] = superiorParams[i];
         }
-        int anz = 0;
+
+        anz = 0;
         for(int i = superiorParams.length; i < allParams.length; i++){
             allParams[i] = this.paramNames[anz];
             anz++;

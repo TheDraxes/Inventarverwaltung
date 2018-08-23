@@ -8,6 +8,42 @@ import java.util.ArrayList;
 
 public class AllgemeineTests {
   public static void main(String[]args){
+
+    StringArrayEdit();
+
+  }
+
+  public static void StringArrayEdit(){
+    String[] a = {"1", "2", "3"};
+    int anz = 0;
+
+    String[] b = new String[a.length-1];
+
+    for (String string : a){
+      System.out.println(string);
+    }
+
+    for(int i = 0; i < a.length; i++){
+      if(a[i].equals("2"))continue;
+      b[anz] = a[i];
+      anz++;
+    }
+
+    a = b;
+
+    for (String string : a){
+      System.out.println(string);
+    }
+  }
+
+  public static String resetFormat(String formatted){
+    formatted = formatted.replace(".","");
+    formatted = formatted.replace("€","");
+    formatted = formatted.replace(",", ".");
+    return formatted;
+  }
+
+  public static void Formattertest(){
     final java.text.DecimalFormatSymbols germany
             = new java.text.DecimalFormatSymbols( new java.util.Locale( "de", "DE" ));
     final java.text.DecimalFormat german
@@ -64,14 +100,5 @@ public class AllgemeineTests {
     for(Asset asset : list1){
       asset.display();
     }
-
-
-  }
-
-  public static String resetFormat(String formatted){
-    formatted = formatted.replace(".","");
-    formatted = formatted.replace("€","");
-    formatted = formatted.replace(",", ".");
-    return formatted;
   }
 }

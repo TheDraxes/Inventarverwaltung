@@ -141,12 +141,12 @@ public class Dialogs {
                 return new Pair<>(newPW.getText(), null);
             } else if(dialogButton == ButtonType.CANCEL){
                 return new Pair<>("cancelled","[INFO] Vorgang abgebrochen!");
-            } else if(!(oldPW.equals(user.getPassword()))){
-                return new Pair<>(null,"[WARNING] Passwort nicht Korrekt!");
-            }else if(oldPW.getText().equals("") || newPW.getText().equals("") || newConfirm.getText().equals("")){
-                return new Pair<>(null,"[WARNING] Alle Felder müssen Ausgefüllt werden!");
+            } else if(!(oldPW.getText().equals(user.getPassword()))){
+                return new Pair<>(null,"Passwort nicht Korrekt!");
+            } else if(oldPW.getText().equals("") || newPW.getText().equals("") || newConfirm.getText().equals("")){
+                return new Pair<>(null,"Alle Felder müssen Ausgefüllt werden!");
             } else if(dialogButton == OK_Button && !(newPW.getText().equals(newConfirm.getText()))){
-                return new Pair<>(null,"[WARNING] Passwörter stimmmen nicht überein!");
+                return new Pair<>(null,"Passwörter stimmmen nicht überein!");
             }
             return new Pair<>(null,null);
         });
@@ -172,9 +172,9 @@ public class Dialogs {
         grid.setPadding(new Insets(20,150,10,10));
 
         TextField firstName = new TextField();
-        firstName.setText(person.getName());
+        firstName.setText(person.getSurname());
         TextField secoundName = new TextField();
-        secoundName.setText(person.getSurname());
+        secoundName.setText(person.getName());
 
         ObservableList<String> genderOptions =
                 FXCollections.observableArrayList(
@@ -305,42 +305,16 @@ public class Dialogs {
             if(dialogButton == addButton) {
                 boolean anyTrue = false;
                 Boolean[] filter = new Boolean[6];
-
-                if (BodenGebaeude.isSelected()) {
-                    filter[0] = true;
-                } else {
-                    filter[0] = false;
+                for(int i = 0; i < filter.length; i++){
+                    filter[i]=false;
                 }
 
-                if (Fuhrpark.isSelected()) {
-                    filter[1] = true;
-                } else {
-                    filter[1] = false;
-                }
-
-                if (Hardware.isSelected()) {
-                    filter[2] = true;
-                } else {
-                    filter[2] = false;
-                }
-
-                if (Mobiliar.isSelected()) {
-                    filter[3] = true;
-                } else {
-                    filter[3] = false;
-                }
-
-                if (Software.isSelected()) {
-                    filter[4] = true;
-                } else {
-                    filter[4] = false;
-                }
-
-                if (Sonstiges.isSelected()) {
-                    filter[5] = true;
-                } else {
-                    filter[5] = false;
-                }
+                if (BodenGebaeude.isSelected()) filter[0] = true;
+                if (Fuhrpark.isSelected())      filter[1] = true;
+                if (Hardware.isSelected())      filter[2] = true;
+                if (Mobiliar.isSelected())      filter[3] = true;
+                if (Software.isSelected())      filter[4] = true;
+                if (Sonstiges.isSelected())     filter[5] = true;
 
                 for (int i = 0; i < filter.length; i++) {
                     if (filter[i]) {
@@ -371,20 +345,24 @@ public class Dialogs {
         }
     }
 
-    public static int chooseOrgDialog(boolean abtExisting){
+    public static int chooseOrgDialog(boolean sachExisting, boolean abtExisting, String operation){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Organisation anlegen");
-        alert.setHeaderText("Welche Organisationsform soll anelegt werden?");
+        alert.setHeaderText("Welche Organisationsform soll " + operation + " werden?");
         alert.setContentText("Optionen: ");
 
         ButtonType buttonTypeOne = new ButtonType("Abteilung");
         ButtonType buttonTypeTwo = new ButtonType("Sachgebiet");
         ButtonType buttonTypeCancel = new ButtonType("Abbrechen", ButtonBar.ButtonData.CANCEL_CLOSE);
-        if(abtExisting) {
-          alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo, buttonTypeCancel);
+
+        if(abtExisting && operation.equals("angelegt")){
+            alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo, buttonTypeCancel);
+        } else if((operation.equals("gelöscht") || operation.equals("bearbeitet")) && sachExisting){
+            alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo, buttonTypeCancel);
         } else {
-          alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeCancel);
+            alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeCancel);
         }
+
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == buttonTypeOne){
             return 0;

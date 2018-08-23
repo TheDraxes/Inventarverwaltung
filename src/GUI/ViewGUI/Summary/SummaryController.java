@@ -36,6 +36,12 @@ public class SummaryController implements Initializable{
     private Label valueHardware;
 
     @FXML
+    private Label countMobiliar;
+
+    @FXML
+    private Label valueMobiliar;
+
+    @FXML
     private Label countSonstiges;
     @FXML
     private Label valueSonstiges;
@@ -88,16 +94,19 @@ public class SummaryController implements Initializable{
             valueFuhrpark.setText(getValueOfClass(Fuhrpark.class, choosen));
 
             countBoden.setText("" + getCountOfClass(BodenUndGebaeude.class, choosen));
-            valueBoden.setText(getValueOfClass(BodenUndGebaeude.class, choosen));
+            valueBoden.setText("" +getValueOfClass(BodenUndGebaeude.class, choosen));
 
             countHardware.setText("" + getCountOfClass(Hardware.class, choosen));
-            valueHardware.setText(getValueOfClass(Hardware.class, choosen));
+            valueHardware.setText("" + getValueOfClass(Hardware.class, choosen));
 
             countSoftware.setText("" + getCountOfClass(Software.class, choosen));
-            valueSoftware.setText(getValueOfClass(Software.class, choosen));
+            valueSoftware.setText("" +getValueOfClass(Software.class, choosen));
+
+            countMobiliar.setText("" + getCountOfClass(Mobiliar.class, choosen));
+            valueMobiliar.setText("" + getValueOfClass(Mobiliar.class, choosen));
 
             countSonstiges.setText("" + getCountOfClass(Sonstiges.class, choosen));
-            valueSonstiges.setText(getValueOfClass(Sonstiges.class, choosen));
+            valueSonstiges.setText("" + getValueOfClass(Sonstiges.class, choosen));
         }
     }
 
