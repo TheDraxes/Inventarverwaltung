@@ -6,7 +6,6 @@ package Data;
  * @author mixd
  * @version 1.0
  */
-
 public class BodenUndGebaeude extends Asset {
     private int plz;
     private String ort;
@@ -26,12 +25,16 @@ public class BodenUndGebaeude extends Asset {
     private int paramAnzahl = paramNames.length;
 
 
-    // Konstruktor ohne Parameter
+    /**
+     * Konstruktor ohne Parameter
+     */
     public BodenUndGebaeude() {
         System.out.println("[KONSTRUKTOR] BodenUndGebaeude angelegt!");
     }
 
-    // Konsolenausgabe aller Parameter für Testzwecke
+    /**
+     * Konsolenausgabe alle Parameter für Testzwecke
+     */
     public void display() {
         super.display();
         System.out.println("PLZ & Ort:           " + plz + " " + ort);
@@ -57,7 +60,6 @@ public class BodenUndGebaeude extends Asset {
         }
         return allParams;
     }
-
     public int getPlz() {
         return plz;
     }

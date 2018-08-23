@@ -4,10 +4,8 @@ package Data;
  *
  *
  * @author mixd
- *
  * @version 1.0
  */
-
 public class Software extends Asset {
     private String version;
 
@@ -17,12 +15,16 @@ public class Software extends Asset {
     private int paramAnzahl = paramNames.length;
 
 
-    // Konstruktor ohne Parameter
+    /**
+     * Konstruktor ohne Parameter
+     */
     public Software() {
         System.out.println("[KONSTRUKTOR] Software ohne Parameter angelegt!");
     }
 
-    // Konsolenausgabe aller Parameter für Testzwecke
+    /**
+     * Konsolenausgabe alle Parameter für Testzwecke
+     */
     public void display() {
         super.display();
         System.out.println("Version:             " + version);
@@ -46,7 +48,6 @@ public class Software extends Asset {
         }
         return allParams;
     }
-
     public String getVersion() {
         return version;
     }

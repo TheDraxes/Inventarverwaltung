@@ -17,12 +17,16 @@ public class Sonstiges extends Asset {
     private int paramAnzahl = paramNames.length;
 
 
-    // Konstruktor ohne Parameter
+    /**
+     * Konstruktor ohne Parameter
+     */
     public Sonstiges() {
         System.out.println("[KONSTRUKTOR] Sonstiges ohne Parameter angelegt!");
     }
 
-    // Konsolenausgabe aller Parameter für Testzwecke
+    /**
+     * Konsolenausgabe alle Parameter für Testzwecke
+     */
     public void display() {
         super.display();
         System.out.println("Beschreibung:        " + beschreibung);
@@ -46,7 +50,6 @@ public class Sonstiges extends Asset {
         }
         return allParams;
     }
-
     public String getBeschreibung() {
         return beschreibung;
     }

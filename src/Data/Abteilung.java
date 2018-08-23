@@ -8,15 +8,19 @@ import java.util.ArrayList;
  * @author mixd
  * @version 1.0
  */
-
 public class Abteilung extends Organisation{
-
 	private ArrayList<Sachgebiet> sachgebiete = new ArrayList<>();
 
-	// Konstruktoren
+	/**
+	 * Konstruktor zum Anlegen einer neuen Abteilung ohne Parameter
+	 */
 	public Abteilung() {
 		System.out.println("[KONSTRUKTOR] Abteilung ohne Parameter angelegt!");
 	}
+
+	/**
+	 * Konstruktor zum Anlegen einer neuen Abteilung mit Parameter
+	 */
 	public Abteilung(Person leiter, String name, String kuerzel) {
 		System.out.println("[KONSTRUKTOR] Abteilung mit Parameter angelegt!");
 		this.leiter = leiter;
@@ -24,10 +28,11 @@ public class Abteilung extends Organisation{
 		this.kuerzel = kuerzel;
 	}
 
-	public ArrayList<Sachgebiet> getSachgebiete() {
-		return sachgebiete;
-	}
-
+	/**
+	 * sachgebietExisting prüft ob der Abteilung mind. 1 Sachgebiet zugewiesen wurde
+	 *
+	 * @author mixd
+	 */
 	public boolean sachgebietExisting(){
 		if(sachgebiete.size() > 0) {
 			return true;
@@ -35,7 +40,9 @@ public class Abteilung extends Organisation{
 		return false;
 	}
 
-	// Konsolenausgabe aller Parameter für Testzwecke
+	/**
+	 * Konsolenausgabe einer Abteilung (mit allen Parametern) für Testzwecke
+	 */
 	public void display() {
 		System.out.println("[INFO] DISPLAYMETHODE ABTEILUNG");
 		/*System.out.println("Abteilungsleiter");
@@ -55,6 +62,9 @@ public class Abteilung extends Organisation{
 	}
 
 	// Getter und Setter
+	public ArrayList<Sachgebiet> getSachgebiete() {
+		return sachgebiete;
+	}
 	public Person getLeiter() {
 		return leiter;
 	}
