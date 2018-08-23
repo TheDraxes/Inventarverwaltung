@@ -274,7 +274,7 @@ public class StartController implements Initializable {
             return;
         }
         if(orgContainer.anySachgebietExisting()){
-            String input = Dialogs.inventoryNameDialog(orgContainer ,"Eingabe", "Inventarnamen Eingeben!");
+            String input = Dialogs.inventoryNameDialog(orgContainer ,"Eingabe", "Inventarnamen eingeben!");
             if(input == null){
                 System.out.println("[INFO] Anlegen abgebrochen");
             } else {

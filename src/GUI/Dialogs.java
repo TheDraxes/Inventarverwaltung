@@ -142,11 +142,11 @@ public class Dialogs {
             } else if(dialogButton == ButtonType.CANCEL){
                 return new Pair<>("cancelled","[INFO] Vorgang abgebrochen!");
             } else if(!(oldPW.getText().equals(user.getPassword()))){
-                return new Pair<>(null,"Passwort nicht Korrekt!");
+                return new Pair<>(null,"Passwort nicht korrekt!");
             } else if(oldPW.getText().equals("") || newPW.getText().equals("") || newConfirm.getText().equals("")){
                 return new Pair<>(null,"Alle Felder müssen Ausgefüllt werden!");
             } else if(dialogButton == OK_Button && !(newPW.getText().equals(newConfirm.getText()))){
-                return new Pair<>(null,"Passwörter stimmmen nicht überein!");
+                return new Pair<>(null,"Passwörter stimmen nicht überein!");
             }
             return new Pair<>(null,null);
         });
