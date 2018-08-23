@@ -498,25 +498,17 @@ public class AssetContainer implements Serializable {
         }
     }
 
-    /**
-     * Getter und Setter
-     */
+    // Getter & Setter
     public ArrayList<Asset> getAssetList() {
         return assetList;
     }
     public void setAssetList(ArrayList<Asset> assetList) {
         this.assetList = assetList;
     }
-    public long getId() {
-        return id;
-    }
     public void setId(long id) {
         this.id = id;
     }
     public String[] getExistingAssetTypes() {
         return existingAssetTypes;
-    }
-    public void setExistingAssetTypes(String[] existingAssetTypes) {
-        this.existingAssetTypes = existingAssetTypes;
     }
 }

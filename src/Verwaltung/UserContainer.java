@@ -9,8 +9,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
- * UserContainer verwaltet eine Nutzerdatenbank,
- * welche unter anderem für das Login benötigt wird.
+ * UserContainer verwaltet eine Liste,
+ * in welcher alle Nutzer verwaltet werden.
+ * Sie wird unter anderem für das Login benötigt wird.
  *
  * @author mixd
  *
@@ -24,7 +25,7 @@ public class UserContainer implements Serializable {
      * insertUser fügt einen neuen Nutzer hinzu
      *
      * @param p User der in den Container eingefügt werden soll
-     * @return true wenn der insert erfolgreich war
+     * @return true wenn die Eintragung erfolgreich war
      * @author mixd
      */
     public boolean insertUser(Person p) {
@@ -49,7 +50,7 @@ public class UserContainer implements Serializable {
      *
      * @param username Nutzername von dem Nutzer dessen Passwort geändert werden soll
      * @param newPassword Neues Passwort
-     * @return true wenn die änderung erfolgreich war
+     * @return true wenn die Änderung erfolgreich war
      * @author mixd
      */
     public boolean changePassword(String username, String newPassword){
@@ -86,7 +87,6 @@ public class UserContainer implements Serializable {
         }
         return false;
     }
-
 
     /**
      * safeUserData speichert die Nutzerdaten unter 'user.dat'
@@ -354,9 +354,7 @@ public class UserContainer implements Serializable {
         }
     }
 
-    /**
-     * Getter und Setter
-     */
+    // Getter & Setter
     public ArrayList<Person> getUserData() {
         return userData;
     }

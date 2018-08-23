@@ -4,6 +4,12 @@ import Verwaltung.UserContainer;
 
 import java.io.Serializable;
 
+/**
+ *
+ *
+ * @author mixd
+ * @version 1.0
+ */
 public class Person implements Serializable {
     private String name;
     private String surname;
@@ -16,11 +22,16 @@ public class Person implements Serializable {
     private boolean isAdmin;
     private boolean isLocked;
 
+    /**
+     * Konstruktor zum Anlegen eines neuen Nutzers ohne Parameter
+     */
     public Person() {
         System.out.println("[KONSTRUKTOR] Person ohne Parameter angelegt!");
     }
 
-    // Konstruktor zum Anlegen eines neuen Nutzers
+    /**
+     * Konstruktor zum Anlegen eines neuen Nutzers mit Parametern
+     */
     public Person(String name, String surname, boolean isMan, String password, boolean isAdmin) {
         this.name = name;
         this.surname = surname;
@@ -32,7 +43,11 @@ public class Person implements Serializable {
         System.out.println("[KONSTRUKTOR] Benutzer " + this.username + " angelegt!");
     }
 
-    // Beim ersten Programmstart bzw. zurücksetzen der Userdaten (user.dat) wird automatisch ein Admin mit dem Passwort 123 zur Anmeldung erstellt
+    /**
+     * initAdmin erstellt einen Admin mit dem Passwort 123
+     *
+     * @author mixd
+     */
     public void initAdmin() {
         this.username = "admin";
         this.password = "123";
@@ -40,7 +55,13 @@ public class Person implements Serializable {
         System.out.println("[INFO] Standardadmin angelegt!");
     }
 
-    // Beim Anlegen eines neuen Nutzers wird der Benutzername automatisch aus Nachname + Anfangsbuchstaben vom Vornamen erstellt
+    /**
+     * generateUsername generiert den Nutzernamen des Nutzers
+     * Nutzername = Nachname + Anfangsbuchstaben vom Vornamen erstellt
+     *
+     * @return generierten Nutzernamen
+     * @author mixd
+     */
     private String generateUsername() {
         UserContainer userData = new UserContainer().loadUserData();
         String generatedUsername = new String();
@@ -63,15 +84,28 @@ public class Person implements Serializable {
         }
     }
 
-    // Beim Anlegen eines neuen Nutzers wird die E-Mail automatisch aus 'Anfangsbuchstaben des Vornamen' . 'Nachname' @ 'dvz-mv.de' erstellt
+    /**
+     * generateEmail generiert die E-Mail Adresse des Nutzers
+     * E-Mail = 'Anfangsbuchstaben des Vornamen' . 'Nachname' @ 'dvz-mv.de'
+     *
+     * @return generierte E-Mail
+     * @author mixd
+     */
     private String generateEmail() {
         return username.substring(name.length()) + "." + name.toLowerCase() + "@dvz-mv.de";
     }
 
+    /**
+     * updateUsername aktualisiert einen Nutzernamen nach der Änderung des Nutzers
+     *
+     * @author mixd
+     */
     public void updateUsername(){
         UserContainer userData = new UserContainer().loadUserData();
         Person p = userData.getPersonByUsername(this.username);
-        if(!p.getName().equals(this.name) || !p.getSurname().equals(this.surname)) {
+        userData.deleteUser(this.username);
+        userData.insertUser(p);
+        /*if(!p.getName().equals(this.name) || !p.getSurname().equals(this.surname)) {
             String newusername = generateUsername();
 
             if(!this.username.equals(newusername)) {
@@ -83,10 +117,12 @@ public class Person implements Serializable {
                 this.email = generateEmail();
                 System.out.println(" auf " + this.email + " geändert!");
             }
-        }
+        }*/
     }
 
-    // Konsolenausgabe aller Parameter für Testzwecke
+    /**
+     * Konsolenausgabe eines Nutzers (mit allen Parametern) für Testzwecke
+     */
     public void display() {
         System.out.println("[INFO] DISPLAYMETHODE PERSON");
         if(!this.username.equals("admin")) {
