@@ -4,6 +4,7 @@ import Data.Abteilung;
 import Data.Organisation;
 import Data.Person;
 import Data.Sachgebiet;
+import Verwaltung.AssetContainer;
 import Verwaltung.OrganisationContainer;
 
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 public class OrganisationsContainerTest {
     OrganisationContainer container = new OrganisationContainer();
     public static void main(String[] args) {
-        OrganisationContainer container = new OrganisationContainer();
+        /*OrganisationContainer container = new OrganisationContainer();
         container.safeOrganisationsData();
 
         Person p = new Person("Mix", "Darius", true, "12345", true);
@@ -32,6 +33,11 @@ public class OrganisationsContainerTest {
         container.editSachgebiet(faj, gej);
 
         System.out.println("............................................................................");
-        container.displayAllOrgs();
+        container.displayAllOrgs();*/
+        String path = new String("C:" + "\\" + "Inventarverwaltungspeicher");
+        AssetContainer container = new AssetContainer();
+        String alt = "FAJ";
+        String neu = "GEI";
+        container.renameInventare(path, alt, neu);
     }
 }
