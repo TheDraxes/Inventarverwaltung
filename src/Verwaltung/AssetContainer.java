@@ -20,8 +20,14 @@ public class AssetContainer implements Serializable {
     private long id = 1;
     private String[] existingAssetTypes = {"Boden und Gebäude", "Fuhrpark", "Hardware", "Mobiliar", "Software", "Sonstiges"};
 
-    // Eingabe der Inventarnummer id, Rückgabe des zugehörigen Assets
-    public Asset getItemById(long id) {
+    /**
+     * getAssetById sucht ein Objekt Asset anhand seiner Inventarnummer
+     *
+     * @param id Inventarnummer nach welcher gesucht wird
+     * @return Asset mit der Inventarnummer id
+     * @author mixd
+     */
+    public Asset getAssetById(long id) {
         System.out.println("[INFO] Asset mit der Inventarnummer " + id + " suchen");
         try {
             Iterator<Asset> it = assetList.iterator();
@@ -41,7 +47,14 @@ public class AssetContainer implements Serializable {
         }
     }
 
-    // Veränderung eines Assets mit der Inventarnummer id durch Asset a
+    /**
+     * editItemById editiert ein Asset anhand seiner Inventarnummer
+     *
+     * @param id Inventarnummer welche editiert werden soll
+     * @param a Asset mit neuen Parametern
+     * @return true wenn das editieren erfolgreich war
+     * @author mixd
+     */
     public boolean editItemById(long id, Asset a) {
         System.out.println("[INFO] Asset editieren...");
         try {
@@ -61,7 +74,13 @@ public class AssetContainer implements Serializable {
         }
     }
 
-    // neues Asset einfügen, Inventarnummer wird automatisch generiert (hochgezählt)
+    /**
+     * insertAsset fügt ein neues Asset hinzu
+     *
+     * @param a Asset, welches eingefügt werden soll
+     * @return true wenn hinzufügen erfolgreich war
+     * @author mixd
+     */
     public boolean insertAsset(Asset a) {
         System.out.println("[INFO] Asset hinzufügen...");
         try {
@@ -80,13 +99,18 @@ public class AssetContainer implements Serializable {
         }
     }
 
-    // Asset a löschen
+    /**
+     * insertAsset löscht ein Asset aus dem Container
+     *
+     * @param a Asset, welches gelöscht werden soll
+     * @return true wenn Löschung erfolgreich war
+     * @author mixd
+     */
     public boolean deleteAsset(Asset a) {
         System.out.println("[INFO] Asset löschen...");
         try {
             if(assetList.contains(a)) {
                 assetList.remove(a);
-                id--;
                 System.out.println("[INFO] Asset erfolgreich gelöscht");
                 return true;
             } else
@@ -99,22 +123,12 @@ public class AssetContainer implements Serializable {
         }
     }
 
-    // alle Assets ausgeben (Konsole) - für Testzwecke
-    public void showAll() {
-        System.out.println("[INFO] Ausgabe aller Assets");
-        Iterator<Asset> it = assetList.iterator();
-        while (it.hasNext()) {
-            it.next().display();
-            System.out.println("- - - - - - - - - - - - - - - - - - -");
-        }
-    }
-
     /**
-     * safeInventar speichert ein Inventar unter 'inventarname.inv'
+     * safeInventar speichert ein Inventar
      *
-     * @author mixd
-     * @param path pfad in an dem der Container abgespeichert werden soll
+     * @param path Pfad in an dem der Container abgespeichert werden soll
      * @return boolean ob das speichern erfolgreich war oder nicht
+     * @author mixd
      */
     public boolean safeInventar(String path){
         System.out.println("[INFO] Speichere Inventar...");
@@ -141,11 +155,11 @@ public class AssetContainer implements Serializable {
     }
 
     /**
-     * loadInventar liest ein Inventar aus 'inventarname.Inv' aus.
+     * loadInventar liest ein Inventar aus
      *
-     * @author mixd
+     * @param path Speicherpfad des auszulesenden Containers
      * @return geladener AssetContainer
-     * @param path pfad an dem der assetcontainer liegt
+     * @author mixd
      */
     public AssetContainer loadInventar(String path) {
         System.out.println("[INFO] Lade Inventar...");
@@ -179,7 +193,20 @@ public class AssetContainer implements Serializable {
         return null;
     }
 
-    // Filtermethoden
+    /**
+     * getAssetsByFilter filtert den Container nach Objekten
+     *
+     * @param filter Array aus boolean Werten
+     *               wenn true soll Objekt angezeigt werden, wenn false nicht
+     *               filter[0] = BodenUndGebaeude
+     *               filter[1] = Fuhrpark
+     *               filter[2] = Hardware
+     *               filter[3] = Mobiliar
+     *               filter[4] = Software
+     *               filter[5] = Sonstiges
+     * @return Liste mit gefilterten Assets
+     * @author mixd
+     */
     public ArrayList<Asset> getAssetsByFilter(boolean[] filter) {
         System.out.println("[INFO] Filter anwenden...");
         try {
@@ -212,6 +239,12 @@ public class AssetContainer implements Serializable {
         return null;
     }
 
+    /**
+     * getAllBodenUndGebaeude gibt alle Assets des Objekts BodenUndGebaeude zurück
+     *
+     * @return Liste mit allen Assets des Objekts BodenUndGebaeude
+     * @author mixd
+     */
     private ArrayList<BodenUndGebaeude> getAllBodenUndGebaeude() {
         System.out.println("[INFO] nach BodenUndGebaeude filtern...");
         try {
@@ -230,6 +263,12 @@ public class AssetContainer implements Serializable {
         System.out.println("[INFO] Fehler bei der Filterung nach BodenUndGebaeude!");
         return null;
     }
+    /**
+     * getAllFuhrpark gibt alle Assets des Objekts Fuhrpark zurück
+     *
+     * @return Liste mit allen Assets des Objekts Fuhrpark
+     * @author mixd
+     */
     private ArrayList<Fuhrpark> getAllFuhrpark() {
         System.out.println("[INFO] nach Fuhrpark filtern...");
         try {
@@ -248,6 +287,12 @@ public class AssetContainer implements Serializable {
         System.out.println("[INFO] Fehler bei der Filterung nach Fuhrpark!");
         return null;
     }
+    /**
+     * getAllHardware gibt alle Assets des Objekts Hardware zurück
+     *
+     * @return Liste mit allen Assets des Objekts Hardware
+     * @author mixd
+     */
     private ArrayList<Hardware> getAllHardware() {
         System.out.println("[INFO] nach Hardware filtern...");
         try {
@@ -266,6 +311,12 @@ public class AssetContainer implements Serializable {
         System.out.println("[INFO] Fehler bei der Filterung nach Hardware!");
         return null;
     }
+    /**
+     * getAllMobiliar gibt alle Assets des Objekts Mobiliar zurück
+     *
+     * @return Liste mit allen Assets des Objekts Mobiliar
+     * @author mixd
+     */
     private ArrayList<Mobiliar> getAllMobiliar() {
         System.out.println("[INFO] nach Mobiliar filtern...");
         try {
@@ -284,6 +335,12 @@ public class AssetContainer implements Serializable {
         System.out.println("[INFO] Fehler bei der Filterung nach Mobiliar!");
         return null;
     }
+    /**
+     * getAllSoftware gibt alle Assets des Objekts Software zurück
+     *
+     * @return Liste mit allen Assets des Objekts Software
+     * @author mixd
+     */
     private ArrayList<Software> getAllSoftware() {
         System.out.println("[INFO] nach Software filtern...");
         try {
@@ -302,6 +359,12 @@ public class AssetContainer implements Serializable {
         System.out.println("[INFO] Fehler bei der Filterung nach Software!");
         return null;
     }
+    /**
+     * getAllSonstiges gibt alle Assets des Objekts Sonstiges zurück
+     *
+     * @return Liste mit allen Assets des Objekts Sonstiges
+     * @author mixd
+     */
     private ArrayList<Sonstiges> getAllSonstiges() {
         System.out.println("[INFO] nach Sonstiges filtern...");
         try {
@@ -321,6 +384,13 @@ public class AssetContainer implements Serializable {
         return null;
     }
 
+    /**
+     * getSummary
+     *
+     * @param path
+     * @return Liste
+     * @author Tim
+     */
     public ArrayList<Asset> getSummary(String path){
         File filespath = new File(path);
         File[] files = filespath.listFiles();
@@ -335,7 +405,15 @@ public class AssetContainer implements Serializable {
         return summaryList;
     }
 
-
+    /**
+     * getSummary
+     *
+     * @param abteilung
+     * @param path
+     * @param orgContainer
+     * @return Liste
+     * @author Tim
+     */
     public ArrayList<Asset> getSummaryOf(String abteilung, String path, OrganisationContainer orgContainer){
         File filespath = new File(path);
         File[] files = filespath.listFiles();
@@ -350,10 +428,26 @@ public class AssetContainer implements Serializable {
         return summaryList;
     }
 
+    /**
+     * checkExtension
+     *
+     * @param file
+     * @return Liste
+     * @author Tim
+     */
     private boolean checkExtension(File file){
         return file.getName().endsWith(".Inv");
     }
 
+    /**
+     * checkSachgebiet
+     *
+     * @param file
+     * @param orgContainer
+     * @param Abteilung
+     * @return Liste
+     * @author Tim
+     */
     public boolean checkSachgebiet(File file, OrganisationContainer orgContainer, String Abteilung){
         Abteilung abt = orgContainer.getAbteilungByKuerzel(Abteilung);
         ArrayList<Sachgebiet> sachForAbt = abt.getSachgebiete();
@@ -368,6 +462,13 @@ public class AssetContainer implements Serializable {
         return false;
     }
 
+    /**
+     * loadForSummary
+     *
+     * @param file
+     * @return Liste
+     * @author Tim
+     */
     private ArrayList loadForSummary(File file){
         ArrayList list = new ArrayList();
         try {
@@ -383,8 +484,21 @@ public class AssetContainer implements Serializable {
         return list;
     }
 
+    /**
+     * Konsolenausgabe aller Assets (mit allen Parametern) für Testzwecke
+     */
+    public void showAll() {
+        System.out.println("[INFO] Ausgabe aller Assets");
+        Iterator<Asset> it = assetList.iterator();
+        while (it.hasNext()) {
+            it.next().display();
+            System.out.println("- - - - - - - - - - - - - - - - - - -");
+        }
+    }
 
-    // Getter und Setter
+    /**
+     * Getter und Setter
+     */
     public ArrayList<Asset> getAssetList() {
         return assetList;
     }
