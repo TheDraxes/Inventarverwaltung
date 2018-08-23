@@ -21,7 +21,7 @@ public class UserContainer implements Serializable {
     private ArrayList<Person> userData = new ArrayList<Person>();
 
     /**
-     * insertUser fügt einen neuen Benutzer hinzu
+     * insertUser fügt einen neuen Nutzer hinzu
      *
      * @param p User der in den Container eingefügt werden soll
      * @return true wenn der insert erfolgreich war
@@ -47,7 +47,7 @@ public class UserContainer implements Serializable {
     /**
      * changePasswort ändert des Passwortes eines Nutzers
      *
-     * @param username Username von dem Benutzer dessen Passwort geändert werden soll
+     * @param username Nutzername von dem Nutzer dessen Passwort geändert werden soll
      * @param newPassword Neues Passwort
      * @return true wenn die änderung erfolgreich war
      * @author mixd
@@ -91,7 +91,7 @@ public class UserContainer implements Serializable {
     /**
      * safeUserData speichert die Nutzerdaten unter 'user.dat'
      *
-     * @return true wenn die speicherung erfolgreich war
+     * @return true wenn die Speicherung erfolgreich war
      * @author mixd
      */
     public boolean safeUserData(){
@@ -168,8 +168,8 @@ public class UserContainer implements Serializable {
     /**
      * getPersonByUsername gibt ein Objekt Person mit dem Nutzernamen username zurück
      *
-     * @param username username des gesuchten users
-     * @return User der zum parameter username gehört
+     * @param username Nutzername des gesuchten Nutzers
+     * @return Nutzer der zum parameter username gehört
      * @author mixd
      */
     public Person getPersonByUsername(String username) {
@@ -186,7 +186,7 @@ public class UserContainer implements Serializable {
     /**
      * getUserNames gibt alle Nutzernamen zurück
      *
-     * @return Array mit allen Usernamen
+     * @return Array mit allen Nutzernamen
      * @author mixd
      */
     public String[] getUserNames() {
@@ -204,7 +204,7 @@ public class UserContainer implements Serializable {
     /**
      * getUserNamesWithoutAdmin gibt alle Nutzernamen außer den Standardadmin zurück
      *
-     * @return Array mit allen Usernamen außer dem Admin
+     * @return Array mit allen Nutzernamen außer dem Admin
      * @author mixd
      */
     public String[] getUserNamesWithoutAdmin() {
@@ -219,12 +219,11 @@ public class UserContainer implements Serializable {
         return usernames;
     }
 
-
     /**
      * userExisting prüft, ob ein Nutzername bereits vorhanden ist
      *
-     * @param username des gesuchten Users
-     * @return true wenn der User mit diesem Usernamen existiert
+     * @param username Nutzername des gesuchten Nutzers
+     * @return true wenn der Nutzer mit diesem Nutzernamen existiert
      * @author mixd
      */
     public boolean userExisting(String username) {
@@ -237,7 +236,7 @@ public class UserContainer implements Serializable {
     /**
      * deleteUser löscht einen Nutzer mithilfe des Nutzernames
      *
-     * @param username Username des zu löschenden Users
+     * @param username Nutzername des zu löschenden Nutzers
      * @author Tim
      */
     public void deleteUser(String username){
@@ -262,7 +261,7 @@ public class UserContainer implements Serializable {
     }
 
     /**
-     * deleteAllUser löscht alle vorhandenen Benutzer.
+     * deleteAllUser löscht alle vorhandenen Nutzer.
      *
      * @author mixd
      */
@@ -275,10 +274,10 @@ public class UserContainer implements Serializable {
      * checkLogin prüft, ob der eingebenene Name und das eingegebene
      * Passwort übereinstimmen.
      *
+     * @param username Nutzername des Nutzers
+     * @param pw Passwort des Nutzers
+     * @return true wenn die kombination aus Nutzernamen und Passwort vorhanden ist
      * @author mixd
-     * @param username username des Users
-     * @param pw Passwort des users
-     * @return true wenn die kombination aus username und passwort vorhanden ist
      */
     public boolean checkLogin(String username, String pw){
         Person p = getPersonByUsername(username);
@@ -296,6 +295,13 @@ public class UserContainer implements Serializable {
         return false;
     }
 
+    /**
+     * isBlocked prüft, ob ein Nutzer gesperrt ist
+     *
+     * @param username Nutzersname des Nutzers der geprüft werden soll
+     * @return true wenn der Nutzer gesperrt ist
+     * @author mixd
+     */
     public boolean isBlocked (String username){
         Person p = this.getPersonByUsername(username);
         if(p == null) {
@@ -306,6 +312,12 @@ public class UserContainer implements Serializable {
         return false;
     }
 
+    /**
+     * blockUser blockiert einen Nutzer
+     *
+     * @param username Nutzername des Nutzers, welcher gesperrt werden soll
+     * @author mixd
+     */
     public void blockUser(String username){
         Person p = this.getPersonByUsername(username);
         if(p == null) {
@@ -316,7 +328,9 @@ public class UserContainer implements Serializable {
         }
     }
 
-    // Konsolenausgabe aller Nutzer für Testzwecke
+    /**
+     * Konsolenausgabe aller Nutzer (mit allen Parametern) für Testzwecke
+     */
     public void display(){
         System.out.println("[INFO] Ausgabe aller Benutzer");
         System.out.println("=============================");
@@ -329,7 +343,9 @@ public class UserContainer implements Serializable {
         }
     }
 
-    // Konsolenausgabe aller Nutzernamen für Testzwecke
+    /**
+     * Konsolenausgabe aller Nutzernamen für Testzwecke
+     */
     public void displayAllUserName(){
         System.out.println("[INFO] Ausgabe aller Benutzernamen");
         Iterator<Person> it = userData.iterator();
@@ -338,7 +354,9 @@ public class UserContainer implements Serializable {
         }
     }
 
-    // Getter und Setter
+    /**
+     * Getter und Setter
+     */
     public ArrayList<Person> getUserData() {
         return userData;
     }
