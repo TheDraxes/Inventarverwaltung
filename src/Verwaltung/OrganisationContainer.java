@@ -10,7 +10,7 @@ import java.util.Iterator;
 
 /**
  * OrganisationContainer verwaltet eine Liste,
- * in welcher alle Organisationsformen (Abteilungen & Sachgebiete)
+ * in welcher alle Organisationsformen (Abteilungen und Sachgebiete)
  * verwaltet werden
  *
  * @author mixd
@@ -244,7 +244,7 @@ public class OrganisationContainer implements Serializable {
     /**
      * anyAbteilungExisting prüft, ob es mind. eine Abteilung gibt
      *
-     * @return true wenn Anzahl Abteilungen > 0
+     * @return true wenn Anzahl Abteilungen größer als 0
      * @author mixd
      */
     public boolean anyAbteilungExisting(){
@@ -257,7 +257,7 @@ public class OrganisationContainer implements Serializable {
     /**
      * anySachgebietExisting prüft, ob es mind. ein Sachgebiet gibt
      *
-     * @return true wenn Anzahl Sachgebiete > 0
+     * @return true wenn Anzahl Sachgebiete größer als 0
      * @author mixd
      */
     public boolean anySachgebietExisting(){
@@ -329,6 +329,8 @@ public class OrganisationContainer implements Serializable {
             for (int j = 0; j < sachgebiete.size(); j++) {
                 if(sachgebiete.get(j).equals(alt)) {
                     this.abteilungArrayList.get(i).getSachgebiete().set(j, neu);
+
+
                     if(!(alt.getAbtKuerzel().equals(neu.getAbtKuerzel()))) {
                         ArrayList<Sachgebiet> sachgebieteAlt = abtAlt.getSachgebiete();
                         ArrayList<Sachgebiet> sachgebieteNeu = abtNeu.getSachgebiete();
@@ -379,7 +381,7 @@ public class OrganisationContainer implements Serializable {
     }
 
     /**
-     * Konsolenausgabe aller Organisationen (Abteilungen & Sachgebiete) für Testzwecke
+     * Konsolenausgabe aller Organisationen (Abteilungen und Sachgebiete) für Testzwecke
      */
     public void displayAllOrgs(){
         for(Abteilung abteilung : abteilungArrayList){
