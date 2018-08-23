@@ -95,28 +95,9 @@ public class StartController implements Initializable {
      */
     @FXML
     protected void initialize(){
-        //Aufsetzen der ComboBox für das StartFenster
-        ObservableList<String> _default = FXCollections.observableArrayList();
-        File lookUp = new File(path);
 
-        if (lookUp.exists()) {
-            File[] fileArray = lookUp.listFiles();
-            inventories = new String[fileArray.length];
-            inventoryCounter = 0;
-            for (int i = 0; i < fileArray.length; i++) {
-                if (fileArray[i].getName().endsWith(".Inv")) {
-                    _default.add(fileArray[i].getName().substring(0, fileArray[i].getName().length() - 4));
-                    inventories[i] = fileArray[i].getName().substring(0, fileArray[i].getName().length() - 4);
-                    inventoryCounter++;
-                }
-            }
-            InventarBox.setItems(_default);
-            if(inventoryCounter != 0) {
-                InventarBox.setValue(_default.get(0));
-            } else {
-                InventarBox.setValue("Kein Eintrag gefunden!");
-            }
-        }
+        fillInventoryBox();
+
         //Anzeigen des Admin menüs
         if(user.isAdmin()){
             adminMenue.setVisible(true);
@@ -151,6 +132,32 @@ public class StartController implements Initializable {
         }
         System.out.println("[GUI] Start Fenster Initialisiert");
         System.out.println("[INFO] Speicherpfad: " + path);
+    }
+
+
+    private void fillInventoryBox(){
+        //Aufsetzen der ComboBox für das StartFenster
+        ObservableList<String> _default = FXCollections.observableArrayList();
+        File lookUp = new File(path);
+
+        if (lookUp.exists()) {
+            File[] fileArray = lookUp.listFiles();
+            inventories = new String[fileArray.length];
+            inventoryCounter = 0;
+            for (int i = 0; i < fileArray.length; i++) {
+                if (fileArray[i].getName().endsWith(".Inv")) {
+                    _default.add(fileArray[i].getName().substring(0, fileArray[i].getName().length() - 4));
+                    inventories[i] = fileArray[i].getName().substring(0, fileArray[i].getName().length() - 4);
+                    inventoryCounter++;
+                }
+            }
+            InventarBox.setItems(_default);
+            if(inventoryCounter != 0) {
+                InventarBox.setValue(_default.get(0));
+            } else {
+                InventarBox.setValue("Kein Eintrag gefunden!");
+            }
+        }
     }
 
     /**
@@ -793,6 +800,8 @@ public class StartController implements Initializable {
                         return;
                     } else {
                         orgContainer.editSachgebiet(oldSach, result.getKey());
+                        orgContainer.renameInventare(path,oldSach.getKuerzel(),result.getKey().getKuerzel());
+                        fillInventoryBox();
                     }
                 }
             } else {
