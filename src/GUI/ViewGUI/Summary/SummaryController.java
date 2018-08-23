@@ -14,61 +14,88 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
+/**
+ * Controller für das Fenster für die Kapitalzusammenfassung
+ *
+ * @author TIm
+ * @version 1.0
+ */
 public class SummaryController implements Initializable{
+    //Label für die Anazahl an Fuhrpark
     @FXML
     private Label countFuhrpark = new Label();
+    //Label für den Anlagewert an Fuhrpark
     @FXML
     private Label valueFuhrpark;
 
+    //Label für die Anazahl an Boden und Gebäude
     @FXML
     private Label countBoden;
+    //Label für den Anlagewert an Boden und Gebäude
     @FXML
     private Label valueBoden;
 
+    //Label für die Anazahl an Software
     @FXML
     private Label countSoftware;
+    //Label für den Anlagewert an Software
     @FXML
     private Label valueSoftware;
 
+    //Label für die Anazahl an Hardware
     @FXML
     private Label countHardware;
+    //Label für den Anlagewert an Hardware
     @FXML
     private Label valueHardware;
 
+    //Label für die Anazahl an Mobiliar
     @FXML
     private Label countMobiliar;
-
+    //Label für den Anlagewert an Mobiliar
     @FXML
     private Label valueMobiliar;
 
+    //Label für die Anazahl an Sonstiges
     @FXML
     private Label countSonstiges;
+    //Label für den Anlagewert an Sonstiges
     @FXML
     private Label valueSonstiges;
 
+    //Label für die Summe an Anlagegenstände der Firma
     @FXML
     private Label firmSum;
-
+    //Label für die Summe an Anlagegenstände der Abteilung
     @FXML
     private Label abtSum;
 
+    //ComboBox mit den Abteilungen
     @FXML
     private ComboBox<String> abteilungComboBox;
 
+    //Label für den Namen der Abteilung
     @FXML
     private Label abtName;
 
-    private AssetContainer assetContainer;
-
+    //Container für die Organisationsstruktur
     private OrganisationContainer orgContainer;
 
+    //Pfad zu dem Speicherort der Inventare
     private String path;
 
+    //Formatter für Zahlen
     private final java.text.DecimalFormatSymbols germany
             = new java.text.DecimalFormatSymbols( new java.util.Locale( "de", "DE" ));
     private final java.text.DecimalFormat german
             = new java.text.DecimalFormat( "##,###.00", germany );
 
+
+    /**
+     * Initalisiert das Summary Fenster
+     *
+     * @see this#getSummaryOf()
+     */
 
     @FXML
     public void initialize(){
@@ -81,6 +108,14 @@ public class SummaryController implements Initializable{
         getSummaryOf();
     }
 
+    /**
+     * Beschriftet die Labels des Fenster je anch dem welche Abteilung
+     * momentan in der ComboBox ausgewählt wurde
+     *
+     * @see this#getCountOfClass(Class, String)
+     * @see this#getValueOfClass(Class, String)
+     * @see this#getAbtSum(String)
+     */
     @FXML
     protected void getSummaryOf(){
         String choosen = abteilungComboBox.getValue();
@@ -110,6 +145,14 @@ public class SummaryController implements Initializable{
         }
     }
 
+    /**
+     * Zählt die Anzahl der vorkommnisse einer bestimmten Klasse in einer bestimmten abteilung
+     *
+     * @param _class Die Klasse die gezählt wird
+     * @param abteilung Die abteilung in der gesucht wird
+     * @return die Anzahl der vorkommnisse
+     * @see AssetContainer#getSummaryOf(String, String, OrganisationContainer)
+     */
     private int getCountOfClass(Class _class, String abteilung){
         AssetContainer container = new AssetContainer();
         int countForClass = 0;
@@ -128,6 +171,16 @@ public class SummaryController implements Initializable{
         return countForClass;
     }
 
+    /**
+     * Ermittelt den Gesamtwert der anlagegegenstände mit einer
+     * bestimmten klasse in einer bestimmten abteilung und gibt ihn als String zurück
+     *
+     *
+     * @param _class Die Klasse nach der gesucht wird
+     * @param abteilung Die abteilung in der gesucht wird
+     * @see AssetContainer#getSummaryOf(String, String, OrganisationContainer)
+     * @return der Gesamt wert
+     */
     private String getValueOfClass(Class _class, String abteilung){
         AssetContainer container = new AssetContainer();
         double valueForClass = 0;
@@ -150,6 +203,13 @@ public class SummaryController implements Initializable{
         }
     }
 
+    /**
+     * Ermittelt den Gesamtwert einer Abteilung und gibt ihn als String zurück
+     *
+     * @param abteilung die Abteilung dessen Wert gesucht wird
+     * @see AssetContainer#getSummaryOf(String, String, OrganisationContainer)
+     * @return Wert
+     */
     private String getAbtSum(String abteilung){
         AssetContainer container = new AssetContainer();
         ArrayList<Asset> list = container.getSummaryOf(abteilung, path, orgContainer);
@@ -168,6 +228,11 @@ public class SummaryController implements Initializable{
         }
     }
 
+    /**
+     * Ermittelt den Firmenweiten Wert und gibt ihn als String zurück
+     * @return Firmenweiter gesamtwert
+     * @see AssetContainer#getSummary(String)
+     */
     private String getFirmSum(){
         AssetContainer container = new AssetContainer();
         ArrayList<Asset> list = container.getSummary(path);
@@ -186,6 +251,11 @@ public class SummaryController implements Initializable{
         }
     }
 
+    /**
+     * übergibt parameter vom View zur Zusammenfassung
+     *
+     * @param path Speicherpfad
+     */
     public void getParams(String path){
         this.path = path;
         initialize();

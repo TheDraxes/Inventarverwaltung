@@ -28,6 +28,11 @@ public class Dialogs {
         alert.showAndWait();
     }
 
+    /**
+     * Ruft ein bestätigungsdialog auf
+     * @param confirmation Ist die Nachricht an den Nutzer die er bestätigen soll
+     * @return boolean ob er bestätigt hat oder nicht
+     */
     public static boolean confirmDialog(String confirmation) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation Dialog");
@@ -41,6 +46,13 @@ public class Dialogs {
         }
     }
 
+    /**
+     * Dialog für die Eingabe eines Inventarnamens
+     * @param orgs container für Organisationsstruktur
+     * @param title Titel des Dialogs
+     * @param header header des Dialogs
+     * @return Inventarname
+     */
     public static String inventoryNameDialog(OrganisationContainer orgs, String title, String header){
         ObservableList<String> observableList =
                 FXCollections.observableArrayList(
@@ -91,19 +103,11 @@ public class Dialogs {
         }
     }
 
-    public static String inputDialog(String title, String header){
-        TextInputDialog dialog = new TextInputDialog();
-        dialog.setTitle(title);
-        dialog.setHeaderText(header);
-
-
-        Optional<String> result = dialog.showAndWait();
-        if (result.isPresent()){
-            System.out.println("[INFO] Inventarname: " + result.get());
-        }
-        return result.get();
-    }
-
+    /**
+     * Dialog um das Passwort zu ändern
+     * @param user Nutzer dessen Passwort geändert werden soll
+     * @return Pair aus Neus Passwort und Fehlermeldung
+     */
     public static Pair changePw(Person user){
 
         PasswordField oldPW = new PasswordField();
@@ -160,6 +164,12 @@ public class Dialogs {
         }
     }
 
+    /**
+     * Fenster um einen Nutzer zu bearbeiten
+     * @param person Nutzer der bearbeitet wird
+     * @param logedPerson eingeloggter Nutzer
+     * @return Der fertig bearbeitete Nutzer
+     */
     public static Person editUserWindow(Person person, Person logedPerson){
         Dialog<Person> dialog = new Dialog<>();
         dialog.setTitle("Benutzer Editieren");
@@ -272,6 +282,16 @@ public class Dialogs {
         }
     }
 
+    /**
+     * Dialog in dem man seine Filter festlegen kann
+     * @return Array aus bool werten
+     *             filter[0] = BodenUndGebaeude
+     *             filter[1] = Fuhrpark
+     *             filter[2] = Hardware
+     *             filter[3] = Mobiliar
+     *             filter[4] = Software
+     *             filter[5] = Sonstiges
+     */
     public static boolean[] getFilter(){
         Dialog<Boolean[]> dialog = new Dialog<>();
         dialog.setTitle("Wonach soll gefiltert werden?");
@@ -345,6 +365,13 @@ public class Dialogs {
         }
     }
 
+    /**
+     * Dialolg in dem die art der Organisation ausgewählt wird
+     * @param sachExisting boolean ob überhaupt ein sachgebiet existiert
+     * @param abtExisting boolean ob überhaupt eine Abteilung existiert
+     * @param operation String welche operation mit der ausgewählten organisation durchgeführt wird
+     * @return
+     */
     public static int chooseOrgDialog(boolean sachExisting, boolean abtExisting, String operation){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Organisation anlegen");
@@ -373,6 +400,13 @@ public class Dialogs {
         }
     }
 
+    /**
+     * Dialog für das erstellen oder bearbeiten einer Abteilung
+     *
+     * @param userContainer container für die Benutzerdaten
+     * @param actual Abteilung die bearbeitet werden soll
+     * @return paar aus der angelegten oder bearbeiteten Abteilung und falls aufgetreten eine fehlermeldung
+     */
     public static Pair<Abteilung,String> newAbteilungWindow(UserContainer userContainer, Abteilung actual){
         ObservableList<String> userList =
             FXCollections.observableArrayList(
@@ -440,7 +474,14 @@ public class Dialogs {
           return null;
         }
     }
-
+    /**
+     * Dialog für das erstellen oder bearbeiten eines Sachgebiets
+     *
+     * @param orgContainer Container für die Organisations struktur
+     * @param userContainer container für die Benutzerdaten
+     * @param actual Sachgebiet das bearbeitet werden soll
+     * @return paar aus der angelegten oder bearbeiteten Abteilung und falls aufgetreten eine fehlermeldung
+     */
   public static Pair<Sachgebiet,String> newSachgebietWindow(OrganisationContainer orgContainer, UserContainer userContainer, Sachgebiet actual){
     ObservableList<String> orgList =
             FXCollections.observableArrayList(
@@ -518,6 +559,14 @@ public class Dialogs {
       return null;
     }
   }
+
+    /**
+     * Dialog um eine Abteilung auszuwählen
+     * @param orgs Container für Organisationsstruktur
+     * @param title titel
+     * @param header header
+     * @return Kuerzel der Abteilung
+     */
     public static String chooseAbt(OrganisationContainer orgs, String title, String header){
         ObservableList<String> observableList =
                 FXCollections.observableArrayList(
@@ -560,7 +609,13 @@ public class Dialogs {
             return null;
         }
     }
-
+    /**
+     * Dialog um ein Sachgebiet auszuwählen
+     * @param orgs Container für Organisationsstruktur
+     * @param title titel
+     * @param header header
+     * @return Kuerzel des Sachgebiets
+     */
     public static String chooseSach(OrganisationContainer orgs, String title, String header){
         ObservableList<String> observableList =
                 FXCollections.observableArrayList(

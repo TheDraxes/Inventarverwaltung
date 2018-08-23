@@ -674,6 +674,10 @@ public class StartController implements Initializable {
             Dialogs.warnDialog("Sie müssen zunächst einen Benutzer anlegen der als Leiter der Organisation eingestellt werden kann", "Info");
         }
     }
+
+    /**
+     * GIbt eine Tabelle aller Abteilungen und Sachgebiete mit ihren Namen aus
+     */
     @FXML
     public void orgSummaryClicked(){
       ObservableList<Organisation> list = FXCollections.observableArrayList(orgContainer.getAbteilungArrayList());
