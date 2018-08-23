@@ -6,22 +6,28 @@ package Data;
  * @author mixd
  * @version 1.0
  */
-
 public class Sachgebiet extends Organisation{
+  	private String abteilung;
 
-  private String abteilung;
-
-	// Konstruktoren
+	/**
+	 * Konstruktor zum Anlegen einer neuen Abteilung ohne Parameter
+	 */
 	public Sachgebiet() {
 		System.out.println("[KONSTRUKTOR] Sachgebiet ohne Parameter angelegt!");
 	}
+
+	/**
+	 * Konstruktor zum Anlegen einer neuen Abteilung mit Parameter
+	 */
 	public Sachgebiet(Person sachgebietsleiter,String name,String kuerzel, Abteilung abteilung) {
 		super(sachgebietsleiter,name,kuerzel);
+		this.abteilung = abteilung.getKuerzel();
 		System.out.println("[KONSTRUKTOR] Sachgebiet mit Parameter angelegt!");
-
 	}
 
-	// Konsolenausgabe aller Parameter für Testzwecke
+	/**
+	 * Konsolenausgabe einer Abteilung (mit allen Parametern) für Testzwecke
+	 */
 	public void display() {
 		System.out.println("[INFO] DISPLAYMETHODE SACHGEBIET");
 		/*System.out.println("Sachgebietsleiter");
@@ -30,12 +36,10 @@ public class Sachgebiet extends Organisation{
 		System.out.println("Abteilung: " + this.abteilung);
 		System.out.println("Kürzel   : " + this.kuerzel);
 	}
-
-	// Getter und Setter
+	
 	public String getAbtKuerzel(){
       return this.abteilung;
 	}
-
 	public void setAbtKuerzel(String abteilung){
 	  this.abteilung = abteilung;
 	}

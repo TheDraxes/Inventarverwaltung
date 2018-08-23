@@ -6,6 +6,9 @@ import javafx.scene.control.TextField;
 
 /**
  * Abstrakte Klasse für alle Asseteingabe Dialoge
+ *
+ * @author Tim
+ * @version 1.0
  */
 
 public abstract class AbstractDialog {

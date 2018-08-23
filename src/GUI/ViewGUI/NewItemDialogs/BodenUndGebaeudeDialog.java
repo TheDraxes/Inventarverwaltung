@@ -33,36 +33,35 @@ public class BodenUndGebaeudeDialog extends AbstractDialog{
       this.TextFields[0].setText(edit.getBezeichnung());
       this.TextFields[1].setText("" + edit.getAnschaffungswert());
       this.TextFields[2].setText("" + edit.getTnd());
-      this.TextFields[3].setText("" + edit.getAnzahl());
 
       if (edit.getPlz() == 0) {
-        TextFields[4].setPromptText("Keine Angaben");
+        TextFields[3].setPromptText("Keine Angaben");
       } else {
-        TextFields[4].setText("" + edit.getPlz());
+        TextFields[3].setText("" + edit.getPlz());
       }
 
       if (edit.getOrt() == null || edit.getOrt().equals("") ) {
-        TextFields[5].setPromptText("Keine Angaben");
+        TextFields[4].setPromptText("Keine Angaben");
       } else {
-        TextFields[5].setText("" + edit.getOrt());
+        TextFields[4].setText("" + edit.getOrt());
       }
 
       if (edit.getStrasse() == null || edit.getStrasse().equals("")) {
-        TextFields[6].setPromptText("Keine Angaben");
+        TextFields[5].setPromptText("Keine Angaben");
       } else {
-        TextFields[6].setText("" + edit.getStrasse());
+        TextFields[5].setText("" + edit.getStrasse());
       }
 
       if (edit.getHausnummer() == null || edit.getHausnummer().equals("")) {
-        TextFields[7].setPromptText("Keine Angaben");
+        TextFields[6].setPromptText("Keine Angaben");
       } else {
-        TextFields[7].setText("" + edit.getHausnummer());
+        TextFields[6].setText("" + edit.getHausnummer());
       }
 
       if ((edit.getFlaeche()) == 0D) {
-        TextFields[8].setPromptText("Keine Angaben");
+        TextFields[7].setPromptText("Keine Angaben");
       } else {
-        TextFields[8].setText("" + edit.getFlaeche());
+        TextFields[7].setText("" + edit.getFlaeche());
       }
     }
 
@@ -133,37 +132,27 @@ public class BodenUndGebaeudeDialog extends AbstractDialog{
           }
         }
 
-        if (TextFields[3].getText().equals("")) {
-          return new Pair<>(null, "Alle Felder mit einem * müssen ausgefüllt sein!");
-        } else {
+        if (!(TextFields[3].getText().equals(""))) {
           try {
-            bodenUndGebaeude.setAnzahl(Integer.parseInt(TextFields[3].getText()));
-          } catch (Exception e){
-            return new Pair<>(null, "Etwas Stimmt nicht mit der Anzahl! Es dürfen nur Zahlen verwendet werden!");
-          }
-        }
-
-        if (!(TextFields[4].getText().equals(""))) {
-          try {
-            bodenUndGebaeude.setPlz(Integer.parseInt(TextFields[4].getText()));
+            bodenUndGebaeude.setPlz(Integer.parseInt(TextFields[3].getText()));
           }catch (Exception e){
             return new Pair<>(null, "Etwas Stimmt nicht mit der Postleitzahl! Es dürfen nur Zahlen verwendet werden!");
           }
         }
 
+        if (!(TextFields[4].getText().equals(""))) {
+          bodenUndGebaeude.setOrt(TextFields[4].getText());
+        }
+
         if (!(TextFields[5].getText().equals(""))) {
-          bodenUndGebaeude.setOrt(TextFields[5].getText());
+          bodenUndGebaeude.setStrasse(TextFields[5].getText());
         }
 
-        if (!(TextFields[6].getText().equals(""))) {
-          bodenUndGebaeude.setStrasse(TextFields[6].getText());
+        if(!(TextFields[6].getText().equals(""))) {
+          bodenUndGebaeude.setHausnummer(TextFields[6].getText());
         }
 
-        if(!(TextFields[7].getText().equals(""))) {
-          bodenUndGebaeude.setHausnummer(TextFields[7].getText());
-        }
-
-        wert = TextFields[8].getText();
+        wert = TextFields[7].getText();
         if(!(wert.equals(""))) {
           if(wert.contains(",")){
             wert = wert.replace(",",".");
@@ -176,6 +165,7 @@ public class BodenUndGebaeudeDialog extends AbstractDialog{
         }
 
         bodenUndGebaeude.setInserierungsdatum(new Date());
+        bodenUndGebaeude.setAnzahl(1);
 
         return new Pair<>(bodenUndGebaeude, null);
       } else if (dialogButton == ButtonType.CANCEL) {

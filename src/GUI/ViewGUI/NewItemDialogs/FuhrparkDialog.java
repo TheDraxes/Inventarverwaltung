@@ -38,30 +38,29 @@ public class FuhrparkDialog extends AbstractDialog {
       this.TextFields[0].setText(edit.getBezeichnung());
       this.TextFields[1].setText("" + edit.getAnschaffungswert());
       this.TextFields[2].setText("" + edit.getTnd());
-      this.TextFields[3].setText("" + edit.getAnzahl());
 
       if (edit.getKennzeichen() == null || edit.getKennzeichen().equals("")) {
-        TextFields[4].setPromptText("Keine Angaben");
+        TextFields[3].setPromptText("Keine Angaben");
       } else {
-        TextFields[4].setText(edit.getKennzeichen());
+        TextFields[3].setText(edit.getKennzeichen());
       }
 
       if ((edit.getFahrgestellnummer()) == 0L) {
-        TextFields[5].setPromptText("Keine Angaben");
+        TextFields[4].setPromptText("Keine Angaben");
       } else {
-        TextFields[5].setText("" + edit.getFahrgestellnummer());
+        TextFields[4].setText("" + edit.getFahrgestellnummer());
       }
 
       if (edit.getKilometerstand() == 0.0) {
-        TextFields[6].setPromptText("Keine Angaben");
+        TextFields[5].setPromptText("Keine Angaben");
       } else {
-        TextFields[6].setText("" + edit.getKilometerstand());
+        TextFields[5].setText("" + edit.getKilometerstand());
       }
 
       if (edit.getKw() == 0) {
-        TextFields[7].setPromptText("Keine Angaben");
+        TextFields[6].setPromptText("Keine Angaben");
       } else {
-        TextFields[7].setText("" + edit.getKw());
+        TextFields[6].setText("" + edit.getKw());
       }
     }
 
@@ -134,44 +133,35 @@ public class FuhrparkDialog extends AbstractDialog {
           }
         }
 
-        if (TextFields[3].getText().equals("")) {
-          return new Pair<>(null, "Alle Felder mit einem * müssen ausgefüllt sein!");
-        } else {
-          try {
-            fuhrpark.setAnzahl(Integer.parseInt(TextFields[3].getText()));
-          } catch (Exception e){
-            return new Pair<>(null, "Etwas Stimmt nicht mit der Anzahl! Es dürfen nur Zahlen verwendet werden!");
-          }
+        if (!(TextFields[3].getText().equals(""))) {
+          fuhrpark.setKennzeichen(TextFields[3].getText());
         }
 
         if (!(TextFields[4].getText().equals(""))) {
-          fuhrpark.setKennzeichen(TextFields[4].getText());
+          fuhrpark.setFahrgestellnummer(Long.parseLong(TextFields[4].getText()));
         }
 
         if (!(TextFields[5].getText().equals(""))) {
-          fuhrpark.setFahrgestellnummer(Long.parseLong(TextFields[5].getText()));
-        }
-
-        if (!(TextFields[6].getText().equals(""))) {
           try {
-            fuhrpark.setKilometerstand(Integer.parseInt(TextFields[6].getText()));
+            fuhrpark.setKilometerstand(Integer.parseInt(TextFields[5].getText()));
           }catch (Exception e){
             return new Pair<>(null, "Etwas Stimmt nicht mit der Anzahl! Es dürfen nur Zahlen verwendet werden!");
           }
         }
 
-        if(!(TextFields[7].getText().equals(""))) {
+        if(!(TextFields[6].getText().equals(""))) {
           try {
             if ((kw_ps.getValue()).equals("Kw")) {
-              fuhrpark.setKw(Integer.parseInt(TextFields[7].getText()));
+              fuhrpark.setKw(Integer.parseInt(TextFields[6].getText()));
             } else {
-              fuhrpark.setPs(Integer.parseInt(TextFields[7].getText()));
+              fuhrpark.setPs(Integer.parseInt(TextFields[6].getText()));
             }
           } catch (Exception e){
             return new Pair<>(null, "Etwas Stimmt nicht mit der Leistung! Es dürfen nur Zahlen verwendet werden!");
           }
         }
         fuhrpark.setInserierungsdatum(new Date());
+        fuhrpark.setAnzahl(1);
 
         return new Pair<>(fuhrpark, null);
       } else if (dialogButton == ButtonType.CANCEL) {

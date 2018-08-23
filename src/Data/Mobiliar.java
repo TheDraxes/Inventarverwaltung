@@ -6,7 +6,6 @@ package Data;
  * @author mixd
  * @version 1.0
  */
-
 public class Mobiliar extends Asset {
     private int raum;
 
@@ -15,12 +14,16 @@ public class Mobiliar extends Asset {
     };
     private int paramAnzahl = paramNames.length;
 
-    // Konstruktor ohne Parameter
+    /**
+     * Konstruktor ohne Parameter
+     */
     public Mobiliar() {
         System.out.println("[KONSTRUKTOR] Mobiliar ohne Parameter angelegt!");
     }
 
-    // Konsolenausgabe aller Parameter für Testzwecke
+    /**
+     * Konsolenausgabe alle Parameter für Testzwecke
+     */
     public void display() {
         super.display();
         System.out.println("Raum:                " + raum);
@@ -44,7 +47,6 @@ public class Mobiliar extends Asset {
         }
         return allParams;
     }
-
     public int getRaum() {
         return raum;
     }

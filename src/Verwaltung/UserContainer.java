@@ -354,9 +354,7 @@ public class UserContainer implements Serializable {
         }
     }
 
-    /**
-     * Getter und Setter
-     */
+    // Getter & Setter
     public ArrayList<Person> getUserData() {
         return userData;
     }

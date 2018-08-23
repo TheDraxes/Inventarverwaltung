@@ -28,6 +28,11 @@ public class Dialogs {
         alert.showAndWait();
     }
 
+    /**
+     * Ruft ein bestätigungsdialog auf
+     * @param confirmation Ist die Nachricht an den Nutzer die er bestätigen soll
+     * @return boolean ob er bestätigt hat oder nicht
+     */
     public static boolean confirmDialog(String confirmation) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmation Dialog");
@@ -41,6 +46,13 @@ public class Dialogs {
         }
     }
 
+    /**
+     * Dialog für die Eingabe eines Inventarnamens
+     * @param orgs container für Organisationsstruktur
+     * @param title Titel des Dialogs
+     * @param header header des Dialogs
+     * @return Inventarname
+     */
     public static String inventoryNameDialog(OrganisationContainer orgs, String title, String header){
         ObservableList<String> observableList =
                 FXCollections.observableArrayList(
@@ -91,19 +103,11 @@ public class Dialogs {
         }
     }
 
-    public static String inputDialog(String title, String header){
-        TextInputDialog dialog = new TextInputDialog();
-        dialog.setTitle(title);
-        dialog.setHeaderText(header);
-
-
-        Optional<String> result = dialog.showAndWait();
-        if (result.isPresent()){
-            System.out.println("[INFO] Inventarname: " + result.get());
-        }
-        return result.get();
-    }
-
+    /**
+     * Dialog um das Passwort zu ändern
+     * @param user Nutzer dessen Passwort geändert werden soll
+     * @return Pair aus Neus Passwort und Fehlermeldung
+     */
     public static Pair changePw(Person user){
 
         PasswordField oldPW = new PasswordField();
@@ -141,12 +145,12 @@ public class Dialogs {
                 return new Pair<>(newPW.getText(), null);
             } else if(dialogButton == ButtonType.CANCEL){
                 return new Pair<>("cancelled","[INFO] Vorgang abgebrochen!");
-            } else if(!(oldPW.equals(user.getPassword()))){
-                return new Pair<>(null,"[WARNING] Passwort nicht Korrekt!");
-            }else if(oldPW.getText().equals("") || newPW.getText().equals("") || newConfirm.getText().equals("")){
-                return new Pair<>(null,"[WARNING] Alle Felder müssen Ausgefüllt werden!");
+            } else if(!(oldPW.getText().equals(user.getPassword()))){
+                return new Pair<>(null,"Passwort nicht korrekt!");
+            } else if(oldPW.getText().equals("") || newPW.getText().equals("") || newConfirm.getText().equals("")){
+                return new Pair<>(null,"Alle Felder müssen Ausgefüllt werden!");
             } else if(dialogButton == OK_Button && !(newPW.getText().equals(newConfirm.getText()))){
-                return new Pair<>(null,"[WARNING] Passwörter stimmmen nicht überein!");
+                return new Pair<>(null,"Passwörter stimmen nicht überein!");
             }
             return new Pair<>(null,null);
         });
@@ -160,6 +164,12 @@ public class Dialogs {
         }
     }
 
+    /**
+     * Fenster um einen Nutzer zu bearbeiten
+     * @param person Nutzer der bearbeitet wird
+     * @param logedPerson eingeloggter Nutzer
+     * @return Der fertig bearbeitete Nutzer
+     */
     public static Person editUserWindow(Person person, Person logedPerson){
         Dialog<Person> dialog = new Dialog<>();
         dialog.setTitle("Benutzer Editieren");
@@ -172,9 +182,9 @@ public class Dialogs {
         grid.setPadding(new Insets(20,150,10,10));
 
         TextField firstName = new TextField();
-        firstName.setText(person.getName());
+        firstName.setText(person.getSurname());
         TextField secoundName = new TextField();
-        secoundName.setText(person.getSurname());
+        secoundName.setText(person.getName());
 
         ObservableList<String> genderOptions =
                 FXCollections.observableArrayList(
@@ -272,6 +282,16 @@ public class Dialogs {
         }
     }
 
+    /**
+     * Dialog in dem man seine Filter festlegen kann
+     * @return Array aus bool werten
+     *             filter[0] = BodenUndGebaeude
+     *             filter[1] = Fuhrpark
+     *             filter[2] = Hardware
+     *             filter[3] = Mobiliar
+     *             filter[4] = Software
+     *             filter[5] = Sonstiges
+     */
     public static boolean[] getFilter(){
         Dialog<Boolean[]> dialog = new Dialog<>();
         dialog.setTitle("Wonach soll gefiltert werden?");
@@ -305,42 +325,16 @@ public class Dialogs {
             if(dialogButton == addButton) {
                 boolean anyTrue = false;
                 Boolean[] filter = new Boolean[6];
-
-                if (BodenGebaeude.isSelected()) {
-                    filter[0] = true;
-                } else {
-                    filter[0] = false;
+                for(int i = 0; i < filter.length; i++){
+                    filter[i]=false;
                 }
 
-                if (Fuhrpark.isSelected()) {
-                    filter[1] = true;
-                } else {
-                    filter[1] = false;
-                }
-
-                if (Hardware.isSelected()) {
-                    filter[2] = true;
-                } else {
-                    filter[2] = false;
-                }
-
-                if (Mobiliar.isSelected()) {
-                    filter[3] = true;
-                } else {
-                    filter[3] = false;
-                }
-
-                if (Software.isSelected()) {
-                    filter[4] = true;
-                } else {
-                    filter[4] = false;
-                }
-
-                if (Sonstiges.isSelected()) {
-                    filter[5] = true;
-                } else {
-                    filter[5] = false;
-                }
+                if (BodenGebaeude.isSelected()) filter[0] = true;
+                if (Fuhrpark.isSelected())      filter[1] = true;
+                if (Hardware.isSelected())      filter[2] = true;
+                if (Mobiliar.isSelected())      filter[3] = true;
+                if (Software.isSelected())      filter[4] = true;
+                if (Sonstiges.isSelected())     filter[5] = true;
 
                 for (int i = 0; i < filter.length; i++) {
                     if (filter[i]) {
@@ -371,20 +365,31 @@ public class Dialogs {
         }
     }
 
-    public static int chooseOrgDialog(boolean abtExisting){
+    /**
+     * Dialolg in dem die art der Organisation ausgewählt wird
+     * @param sachExisting boolean ob überhaupt ein sachgebiet existiert
+     * @param abtExisting boolean ob überhaupt eine Abteilung existiert
+     * @param operation String welche operation mit der ausgewählten organisation durchgeführt wird
+     * @return
+     */
+    public static int chooseOrgDialog(boolean sachExisting, boolean abtExisting, String operation){
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Organisation anlegen");
-        alert.setHeaderText("Welche Organisationsform soll anelegt werden?");
+        alert.setHeaderText("Welche Organisationsform soll " + operation + " werden?");
         alert.setContentText("Optionen: ");
 
         ButtonType buttonTypeOne = new ButtonType("Abteilung");
         ButtonType buttonTypeTwo = new ButtonType("Sachgebiet");
-        ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
-        if(abtExisting) {
-          alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo, buttonTypeCancel);
+        ButtonType buttonTypeCancel = new ButtonType("Abbrechen", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+        if(abtExisting && operation.equals("angelegt")){
+            alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo, buttonTypeCancel);
+        } else if((operation.equals("gelöscht") || operation.equals("bearbeitet")) && sachExisting){
+            alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeTwo, buttonTypeCancel);
         } else {
-          alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeCancel);
+            alert.getButtonTypes().setAll(buttonTypeOne, buttonTypeCancel);
         }
+
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == buttonTypeOne){
             return 0;
@@ -395,6 +400,13 @@ public class Dialogs {
         }
     }
 
+    /**
+     * Dialog für das erstellen oder bearbeiten einer Abteilung
+     *
+     * @param userContainer container für die Benutzerdaten
+     * @param actual Abteilung die bearbeitet werden soll
+     * @return paar aus der angelegten oder bearbeiteten Abteilung und falls aufgetreten eine fehlermeldung
+     */
     public static Pair<Abteilung,String> newAbteilungWindow(UserContainer userContainer, Abteilung actual){
         ObservableList<String> userList =
             FXCollections.observableArrayList(
@@ -462,7 +474,14 @@ public class Dialogs {
           return null;
         }
     }
-
+    /**
+     * Dialog für das erstellen oder bearbeiten eines Sachgebiets
+     *
+     * @param orgContainer Container für die Organisations struktur
+     * @param userContainer container für die Benutzerdaten
+     * @param actual Sachgebiet das bearbeitet werden soll
+     * @return paar aus der angelegten oder bearbeiteten Abteilung und falls aufgetreten eine fehlermeldung
+     */
   public static Pair<Sachgebiet,String> newSachgebietWindow(OrganisationContainer orgContainer, UserContainer userContainer, Sachgebiet actual){
     ObservableList<String> orgList =
             FXCollections.observableArrayList(
@@ -540,6 +559,14 @@ public class Dialogs {
       return null;
     }
   }
+
+    /**
+     * Dialog um eine Abteilung auszuwählen
+     * @param orgs Container für Organisationsstruktur
+     * @param title titel
+     * @param header header
+     * @return Kuerzel der Abteilung
+     */
     public static String chooseAbt(OrganisationContainer orgs, String title, String header){
         ObservableList<String> observableList =
                 FXCollections.observableArrayList(
@@ -582,7 +609,13 @@ public class Dialogs {
             return null;
         }
     }
-
+    /**
+     * Dialog um ein Sachgebiet auszuwählen
+     * @param orgs Container für Organisationsstruktur
+     * @param title titel
+     * @param header header
+     * @return Kuerzel des Sachgebiets
+     */
     public static String chooseSach(OrganisationContainer orgs, String title, String header){
         ObservableList<String> observableList =
                 FXCollections.observableArrayList(

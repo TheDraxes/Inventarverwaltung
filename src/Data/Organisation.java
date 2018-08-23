@@ -2,6 +2,8 @@ package Data;
 
 import java.io.Serializable;
 
+
+
 public class Organisation implements Serializable{
   protected Person leiter;
   protected String name;

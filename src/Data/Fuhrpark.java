@@ -6,7 +6,6 @@ package Data;
  * @author mixd
  * @version 1.0
  */
-
 public class Fuhrpark extends Asset {
 	private String kennzeichen;
 	private long fahrgestellnummer;
@@ -23,12 +22,16 @@ public class Fuhrpark extends Asset {
 	private int paramAnzahl = paramNames.length;
 
 
-	// Konstruktor ohne Parameter
+	/**
+	 * Konstruktor ohne Parameter
+	 */
 	public Fuhrpark() {
 		System.out.println("[KONSTRUKTOR] Fuhrpark ohne Parameter angelegt!");
 	}
 
-	// Konsolenausgabe aller Parameter für Testzwecke
+	/**
+	 * Konsolenausgabe alle Parameter für Testzwecke
+	 */
 	public void display() {
 		super.display();
 		System.out.println("Kennzeichen:         " + kennzeichen);
@@ -43,19 +46,31 @@ public class Fuhrpark extends Asset {
 	}
 	public String[] getParamNames(){
 		String[] superiorParams = super.getParamNames();
-		String[] allParams = new String[getParamAnzahl()];
+
+		int anz = 0;
+		String[] temp = new String[superiorParams.length-1];
+
+		for(int i = 0; i <superiorParams.length; i++){
+			if(superiorParams[i].equals("Anzahl"))continue;
+			temp[anz] = superiorParams[i];
+			anz++;
+		}
+		superiorParams = temp;
+
+		String[] allParams = new String[getParamAnzahl()-1];
 
 		for(int i = 0; i < superiorParams.length; i++){
 			allParams[i] = superiorParams[i];
 		}
-		int anz = 0;
+
+		anz = 0;
+
 		for(int i = superiorParams.length; i < allParams.length; i++){
 			allParams[i] = this.paramNames[anz];
 			anz++;
 		}
 		return allParams;
 	}
-
 	public String getKennzeichen() {
 		return kennzeichen;
 	}

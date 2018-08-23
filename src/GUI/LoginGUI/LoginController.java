@@ -100,14 +100,11 @@ public class LoginController {
                 loginTries++;
             } else if(username.equals(lastUser)){
                 loginTries++;
-            } else {
-                loginTries = 1;
-                lastUser = username;
             }
 
-            if(loginTries < 4){
-                Dialogs.warnDialog("Nutzername oder Passwort falsch!", "Passwort " + loginTries + " mal falsch eingegeben!");
-            } else {
+            if(loginTries < 3 && loginTries > 0){
+                Dialogs.warnDialog("Nutzername oder Passwort falsch!", "Anmeldeversuche: " + loginTries);
+            } else if(userContainer.userExisting(username)){
                 Dialogs.warnDialog("Nutzername oder Passwort falsch!", "Account Gesperrt!!");
                 userContainer.blockUser(username);
             }

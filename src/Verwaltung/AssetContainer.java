@@ -385,10 +385,11 @@ public class AssetContainer implements Serializable {
     }
 
     /**
-     * getSummary
+     * liest alle Inventare ein und speichert alle assets in einer einzigen ArrayList
      *
-     * @param path
-     * @return Liste
+     * @param path pfad zum speicherort der Inventare
+     * @see this#loadForSummary(File)
+     * @return Arrayliste mit allen Assets des Unternehmens
      * @author Tim
      */
     public ArrayList<Asset> getSummary(String path){
@@ -406,12 +407,12 @@ public class AssetContainer implements Serializable {
     }
 
     /**
-     * getSummary
+     * Läd alle Inventare die zu einer Bestimmten Abteilung gehören
      *
-     * @param abteilung
-     * @param path
-     * @param orgContainer
-     * @return Liste
+     * @param abteilung Abteilung dessen Inventare gesucht werden
+     * @param path pfad zum speicherort der Inventare
+     * @param orgContainer container für die Organisationsstruktur
+     * @return ArrayListe mit allen assets der Abteilung
      * @author Tim
      */
     public ArrayList<Asset> getSummaryOf(String abteilung, String path, OrganisationContainer orgContainer){
@@ -429,10 +430,10 @@ public class AssetContainer implements Serializable {
     }
 
     /**
-     * checkExtension
+     * prüft ob eine Datei eine Inventardatei ist
      *
-     * @param file
-     * @return Liste
+     * @param file File das geprüft werden soll
+     * @return boolean ob es eine Inventardatei ist
      * @author Tim
      */
     private boolean checkExtension(File file){
@@ -440,12 +441,13 @@ public class AssetContainer implements Serializable {
     }
 
     /**
-     * checkSachgebiet
+     * prüft ob die kürzel vor den Inventaren
+     * in der Abteilung die Zusammengefasst werden soll vorkommen
      *
-     * @param file
-     * @param orgContainer
-     * @param Abteilung
-     * @return Liste
+     * @param file Inventar das geprüft werden soll
+     * @param orgContainer COntainer für Organisationsstruktur
+     * @param Abteilung Abteilung in der nach dem Sachgebiet gesucht wird
+     * @return boolean ob das Inventar zu der Abteilung gehört
      * @author Tim
      */
     public boolean checkSachgebiet(File file, OrganisationContainer orgContainer, String Abteilung){
@@ -463,9 +465,9 @@ public class AssetContainer implements Serializable {
     }
 
     /**
-     * loadForSummary
+     * Läd ein Inventar und gibt die Arrayliste mit den Assets zurück
      *
-     * @param file
+     * @param file Inventar das geladen wird
      * @return Liste
      * @author Tim
      */
@@ -496,25 +498,17 @@ public class AssetContainer implements Serializable {
         }
     }
 
-    /**
-     * Getter und Setter
-     */
+    // Getter & Setter
     public ArrayList<Asset> getAssetList() {
         return assetList;
     }
     public void setAssetList(ArrayList<Asset> assetList) {
         this.assetList = assetList;
     }
-    public long getId() {
-        return id;
-    }
     public void setId(long id) {
         this.id = id;
     }
     public String[] getExistingAssetTypes() {
         return existingAssetTypes;
-    }
-    public void setExistingAssetTypes(String[] existingAssetTypes) {
-        this.existingAssetTypes = existingAssetTypes;
     }
 }

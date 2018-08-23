@@ -135,6 +135,7 @@ public class ViewController implements Initializable {
      * auf  um die tablle zu füllen
      *
      * @author Tim
+     * @see this#fillTable()
      */
     @FXML
     protected void initialize() {
@@ -161,10 +162,12 @@ public class ViewController implements Initializable {
         }
     }
 
-    //TODO Zusammenfassung der Abteilungen
+
     /**
+     * Fasst alle assets in einer tabelle zusammen
      *
      * @param abteilung abteilung für die eine zusammenfassung erstellt werden soll
+     * @see AssetContainer#getSummaryOf(String, String, OrganisationContainer)
      */
     private void summary(String abteilung){
         ActiveSummary = true;
@@ -174,7 +177,6 @@ public class ViewController implements Initializable {
 
     /**
      * Füllt die Tabelle mit den daten aus dem Assetcontainer
-     * hier ist auch die Klasse für die Editbuttons inline geschrieben
      *
      * @author Tim
      */
@@ -255,6 +257,9 @@ public class ViewController implements Initializable {
         itemTable.setItems(list);
     }
 
+  /**
+   * Private Klasse für den DeleteButton in der Tabelle
+   */
   private class deleteButtonCell extends TableCell<Asset, Boolean> {
     final Button cellButton = new Button("        ");
 
@@ -497,7 +502,10 @@ public class ViewController implements Initializable {
         fillTable();
     }
 
-    @FXML
+  /**
+   * ruft das Fenster für die Kapitalzusammenfassung auf
+   */
+  @FXML
     protected void kapitalSummaryClicked(){
       FXMLLoader loader = new FXMLLoader(getClass().getResource("/GUI/ViewGUI/Summary/SummaryStyle.fxml"));
       Parent root = null;

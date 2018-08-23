@@ -13,7 +13,7 @@ import java.util.Date;
  * @version 1.0
  */
 public abstract class Asset implements Serializable {
-  private long inventarnummer;
+    private long inventarnummer;
 	private String bezeichnung;
 	private double anschaffungswert;
 	private String anschaffungswertString;
@@ -28,25 +28,29 @@ public abstract class Asset implements Serializable {
 	private String[] paramNames = {
             "Bezeichnung",
             "Anschaffungswert",
-            "Tnd",
+            "Nutzungsdauer",
             "Anzahl"
 	};
     private int paramAnzahl = paramNames.length;
-    private final int ParamAnzahl = paramNames.length;
 
-
-	// Konstruktor zum Anlegen eines Assets ohne Parameter
+    /**
+     * Konstruktor zum Anlegen eines neuen Assets ohne Parameter
+     */
 	public Asset() {
         System.out.println("[KONSTRUKTOR] Asset ohne Parameter angelegt!");
     }
 
-    // Konstruktor zum Anlegen eines Assets ohne Parameter nur mit Inventarnummer
+    /**
+     * Konstruktor zum Anlegen eines Assets ohne Parameter nur mit Inventarnummer
+     */
     public Asset(long inventarnummer) {
         this.inventarnummer = inventarnummer;
         System.out.println("[KONSTRUKTOR] Asset mit Inventarnummer angelegt!");
     }
 
-    // Konstruktor zum Anlegen eines Assets mit Parametern
+    /**
+     * Konstruktor zum Anlegen eines Assets mit Parametern
+     */
     public Asset(long inventarnummer, String bezeichnung, double anschaffungswert, int tnd, Date ablaufdatum, Sachgebiet standort, Date inserierungsdatum, int anzahl) {
         this.inventarnummer = inventarnummer;
 	    this.bezeichnung = bezeichnung;
@@ -60,7 +64,14 @@ public abstract class Asset implements Serializable {
         System.out.println("[KONSTRUKTOR] Asset mit Parametern angelegt!");
     }
 
-    // Methode zum Runden auf x Stellen
+    /**
+     * round rundet eine Zahl
+     *
+     * @param value Zahl, welche gerundet werden soll
+     * @param x Anzahl der Stellen auf welche gerundet werden soll
+     * @return gerundete Zahl
+     * @author Tim
+     */
     protected static double round(double value, int x) {
         System.out.println("[INFO] round aufgerufen");
         if (x < 0) throw new IllegalArgumentException();
@@ -70,7 +81,9 @@ public abstract class Asset implements Serializable {
         return bd.doubleValue();
     }
 
-    // Konsolenausgabe aller Parameter für Testzwecke
+    /**
+     * Konsolenausgabe eines Assets (mit allen Parametern) für Testzwecke
+     */
     public void display() {
         System.out.println("[INFO] DISPLAYMETHODE EINES ASSETS AUFGERUFEN");
         System.out.println("=============================================");
@@ -92,7 +105,6 @@ public abstract class Asset implements Serializable {
     public String[] getParamNames(){
         return this.paramNames;
     }
-
     public long getInventarnummer() {
         return inventarnummer;
     }

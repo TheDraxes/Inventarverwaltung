@@ -5,7 +5,6 @@ import Data.Organisation;
 import Data.Sachgebiet;
 import GUI.Dialogs;
 import Data.Person;
-import TestKlassen.DVZ_Organisation;
 import Verwaltung.AssetContainer;
 import Verwaltung.OrganisationContainer;
 import Verwaltung.UserContainer;
@@ -13,7 +12,6 @@ import GUI.ViewGUI.ViewController;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -78,10 +76,15 @@ public class StartController implements Initializable {
 
     //Button zum editieren von Organisationen
     @FXML
-    private MenuItem editOrgButton;
+    private MenuItem orgEdit;
 
     @FXML
-    private MenuItem delOrgButton;
+    private MenuItem orgDelete;
+
+    @FXML
+    private MenuItem orgCreate;
+
+
 
     /**
      * Initalisierungsmethode die Interaktive Elemente mit Inhalt füllen
@@ -117,8 +120,14 @@ public class StartController implements Initializable {
         //Anzeigen des Admin menüs
         if(user.isAdmin()){
             adminMenue.setVisible(true);
+            orgCreate.setVisible(true);
+            orgDelete.setVisible(true);
+            orgEdit.setVisible(true);
         } else {
             adminMenue.setVisible(false);
+            orgCreate.setVisible(false);
+            orgDelete.setVisible(false);
+            orgEdit.setVisible(false);
         }
 
         //laden des Organisazionscontainers
@@ -127,8 +136,8 @@ public class StartController implements Initializable {
             orgContainer = orgContainer.loadOrganisationsData();
 
             if (!orgContainer.anyAbteilungExisting()) {
-                editOrgButton.setVisible(false);
-                delOrgButton.setVisible(false);
+                orgEdit.setVisible(false);
+                orgDelete.setVisible(false);
             }
 
             for (String a : orgContainer.getAllAbteilungsKuerzel()) {
@@ -137,8 +146,8 @@ public class StartController implements Initializable {
 
         } catch (NullPointerException e) {
             System.out.println("[FEHLER] Beim Laden des orgContainers");
-            editOrgButton.setVisible(false);
-            delOrgButton.setVisible(false);
+            orgEdit.setVisible(false);
+            orgDelete.setVisible(false);
         }
         System.out.println("[GUI] Start Fenster Initialisiert");
         System.out.println("[INFO] Speicherpfad: " + path);
@@ -265,7 +274,7 @@ public class StartController implements Initializable {
             return;
         }
         if(orgContainer.anySachgebietExisting()){
-            String input = Dialogs.inventoryNameDialog(orgContainer ,"Eingabe", "Inventarnamen Eingeben!");
+            String input = Dialogs.inventoryNameDialog(orgContainer ,"Eingabe", "Inventarnamen eingeben!");
             if(input == null){
                 System.out.println("[INFO] Anlegen abgebrochen");
             } else {
@@ -389,7 +398,7 @@ public class StartController implements Initializable {
                 if (errMessage.startsWith("[INFO]")) {
                     break;
                 }
-                System.out.println(errMessage);
+                Dialogs.warnDialog(errMessage, "Info");
             }
             if(pwPair.getKey() != null) {
                 userContainer.changePassword(user.getUsername(), (String) pwPair.getKey());
@@ -413,6 +422,7 @@ public class StartController implements Initializable {
               userContainer.editUser(edited);
               Dialogs.warnDialog("Benutzer erfolgreich editiert!", "Info");
               System.out.println("[INFO] Vorgang abgebrochen!");
+              userContainer.safeUserData();
             }
         } else {
             System.out.println("[INFO] Vorgang abgebrochen!");
@@ -427,6 +437,10 @@ public class StartController implements Initializable {
         while (true) {
             Person deleted = chooseUserWindow();
             if (deleted != null) {
+                if(deleted.getUsername().equals(user.getUsername())){
+                    Dialogs.warnDialog("Der aktuell eingeloggte Nutzer darf nicht gelöscht werden", "Info");
+                    continue;
+                }
                 userContainer.deleteUser(deleted.getUsername());
                 Dialogs.warnDialog("Benutzer erfolgreich gelöscht!", "Info");
             } else {
@@ -614,9 +628,9 @@ public class StartController implements Initializable {
         if(userContainer.getNumberOfUser() > 1) {
             int choosen = 0;
             if(orgContainer != null) {
-                choosen = Dialogs.chooseOrgDialog(orgContainer.anyAbteilungExisting());
+                choosen = Dialogs.chooseOrgDialog(orgContainer.anySachgebietExisting(), orgContainer.anyAbteilungExisting(), "angelegt");
             } else {
-                choosen = Dialogs.chooseOrgDialog(false);
+                choosen = Dialogs.chooseOrgDialog(false,orgContainer.anyAbteilungExisting(),  "angelegt");
             }
             if (choosen < 0) {
                 System.out.println("[INFO] Vorgang abgebrochen");
@@ -637,8 +651,8 @@ public class StartController implements Initializable {
                         return;
                     }
                     orgContainer.insertAbteilung(result.getKey());
-                    editOrgButton.setVisible(true);
-                    delOrgButton.setVisible(true);
+                    orgEdit.setVisible(true);
+                    orgDelete.setVisible(true);
                 }
             } else if (choosen == 1) {
                 Pair<Sachgebiet,String> result = Dialogs.newSachgebietWindow(orgContainer, userContainer, null);
@@ -660,6 +674,10 @@ public class StartController implements Initializable {
             Dialogs.warnDialog("Sie müssen zunächst einen Benutzer anlegen der als Leiter der Organisation eingestellt werden kann", "Info");
         }
     }
+
+    /**
+     * GIbt eine Tabelle aller Abteilungen und Sachgebiete mit ihren Namen aus
+     */
     @FXML
     public void orgSummaryClicked(){
       ObservableList<Organisation> list = FXCollections.observableArrayList(orgContainer.getAbteilungArrayList());
@@ -731,15 +749,15 @@ public class StartController implements Initializable {
         }
         int choose = 0;
         if(orgContainer != null) {
-            choose = Dialogs.chooseOrgDialog(orgContainer.anyAbteilungExisting());
+            choose = Dialogs.chooseOrgDialog(orgContainer.anySachgebietExisting(),orgContainer.anyAbteilungExisting(),  "bearbeitet");
         } else {
-            choose = Dialogs.chooseOrgDialog(false);
+            choose = Dialogs.chooseOrgDialog(false,orgContainer.anyAbteilungExisting(),  "bearbeitet");
         }
         if (choose < 0) {
             System.out.println("[INFO] Vorgang abgebrochen");
         } else if (choose == 0) {
             //Abteilung
-            String abt = Dialogs.chooseAbt(orgContainer, "Organisation auswählen", "Org Wählen");
+            String abt = Dialogs.chooseAbt(orgContainer, "", "Organisation auswählen");
             Abteilung oldAbt = orgContainer.getAbteilungByKuerzel(abt);
             if (abt == null) {
                 return;
@@ -756,7 +774,7 @@ public class StartController implements Initializable {
         } else if (choose == 1) {
             //Sachgebiet
             if(orgContainer.anySachgebietExisting()) {
-                String sach = Dialogs.chooseSach(orgContainer, "Organisation auswählen", "Org Wählen");
+                String sach = Dialogs.chooseSach(orgContainer, "", "Organisation auswählen");
                 Sachgebiet oldSach = orgContainer.getSachgebietByKuerzel(sach);
                 if (sach == null) {
                     return;
@@ -792,9 +810,9 @@ public class StartController implements Initializable {
         }
 
         if(orgContainer != null) {
-            choose = Dialogs.chooseOrgDialog(orgContainer.anyAbteilungExisting());
+            choose = Dialogs.chooseOrgDialog(orgContainer.anySachgebietExisting(),orgContainer.anyAbteilungExisting(), "gelöscht");
         } else {
-            choose = Dialogs.chooseOrgDialog(false);
+            choose = Dialogs.chooseOrgDialog(false, orgContainer.anyAbteilungExisting(), "gelöscht");
         }
 
         if (choose < 0) {
@@ -806,7 +824,9 @@ public class StartController implements Initializable {
                 if(abt == null){
                   return;
                 }
-                orgContainer.deleteOrg(orgContainer.getAbteilungByKuerzel(abt));
+                if(Dialogs.confirmDialog("Abteilung " + abt + " wirklich löschen?")) {
+                    orgContainer.deleteOrg(orgContainer.getAbteilungByKuerzel(abt));
+                }
             }
         } else if (choose == 1) {
             //Sachgebiet
@@ -815,9 +835,12 @@ public class StartController implements Initializable {
                 if(sach == null){
                   return;
                 }
-                orgContainer.deleteOrg(orgContainer.getSachgebietByKuerzel(sach));
+                if(Dialogs.confirmDialog("Abteilung " + sach + " wirklich löschen?")) {
+                    orgContainer.deleteOrg(orgContainer.getSachgebietByKuerzel(sach));
+                }
             }
         }
+        orgContainer.safeOrganisationsData();
     }
     /**
      * setzt das Look and Feel für Swing elemente
