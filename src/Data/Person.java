@@ -71,7 +71,9 @@ public class Person implements Serializable {
     public void updateUsername(){
         UserContainer userData = new UserContainer().loadUserData();
         Person p = userData.getPersonByUsername(this.username);
-        if(!p.getName().equals(this.name) || !p.getSurname().equals(this.surname)) {
+        userData.deleteUser(this.username);
+        userData.insertUser(p);
+        /*if(!p.getName().equals(this.name) || !p.getSurname().equals(this.surname)) {
             String newusername = generateUsername();
 
             if(!this.username.equals(newusername)) {
@@ -83,7 +85,7 @@ public class Person implements Serializable {
                 this.email = generateEmail();
                 System.out.println(" auf " + this.email + " geändert!");
             }
-        }
+        }*/
     }
 
     // Konsolenausgabe aller Parameter für Testzwecke
