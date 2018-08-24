@@ -219,6 +219,43 @@ public class OrganisationContainer implements Serializable {
     }
 
     /**
+     * Prüft ob ein Sachgebietsname bereits vorhanden ist oder nicht
+     *
+     * @param name name der geprüft werden soll
+     * @return boolean ob der name bereits vorhanden ist
+     */
+    public boolean sachgebietNameExisting(String name){
+        for(Abteilung ab : abteilungArrayList){
+            ArrayList<Sachgebiet> list = ab.getSachgebiete();
+            for(Sachgebiet sachgebiet : list){
+                if(sachgebiet.getName().equals(name)){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Prüft ob ein Sachgebietskuerzel bereits vorhanden ist oder nicht
+     *
+     * @param name name der geprüft werden soll
+     * @return boolean ob der name bereits vorhanden ist
+     */
+    public boolean sachgebietKuerzelExisting(String name){
+        for(Abteilung ab : abteilungArrayList){
+            ArrayList<Sachgebiet> list = ab.getSachgebiete();
+            for(Sachgebiet sachgebiet : list){
+                if(sachgebiet.getKuerzel().equals(name)){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+
+    /**
      * getAbteilungByKuerzel sucht ein Objekt Abteilung anhand seines Kürzels
      *
      * @param abteilungsKuerzel Kürzel nach welchem gesucht wird

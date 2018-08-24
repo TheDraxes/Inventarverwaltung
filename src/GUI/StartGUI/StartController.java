@@ -724,10 +724,13 @@ public class StartController implements Initializable {
                     Dialogs.warnDialog(result.getValue(),"Warnung");
                     return;
                 } else {
-                    if(orgContainer.existingAbteilungName(result.getKey().getName())
-                            || orgContainer.existingAbteilungKuerzel(result.getKey().getKuerzel()))
+                    if(orgContainer.existingAbteilungName(result.getKey().getName()))
                     {
-                        Dialogs.warnDialog("Abteilungsname oder Kuerzel bereits vorhanden", "Warnung");
+                        Dialogs.warnDialog("Abteilungsname bereits vorhanden", "Warnung");
+                        return;
+                    }
+                    if(orgContainer.existingAbteilungKuerzel(result.getKey().getKuerzel())){
+                        Dialogs.warnDialog("Abteilungskuerzel bereits vorhanden", "Warnung");
                         return;
                     }
                     orgContainer.insertAbteilung(result.getKey());
@@ -744,7 +747,14 @@ public class StartController implements Initializable {
                     Dialogs.warnDialog(result.getValue(),"Warnung");
                     return;
                 } else {
-                    System.out.println(result.getKey().getName());
+                    if(orgContainer.sachgebietNameExisting(result.getKey().getName())) {
+                        Dialogs.warnDialog("Sachgebietsname bereits vorhanden", "Warnung");
+                        return;
+                    }
+                    if(orgContainer.sachgebietKuerzelExisting(result.getKey().getKuerzel())){
+                        Dialogs.warnDialog("Sachgebietskuerzel bereits vorhanden", "Warnung");
+                        return;
+                    }
                     orgContainer.insertSachgebiet(result.getKey(), result.getValue());
                 }
             }
@@ -759,13 +769,25 @@ public class StartController implements Initializable {
     public void editInventoryName(){
         String oldName = InventarBox.getValue();
         String newName = Dialogs.inventoryNameDialog(orgContainer, "Bearbeiten", "Neuen Namen vergeben!", oldName);
-        System.out.println(newName + "        " + oldName);
-        orgContainer.renameInventar(path, newName + ".Inv", oldName + ".Inv");
-        initialize();
+        if(newName == null){
+            return;
+        }
+        boolean alreadyTaken = false;
+        for(String inventory : inventories){
+            if(newName.equals(inventory)){
+                alreadyTaken = true;
+            }
+        }
+        if(!alreadyTaken) {
+            orgContainer.renameInventar(path, newName + ".Inv", oldName + ".Inv");
+            initialize();
+        } else {
+            Dialogs.warnDialog("Inventarname bereits vergeben", "Warnung");
+        }
     }
 
     /**
-     * GIbt eine Tabelle aller Abteilungen und Sachgebiete mit ihren Namen aus
+     * Gibt eine Tabelle aller Abteilungen und Sachgebiete mit ihren Namen aus
      */
     @FXML
     public void orgSummaryClicked(){
@@ -816,14 +838,9 @@ public class StartController implements Initializable {
 
 
       Scene secondScene = new Scene(grid);
-
-      // New window (Stage)
       Stage newWindow = new Stage();
       newWindow.setTitle("Second Stage");
       newWindow.setScene(secondScene);
-
-      // Set position of second window, related to primary window.
-
       newWindow.show();
     }
 
