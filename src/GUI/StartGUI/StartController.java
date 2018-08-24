@@ -86,6 +86,9 @@ public class StartController implements Initializable {
     @FXML
     private MenuItem orgCreate;
 
+    @FXML
+    private Button editInvName;
+
 
 
     /**
@@ -98,8 +101,23 @@ public class StartController implements Initializable {
     @FXML
     protected void initialize(){
 
-        fillInventoryBox();
+        File lookUp = new File(path);
+        if(!lookUp.exists()){
+            Dialogs.warnDialog("Der Angegebene Speicherpfad existiert nicht mehr. Sie müssen einen neuen Speicherpfad wählen!", "Warnung");
+            path = askForPath();
 
+            try {
+                FileOutputStream outputStream = new FileOutputStream("startUp.dat");
+                ObjectOutputStream objectOut = new ObjectOutputStream(outputStream);
+                objectOut.writeObject(path);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        fillInventoryBox();
         //Anzeigen des Admin menüs
         if(user.isAdmin()){
             adminMenue.setVisible(true);
@@ -189,6 +207,22 @@ public class StartController implements Initializable {
         }
     }
 
+    private  String askForPath(){
+        setLookAndFeel();
+        JFileChooser fc = new JFileChooser();
+        fc.setDialogTitle("Speicherpfad für die Inventarverwaltung");
+        fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        int returnVal = fc.showOpenDialog(null);
+        File f;
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            f = fc.getSelectedFile();
+            return f.getPath();
+        } else {
+            return null;
+        }
+    }
+
+
     /**
      * Setzt einen neuen Speicherort fest
      * @author Tim
@@ -222,8 +256,8 @@ public class StartController implements Initializable {
             e.printStackTrace();
         }
 
-        for(File file : fileArray){
-            if(file.getName().endsWith(".Inv")){
+        for (File file : fileArray) {
+            if (file.getName().endsWith(".Inv")) {
                 try {
                     File fSrc = new File("" + file); // Quelldatei
                     File fDes = new File(path + "\\" + file.getName()); // Zieldatei
@@ -244,6 +278,7 @@ public class StartController implements Initializable {
                 }
             }
         }
+
         initialize();
     }
 

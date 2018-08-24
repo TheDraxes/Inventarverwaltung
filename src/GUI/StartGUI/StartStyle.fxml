@@ -52,7 +52,7 @@
                   <ComboBox fx:id="InventarBox" maxWidth="225.0" minWidth="150.0" prefHeight="25.0" prefWidth="225.0" promptText="Kein Eintrag gefunden!" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="TOP">
 
             </ComboBox>
-                  <Button mnemonicParsing="false" onAction="#editInventoryName" styleClass="editInvButton" stylesheets="@../style.css" text="Bearbeiten" GridPane.columnIndex="3" GridPane.valignment="TOP">
+                  <Button fx:id="editInvName" mnemonicParsing="false" onAction="#editInventoryName" styleClass="editInvButton" stylesheets="@../style.css" text="Bearbeiten" GridPane.columnIndex="3" GridPane.valignment="TOP">
                      <font>
                         <Font size="13.0" />
                      </font></Button>

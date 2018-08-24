@@ -38,6 +38,9 @@ public class initStartWindow {
             path = readPath(startUp);
         } else {
             path = askForPath();
+            if(path == null){
+                return;
+            }
             try {
                 FileOutputStream outputStream = new FileOutputStream(startUp);
                 ObjectOutputStream objectOutput = new ObjectOutputStream(outputStream);
