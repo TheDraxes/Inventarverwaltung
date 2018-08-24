@@ -21,7 +21,7 @@ import java.util.Optional;
 public class Dialogs {
     public static void warnDialog(String warning, String header){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Warnung");
+        alert.setTitle(header);
         alert.setHeaderText(header);
         alert.setContentText(warning);
 
@@ -35,7 +35,7 @@ public class Dialogs {
      */
     public static boolean confirmDialog(String confirmation) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Confirmation Dialog");
+        alert.setTitle("Bestätigung");
         alert.setHeaderText(confirmation);
 
         Optional<ButtonType> result = alert.showAndWait();
@@ -458,6 +458,9 @@ public class Dialogs {
                 if(nameField.getText().equals("") || shortcutField.getText().equals("")){
                     return new Pair<>(null,"Alle Felder müssen ausgefüllt werden");
                 }
+                if(shortcutField.getText().contains(" ")){
+                    return new Pair<>(null,"Kürzel dürfen kein Leerzeichen enthalten");
+                }
 
                 newAbt.setName(nameField.getText());
                 newAbt.setKuerzel(shortcutField.getText());
@@ -539,16 +542,19 @@ public class Dialogs {
 
     dialog.setResultConverter(dialogButton -> {
       if(dialogButton == addButton) {
-        Sachgebiet newSach = new Sachgebiet();
-        if(nameField.getText().equals("") || shortcutField.getText().equals("")){
-          return new Pair<>(null,"Alle Felder müssen ausgefüllt werden");
-        }
-        newSach.setAbtKuerzel(abtBox.getValue());
-        newSach.setName(nameField.getText());
-        newSach.setKuerzel(shortcutField.getText());
-        newSach.setLeiter(userContainer.getPersonByUsername(userBox.getValue()));
+            Sachgebiet newSach = new Sachgebiet();
+            if(nameField.getText().equals("") || shortcutField.getText().equals("")){
+              return new Pair<>(null,"Alle Felder müssen ausgefüllt werden");
+            }
+          if(shortcutField.getText().contains(" ")){
+              return new Pair<>(null,"Kürzel dürfen kein Leerzeichen enthalten");
+          }
+          newSach.setAbtKuerzel(abtBox.getValue());
+            newSach.setName(nameField.getText());
+            newSach.setKuerzel(shortcutField.getText());
+            newSach.setLeiter(userContainer.getPersonByUsername(userBox.getValue()));
 
-        return new Pair<>(newSach,abtBox.getValue());
+            return new Pair<>(newSach,abtBox.getValue());
       } else {
         return null;
       }

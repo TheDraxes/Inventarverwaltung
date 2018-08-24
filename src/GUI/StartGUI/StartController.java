@@ -284,7 +284,7 @@ public class StartController implements Initializable {
                     FileOutputStream fos = new FileOutputStream(fDes); //Stream fuer Zieldatei
 
                     byte buf[] = new byte[1024]; // Buffer für gelesene Daten
-                    while (fis.read(buf) != -1) { // solange lesen, bis EOF
+                    while (fis.read(buf) != -1) { // solange lesen, bis EOF(End of File)
                         fos.write(buf); // Inhalt schreiben
                     }
                     fis.close();
@@ -383,6 +383,12 @@ public class StartController implements Initializable {
     @FXML
     protected void confirmInventoryClicked(){
         System.out.println("[INFO] Speicherpfad: " + path);
+
+        if(!new File(path).exists()){
+            Dialogs.warnDialog("Der Speicherpfad scheint nicht mehr zu existieren!", "Warnung");
+            return;
+        }
+
         if(inventoryCounter != 0) {
 
             Stage lastWindow = (Stage) ConfirmButton.getScene().getWindow();
@@ -767,6 +773,7 @@ public class StartController implements Initializable {
       ObservableList<Organisation> sachList = FXCollections.observableArrayList(orgContainer.getAllSachgebiete());
 
       TableView<Organisation> sachgebietTable = new TableView();
+      sachgebietTable.setPlaceholder(new Label("Keine Sachgebiete angelegt!"));
 
       TableColumn nameSach = new TableColumn("Sachgebiet");
       nameSach.setPrefWidth(188);
@@ -783,6 +790,7 @@ public class StartController implements Initializable {
 
 
       TableView<Organisation> abteilungTable = new TableView();
+      abteilungTable.setPlaceholder(new Label("Keine Abteilungen angelegt!"));
 
       TableColumn nameAbt = new TableColumn("Abteilung");
       nameAbt.setPrefWidth(188);
@@ -905,7 +913,7 @@ public class StartController implements Initializable {
         } else if (choose == 0) {
             //Abteilung
             if(orgContainer.anyAbteilungExisting()) {
-                String abt = Dialogs.chooseAbt(orgContainer, "Organisation auswählen", "Org Wählen");
+                String abt = Dialogs.chooseAbt(orgContainer, "Organisation auswählen", "Abteilung Wählen");
                 if(abt == null){
                   return;
                 }
@@ -916,11 +924,11 @@ public class StartController implements Initializable {
         } else if (choose == 1) {
             //Sachgebiet
             if(orgContainer.anySachgebietExisting()) {
-                String sach = Dialogs.chooseSach(orgContainer, "Organisation auswählen", "Org Wählen");
+                String sach = Dialogs.chooseSach(orgContainer, "Organisation auswählen", "Sachgebiet Wählen");
                 if(sach == null){
                   return;
                 }
-                if(Dialogs.confirmDialog("Abteilung " + sach + " wirklich löschen?")) {
+                if(Dialogs.confirmDialog("Sachgebiet " + sach + " wirklich löschen?")) {
                     orgContainer.deleteOrg(orgContainer.getSachgebietByKuerzel(sach));
                 }
             }
