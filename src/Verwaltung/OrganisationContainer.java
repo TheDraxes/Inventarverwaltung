@@ -69,12 +69,22 @@ public class OrganisationContainer implements Serializable {
         }
     }
 
+    /**
+     * ändert bei einem bestimmten Inventar das Sachgebiet
+     * @param path speicherpfad des Inventars
+     */
+    public void renameInventar(String path, String newName, String oldName){
+        File inventar = new File(path + "\\" + oldName);
 
+        System.out.println(path + "\\" + oldName);
+        System.out.println(path + "\\" + newName);
+
+        inventar.renameTo(new File(path + "\\" + newName));
+    }
     /**
      * loadOrganisationsData liest die Organisationsdaten ein
      *
-     * @return geladenene Organisationsdaten, wenn vorhanden
-     * @return null wenn keine Organisationsdaten vorhanden sind
+     * @return geladenene Organisationsdaten, wenn vorhanden / null wenn keine Organisationsdaten vorhanden sind
      * @author mixd
      */
     public OrganisationContainer loadOrganisationsData(){

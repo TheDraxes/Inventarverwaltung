@@ -146,10 +146,11 @@ public class AssetContainer implements Serializable {
 
             System.out.println("[INFO] Inventar gespeichert unter '" + path + "'!");
             return true;
+        } catch (FileNotFoundException e) {
+            System.out.println("[ERROR] Das System kann den angegebenen Speicherpfad nicht finden!");
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         System.out.println("[ERROR] Fehler beim speichern des Inventars!");
         return false;
     }

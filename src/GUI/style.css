@@ -8,6 +8,17 @@
     -fx-background-color: #d5ffbc;
     -fx-border-color: #d5ffbc;
 }
+
+.editInvButton{
+    -fx-background-color: #ffaf6d;
+    -fx-border-style: solid;
+    -fx-border-color: #ffaf6d;
+    -fx-border-width: 3px;
+}
+.editInvButton:hover{
+    -fx-background-color: #ffc99e;
+    -fx-border-color: #ffc99e;
+}
 .startLabel{
     -fx-background-color: #1d5ec6;
     -fx-min-height: 50px;

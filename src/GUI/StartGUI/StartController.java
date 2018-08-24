@@ -32,6 +32,8 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import static GUI.Dialogs.inventoryNameDialog;
+
 /**
  * Controller klasse für das Startfenster welches für die UI der Inventarverwaltung,
  * Benutzerverwaltung (Adminseitig) und dem Ändern des Passwortes für Nutzer zuständig ist
@@ -84,6 +86,9 @@ public class StartController implements Initializable {
     @FXML
     private MenuItem orgCreate;
 
+    @FXML
+    private Button editInvName;
+
 
 
     /**
@@ -96,8 +101,23 @@ public class StartController implements Initializable {
     @FXML
     protected void initialize(){
 
-        fillInventoryBox();
+        File lookUp = new File(path);
+        if(!lookUp.exists()){
+            Dialogs.warnDialog("Der Angegebene Speicherpfad existiert nicht mehr. Sie müssen einen neuen Speicherpfad wählen!", "Warnung");
+            path = askForPath();
 
+            try {
+                FileOutputStream outputStream = new FileOutputStream("startUp.dat");
+                ObjectOutputStream objectOut = new ObjectOutputStream(outputStream);
+                objectOut.writeObject(path);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        fillInventoryBox();
         //Anzeigen des Admin menüs
         if(user.isAdmin()){
             adminMenue.setVisible(true);
@@ -187,6 +207,22 @@ public class StartController implements Initializable {
         }
     }
 
+    private  String askForPath(){
+        setLookAndFeel();
+        JFileChooser fc = new JFileChooser();
+        fc.setDialogTitle("Speicherpfad für die Inventarverwaltung");
+        fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        int returnVal = fc.showOpenDialog(null);
+        File f;
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            f = fc.getSelectedFile();
+            return f.getPath();
+        } else {
+            return null;
+        }
+    }
+
+
     /**
      * Setzt einen neuen Speicherort fest
      * @author Tim
@@ -220,8 +256,8 @@ public class StartController implements Initializable {
             e.printStackTrace();
         }
 
-        for(File file : fileArray){
-            if(file.getName().endsWith(".Inv")){
+        for (File file : fileArray) {
+            if (file.getName().endsWith(".Inv")) {
                 try {
                     File fSrc = new File("" + file); // Quelldatei
                     File fDes = new File(path + "\\" + file.getName()); // Zieldatei
@@ -242,6 +278,7 @@ public class StartController implements Initializable {
                 }
             }
         }
+
         initialize();
     }
 
@@ -267,7 +304,7 @@ public class StartController implements Initializable {
      * Funktion die ein neues Inventar anlegt
      * @author Tim
      * @see AssetContainer
-     * @see Dialogs#inventoryNameDialog(OrganisationContainer, String, String)
+     * @see Dialogs#inventoryNameDialog(OrganisationContainer, String, String, String)
      */
     @FXML
     protected void newInventoryClicked() {
@@ -281,7 +318,7 @@ public class StartController implements Initializable {
             return;
         }
         if(orgContainer.anySachgebietExisting()){
-            String input = Dialogs.inventoryNameDialog(orgContainer ,"Eingabe", "Inventarnamen eingeben!");
+            String input = inventoryNameDialog(orgContainer ,"Eingabe", "Inventarnamen eingeben!", null);
             if(input == null){
                 System.out.println("[INFO] Anlegen abgebrochen");
             } else {
@@ -689,6 +726,15 @@ public class StartController implements Initializable {
         }
     }
 
+    @FXML
+    public void editInventoryName(){
+        String oldName = InventarBox.getValue();
+        String newName = Dialogs.inventoryNameDialog(orgContainer, "Bearbeiten", "Neuen Namen vergeben!", oldName);
+        System.out.println(newName + "        " + oldName);
+        orgContainer.renameInventar(path, newName + ".Inv", oldName + ".Inv");
+        initialize();
+    }
+
     /**
      * GIbt eine Tabelle aller Abteilungen und Sachgebiete mit ihren Namen aus
      */
@@ -857,6 +903,7 @@ public class StartController implements Initializable {
             }
         }
         orgContainer.safeOrganisationsData();
+        initialize();
     }
     /**
      * setzt das Look and Feel für Swing elemente

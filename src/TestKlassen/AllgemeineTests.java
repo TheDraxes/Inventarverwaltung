@@ -4,16 +4,26 @@ import Data.Asset;
 import Data.Fuhrpark;
 import Data.Software;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class AllgemeineTests {
   public static void main(String[]args){
 
-    StringArrayEdit();
+    //StringArrayEdit();
+    //Formattertest();
 
+    renameTo();
   }
 
-  public static void StringArrayEdit(){
+
+  private static void renameTo(){
+    File a = new File("C:\\Inventarverwaltungspeicher\\test.txt");
+    a.renameTo(new File("C:\\Inventarverwaltungspeicher\\test2.txt"));
+    System.out.println(a.getPath());
+  }
+
+  private static void StringArrayEdit(){
     String[] a = {"1", "2", "3"};
     int anz = 0;
 
@@ -36,14 +46,14 @@ public class AllgemeineTests {
     }
   }
 
-  public static String resetFormat(String formatted){
+  private static String resetFormat(String formatted){
     formatted = formatted.replace(".","");
     formatted = formatted.replace("€","");
     formatted = formatted.replace(",", ".");
     return formatted;
   }
 
-  public static void Formattertest(){
+  private static void Formattertest(){
     final java.text.DecimalFormatSymbols germany
             = new java.text.DecimalFormatSymbols( new java.util.Locale( "de", "DE" ));
     final java.text.DecimalFormat german
