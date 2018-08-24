@@ -53,7 +53,7 @@ public class Dialogs {
      * @param header header des Dialogs
      * @return Inventarname
      */
-    public static String inventoryNameDialog(OrganisationContainer orgs, String title, String header){
+    public static String inventoryNameDialog(OrganisationContainer orgs, String title, String header, String actual){
         ObservableList<String> observableList =
                 FXCollections.observableArrayList(
                         orgs.getAllSachgebietsKuerzel());
@@ -66,6 +66,10 @@ public class Dialogs {
 
         ComboBox org = new ComboBox(observableList);
         org.setValue(orgs.getAllSachgebietsKuerzel()[0]);
+        if(actual != null){
+            org.setValue(actual.substring(0,actual.indexOf(" ")));
+            name.setText(actual.substring(actual.indexOf(" ") + 1));
+        }
 
         Dialog<String> dialog  = new Dialog();
         dialog.setTitle(title);
@@ -98,7 +102,6 @@ public class Dialogs {
             System.out.println("[INFO] Inventarname: " + result.get());
             return result.get();
         } else {
-            warnDialog("Bitte einen Namen vergeben!", "Info");
             return null;
         }
     }

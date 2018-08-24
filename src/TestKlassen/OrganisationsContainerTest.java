@@ -38,6 +38,8 @@ public class OrganisationsContainerTest {
         OrganisationContainer container = new OrganisationContainer();
         String alt = "FAJ";
         String neu = "GEI";
-        container.renameInventare(path, alt, neu);
+        String name = "FAJ Inventar.Inv";
+        String newName = "GEI Inventar.Inv";
+        container.renameInventar(path, name, newName);
     }
 }

@@ -32,6 +32,8 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import static GUI.Dialogs.inventoryNameDialog;
+
 /**
  * Controller klasse für das Startfenster welches für die UI der Inventarverwaltung,
  * Benutzerverwaltung (Adminseitig) und dem Ändern des Passwortes für Nutzer zuständig ist
@@ -267,7 +269,7 @@ public class StartController implements Initializable {
      * Funktion die ein neues Inventar anlegt
      * @author Tim
      * @see AssetContainer
-     * @see Dialogs#inventoryNameDialog(OrganisationContainer, String, String)
+     * @see Dialogs#inventoryNameDialog(OrganisationContainer, String, String, String)
      */
     @FXML
     protected void newInventoryClicked() {
@@ -281,7 +283,7 @@ public class StartController implements Initializable {
             return;
         }
         if(orgContainer.anySachgebietExisting()){
-            String input = Dialogs.inventoryNameDialog(orgContainer ,"Eingabe", "Inventarnamen eingeben!");
+            String input = inventoryNameDialog(orgContainer ,"Eingabe", "Inventarnamen eingeben!", null);
             if(input == null){
                 System.out.println("[INFO] Anlegen abgebrochen");
             } else {
@@ -689,6 +691,15 @@ public class StartController implements Initializable {
         }
     }
 
+    @FXML
+    public void editInventoryName(){
+        String oldName = InventarBox.getValue();
+        String newName = Dialogs.inventoryNameDialog(orgContainer, "Bearbeiten", "Neuen Namen vergeben!", oldName);
+        System.out.println(newName + "        " + oldName);
+        orgContainer.renameInventar(path, newName + ".Inv", oldName + ".Inv");
+        initialize();
+    }
+
     /**
      * GIbt eine Tabelle aller Abteilungen und Sachgebiete mit ihren Namen aus
      */
@@ -857,6 +868,7 @@ public class StartController implements Initializable {
             }
         }
         orgContainer.safeOrganisationsData();
+        initialize();
     }
     /**
      * setzt das Look and Feel für Swing elemente
