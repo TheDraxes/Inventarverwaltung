@@ -104,17 +104,7 @@ public class StartController implements Initializable {
         File lookUp = new File(path);
         if(!lookUp.exists()){
             Dialogs.warnDialog("Der Angegebene Speicherpfad existiert nicht mehr. Sie müssen einen neuen Speicherpfad wählen!", "Warnung");
-            path = askForPath();
-
-            try {
-                FileOutputStream outputStream = new FileOutputStream("startUp.dat");
-                ObjectOutputStream objectOut = new ObjectOutputStream(outputStream);
-                objectOut.writeObject(path);
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            askForPath();
         }
 
         fillInventoryBox();
@@ -150,6 +140,7 @@ public class StartController implements Initializable {
             orgEdit.setVisible(false);
             orgDelete.setVisible(false);
         }
+
         System.out.println("[GUI] Start Fenster Initialisiert");
         System.out.println("[INFO] Speicherpfad: " + path);
     }
@@ -176,6 +167,7 @@ public class StartController implements Initializable {
                 InventarBox.setValue(_default.get(0));
             } else {
                 InventarBox.setValue("Kein Eintrag gefunden!");
+                editInvName.setVisible(false);
             }
         }
     }
@@ -207,7 +199,7 @@ public class StartController implements Initializable {
         }
     }
 
-    private  String askForPath(){
+    private void askForPath(){
         setLookAndFeel();
         JFileChooser fc = new JFileChooser();
         fc.setDialogTitle("Speicherpfad für die Inventarverwaltung");
@@ -216,12 +208,39 @@ public class StartController implements Initializable {
         File f;
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             f = fc.getSelectedFile();
-            return f.getPath();
+            if(!f.exists()){
+                Stage lastWindow = (Stage) ConfirmButton.getScene().getWindow();
+                lastWindow.hide();
+            }
+            path = f.getPath();
+
+            try {
+                FileOutputStream outputStream = new FileOutputStream("startUp.dat");
+                ObjectOutputStream objectOut = new ObjectOutputStream(outputStream);
+                objectOut.writeObject(path);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         } else {
-            return null;
+
         }
     }
 
+    @FXML
+    private void checkForEdit(){
+
+        try{
+            if (InventarBox.getValue().equals("Kein Eintrag gefunden!")) {
+                editInvName.setVisible(false);
+            } else {
+                editInvName.setVisible(true);
+            }
+        } catch (Exception e){
+
+        }
+    }
 
     /**
      * Setzt einen neuen Speicherort fest
@@ -333,7 +352,11 @@ public class StartController implements Initializable {
                         String path = this.path + "\\" + input + ".Inv";
                         AssetContainer newContainer = new AssetContainer();
 
-                        newContainer.safeInventar(path);
+                        if(!newContainer.safeInventar(path)){
+                            Dialogs.warnDialog("Der Speicherpfad scheint nicht mehr zu existieren. Sie müssen einen neuen Auswählen!", "Warnung");
+                            askForPath();
+                            return;
+                        }
                         Dialogs.warnDialog("Inventar \"" + input + "\" erfolgreich angelegt!", "Info");
                         System.out.println("[INFO] Inventar '" + input + ".Inv' erstellt");
                         initialize();
