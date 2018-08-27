@@ -81,7 +81,7 @@
                   <MenuItem mnemonicParsing="false" onAction="#editUserClicked" text="Benutzer ändern" />
               </items>
             </Menu>
-            <Menu fx:id="organisationMenu" mnemonicParsing="false" text="Organistation">
+            <Menu fx:id="organisationMenu" mnemonicParsing="false" text="Organisation">
               <items>
                 <MenuItem fx:id="orgCreate" mnemonicParsing="false" onAction="#addNewOrganisation" text="Anlegen" />
                   <MenuItem fx:id="orgEdit" mnemonicParsing="false" onAction="#editOrganisattion" text="Bearbeiten" />

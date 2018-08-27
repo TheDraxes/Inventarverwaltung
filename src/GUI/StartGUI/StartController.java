@@ -38,7 +38,7 @@ import static GUI.Dialogs.inventoryNameDialog;
  * Controller klasse für das Startfenster welches für die UI der Inventarverwaltung,
  * Benutzerverwaltung (Adminseitig) und dem Ändern des Passwortes für Nutzer zuständig ist
  *
- * @author Tim
+ *
  * @version 1.0
  */
 public class StartController implements Initializable {
@@ -95,7 +95,7 @@ public class StartController implements Initializable {
      * Initalisierungsmethode die Interaktive Elemente mit Inhalt füllen
      * und Überpfüft ob das Adminmenue angezeigt werden muss
      *
-     * @author Tim
+     *
      * @see OrganisationContainer#loadOrganisationsData()
      */
     @FXML
@@ -175,7 +175,7 @@ public class StartController implements Initializable {
     /**
      * Funktion die zur ausführung kommt sobald der Inventar löschen Button gedrückt wurde
      *
-     * @author Tim
+     *
      * @see Dialogs#warnDialog(String, String)
      */
     @FXML
@@ -244,7 +244,7 @@ public class StartController implements Initializable {
 
     /**
      * Setzt einen neuen Speicherort fest
-     * @author Tim
+     *
      * @see JFileChooser
      */
     @FXML
@@ -284,7 +284,7 @@ public class StartController implements Initializable {
                     FileOutputStream fos = new FileOutputStream(fDes); //Stream fuer Zieldatei
 
                     byte buf[] = new byte[1024]; // Buffer für gelesene Daten
-                    while (fis.read(buf) != -1) { // solange lesen, bis EOF
+                    while (fis.read(buf) != -1) { // solange lesen, bis EOF(End of File)
                         fos.write(buf); // Inhalt schreiben
                     }
                     fis.close();
@@ -321,7 +321,7 @@ public class StartController implements Initializable {
     /**
      *
      * Funktion die ein neues Inventar anlegt
-     * @author Tim
+     *
      * @see AssetContainer
      * @see Dialogs#inventoryNameDialog(OrganisationContainer, String, String, String)
      */
@@ -378,13 +378,18 @@ public class StartController implements Initializable {
      * das aktuelle fenster wird geschlossen
      * und das neue aufgebaut mit übergabe bestimmter parameter
      *
-     * @author Tim
+     *
      */
     @FXML
     protected void confirmInventoryClicked(){
         System.out.println("[INFO] Speicherpfad: " + path);
-        if(inventoryCounter != 0) {
 
+        if(!new File(path).exists()){
+            Dialogs.warnDialog("Der Speicherpfad scheint nicht mehr zu existieren!", "Warnung");
+            return;
+        }
+
+        if(inventoryCounter != 0) {
             Stage lastWindow = (Stage) ConfirmButton.getScene().getWindow();
             lastWindow.hide();
 
@@ -413,7 +418,7 @@ public class StartController implements Initializable {
 
     /**
      * Logik für das anlegen eines neuen Benutzers
-     * @author Tim
+     *
      */
     @FXML
     protected void newUserClicked(){
@@ -424,9 +429,16 @@ public class StartController implements Initializable {
             } else {
                if (!userData[3].equals(userData[4])) {
                     Dialogs.warnDialog("Passwörter stimmen nicht Überein!","Warnung");
-                } else if (userData[0].equals("")|| userData[1].equals("") || userData[2].equals("") || userData[3].equals("") || userData[4].equals("") || userData[5].equals("")){
+               } else if (userData[0].equals("")||
+                       userData[1].equals("") ||
+                       userData[2].equals("") ||
+                       userData[3].equals("") ||
+                       userData[4].equals("") ||
+                       userData[5].equals("")
+                       )
+               {
                     Dialogs.warnDialog("Alle Felder müssen ausgefüllt werden!","Warnung");
-                } else {
+               } else {
                    boolean men = false;
                    if(userData[2].equals("Männlich")) {
                        men = true;
@@ -444,7 +456,7 @@ public class StartController implements Initializable {
                     System.out.println("[INFO] neuen Benutzer angelegt");
                     initialize();
                     break;
-                }
+               }
             }
         }
         userContainer.display();
@@ -453,7 +465,7 @@ public class StartController implements Initializable {
     /**
      * Aufgerufene Methode beim click auf den Passwort ändern Menüeintrag
      *
-     * @author Tim
+     *
      */
 
     @FXML
@@ -478,7 +490,7 @@ public class StartController implements Initializable {
     /**
      * Funktion um ausgewählte benutzer zu Bearbeiten
      *
-     * @author Tim
+     *
      */
     @FXML
     protected void editUserClicked(){
@@ -530,7 +542,7 @@ public class StartController implements Initializable {
      * Objekt vom typ Person zurückgibt
      *
      * @return Person ausgewählte person z.B zum editieren
-     * @author Tim
+     *
      */
     private Person chooseUserWindow() {
         Dialog<Person> dialog = new Dialog<>();
@@ -577,7 +589,7 @@ public class StartController implements Initializable {
     /**
      * Funktion die aufgerufen wird wenn der Logout button gedrückt wurde
      *
-     * @author Tim
+     *
      */
     @FXML
     protected void logoutButtonClicked() {
@@ -608,7 +620,7 @@ public class StartController implements Initializable {
      * Baut ein Fenster auf in dem die Daten für einen neuen Benutzer eingetragen werden
      *
      * @return array in dem die Daten des neuen Benutzers gespeichert werden
-     * @author Tim
+     *
      */
     private String[] buildNewUserWindow(){
         Dialog<String[]> dialog = new Dialog<>();
@@ -692,7 +704,7 @@ public class StartController implements Initializable {
     /**
      * Logik für das anlegen einer Neuen Organisation
      *
-     * @author Tim
+     *
      */
     @FXML
     protected void addNewOrganisation(){
@@ -718,10 +730,13 @@ public class StartController implements Initializable {
                     Dialogs.warnDialog(result.getValue(),"Warnung");
                     return;
                 } else {
-                    if(orgContainer.existingAbteilungName(result.getKey().getName())
-                            || orgContainer.existingAbteilungKuerzel(result.getKey().getKuerzel()))
+                    if(orgContainer.existingAbteilungName(result.getKey().getName()))
                     {
-                        Dialogs.warnDialog("Abteilungsname oder Kuerzel bereits vorhanden", "Warnung");
+                        Dialogs.warnDialog("Abteilungsname bereits vorhanden", "Warnung");
+                        return;
+                    }
+                    if(orgContainer.existingAbteilungKuerzel(result.getKey().getKuerzel())){
+                        Dialogs.warnDialog("Abteilungskuerzel bereits vorhanden", "Warnung");
                         return;
                     }
                     orgContainer.insertAbteilung(result.getKey());
@@ -738,7 +753,14 @@ public class StartController implements Initializable {
                     Dialogs.warnDialog(result.getValue(),"Warnung");
                     return;
                 } else {
-                    System.out.println(result.getKey().getName());
+                    if(orgContainer.sachgebietNameExisting(result.getKey().getName())) {
+                        Dialogs.warnDialog("Sachgebietsname bereits vorhanden", "Warnung");
+                        return;
+                    }
+                    if(orgContainer.sachgebietKuerzelExisting(result.getKey().getKuerzel())){
+                        Dialogs.warnDialog("Sachgebietskuerzel bereits vorhanden", "Warnung");
+                        return;
+                    }
                     orgContainer.insertSachgebiet(result.getKey(), result.getValue());
                 }
             }
@@ -753,13 +775,25 @@ public class StartController implements Initializable {
     public void editInventoryName(){
         String oldName = InventarBox.getValue();
         String newName = Dialogs.inventoryNameDialog(orgContainer, "Bearbeiten", "Neuen Namen vergeben!", oldName);
-        System.out.println(newName + "        " + oldName);
-        orgContainer.renameInventar(path, newName + ".Inv", oldName + ".Inv");
-        initialize();
+        if(newName == null){
+            return;
+        }
+        boolean alreadyTaken = false;
+        for(String inventory : inventories){
+            if(newName.equals(inventory)){
+                alreadyTaken = true;
+            }
+        }
+        if(!alreadyTaken) {
+            orgContainer.renameInventar(path, newName + ".Inv", oldName + ".Inv");
+            initialize();
+        } else {
+            Dialogs.warnDialog("Inventarname bereits vergeben", "Warnung");
+        }
     }
 
     /**
-     * GIbt eine Tabelle aller Abteilungen und Sachgebiete mit ihren Namen aus
+     * Gibt eine Tabelle aller Abteilungen und Sachgebiete mit ihren Namen aus
      */
     @FXML
     public void orgSummaryClicked(){
@@ -767,6 +801,7 @@ public class StartController implements Initializable {
       ObservableList<Organisation> sachList = FXCollections.observableArrayList(orgContainer.getAllSachgebiete());
 
       TableView<Organisation> sachgebietTable = new TableView();
+      sachgebietTable.setPlaceholder(new Label("Keine Sachgebiete angelegt!"));
 
       TableColumn nameSach = new TableColumn("Sachgebiet");
       nameSach.setPrefWidth(188);
@@ -783,6 +818,7 @@ public class StartController implements Initializable {
 
 
       TableView<Organisation> abteilungTable = new TableView();
+      abteilungTable.setPlaceholder(new Label("Keine Abteilungen angelegt!"));
 
       TableColumn nameAbt = new TableColumn("Abteilung");
       nameAbt.setPrefWidth(188);
@@ -808,21 +844,16 @@ public class StartController implements Initializable {
 
 
       Scene secondScene = new Scene(grid);
-
-      // New window (Stage)
       Stage newWindow = new Stage();
       newWindow.setTitle("Second Stage");
       newWindow.setScene(secondScene);
-
-      // Set position of second window, related to primary window.
-
       newWindow.show();
     }
 
     /**
      * Logik um eine Organisation zu editieren
      *
-     * @author Tim
+     *
      */
     @FXML
     public void editOrganisattion() {
@@ -883,7 +914,7 @@ public class StartController implements Initializable {
     /**
      * Löscht eine vorhandene Organisation
      *
-     * @author Tim
+     *
      */
     @FXML
     public void deleteOrgClicked(){
@@ -905,7 +936,7 @@ public class StartController implements Initializable {
         } else if (choose == 0) {
             //Abteilung
             if(orgContainer.anyAbteilungExisting()) {
-                String abt = Dialogs.chooseAbt(orgContainer, "Organisation auswählen", "Org Wählen");
+                String abt = Dialogs.chooseAbt(orgContainer, "Organisation auswählen", "Abteilung Wählen");
                 if(abt == null){
                   return;
                 }
@@ -916,11 +947,11 @@ public class StartController implements Initializable {
         } else if (choose == 1) {
             //Sachgebiet
             if(orgContainer.anySachgebietExisting()) {
-                String sach = Dialogs.chooseSach(orgContainer, "Organisation auswählen", "Org Wählen");
+                String sach = Dialogs.chooseSach(orgContainer, "Organisation auswählen", "Sachgebiet Wählen");
                 if(sach == null){
                   return;
                 }
-                if(Dialogs.confirmDialog("Abteilung " + sach + " wirklich löschen?")) {
+                if(Dialogs.confirmDialog("Sachgebiet " + sach + " wirklich löschen?")) {
                     orgContainer.deleteOrg(orgContainer.getSachgebietByKuerzel(sach));
                 }
             }

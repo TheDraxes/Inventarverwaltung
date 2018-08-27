@@ -3,7 +3,11 @@ package Data;
 import java.io.Serializable;
 
 
-
+/**
+ *
+ *
+ * @version 1.0
+ */
 public class Organisation implements Serializable{
   protected Person leiter;
   protected String name;

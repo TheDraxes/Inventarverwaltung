@@ -10,7 +10,7 @@ import java.util.Date;
 /**
  * CellFactory für die Inserierungsdatum spalte in der view Tabelle
  *
- * @author Tim
+ *
  */
 public class InsDateCellFactory implements Callback<TableColumn<Asset, Date>, TableCell<Asset, Date>> {
   @Override

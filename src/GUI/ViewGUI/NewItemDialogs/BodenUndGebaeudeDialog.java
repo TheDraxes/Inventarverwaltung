@@ -16,7 +16,7 @@ import java.util.Optional;
 /**
  * Klasse die die eingabemaske für ein Boden und Gebäude Asset aufbaut
  *
- * @author Tim
+ *
  */
 
 public class BodenUndGebaeudeDialog extends AbstractDialog{

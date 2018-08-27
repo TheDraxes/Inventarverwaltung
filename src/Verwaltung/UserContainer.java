@@ -13,7 +13,6 @@ import java.util.Iterator;
  * in welcher alle Nutzer verwaltet werden.
  * Sie wird unter anderem für das Login benötigt wird.
  *
- * @author mixd
  *
  * @version 1.0
  */
@@ -26,7 +25,6 @@ public class UserContainer implements Serializable {
      *
      * @param p User der in den Container eingefügt werden soll
      * @return true wenn die Eintragung erfolgreich war
-     * @author mixd
      */
     public boolean insertUser(Person p) {
         try {
@@ -51,7 +49,6 @@ public class UserContainer implements Serializable {
      * @param username Nutzername von dem Nutzer dessen Passwort geändert werden soll
      * @param newPassword Neues Passwort
      * @return true wenn die Änderung erfolgreich war
-     * @author mixd
      */
     public boolean changePassword(String username, String newPassword){
         try {
@@ -72,7 +69,6 @@ public class UserContainer implements Serializable {
      *
      * @param editedPerson Ein Person Objekt in dem die geänderten Daten des Editierten benutzers stehen
      * @return true wenn die Änderung erfolgreich war
-     * @author mixd
      */
     public boolean editUser(Person editedPerson){
         try {
@@ -92,7 +88,6 @@ public class UserContainer implements Serializable {
      * safeUserData speichert die Nutzerdaten unter 'user.dat'
      *
      * @return true wenn die Speicherung erfolgreich war
-     * @author mixd
      */
     public boolean safeUserData(){
         System.out.println("[INFO] Speichere Nutzerdaten...");
@@ -123,7 +118,6 @@ public class UserContainer implements Serializable {
      * Standardadmin neu angelegt!
      *
      * @return geladener UserContainer
-     * @author mixd
      */
     public UserContainer loadUserData(){
         System.out.println("[INFO] Suche Nutzerdaten...");
@@ -170,7 +164,6 @@ public class UserContainer implements Serializable {
      *
      * @param username Nutzername des gesuchten Nutzers
      * @return Nutzer der zum parameter username gehört
-     * @author mixd
      */
     public Person getPersonByUsername(String username) {
         Iterator<Person> it = userData.iterator();
@@ -187,7 +180,6 @@ public class UserContainer implements Serializable {
      * getUserNames gibt alle Nutzernamen zurück
      *
      * @return Array mit allen Nutzernamen
-     * @author mixd
      */
     public String[] getUserNames() {
         String[] usernames = new String[userData.size()];
@@ -205,7 +197,6 @@ public class UserContainer implements Serializable {
      * getUserNamesWithoutAdmin gibt alle Nutzernamen außer den Standardadmin zurück
      *
      * @return Array mit allen Nutzernamen außer dem Admin
-     * @author mixd
      */
     public String[] getUserNamesWithoutAdmin() {
         String[] usernames = new String[userData.size()-1];
@@ -224,7 +215,6 @@ public class UserContainer implements Serializable {
      *
      * @param username Nutzername des gesuchten Nutzers
      * @return true wenn der Nutzer mit diesem Nutzernamen existiert
-     * @author mixd
      */
     public boolean userExisting(String username) {
         if(getPersonByUsername(username) != null) {
@@ -237,7 +227,6 @@ public class UserContainer implements Serializable {
      * deleteUser löscht einen Nutzer mithilfe des Nutzernames
      *
      * @param username Nutzername des zu löschenden Nutzers
-     * @author Tim
      */
     public void deleteUser(String username){
         Person p = getPersonByUsername(username);
@@ -248,7 +237,6 @@ public class UserContainer implements Serializable {
     /**
      * deleteAllUser löscht alle vorhandenen Nutzer.
      *
-     * @author mixd
      */
     public void deleteAllUser() {
         System.out.println("[INFO] Lösche alle Benutzer");
@@ -262,7 +250,6 @@ public class UserContainer implements Serializable {
      * @param username Nutzername des Nutzers
      * @param pw Passwort des Nutzers
      * @return true wenn die kombination aus Nutzernamen und Passwort vorhanden ist
-     * @author mixd
      */
     public boolean checkLogin(String username, String pw){
         Person p = getPersonByUsername(username);
@@ -285,7 +272,6 @@ public class UserContainer implements Serializable {
      *
      * @param username Nutzersname des Nutzers der geprüft werden soll
      * @return true wenn der Nutzer gesperrt ist
-     * @author mixd
      */
     public boolean isBlocked (String username){
         Person p = this.getPersonByUsername(username);
@@ -301,7 +287,6 @@ public class UserContainer implements Serializable {
      * blockUser blockiert einen Nutzer
      *
      * @param username Nutzername des Nutzers, welcher gesperrt werden soll
-     * @author mixd
      */
     public void blockUser(String username){
         Person p = this.getPersonByUsername(username);

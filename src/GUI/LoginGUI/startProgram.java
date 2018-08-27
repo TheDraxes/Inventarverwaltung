@@ -15,7 +15,7 @@ import java.io.*;
  *
  * Sie baut das Initiale Loginfenster auf
  *
- * @author Tim
+ *
  * @version 1.0
  */
 public class startProgram extends Application {
