@@ -15,7 +15,7 @@ import javafx.stage.Stage;
  * Kontrollerklasse für das Loginfenster.
  * Reagiert auf Userinteraktionen mit dem LoginGUI
  *
- * @author Tim
+ *
  * @version 1.0
  */
 
@@ -44,7 +44,7 @@ public class LoginController {
     /**
      * Methode die das Login Fenster Initalisiert und die Nutzerdaten eingelesen.
      *
-     * @author Tim
+     *
      */
 
     @FXML
@@ -61,7 +61,7 @@ public class LoginController {
      *
      * @see #loginButtonClicked()
      * @param event event das beim tastendruck gefeuert wird
-     * @author Tim
+     *
      */
 
     @FXML
@@ -77,7 +77,7 @@ public class LoginController {
      * Prüft die eingegebenen Angaben, vergleicht sie mit denen in dem Usercontainer,
      * versteckt das aktuelle Fenster und ruft das Inventarverwaltungsenster auf.
      *
-     * @author Tim
+     *
      */
 
     @FXML

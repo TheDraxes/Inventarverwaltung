@@ -38,7 +38,7 @@ import static GUI.Dialogs.inventoryNameDialog;
  * Controller klasse für das Startfenster welches für die UI der Inventarverwaltung,
  * Benutzerverwaltung (Adminseitig) und dem Ändern des Passwortes für Nutzer zuständig ist
  *
- * @author Tim
+ *
  * @version 1.0
  */
 public class StartController implements Initializable {
@@ -95,7 +95,7 @@ public class StartController implements Initializable {
      * Initalisierungsmethode die Interaktive Elemente mit Inhalt füllen
      * und Überpfüft ob das Adminmenue angezeigt werden muss
      *
-     * @author Tim
+     *
      * @see OrganisationContainer#loadOrganisationsData()
      */
     @FXML
@@ -175,7 +175,7 @@ public class StartController implements Initializable {
     /**
      * Funktion die zur ausführung kommt sobald der Inventar löschen Button gedrückt wurde
      *
-     * @author Tim
+     *
      * @see Dialogs#warnDialog(String, String)
      */
     @FXML
@@ -244,7 +244,7 @@ public class StartController implements Initializable {
 
     /**
      * Setzt einen neuen Speicherort fest
-     * @author Tim
+     *
      * @see JFileChooser
      */
     @FXML
@@ -321,7 +321,7 @@ public class StartController implements Initializable {
     /**
      *
      * Funktion die ein neues Inventar anlegt
-     * @author Tim
+     *
      * @see AssetContainer
      * @see Dialogs#inventoryNameDialog(OrganisationContainer, String, String, String)
      */
@@ -378,7 +378,7 @@ public class StartController implements Initializable {
      * das aktuelle fenster wird geschlossen
      * und das neue aufgebaut mit übergabe bestimmter parameter
      *
-     * @author Tim
+     *
      */
     @FXML
     protected void confirmInventoryClicked(){
@@ -390,7 +390,6 @@ public class StartController implements Initializable {
         }
 
         if(inventoryCounter != 0) {
-
             Stage lastWindow = (Stage) ConfirmButton.getScene().getWindow();
             lastWindow.hide();
 
@@ -419,7 +418,7 @@ public class StartController implements Initializable {
 
     /**
      * Logik für das anlegen eines neuen Benutzers
-     * @author Tim
+     *
      */
     @FXML
     protected void newUserClicked(){
@@ -430,9 +429,16 @@ public class StartController implements Initializable {
             } else {
                if (!userData[3].equals(userData[4])) {
                     Dialogs.warnDialog("Passwörter stimmen nicht Überein!","Warnung");
-                } else if (userData[0].equals("")|| userData[1].equals("") || userData[2].equals("") || userData[3].equals("") || userData[4].equals("") || userData[5].equals("")){
+               } else if (userData[0].equals("")||
+                       userData[1].equals("") ||
+                       userData[2].equals("") ||
+                       userData[3].equals("") ||
+                       userData[4].equals("") ||
+                       userData[5].equals("")
+                       )
+               {
                     Dialogs.warnDialog("Alle Felder müssen ausgefüllt werden!","Warnung");
-                } else {
+               } else {
                    boolean men = false;
                    if(userData[2].equals("Männlich")) {
                        men = true;
@@ -450,7 +456,7 @@ public class StartController implements Initializable {
                     System.out.println("[INFO] neuen Benutzer angelegt");
                     initialize();
                     break;
-                }
+               }
             }
         }
         userContainer.display();
@@ -459,7 +465,7 @@ public class StartController implements Initializable {
     /**
      * Aufgerufene Methode beim click auf den Passwort ändern Menüeintrag
      *
-     * @author Tim
+     *
      */
 
     @FXML
@@ -484,7 +490,7 @@ public class StartController implements Initializable {
     /**
      * Funktion um ausgewählte benutzer zu Bearbeiten
      *
-     * @author Tim
+     *
      */
     @FXML
     protected void editUserClicked(){
@@ -536,7 +542,7 @@ public class StartController implements Initializable {
      * Objekt vom typ Person zurückgibt
      *
      * @return Person ausgewählte person z.B zum editieren
-     * @author Tim
+     *
      */
     private Person chooseUserWindow() {
         Dialog<Person> dialog = new Dialog<>();
@@ -583,7 +589,7 @@ public class StartController implements Initializable {
     /**
      * Funktion die aufgerufen wird wenn der Logout button gedrückt wurde
      *
-     * @author Tim
+     *
      */
     @FXML
     protected void logoutButtonClicked() {
@@ -614,7 +620,7 @@ public class StartController implements Initializable {
      * Baut ein Fenster auf in dem die Daten für einen neuen Benutzer eingetragen werden
      *
      * @return array in dem die Daten des neuen Benutzers gespeichert werden
-     * @author Tim
+     *
      */
     private String[] buildNewUserWindow(){
         Dialog<String[]> dialog = new Dialog<>();
@@ -698,7 +704,7 @@ public class StartController implements Initializable {
     /**
      * Logik für das anlegen einer Neuen Organisation
      *
-     * @author Tim
+     *
      */
     @FXML
     protected void addNewOrganisation(){
@@ -847,7 +853,7 @@ public class StartController implements Initializable {
     /**
      * Logik um eine Organisation zu editieren
      *
-     * @author Tim
+     *
      */
     @FXML
     public void editOrganisattion() {
@@ -908,7 +914,7 @@ public class StartController implements Initializable {
     /**
      * Löscht eine vorhandene Organisation
      *
-     * @author Tim
+     *
      */
     @FXML
     public void deleteOrgClicked(){

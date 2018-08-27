@@ -17,7 +17,7 @@ import java.util.ResourceBundle;
 /**
  * Controller für das Fenster für die Kapitalzusammenfassung
  *
- * @author TIm
+ *
  * @version 1.0
  */
 public class SummaryController implements Initializable{

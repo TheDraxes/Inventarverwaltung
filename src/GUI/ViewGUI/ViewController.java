@@ -39,7 +39,7 @@ import java.util.*;
  * Controller klasse für das Viewfenster welches für die UI der Assetverwaltung,
  * zuständig ist.
  *
- * @author Tim
+ *
  * @version 1.0
  */
 public class ViewController implements Initializable {
@@ -134,7 +134,7 @@ public class ViewController implements Initializable {
      *
      * auf  um die tablle zu füllen
      *
-     * @author Tim
+     *
      * @see this#fillTable()
      */
     @FXML
@@ -178,7 +178,7 @@ public class ViewController implements Initializable {
     /**
      * Füllt die Tabelle mit den daten aus dem Assetcontainer
      *
-     * @author Tim
+     *
      */
     private void fillTable(){
         ArrayList<Asset> arrayList;
@@ -303,7 +303,7 @@ public class ViewController implements Initializable {
     /**
      * Private Klassendefinition für den editbutton in der Tabelle
      *
-     * @author Tim
+     *
      */
     private class editButtonCell extends TableCell<Asset, Boolean> {
         final Button cellButton = new Button("        ");
@@ -353,7 +353,7 @@ public class ViewController implements Initializable {
     /**
      * Setzt alle Filter zurück
      *
-     * @author Tim
+     *
      */
     @FXML
     protected void resetFilter(){
@@ -368,7 +368,7 @@ public class ViewController implements Initializable {
 
     /**
      * logik für das anlegen eines neuen Asset
-     * @author Tim
+     *
      */
     @FXML
     protected void addAssetClicked() {
@@ -487,7 +487,7 @@ public class ViewController implements Initializable {
      * der boolean activefilter bestimmt ob beim aufruf von fillTable() die gefilterte Liste
      * angezeigt wird oder nich
      *
-     * @author Tim
+     *
      */
     @FXML
     protected void filterClicked (){

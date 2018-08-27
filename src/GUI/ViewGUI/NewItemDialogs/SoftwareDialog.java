@@ -13,7 +13,7 @@ import java.util.Optional;
 /**
  * Klasse die das Softwaredialog aufbaut
  *
- * @author Tim
+ *
  * @version 1.0
  */
 

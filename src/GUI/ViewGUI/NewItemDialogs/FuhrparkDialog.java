@@ -15,7 +15,7 @@ import java.util.Optional;
 /**
  * Klasse die das Fuhrparkdialog aufbaut
  *
- * @author Tim
+ *
  * @version 1.0
  */
 

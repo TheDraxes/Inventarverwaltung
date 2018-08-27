@@ -14,7 +14,7 @@ import java.util.Optional;
 /**
  * Klasse die die Eingabemaske für ein Hardware Asset aufbaut
  *
- * @author Tim
+ *
  */
 
 public class HardwareDialog extends AbstractDialog{

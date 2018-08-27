@@ -17,7 +17,7 @@ import java.io.*;
  * Sie ist dafür zuständig das Inventarverwaltungsfenster aufzubauen und mit den
  * nötigen Informationen zu versorgen.
  *
- * @author Tim
+ *
  * @version 1.0
  */
 public class initStartWindow {
