@@ -9,7 +9,6 @@ import java.util.Date;
 /**
  *
  *
- * @author mixd
  * @version 1.0
  */
 public abstract class Asset implements Serializable {

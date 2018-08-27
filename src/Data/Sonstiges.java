@@ -3,8 +3,6 @@ package Data;
 /**
  *
  *
- * @author mixd
- *
  * @version 1.0
  */
 

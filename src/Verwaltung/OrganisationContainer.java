@@ -13,7 +13,6 @@ import java.util.Iterator;
  * in welcher alle Organisationsformen (Abteilungen und Sachgebiete)
  * verwaltet werden
  *
- * @author mixd
  * @version 1.0
  */
 
@@ -24,7 +23,6 @@ public class OrganisationContainer implements Serializable {
      * safeOrganisationsData speichert die Organisationsdaten unter 'organisation.dat'
      *
      * @return boolean ob das speichern erfolgreich war oder nicht
-     * @author mixd
      */
     public boolean safeOrganisationsData(){
         System.out.println("[INFO] Speichere Organisationsdaten...");
@@ -52,7 +50,6 @@ public class OrganisationContainer implements Serializable {
      * @param path Speicherpfad der Inventare
      * @param sachgebietsKuerzelAlt alter Kürzel des Sachgebiets
      * @param sachgebietsKuerzelNeu neuer Kürzel des Sachgebiets
-     * @author mixd
      */
     public void renameInventare(String path, String sachgebietsKuerzelAlt, String sachgebietsKuerzelNeu) {
         File filespath = new File(path);
@@ -85,7 +82,6 @@ public class OrganisationContainer implements Serializable {
      * loadOrganisationsData liest die Organisationsdaten ein
      *
      * @return geladenene Organisationsdaten, wenn vorhanden / null wenn keine Organisationsdaten vorhanden sind
-     * @author mixd
      */
     public OrganisationContainer loadOrganisationsData(){
         System.out.println("[INFO] Suche Organisationsdaten...");
@@ -130,7 +126,6 @@ public class OrganisationContainer implements Serializable {
      *
      * @param neu Abteilung, welche eingetragen werden soll
      * @return true wenn die Eintragung erfolgreich war
-     * @author mixd
      */
     public boolean insertAbteilung(Abteilung neu) {
         if(this.abteilungArrayList.add(neu)) {
@@ -148,7 +143,6 @@ public class OrganisationContainer implements Serializable {
      * @param neu Sachgebiet, welches eingetragen werden soll
      * @param abteilungsKuerzel Abteilungskürzel, zu welcher Abteilung das Sachgebiet gehört
      * @return true wenn die Eintragung erfolgreich war
-     * @author mixd
      */
     public boolean insertSachgebiet(Sachgebiet neu, String abteilungsKuerzel) {
         Abteilung abteilung = getAbteilungByKuerzel(abteilungsKuerzel);
@@ -166,7 +160,6 @@ public class OrganisationContainer implements Serializable {
      *
      * @param abteilung Abteilungname, welcher überprüft werden soll
      * @return true wenn die Abteilung bereits vorhanden ist
-     * @author mixd
      */
     public boolean existingAbteilungName(String abteilung){
           for(Abteilung abt : abteilungArrayList){
@@ -182,7 +175,6 @@ public class OrganisationContainer implements Serializable {
      *
      * @param abteilungsKuerzel Abteilungskürzel, welcher überprüft werden soll
      * @return true wenn der Kürzel bereits vorhanden ist
-     * @author mixd
      */
     public boolean existingAbteilungKuerzel(String abteilungsKuerzel){
         for(Abteilung abt : abteilungArrayList){
@@ -197,7 +189,6 @@ public class OrganisationContainer implements Serializable {
      * getAllSachgebietsKuerzel liefert alle Sachgebietskürzel zurück
      *
      * @return Array mit allen Sachgebietskürzeln
-     * @author mixd
      */
     public String[] getAllSachgebietsKuerzel() {
         ArrayList<String> sachgebietNames = new ArrayList<String>();
@@ -260,7 +251,6 @@ public class OrganisationContainer implements Serializable {
      *
      * @param abteilungsKuerzel Kürzel nach welchem gesucht wird
      * @return zugehörige Abteilung
-     * @author mixd
      */
     public Abteilung getAbteilungByKuerzel(String abteilungsKuerzel){
         Iterator<Abteilung> abteilungIterator = abteilungArrayList.iterator();
@@ -279,7 +269,6 @@ public class OrganisationContainer implements Serializable {
      *
      * @param sachgebietKuerzel Kürzel nach welchem gesucht wird
      * @return zugehöriges Sachgebiet
-     * @author mixd
      */
     public Sachgebiet getSachgebietByKuerzel(String sachgebietKuerzel){
         for (Abteilung abteilung: abteilungArrayList) {
@@ -300,7 +289,6 @@ public class OrganisationContainer implements Serializable {
      * getAllAbteilungsKuerzel liefert alle Abteilungskürzeln zurück
      *
      * @return Array mit allen Abteilungskürzeln
-     * @author mixd
      */
     public String[] getAllAbteilungsKuerzel(){
         String[] abteilungen = new String[abteilungArrayList.size()];
@@ -316,7 +304,6 @@ public class OrganisationContainer implements Serializable {
      * anyAbteilungExisting prüft, ob es mind. eine Abteilung gibt
      *
      * @return true wenn Anzahl Abteilungen größer als 0
-     * @author mixd
      */
     public boolean anyAbteilungExisting(){
         if(abteilungArrayList.size() > 0) {
@@ -329,7 +316,6 @@ public class OrganisationContainer implements Serializable {
      * anySachgebietExisting prüft, ob es mind. ein Sachgebiet gibt
      *
      * @return true wenn Anzahl Sachgebiete größer als 0
-     * @author mixd
      */
     public boolean anySachgebietExisting(){
         for (Abteilung abteilung: abteilungArrayList) {
@@ -343,7 +329,6 @@ public class OrganisationContainer implements Serializable {
      * getAnzahlAbteilungen liefert die Anzahl aller Abteilungen zurück
      *
      * @return Anzahl aller Abteilungen
-     * @author mixd
      */
     public int getAnzahlAbteilungen() {
         return abteilungArrayList.size();
@@ -353,7 +338,6 @@ public class OrganisationContainer implements Serializable {
      * getAnzahlAbteilungen liefert die Anzahl aller Sachgebiete zurück
      *
      * @return Anzahl aller Sachgebiete
-     * @author mixd
      */
     public int getAnzahlSachgebiete() {
         int anzahl = 0;
@@ -369,7 +353,6 @@ public class OrganisationContainer implements Serializable {
      *
      * @param alt Abteilung vor der Änderung
      * @param neu Abteilung nach der Änderung
-     * @author mixd
      */
     public void editAbteilung(Abteilung alt, Abteilung neu){
         this.abteilungArrayList.set(abteilungArrayList.indexOf(alt), neu);
@@ -388,7 +371,6 @@ public class OrganisationContainer implements Serializable {
      * @param alt Sachgebiet vor der Änderung
      * @param neu Sachgebiet nach der Änderung
      * @return true, wenn Änderung erfolgreich war
-     * @author mixd
      */
     public boolean editSachgebiet(Sachgebiet alt, Sachgebiet neu){
         Abteilung abtAlt = getAbteilungByKuerzel(alt.getAbtKuerzel());
@@ -427,7 +409,6 @@ public class OrganisationContainer implements Serializable {
      *
      * @param a Organisation, welche gelöscht werden soll
      * @return true, wenn Löschung erfolgreich war
-     * @author mixd
      */
     public boolean deleteOrg(Organisation a){
         if (a.getClass() == Abteilung.class) {

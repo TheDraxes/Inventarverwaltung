@@ -10,7 +10,6 @@ import java.util.*;
  * Assets eingetragen werden können. Weiterhin wird in diesem die
  * Inventarnummer eines Assets automatisch generiert (ID).
  *
- * @author mixd
  *
  * @version 1.0
  */
@@ -25,7 +24,6 @@ public class AssetContainer implements Serializable {
      *
      * @param id Inventarnummer nach welcher gesucht wird
      * @return Asset mit der Inventarnummer id
-     * @author mixd
      */
     public Asset getAssetById(long id) {
         System.out.println("[INFO] Asset mit der Inventarnummer " + id + " suchen");
@@ -53,7 +51,6 @@ public class AssetContainer implements Serializable {
      * @param id Inventarnummer welche editiert werden soll
      * @param a Asset mit neuen Parametern
      * @return true wenn das editieren erfolgreich war
-     * @author mixd
      */
     public boolean editItemById(long id, Asset a) {
         System.out.println("[INFO] Asset editieren...");
@@ -79,7 +76,6 @@ public class AssetContainer implements Serializable {
      *
      * @param a Asset, welches eingefügt werden soll
      * @return true wenn hinzufügen erfolgreich war
-     * @author mixd
      */
     public boolean insertAsset(Asset a) {
         System.out.println("[INFO] Asset hinzufügen...");
@@ -104,7 +100,6 @@ public class AssetContainer implements Serializable {
      *
      * @param a Asset, welches gelöscht werden soll
      * @return true wenn Löschung erfolgreich war
-     * @author mixd
      */
     public boolean deleteAsset(Asset a) {
         System.out.println("[INFO] Asset löschen...");
@@ -128,7 +123,6 @@ public class AssetContainer implements Serializable {
      *
      * @param path Pfad in an dem der Container abgespeichert werden soll
      * @return boolean ob das speichern erfolgreich war oder nicht
-     * @author mixd
      */
     public boolean safeInventar(String path){
         System.out.println("[INFO] Speichere Inventar...");
@@ -160,7 +154,6 @@ public class AssetContainer implements Serializable {
      *
      * @param path Speicherpfad des auszulesenden Containers
      * @return geladener AssetContainer
-     * @author mixd
      */
     public AssetContainer loadInventar(String path) {
         System.out.println("[INFO] Lade Inventar...");
@@ -206,7 +199,6 @@ public class AssetContainer implements Serializable {
      *               filter[4] = Software
      *               filter[5] = Sonstiges
      * @return Liste mit gefilterten Assets
-     * @author mixd
      */
     public ArrayList<Asset> getAssetsByFilter(boolean[] filter) {
         System.out.println("[INFO] Filter anwenden...");
@@ -244,7 +236,6 @@ public class AssetContainer implements Serializable {
      * getAllBodenUndGebaeude gibt alle Assets des Objekts BodenUndGebaeude zurück
      *
      * @return Liste mit allen Assets des Objekts BodenUndGebaeude
-     * @author mixd
      */
     private ArrayList<BodenUndGebaeude> getAllBodenUndGebaeude() {
         System.out.println("[INFO] nach BodenUndGebaeude filtern...");
@@ -268,7 +259,6 @@ public class AssetContainer implements Serializable {
      * getAllFuhrpark gibt alle Assets des Objekts Fuhrpark zurück
      *
      * @return Liste mit allen Assets des Objekts Fuhrpark
-     * @author mixd
      */
     private ArrayList<Fuhrpark> getAllFuhrpark() {
         System.out.println("[INFO] nach Fuhrpark filtern...");
@@ -292,7 +282,6 @@ public class AssetContainer implements Serializable {
      * getAllHardware gibt alle Assets des Objekts Hardware zurück
      *
      * @return Liste mit allen Assets des Objekts Hardware
-     * @author mixd
      */
     private ArrayList<Hardware> getAllHardware() {
         System.out.println("[INFO] nach Hardware filtern...");
@@ -316,7 +305,6 @@ public class AssetContainer implements Serializable {
      * getAllMobiliar gibt alle Assets des Objekts Mobiliar zurück
      *
      * @return Liste mit allen Assets des Objekts Mobiliar
-     * @author mixd
      */
     private ArrayList<Mobiliar> getAllMobiliar() {
         System.out.println("[INFO] nach Mobiliar filtern...");
@@ -340,7 +328,6 @@ public class AssetContainer implements Serializable {
      * getAllSoftware gibt alle Assets des Objekts Software zurück
      *
      * @return Liste mit allen Assets des Objekts Software
-     * @author mixd
      */
     private ArrayList<Software> getAllSoftware() {
         System.out.println("[INFO] nach Software filtern...");
@@ -364,7 +351,6 @@ public class AssetContainer implements Serializable {
      * getAllSonstiges gibt alle Assets des Objekts Sonstiges zurück
      *
      * @return Liste mit allen Assets des Objekts Sonstiges
-     * @author mixd
      */
     private ArrayList<Sonstiges> getAllSonstiges() {
         System.out.println("[INFO] nach Sonstiges filtern...");
