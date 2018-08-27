@@ -5,7 +5,6 @@ import java.util.ArrayList;
 /**
  *
  *
- * @author mixd
  * @version 1.0
  */
 public class Abteilung extends Organisation{
