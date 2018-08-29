@@ -24,6 +24,12 @@ public class BodenUndGebaeude extends Asset {
     private int paramAnzahl = paramNames.length;
 
 
+    @Override
+    public String concatData() {
+        String concat = (getBezeichnung() + " " + getAnschaffungswert() + " " + getTnd() + " " + getPlz() + " " + getOrt() + " " + getStrasse() + " " + getHausnummer() + " " + getFlaeche());
+        return concat.toLowerCase();
+    }
+
     /**
      * Konstruktor ohne Parameter
      */

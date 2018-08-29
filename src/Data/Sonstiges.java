@@ -15,6 +15,12 @@ public class Sonstiges extends Asset {
     private int paramAnzahl = paramNames.length;
 
 
+    @Override
+    public String concatData() {
+        String concat = getBezeichnung() + " " + getAnschaffungswert() + " " + getTnd() + " " + getBeschreibung();
+        return concat.toLowerCase();
+    }
+
     /**
      * Konstruktor ohne Parameter
      */

@@ -13,6 +13,12 @@ public class Mobiliar extends Asset {
     };
     private int paramAnzahl = paramNames.length;
 
+    @Override
+    public String concatData() {
+        String concat = getBezeichnung() + " " + getAnschaffungswert() + " " + getTnd() + " " + getRaum();
+        return concat.toLowerCase();
+    }
+
     /**
      * Konstruktor ohne Parameter
      */

@@ -1,6 +1,7 @@
 package Verwaltung;
 
 import Data.*;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 
 import java.io.*;
 import java.util.*;
@@ -483,6 +484,23 @@ public class AssetContainer implements Serializable {
             it.next().display();
             System.out.println("- - - - - - - - - - - - - - - - - - -");
         }
+    }
+
+    /**
+     * Funktion die in den Daten der Assets nach treffen für die Suchanfrage
+     * sucht und eine Liste der Assets mit treffern zurückgibt
+     *
+     * @param search Inhalt des suchtextfeldes nach dem gesucht wird
+     * @return Liste mit Assets mit treffern
+     */
+    public ArrayList<Asset> getSearchResult(String search){
+        ArrayList<Asset> searchResult = new ArrayList<>();
+        for(Asset a : assetList) {
+            if(a.concatData().contains(search.toLowerCase())){
+                searchResult.add(a);
+            }
+        }
+        return searchResult;
     }
 
     // Getter & Setter

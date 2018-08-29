@@ -14,6 +14,12 @@ public class Software extends Asset {
     private int paramAnzahl = paramNames.length;
 
 
+    @Override
+    public String concatData() {
+        String concat = getBezeichnung() + " " + getAnschaffungswert() + " " + getTnd() + " " + getVersion();
+        return concat.toLowerCase();
+    }
+
     /**
      * Konstruktor ohne Parameter
      */

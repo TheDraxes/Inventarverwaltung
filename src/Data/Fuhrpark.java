@@ -21,6 +21,12 @@ public class Fuhrpark extends Asset {
 	private int paramAnzahl = paramNames.length;
 
 
+	@Override
+	public String concatData() {
+		String concat = getBezeichnung() + " " + getAnschaffungswert() + " " + getTnd() + " " + getKennzeichen() + " " + getFahrgestellnummer() + " " + getKilometerstand() + " " + getKw() + " " + getPs();
+		return concat.toLowerCase();
+	}
+
 	/**
 	 * Konstruktor ohne Parameter
 	 */
