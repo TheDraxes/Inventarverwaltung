@@ -11,7 +11,7 @@ import java.util.Date;
  * verwaltet.
  * Von ihr erben alle Assettypen
  *
- * @version 1.0
+ * @version 1.test
  */
 public abstract class Asset implements Serializable {
     private long inventarnummer;
