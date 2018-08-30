@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * Unterklasse von Organistion
  * In einer Abteilung gibt es mehrere Sachgebiete
  *
- * @version 1.0test
+ * @version 1.0
  */
 public class Abteilung extends Organisation{
 	private ArrayList<Sachgebiet> sachgebiete = new ArrayList<>();
