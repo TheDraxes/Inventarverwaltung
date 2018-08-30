@@ -3,7 +3,7 @@ package Data;
 /**
  * Unterklasse von Asset
  * Verwaltet die Inferioren Parameter von Grundstücken und Gebäuden
- *
+ *test
  * @version 1.0
  */
 public class BodenUndGebaeude extends Asset {
