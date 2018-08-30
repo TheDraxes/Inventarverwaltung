@@ -4,7 +4,9 @@ import java.io.Serializable;
 
 
 /**
- *
+ * Klasse, welche die superioren Parameter einer Organisationsform
+ * verwaltet.
+ * Von ihr erben alle anderen Organisationsformen
  *
  * @version 1.0
  */

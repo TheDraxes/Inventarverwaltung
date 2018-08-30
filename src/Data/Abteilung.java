@@ -3,7 +3,8 @@ package Data;
 import java.util.ArrayList;
 
 /**
- *
+ * Unterklasse von Organistion
+ * In einer Abteilung gibt es mehrere Sachgebiete
  *
  * @version 1.0
  */

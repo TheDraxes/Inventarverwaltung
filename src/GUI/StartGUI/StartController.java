@@ -797,9 +797,12 @@ public class StartController implements Initializable {
      */
     @FXML
     public void orgSummaryClicked(){
-      ObservableList<Organisation> list = FXCollections.observableArrayList(orgContainer.getAbteilungArrayList());
-      ObservableList<Organisation> sachList = FXCollections.observableArrayList(orgContainer.getAllSachgebiete());
-
+      ObservableList<Organisation> list = null;
+      ObservableList<Organisation> sachList = null;
+      if(orgContainer != null) {
+        list = FXCollections.observableArrayList(orgContainer.getAbteilungArrayList());
+        sachList = FXCollections.observableArrayList(orgContainer.getAllSachgebiete());
+      }
       TableView<Organisation> sachgebietTable = new TableView();
       sachgebietTable.setPlaceholder(new Label("Keine Sachgebiete angelegt!"));
 

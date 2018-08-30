@@ -7,7 +7,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- *
+ * Klasse, welche die superioren Parameter eines Anlagegegenstandes
+ * verwaltet.
+ * Von ihr erben alle Assettypen
  *
  * @version 1.0
  */

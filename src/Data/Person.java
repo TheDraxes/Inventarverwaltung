@@ -5,7 +5,7 @@ import Verwaltung.UserContainer;
 import java.io.Serializable;
 
 /**
- *
+ * Klasse, welche eine Person verwaltet.
  *
  * @version 1.0
  */

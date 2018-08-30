@@ -1,7 +1,8 @@
 package Data;
 
 /**
- *
+ * Unterklasse von Asset
+ * Verwaltet die Inferioren Parameter von Grundstücken und Gebäuden
  *
  * @version 1.0
  */

@@ -1,7 +1,8 @@
 package Data;
 
 /**
- *
+ * Unterklasse von Organisation
+ * Ein Sachgebiet ist weiterhin einer Abteilung zugeordnet
  *
  * @version 1.0
  */
