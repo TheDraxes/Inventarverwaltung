@@ -1,7 +1,8 @@
 package Data;
 
 /**
- *
+ * Unterklasse von Asset
+ * Verwaltet die Inferioren Parameter von sonstigen Anlagegegenständen
  *
  * @version 1.0
  */

@@ -1,7 +1,8 @@
 package Data;
 
 /**
- *
+ * Unterklasse von Asset
+ * Verwaltet die Inferioren Parameter von Fahrzeugen
  *
  * @version 1.0
  */
